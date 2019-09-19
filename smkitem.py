@@ -1,4 +1,4 @@
-# SMKItem module models the API object model from Statens Museeum for Kunst
+# smkitem module models the API object model from Statens Museeum for Kunst
 #
 # The main class: Item, was auto-generated from the API using https://app.quicktype.io
 # Using this API call
