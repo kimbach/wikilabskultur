@@ -1,7 +1,0 @@
-passwords.txt
-user-config.py
-*.log
-throttle.ctrl
-apicache-py3/
-__pycache__/
-__pycache__/SMKItem.cpython-37.pyc
