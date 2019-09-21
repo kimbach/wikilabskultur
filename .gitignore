@@ -1,8 +1,0 @@
-passwords.txt
-user-config.py
-*.log
-throttle.ctrl
-apicache-py3/
-__pycache__/
-wikilabskultur.code-workspace
-.gitignore
