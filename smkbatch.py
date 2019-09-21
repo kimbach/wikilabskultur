@@ -1,3 +1,7 @@
+# smkbatch
+#
+# Functions for SMK Batch Upload
+#
 # This code parses date/times, so please
 #
 #     pip install python-dateutil
@@ -19,7 +23,8 @@ import json
 import requests
 import pathlib
 import smkitem
-import wikimedia
+import commons
+import wikidata
 import os
 import pywikibot
 from pywikibot import pagegenerators as pg
@@ -78,7 +83,7 @@ def TestSMKAPI():
             #complete_artwork_desc_and_upload(filename, pagetitle, desc, production_date, categories)
 
             # Generate artwork template
-            artwork = wikimedia.ArtworkTemplate(artist = '',
+            artwork = commons.ArtworkTemplate(artist = '',
                 author = '',
                 title = '',
                 desc = desc,
@@ -111,35 +116,5 @@ def TestSMKAPI():
             print ('image_native =' + item.image_native)
             print (artwork.wikitext)
 
-def TestWikidata():
-    wikidata_smk_csv = "wikidata_smk.csv"
-    wikidata_error_log = "wikidata_error.log"
-    logging.basicConfig(filename=wikidata_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-    try:
-        f = open(wikidata_smk_csv, 'w+')
-        # Set up logging
-        query = u"""SELECT ?item ?itemLabel ?skaberLabel ?inventarnummer ?billeder ?commonscat WHERE {
-        ?item wdt:P195 wd:Q671384 .
-        OPTIONAL { ?item wdt:P217 ?inventarnummer }
-        OPTIONAL { ?item wdt:P170 ?skaber }
-        OPTIONAL { ?item wdt:P18 ?billeder }
-        OPTIONAL { ?item wdt:P373 ?billeder }
-        SERVICE wikibase:label { bd:serviceParam wikibase:language "da,en" } .}"""
-        wikidata_site = pywikibot.Site("wikidata", "wikidata")
-        generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
-
-        for item in generator:
-            try:
-                data = item.get()
-                claims = data.get('claims')
-                print(claims.get(u'P217')[0].target)
-                f.write(item.id+';'+claims.get(u'P217')[0].target+ '\r\n')
-            except Exception as e:
-                logging.error(str(e))
-        
-        f.close() 
-
-    except Exception as e:
-        logging.error(str(e))
-
-TestWikidata()
+# Get all wikidata items for SMK Wikidata object Q671384
+wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')

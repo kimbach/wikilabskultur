@@ -1,5 +1,5 @@
-# WMCommons - module than implements helper classe for Wikimedia COmmons
-
+# commons - module than implements helper classes for Wikimedia Commons
+#
 # Artwork class encapsulates the wikimedia commons temlate Artwork
 #  
 # This code parses date/times, so please

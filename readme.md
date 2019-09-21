@@ -1,5 +1,9 @@
 # Wiki Labs Kultur
-This is the repository for Wiki Labs Kultur
+This is the repository for Wiki Labs Kultur, a collaboration between Wikimedia Danmark 
+
+The code is utilising the Wikimedia pywikibot API
+
+https://www.mediawiki.org/wiki/Manual:Pywikibot
 
 - [Wiki Labs Kultur](#wiki-labs-kultur)
   - [Files](#files)
@@ -10,7 +14,7 @@ This is the repository for Wiki Labs Kultur
     - [wikimedia.py](#wikimediapy)
       - [BaseTemplate](#basetemplate)
       - [ArtworkTemplate](#artworktemplate)
-    - [SMKBatchUpload.py](#smkbatchuploadpy)
+    - [smkbatch.py](#batchuploadpy)
 
 ## Files
 ### smkitems.json
@@ -42,11 +46,14 @@ https://app.quicktype.io?share=q7q5bhqKximgfNuxroSP
 ### wikimedia.py
 Helper module for Wikimedia projects, for instance templates
 
+### wikidata.py
+Helper module for Wikidata, for instance templates
+
 #### BaseTemplate
 Abstract base class than for templates 
 
 #### ArtworkTemplate
 Class than implements the object model for the Artwork template 
 
-### SMKBatchUpload.py
-Unit test for SMK Batch Upload
+### smkbatch.py
+Functions for SMK Batch Upload

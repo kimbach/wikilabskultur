@@ -4,4 +4,5 @@ user-config.py
 throttle.ctrl
 apicache-py3/
 __pycache__/
-__pycache__/SMKItem.cpython-37.pyc
+wikilabskultur.code-workspace
+.gitignore
