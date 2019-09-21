@@ -41,7 +41,7 @@ ORDER BY (?item)"""
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
         # CSV header item;number;title;image;url
-        f.write('item;image;number;title;url\r\n')
+        f.write('item;number;title;image;url\r\n')
 
         for item in generator:
             try:
