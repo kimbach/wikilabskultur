@@ -9,6 +9,27 @@ import dateutil.parser
 import pywikibot
 from pywikibot import pagegenerators as pg
 import logging
+import smkapi
+
+def recursive_iter_1(obj):
+    if isinstance(obj, dict):
+        for item in obj.values():
+            yield from recursive_iter(item)
+    elif any(isinstance(obj, t) for t in (list, tuple)):
+        for item in obj:
+            yield from recursive_iter(item)
+    else:
+        yield obj
+
+def recursive_iter(obj, keys=()):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield from recursive_iter(v, keys + (k,))
+    elif any(isinstance(obj, t) for t in (list, tuple)):
+        for idx, item in enumerate(obj):
+            yield from recursive_iter(item, keys + (idx,))
+    else:
+        yield keys, obj
 
 def GetInstitutionWikidataItems(wd_institution, csv_filename):
     # Generates a CSV file of items from the institution with the wikidata Q-number given by
@@ -40,16 +61,39 @@ ORDER BY (?item)"""
         wikidata_site = pywikibot.Site("wikidata", "wikidata")
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
-        # CSV header item;number;title;image;url
-        f.write('item;number;title;image;url\r\n')
+        # CSV header item;number;title;image;url;smk_id;smk_object_number;smk_image_native
+        f.write('item;number;title;image;url;smk_id;smk_object_number;smk_image_native\r\n')
 
-        for item in generator:
+        for wikidata_item in generator:
             try:
-                data = item.get()
+                print(wikidata_item.id)
+
+                data = wikidata_item.get()
                 claims = data.get('claims')
                 # Claim 217 is the item number
                 number=str(claims.get(u'P217')[0].target)
                 print(number)
+
+                smk_object = smkapi.get_smk_object(number)
+
+                for keys, item in recursive_iter(smk_object['items']):
+                    if 'image_native'==keys[1]:
+                        smk_image_native=item
+                        print('smk_image_native='+smk_image_native)
+                    if 'id'==keys[1]:
+                        smk_id=item
+                        print('smk_id='+smk_id)
+                    if 'object_number'==keys[1]:
+                        smk_object_number=item
+                        print('smk_object_number='+smk_object_number)
+
+                #for item in smk_items:
+                #    smk_id = item.id
+                #    print ('id           =' + item.id)
+                #    smk_object_number = item.object_number
+                #    print ('object_number=' + item.object_number)
+                #    smk_image_native = item.image_native
+                #    print ('image_native =' + item.image_native)
 
                 # Claim 18 is the image
                 try:
@@ -68,7 +112,7 @@ ORDER BY (?item)"""
                 print(url)
 
                 # Add line to CSV
-                f.write(item.id+';'+number+';'+title+';'+image+';'+url+'\r\n')
+                f.write(wikidata_item.id+';'+number+';'+title+';'+image+';'+url+';'+smk_id+';'+smk_object_number+';'+smk_image_native+'\r\n')
                 items=items+1
             except Exception as e:
                 logging.error(str(e))

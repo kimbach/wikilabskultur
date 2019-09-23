@@ -1,0 +1,408 @@
+{ 
+   "offset":0,
+   "rows":10,
+   "found":1,
+   "items":[ 
+      { 
+         "id":"1180038434_object",
+         "created":"2019-08-07T05:22:07Z",
+         "modified":"2019-08-12T09:34:37Z",
+         "acquisition_date_precision":"1621-12-31",
+         "responsible_department":"Samling og Forskning (KMS)",
+         "content_description":[ 
+            "Den faldende i billedets midte er en gentagelse af Cornelis Cornelisz' egen 'Ikaros', stukket af Hendrick Goltzius i 1588 (Holl. 306-09). ",
+            "Lignende figur af den stående mand til venstre i to andre værker af Cornelis Cornelisz: 'Drieluik met de Kindermoord te Bethlehem, de Aanbidding der heders en de Aanbidding der koningen', 1591 + 'De kindermoord te Bethlehem', 1591 (Maurits - Prins van Oranje, Rijksmuseum, Amsterdam, 2000, p. 148 + 321)"
+         ],
+         "current_location_name":"Sal 205",
+         "frame_notes":[ 
+            "Bagklædning: false",
+            "Mikroklimaramme: false"
+         ],
+         "dimensions":[ 
+            { 
+               "notes":"2390 x 3070 mm",
+               "part":"netto",
+               "type":"hojde",
+               "unit":"cm",
+               "value":"239"
+            },
+            { 
+               "notes":"2390 x 3070 mm",
+               "part":"netto",
+               "type":"bredde",
+               "unit":"cm",
+               "value":"307"
+            }
+         ],
+         "documentation":[ 
+            { 
+               "title":"Hollandsk malerkunst",
+               "author":"Karl Madsen",
+               "notes":"204",
+               "shelfmark":"1105"
+            },
+            { 
+               "title":"De bronnen van Carel van Mander: voor \"Het leven der doorluchtighe nederlandtsche en hoogduytsche schilders\"",
+               "author":"H. E. Greve",
+               "notes":"207",
+               "shelfmark":"1954"
+            },
+            { 
+               "title":"Cornelis Cornelisz van Haarlem 1562-1638: a monograph and catalogue raisonné",
+               "author":"Pieter J.J. van Thiel",
+               "notes":"30, 71, 76-77, 97, 153, 159, 177, 198, 325-327 kat. 87, pl. 16-18, farveplanche 1",
+               "shelfmark":"2000-010"
+            },
+            { 
+               "title":"Clinch: danske kunstnere markerer Kunstakademiets 250 års jubilæum på Statens Museum for Kunst",
+               "author":"unknown",
+               "notes":"Omtalt p. 66-67. Ill. p. 65 udstillingsfotografi og p. 67 detalje",
+               "shelfmark":"2004-276"
+            },
+            { 
+               "title":"SMK highlights: Statens Museum for Kunst",
+               "author":"unknown",
+               "notes":"omt. og afb. p. 33",
+               "shelfmark":"2005-071"
+            },
+            { 
+               "title":"De Nationale Konst-Gallery en het Koninklijk Museum",
+               "author":"E.W. Moes",
+               "notes":"77-78, 107, 159, 176-77",
+               "shelfmark":"2566"
+            },
+            { 
+               "title":"Frederiksborg: Bd. 2: Slottets historie",
+               "author":"Francis Beckett",
+               "notes":"260, nr. 217",
+               "shelfmark":"2910"
+            },
+            { 
+               "title":"From Pisanello to Cézanne: master drawings from the Museum Boymans-van Beuningen",
+               "author":"unknown",
+               "notes":"68",
+               "shelfmark":"54315"
+            },
+            { 
+               "title":"Dawn of the golden age: Northern Netherlandish art, 1580-1620",
+               "author":"Wouter Kloek",
+               "notes":"afb. (f) p. 202, kat. 5 p. 335-36 (ill.) (Van Thiel foreslår, at scenen forestiller Lucifers fald)",
+               "shelfmark":"55283"
+            },
+            { 
+               "title":"Geschiedkundige aanteekeningen over haarlemsche schilders: en andere beoefenaren van de beeldende kunsten, voorafgegaan door eene kort geschiedenis van het schilders of St. Lucas gild aldaar",
+               "author":"A. van der Willigen",
+               "notes":"99",
+               "shelfmark":"588"
+            },
+            { 
+               "title":"Gods, saints and heroes: Dutch painting in the age of Rembrandt: [National Gallery of Art, Washington, November 2, 1980 - January 4, 1981: The Detroit Institute of Arts, February 16 - April 19, 1981: Rijksmuseum, Amsterdam, May 18 - July 19, 1981]",
+               "author":"unknown",
+               "notes":"78-79, kat. nr. 2",
+               "shelfmark":"64173"
+            },
+            { 
+               "title":"Schilderijen voor het stadhuis Haarlem: 16e en 17e eeuw kunstopdrachten ter verfraaiing",
+               "author":"P. Biesboer",
+               "notes":"34",
+               "shelfmark":"86-103"
+            },
+            { 
+               "title":"Mythologie et maniérisme: Italie, Bavière, Fontainebleau, Prague, Pays-Bas: peinture et dessins",
+               "author":"Andrée de Bosque",
+               "notes":"afb. p. 125, 126",
+               "shelfmark":"87-149"
+            },
+            { 
+               "title":"Joachim Wtewael and Dutch mannerism",
+               "author":"Anne W. Lowenthal",
+               "notes":"103",
+               "shelfmark":"87-38"
+            },
+            { 
+               "title":"Christian IV og Europa: den 19. Europarådsudstilling, Danmark 1988",
+               "author":"unknown",
+               "notes":"Olaf Koester, Christian IV og billedkunstens Europa, p. 314, kat. nr. 1016, afb. p. 313",
+               "shelfmark":"88-222"
+            },
+            { 
+               "title":"Renæssancen i 1500-tallet",
+               "author":"Nils Ohrt",
+               "notes":"p. 10-11, kat. nr. 28, afb. (F) p. 10",
+               "shelfmark":"96-749"
+            },
+            { 
+               "title":"De 'Heydensche Fabulen' in de Noordnederlandse schilderkunst, circa 1590-1670: proefschrift ter verkrijging van de graad van Doctor in de Letteren aan de Rijksuniversiteit te Leiden... 9 april 1986",
+               "author":"Eric Jan Sluijter",
+               "notes":"p. 347 note 15-2",
+               "shelfmark":"97106"
+            },
+            { 
+               "title":"Statens Museum for Kunst: 1827-1952",
+               "author":"Villads Villadsen",
+               "notes":"ill. (s/h) p.27",
+               "shelfmark":"98-419"
+            },
+            { 
+               "title":"Christian 4. og Frederiksborg",
+               "author":"unknown",
+               "notes":"afb. p. 298-299",
+               "shelfmark":"C 31123"
+            },
+            { 
+               "title":"Pieter Isaacsz (1568-1625): court painter, art dealer and spy",
+               "author":"unknown",
+               "notes":"afb. p. 156, ill. 77, omt. p. 157",
+               "shelfmark":"C 37345"
+            },
+            { 
+               "title":"Reframing the Danish Renaissance: papers from an International Conference in Copenhagen 28 September - 1 October 2006",
+               "author":"unknown",
+               "notes":"Noldus, Badeloch Vera: Art and Music on Demand - A Portrait of the Danish Diplomat Jonas Charisius and his Mission to the Dutch Republic pp. 279-300. Ill. p. 284, fig. 3",
+               "shelfmark":"C 48011"
+            },
+            { 
+               "title":"Cornelis Corneliszoon van Haarlem (1562-1638): patrons, friends and Dutch humanists",
+               "author":"Julie L. McGee",
+               "notes":"223-24",
+               "shelfmark":"D 21511 B"
+            },
+            { 
+               "title":"Fra vore Museers Barndom: Kunstkammeret. Dets Stiftelse og ældste Historie",
+               "author":"H.C. Bering Liisberg",
+               "notes":"140",
+               "shelfmark":"D 3702"
+            },
+            { 
+               "title":"Werner Jacobsz. van den Valckert",
+               "author":"P.J.J van Thiel",
+               "notes":"175 n66"
+            },
+            { 
+               "title":"Cornelis Cornelisz van Haerlem",
+               "author":"F. Wedekind",
+               "notes":"VI, 20"
+            },
+            { 
+               "title":"Cornelis Cornelisz. van Haarlem",
+               "author":"C.J Gonnet",
+               "notes":"177"
+            },
+            { 
+               "title":"Cornelis van Haarlem en de Hollandsche laat-manieristische schilderkunst",
+               "author":"Wolfgang Stechow",
+               "notes":"81"
+            },
+            { 
+               "title":"Albrecht Dürer in der Kunst und im Kunsturteil uim  1600",
+               "author":"H. Kauffmann",
+               "notes":"40-42"
+            },
+            { 
+               "title":"Cornelis Cornelisz. van Haarlam as a Draftsman",
+               "author":"P.J.J. van Thiel",
+               "notes":"128, 130, 131"
+            },
+            { 
+               "title":"Mariage Symbolism in a Musical Party by Jan Miense Molenaer",
+               "author":"P.J.J. van Thiel",
+               "notes":"96-97"
+            },
+            { 
+               "title":"Cornelis Cornelisz van Haarlem; his first ten years as a painter, 1582-1592",
+               "author":"P.J.J. van Thiel",
+               "notes":"76"
+            },
+            { 
+               "title":"La réhabilitation de manierisme hollandais. Deuz tableaux de Cornelis van Haarlem",
+               "author":"P. J. J. van Thiel",
+               "notes":"KMS1 omtales p. 117"
+            },
+            { 
+               "title":"Hont Hortstiana",
+               "author":"E.K.J Reznicek",
+               "notes":"174 og n18"
+            },
+            { 
+               "title":"Titanernes fald - og genoprejsning",
+               "author":"Henrik Bjerre",
+               "notes":"p. 70-81, ill. p. 70 (detaille), afb. (f) p. 73, røntgenoptagelse p. 76-77, p. 81 (detaille)"
+            },
+            { 
+               "title":"Het Schilderboek",
+               "author":"Karel van Mander",
+               "notes":"p. 368 (med reference til P.J.J. van Thiels \"Cornelis Cornelisz. van Haarlem - his first ten years as a painter 1584-1592\" i G. Cavalli-Björkman (red.) Netherlandish\nMannerism, Stockholm 1985. p. 73-84 afvisers det, at KMS1 er identisk med den \"Val van Lucifer\" som v.Mander nævner i Jacob Rauwerts eje (p.364)). "
+            },
+            { 
+               "title":"100 mesterværker",
+               "author":"unknown",
+               "notes":"tekst skrevet af Hanne Jönsson p. 52, afb. (F) p. 53",
+               "shelfmark":"k1996-233"
+            },
+            { 
+               "title":"The New Hollstein Dutch and Flemish etchings, engravings and woodcuts 1450-1700, The Muller dynasty, part I-III",
+               "author":"Jan Piet Filedt Kok",
+               "notes":"vol. II p. 15 og note 15",
+               "shelfmark":"k1999-249"
+            },
+            { 
+               "title":"Hendrick Goltzius (1558-1617): tekeningen, prenten en schilderijen",
+               "author":"unknown",
+               "notes":"p. 98 under kat. 33 og n62",
+               "shelfmark":"k2003-329"
+            },
+            { 
+               "title":"Vénus et Adonis: de Cornelis van Haarlem",
+               "author":"Caroline Joubert",
+               "notes":"Omt, p. 8-9, afb. p. 8, fig. 6",
+               "shelfmark":"k2006-089"
+            }
+         ],
+         "exhibitions":[ 
+            { 
+               "exhibition":"100 Mesterværker",
+               "date_start":"1996-06-23T00:00:00.000Z",
+               "date_end":"1996-08-04T00:00:00.000Z",
+               "venue":"Sølvgade"
+            },
+            { 
+               "exhibition":"Clinch!",
+               "date_start":"2004-04-01T00:00:00.000Z",
+               "date_end":"2004-11-28T00:00:00.000Z",
+               "venue":"Sølvgade"
+            },
+            { 
+               "exhibition":"Renæssancen i 1500-tallet",
+               "date_start":"1996-10-26T00:00:00.000Z",
+               "date_end":"1997-03-09T00:00:00.000Z",
+               "venue":"Nivaagaards Malerisamling"
+            },
+            { 
+               "exhibition":"Christian IV og Europa : den 19. Europarådsudstilling",
+               "date_start":"1988-03-30T00:00:00.000Z",
+               "date_end":"1988-09-25T00:00:00.000Z",
+               "venue":"Sølvgade"
+            }
+         ],
+         "labels":[ 
+            { 
+               "text":"I den romerske digter Ovids Metamorfoser fortælles historien om den herskende gudeslægt bestående af titanerne, kykloperne og giganterne, som blev udfordret af de olympiske guder med Zeus i spidsen til en drabelig kosmisk kamp, den såkaldte titanomachia.\n\nKampen endte med titanernes nederlag og den af Zeus befalede nedstyrtning til underverdenens Tartaros, hvor de blev skyld i jordskælv og vulkaners udbrud.\n\nKunstneriske idealer\nCornelis Cornelisz van Haarlem har udlevet alle sine kunstneriske idealer i de nøgne muskuløse kroppe og i de komplicerede stillinger. Studier efter nøgenmodel blev først almindeligt i slutningen af 1600-tallet, men i Haarlem stiftede Karel van Mander (1548-1606) et akademi, hvor man ikke alene dyrkede den akademiske nøgenakt som øvelsesmotiv, men også diskuterede emner af kunstteoretisk natur.\n\nEt eksempel på Haarlem-manierismen\nMaleriet er et eksempel på Haarlem-manierismen. Manierisme er betegnelsen for den stilart mellem renæssancen og barokken, hvor det artificielle og sensuelle var i højsædet. Stilen blev blandt andet fremelsket ved Rudolf 2.s (1552-1612) hof i Prag og bredte sig herfra nordpå, hvor vores egen Christian 4. (1557-1648) tog den til sig. Titanernes fald var blandt de nederlandske malerier, som han erhvervede i 1621.",
+               "type":"HIGHLIGHTS",
+               "source":"Eva de la Fuente Pedersen",
+               "date":"2005-01-01T00:00:00.000Z"
+            },
+            { 
+               "text":"The Roman poet Ovid’s Metamorphoses relate the story of a reigning race of gods consisting of the titans, the cyclopes, and the giants who were challenged to a cosmic battle by the Olympian gods headed by Zeus.\n\nThe fierce battle, the so-called titanomachia, ended with the defeat of the titans whom Zeus cast down into Tartaros, the underworld, from where they cause earthquakes and volcanic eruptions.\n\nThe artistic ideals\nCornelis Cornelisz van Haarlem brought all his artistic ideals to bear in the naked muscular bodies and the complicated poses. Studies from the nude did not become common until the late 17th century, but in Haarlem Karel van Mander (1548-1606) founded an academy that did not only use academic nudes for practice, but which also debated art theory.\n\nAn example of the Haarlem Mannerist style\nThis painting is an example of the resultant Haarlem Mannerist style. Mannerism is a designation used for a style between the Renaissance and the Baroque that celebrated the artificial and the sensual. The style was cultivated in places such as the court of Rudolph 2. (1552-1612) in Prague and travelled north, winning over royals such as the Danish King Christian 4. (1557-1648). The Fall of the Titans was among the Dutch paintings purchased by him in 1621.\n",
+               "type":"HIGHLIGHTS",
+               "source":"Eva de la Fuente Pedersen",
+               "date":"2005-01-01T00:00:00.000Z"
+            },
+            { 
+               "text":"Mandekroppen i frit fald Cornelis Cornelisz. van Haarlem (1562-1638), Titanernes fald (1588)  I 1621 købte kong Christian d. 4 kunstværket Titanernes Fald, og i slutningen af 1980erne kom det frem i lyset fra SMKs magasin. Siden har den hollandske maler Cornelis Cornelisz. van Haarlems store maleri været et af de mest elskede værker i samlingen på SMK.  Der er fuldt knald på Cornelis Cornelisz. van Haarlems 2,5x3 meter store lærred, hvor de nøgne mandekroppe falder oven i hinanden. Udover at Cornelis Cornelisz. van Haarlem her får udlevet alle sine kunstneriske idealer i arbejdet med at gengive den nøgne muskuløse krop, så er Titanernes Fald også en fortælling om titanernes, kyklopernes og giganternes kosmiske kamp mod de græske guder med Zeus i spidsen. Som det tydeligt ses, led de et sviende nederlag og styrtede på Zeus’ befaling ned i underverdenen Tartaros, hvor de var årsag til jordskælv og vulkanudbrud.  En hyldest til mandekroppen ”Værket var hypermoderne i sin samtid. Både det at have evnen til at male figurer i så svære positioner og menneskekroppe i frit fald. Det var imponerende,” fortæller museumsinspektør, Eva de la Fuente Pedersen.  I midten af værket danner figurerne i forgrunden en ramme og bag dem åbner der sig flere planer ind i billedet. Dette er en typisk malemåde i tiden. ”De falder jo ned i Helvede, og man kan se lyset fra solen, der skinner ned i afgrunden. Det er et næsten science fictionagtigt formsprog, kunstneren har brugt. De vælter jo nærmest ud i hovedet på os, og ved brug af både farverne og rummet suger han os ind i et uendeligt dybt rum,” siger Eva de la Fuente Pedersen.  Og så er der sommerfuglene, der er blevet meget strategisk placeret. Nogle gange bruges sommerfulgle som symbol for sjælen, der flyver op, men det er, ifølge Eva de la Fuente Pedersen, ikke den betydning, de har her. ”Her er både sommerfugle og insekter i megaformat, og jeg tror de hører til de væsner, man forestillede sig boede nede i Helvede. Insekter blev forbundet med ild på dette tidspunkt, hvor man troede, at de blev født af ild, fordi de sværmer omkring og ind i lyset.”  Titanernes Fald er et hovedværk fra Cornelis Cornelisz. van Haarlems ungdomstid og er et klassisk eksempel på det, der i kunsthistorien kaldes for Haarlem manierisme. Her er de komplicerede og overdrevne kropsgengivelser omdrejningspunktet og Cornelis Cornelisz. van Haarlem gjorde sig netop umage med at vise, hvor dygtig han var til det netop det.    Andre museer Cornelis Cornelisz. van Haarlems værker kan også ses på Rijksmuseet i Amsterdam, Holland, Frans Hals museet i Haarlem, Holland, Louvre museet, Paris, Frankrig, og Staatliche Kunstsamlungen, Dresden, Tyskland.",
+               "type":"HIGHLIGHTS",
+               "source":"Annette Rosenvold Hvidt",
+               "date":"2018-09-11T00:00:00.000Z"
+            }
+         ],
+         "materials":[ 
+            { 
+               "material":"lærred"
+            },
+            { 
+               "material":"olie"
+            }
+         ],
+         "object_names":[ 
+            { 
+               "name":"maleri"
+            }
+         ],
+         "part_of":[ 
+            "KKSgb1045"
+         ],
+         "parts":[ 
+            "KKSgb1045"
+         ],
+         "production":[ 
+            { 
+               "creator":"Cornelisz. van Haarlem, Cornelis",
+               "creator_date_of_birth":"1562-01-01T00:00:00.000Z",
+               "creator_date_of_death":"1638-01-01T00:00:00.000Z",
+               "creator_nationality":"hollandsk",
+               "creator_history":"Tegninger: ?:Tu mag",
+               "creator_lref":"31366_person"
+            }
+         ],
+         "production_date":[ 
+            { 
+               "start":"1588-01-01T00:00:00.000Z",
+               "end":"1590-12-31T00:00:00.000Z",
+               "period":"1588-1590"
+            }
+         ],
+         "techniques":[ 
+            { 
+               "technique":"Olie på lærred"
+            }
+         ],
+         "titles":[ 
+            { 
+               "title":"Titanernes fald",
+               "language":"da-DK",
+               "type":"MUSEUM"
+            },
+            { 
+               "language":"en-US",
+               "translation":"The Fall of the Titans"
+            }
+         ],
+         "notes":[ 
+            "Tidligere inventarnumre: \n- papirer vedr. de tidligste indkøb af kunst 1621 Lit. C.C. nr. 217\n- Kunstkammerets Inventar 1690 p. 353 nr. 36 (se Bering Liisberg p. 140)\n- KMS' kunstk. protokol: s. 228 s. 82\n\nKatalognumre: \n- kat. 1922 nr. 188\n- kat. 1946 nr. 134"
+         ],
+         "number_of_parts":1,
+         "object_history_note":[ 
+            "(P.J.J. van Thiel har foreslået, Van Thiel (1993) 336, at KMS1 forestiller 'Lucifers fald' og er identisk med det maleri Van Mander i Het Schilder-Boeck omtaler fra Jacob Rauwerts samling. I så fald blev maleriet solgt 29. august 1612 fra sønnen Claes Rauwerts eje - \"1 [stuck per Mr. C] val der Engelen 455:0:-\" til den amsterdamske kunsthandler og -samler Barent van Someren.)\n\nPlaceringshistorie:\n- Magasineret\n- 1886, febr.: Kronborg\n- 1914, okt.: retur\n- 1922: loftsbillede i sal XXIX i museets gamle samling\n- 1929, juni: til Kronborg\n- 1951, 14. marts: tilbage\n- 1953, 26. aug.: til Kronborg\n- 1954, april: tilbage\n- 1959, april: til Kronborg\n- 1977, 29. febr.: på liste ført af slotsforvalteren\n- 1982, 9. juni: Sølvgade"
+         ],
+         "object_number":"KMS1",
+         "iiif_manifest":"https://api.smk.dk/api/v1/iiif/manifest/?id=kms1",
+         "production_dates_notes":[ 
+            "Påbegyndt: fagligt skøn afsluttet: fagligt skøn"
+         ],
+         "public_domain":true,
+         "rights":"https://creativecommons.org/share-your-work/public-domain/cc0/",
+         "on_display":true,
+         "alternative_images":[ 
+            { 
+               "mime_type":"image/tiff",
+               "iiif_id":"https://iip.smk.dk/iiif/jp2/KMS1.tif.jp2",
+               "iiif_info":"https://iip.smk.dk/iiif/jp2/KMS1.tif.jp2/info.json",
+               "width":7328,
+               "height":5919,
+               "size":130151836,
+               "thumbnail":"https://iip.smk.dk/iiif/jp2/KMS1.tif.jp2/full/!1600,/0/default.jpg",
+               "native":"https://iip.smk.dk/iiif/jp2/KMS1.tif.jp2/full/full/0/native.jpg",
+               "orientation":"landscape"
+            }
+         ],
+         "image_mime_type":"image/tiff",
+         "image_iiif_id":"https://iip.smk.dk/iiif/jp2/KMS1.tif.reconstructed.tif.jp2",
+         "image_iiif_info":"https://iip.smk.dk/iiif/jp2/KMS1.tif.reconstructed.tif.jp2/info.json",
+         "image_width":7151,
+         "image_height":5543,
+         "image_thumbnail":"https://iip.smk.dk/iiif/jp2/KMS1.tif.reconstructed.tif.jp2/full/!1600,/0/default.jpg",
+         "image_native":"https://iip.smk.dk/iiif/jp2/KMS1.tif.reconstructed.tif.jp2/full/full/0/native.jpg",
+         "image_cropped":true,
+         "image_orientation":"landscape",
+         "has_image":true
+      }
+   ],
+   "facets":{ 
+
+   },
+   "facets_ranges":{ 
+
+   },
+   "autocomplete":[ 
+
+   ]
+}
