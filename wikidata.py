@@ -10,6 +10,13 @@ import pywikibot
 from pywikibot import pagegenerators as pg
 import logging
 import smkapi
+# importing enum for enumerations 
+import enum 
+
+# creating enumerations using class 
+class outputformat(enum.Enum): 
+    csv = 'CSV'
+    html = 'HTML'
 
 def recursive_iter_1(obj):
     if isinstance(obj, dict):
@@ -31,7 +38,7 @@ def recursive_iter(obj, keys=()):
     else:
         yield keys, obj
 
-def GetInstitutionWikidataItems(wd_institution, csv_filename):
+def GetInstitutionWikidataItems(wd_institution, output_filename):
     # Generates a CSV file of items from the institution with the wikidata Q-number given by
     # institution and saves the results to the file given by csv_filename 
     #
@@ -57,15 +64,26 @@ ORDER BY (?item)"""
 
     items = 0
     try:
-        f = open(csv_filename, 'w+')
+        f_csv=open(output_filename+'.csv', 'w+')
+        f_html=open(output_filename+'.html', 'w+')
         wikidata_site = pywikibot.Site("wikidata", "wikidata")
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
         # CSV header item;number;title;image;url;smk_id;smk_object_number;smk_image_native
-        f.write('item;number;title;image;url;smk_id;smk_object_number;smk_image_native\r\n')
+        f_csv.write('item;number;title;image;url;smk_id;smk_object_number;smk_image_native\r\n')
+
+        # HTML header
+        f_html.write('<html>\r\n')
+        f_html.write('<head><title>'+output_filename+'</title></head>\r\n')
+        f_html.write('<body>\r\n')
+        f_html.write('<table>\r\n')
+        f_html.write('<tr><th>Wikidata Id</th><th>Accension number</th><th>Title</th><th>SMK Id</th><th>SMK Object Number</th><th>SMK URL</th><th>Commons Image</th><th>SMK Image</th><tr>\r\n')
 
         for wikidata_item in generator:
             try:
+                smk_image_native=''
+                smk_id=''
+                smk_object_number=''
                 print(wikidata_item.id)
 
                 data = wikidata_item.get()
@@ -97,9 +115,17 @@ ORDER BY (?item)"""
 
                 # Claim 18 is the image
                 try:
+                    # [[commons:File:No_image_available.svg]]->
+                    # https://commons.wikimedia.org/wiki/Special:FilePath/No_image_available.svg
                     image=str(claims.get(u'P18')[0].target)
+                    # strip [[
+                    image=image.replace("[[", "")
+                    # strip ]]
+                    image=image.replace("]]", "")
+                    # replace commons:File with https://commons.wikimedia.org/wiki/Special:FilePath/
+                    image=image.replace("commons:File:", "https://commons.wikimedia.org/wiki/Special:FilePath/")
                 except:
-                    image='<no image>'
+                    image='https://commons.wikimedia.org/wiki/Special:FilePath/No_image_available.svg'
                 print(image)
 
                 # Claim 1476 is the title
@@ -112,12 +138,30 @@ ORDER BY (?item)"""
                 print(url)
 
                 # Add line to CSV
-                f.write(wikidata_item.id+';'+number+';'+title+';'+image+';'+url+';'+smk_id+';'+smk_object_number+';'+smk_image_native+'\r\n')
+                f_csv.write(wikidata_item.id+';'+number+';'+title+';'+image+';'+url+';'+smk_id+';'+smk_object_number+';'+smk_image_native+'\r\n')
+
+                # Add line to HTML
+                f_html.write('<tr>'+
+                    '<td><a href="https://wikidata.org/wiki/'+wikidata_item.id+'">'+wikidata_item.id+'</a></td>'
+                    '<td>'+number+'</td>'+
+                    '<td>'+title+'</td>'+
+                    '<td>'+smk_id+'</td>'+
+                    '<td>'+smk_object_number+'</td>'+
+                    '<td><a href="'+url+'">'+url+'</a></td>'+
+                    '<td><a href="'+image+'"><img src="'+image+'" width="100"/></a></td>'+
+                    '<td><a href="'+smk_image_native+'"><img src="'+smk_image_native+'" width="100"/></a></td>'+
+                    '</tr>\r\n')
+
                 items=items+1
             except Exception as e:
                 logging.error(str(e))
         
-        f.close() 
+        # HTML footer
+        f_html.write('</body>\r\n')
+        f_html.write('</html>\r\n')
+        
+        f_csv.close() 
+        f_html.close() 
 
     except Exception as e:
         logging.error(str(e))

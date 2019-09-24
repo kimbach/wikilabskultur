@@ -118,6 +118,6 @@ def TestSMKAPI():
     #         print (artwork.wikitext)
 
 # Get all wikidata items for SMK Wikidata object Q671384
-wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk')
 #TestSMKAPI()
 #get_smk_object('KMS1')
