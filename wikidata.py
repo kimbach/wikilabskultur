@@ -65,25 +65,33 @@ ORDER BY (?item)"""
     items = 0
     try:
         f_csv=open(output_filename+'.csv', 'w+')
-        f_html=open(output_filename+'.html', 'w+')
+        #f_html=open(output_filename+'.html', 'w+')
         wikidata_site = pywikibot.Site("wikidata", "wikidata")
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
-        # CSV header item;number;title;image;url;smk_id;smk_object_number;smk_image_native
-        f_csv.write('item;number;title;image;url;smk_id;smk_object_number;smk_image_native\r\n')
+        # CSV header item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image
+        f_csv.write('item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image\r\n')
 
         # HTML header
-        f_html.write('<html>\r\n')
-        f_html.write('<head><title>'+output_filename+'</title></head>\r\n')
-        f_html.write('<body>\r\n')
-        f_html.write('<table>\r\n')
-        f_html.write('<tr><th>Wikidata Id</th><th>Accension number</th><th>Title</th><th>SMK Id</th><th>SMK Object Number</th><th>SMK URL</th><th>Commons Image</th><th>SMK Image</th><tr>\r\n')
+        #f_html.write('<html>\r\n')
+        #f_html.write('<head><title>'+output_filename+'</title></head>\r\n')
+        #f_html.write('<body>\r\n')
+        #f_html.write('<table>\r\n')
+        #f_html.write('<tr><th>Wikidata Id</th><th>Accension number</th><th>Title</th><th>SMK Id</th><th>SMK Object Number</th><th>SMK URL</th><th>Commons Image</th><th>SMK Image</th><tr>\r\n')
 
         for wikidata_item in generator:
             try:
                 smk_image_native=''
                 smk_id=''
                 smk_object_number=''
+                smk_public_domain=''
+                smk_image_width=''
+                smk_image_height=''
+                smk_has_image=''
+                wikidata_width=''
+                wikidata_height=''
+                wikidata_mime=''
+
                 print(wikidata_item.id)
 
                 data = wikidata_item.get()
@@ -104,6 +112,18 @@ ORDER BY (?item)"""
                     if 'object_number'==keys[1]:
                         smk_object_number=item
                         print('smk_object_number='+smk_object_number)
+                    if 'public_domain'==keys[1]:
+                        smk_public_domain=item
+                        print('smk_public_domain='+str(smk_public_domain))
+                    if 'image_width'==keys[1]:
+                        smk_image_width=item
+                        print('smk_image_width='+str(smk_image_width))
+                    if 'image_height'==keys[1]:
+                        smk_image_height=item
+                        print('smk_image_height='+str(smk_image_height))
+                    if 'has_image'==keys[1]:
+                        smk_has_image=item
+                        print('smk_has_image='+str(smk_has_image))
 
                 #for item in smk_items:
                 #    smk_id = item.id
@@ -124,6 +144,11 @@ ORDER BY (?item)"""
                     image=image.replace("]]", "")
                     # replace commons:File with https://commons.wikimedia.org/wiki/Special:FilePath/
                     image=image.replace("commons:File:", "https://commons.wikimedia.org/wiki/Special:FilePath/")
+                    
+                    wikidata_height=claims.get(u'P18')[0].target.latest_file_info.height
+                    wikidata_width=claims.get(u'P18')[0].target.latest_file_info.width
+                    wikidata_mime=claims.get(u'P18')[0].target.latest_file_info.mime
+
                 except:
                     image='https://commons.wikimedia.org/wiki/Special:FilePath/No_image_available.svg'
                 print(image)
@@ -138,30 +163,30 @@ ORDER BY (?item)"""
                 print(url)
 
                 # Add line to CSV
-                f_csv.write(wikidata_item.id+';'+number+';'+title+';'+image+';'+url+';'+smk_id+';'+smk_object_number+';'+smk_image_native+'\r\n')
+                f_csv.write(wikidata_item.id+';'+str(number)+';'+title+';'+image+';'+url+';'+str(wikidata_height)+';'+str(wikidata_width)+';'+wikidata_mime+';'+smk_id+';'+smk_object_number+';'+smk_image_native+';'+str(smk_image_height)+';'+str(smk_image_width)+';'+str(smk_public_domain)+';'+str(smk_has_image)+'\r\n')
 
                 # Add line to HTML
-                f_html.write('<tr>'+
-                    '<td><a href="https://wikidata.org/wiki/'+wikidata_item.id+'">'+wikidata_item.id+'</a></td>'
-                    '<td>'+number+'</td>'+
-                    '<td>'+title+'</td>'+
-                    '<td>'+smk_id+'</td>'+
-                    '<td>'+smk_object_number+'</td>'+
-                    '<td><a href="'+url+'">'+url+'</a></td>'+
-                    '<td><a href="'+image+'"><img src="'+image+'" width="100"/></a></td>'+
-                    '<td><a href="'+smk_image_native+'"><img src="'+smk_image_native+'" width="100"/></a></td>'+
-                    '</tr>\r\n')
+                #f_html.write('<tr>'+
+                #    '<td><a href="https://wikidata.org/wiki/'+wikidata_item.id+'">'+wikidata_item.id+'</a></td>'
+                #    '<td>'+number+'</td>'+
+                #    '<td>'+title+'</td>'+
+                #    '<td>'+smk_id+'</td>'+
+                #    '<td>'+smk_object_number+'</td>'+
+                #    '<td><a href="'+url+'">'+url+'</a></td>'+
+                #    '<td><a href="'+image+'"><img src="'+image+'" width="100"/></a></td>'+
+                #    '<td><a href="'+smk_image_native+'"><img src="'+smk_image_native+'" width="100"/></a></td>'+
+                #    '</tr>\r\n')
 
                 items=items+1
             except Exception as e:
                 logging.error(str(e))
         
         # HTML footer
-        f_html.write('</body>\r\n')
-        f_html.write('</html>\r\n')
+        #f_html.write('</body>\r\n')
+        #f_html.write('</html>\r\n')
         
-        f_csv.close() 
-        f_html.close() 
+        #f_csv.close() 
+        #f_html.close() 
 
     except Exception as e:
         logging.error(str(e))
