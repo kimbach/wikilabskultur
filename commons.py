@@ -50,6 +50,8 @@ class ArtworkTemplate(BaseTemplate):
     categories: str
     orientation: str
     wikitext: str
+    csvline: str
+    csvheader: str
 
     def __init__(self, 
         artist = '',
@@ -137,5 +139,65 @@ class ArtworkTemplate(BaseTemplate):
     =={{int:license-header}}==
     <!-- your license --->
 
-    """ + self.categories + """
+    """ + str(self.categories) + """
     """
+
+    def GenerateCSVLine(self, csvdelim=';'):
+        #complete this once if applies to all files
+
+        self.csvline = self.artist + csvdelim + \
+          self.author + csvdelim + \
+          self.title + csvdelim + \
+          """{{en|1=""" + self.desc + """}}""" + csvdelim + \
+          self.depicted_people + csvdelim + \
+          self.date + csvdelim + \
+          self.medium + csvdelim + \
+          self.dimensions + csvdelim + \
+          self.institution + csvdelim + \
+          self.department + csvdelim + \
+          self.place_of_discovery + csvdelim + \
+          self.object_history + csvdelim + \
+          self.exhibition_history + csvdelim + \
+          self.credit_line + csvdelim + \
+          self.inscriptions + csvdelim + \
+          self.notes + csvdelim + \
+          self.accession_number + csvdelim + \
+          self.place_of_creation + csvdelim + \
+          self.source + csvdelim + \
+          self.permission + csvdelim + \
+          self.other_versions + csvdelim + \
+          self.references + csvdelim + \
+          self.depicted_place + csvdelim + \
+          self.wikidata 
+    
+        return self.csvline
+
+    def GenerateCSVHeader(self, csvdelim=';'):
+        #complete this once if applies to all files
+
+        self.csvheader = 'artist' + csvdelim + \
+          'author' + csvdelim + \
+          'title' + csvdelim + \
+          'description' + csvdelim + \
+          'depicted_people' + csvdelim + \
+          'date' + csvdelim + \
+          'medium' + csvdelim + \
+          'dimensions' + csvdelim + \
+          'institution' + csvdelim + \
+          'department' + csvdelim + \
+          'place_of_discovery' + csvdelim + \
+          'object_history' + csvdelim + \
+          'exhibition_history' + csvdelim + \
+          'credit_line' + csvdelim + \
+          'inscriptions' + csvdelim + \
+          'notes' + csvdelim + \
+          'accession_number' + csvdelim + \
+          'place_of_creation' + csvdelim + \
+          'source' + csvdelim + \
+          'permission' + csvdelim + \
+          'other_versions' + csvdelim + \
+          'references' + csvdelim + \
+          'depicted_place' + csvdelim + \
+          'wikidata'
+    
+        return self.csvheader

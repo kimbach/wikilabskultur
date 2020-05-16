@@ -29,6 +29,29 @@ import os
 import pywikibot
 from pywikibot import pagegenerators as pg
 import logging
+import traceback
+import sys
+import smkapi
+
+def recursive_iter_1(obj):
+    if isinstance(obj, dict):
+        for item in obj.values():
+            yield from recursive_iter(item)
+    elif any(isinstance(obj, t) for t in (list, tuple)):
+        for item in obj:
+            yield from recursive_iter(item)
+    else:
+        yield obj
+
+def recursive_iter(obj, keys=()):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield from recursive_iter(v, keys + (k,))
+    elif any(isinstance(obj, t) for t in (list, tuple)):
+        for idx, item in enumerate(obj):
+            yield from recursive_iter(item, keys + (idx,))
+    else:
+        yield keys, obj
 
 def TestSMKAPI():
     #url = [ filename ]
@@ -118,6 +141,212 @@ def TestSMKAPI():
     #         print (artwork.wikitext)
 
 # Get all wikidata items for SMK Wikidata object Q671384
-wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk')
+#wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk')
+try:
+    accession_number:str
+    # Set up logging
+    commons_error_log = "commons_error.log"
+    logging.basicConfig(filename=commons_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+    offset=0
+    rows=1
+    items=0
+
+    output_filename='commons_smk'
+
+    f_csv=open(output_filename+'.csv', 'w+')
+
+    # Print CSV Header
+    artwork = commons.ArtworkTemplate()
+
+    while True:
+        try:
+            accession_number=''
+            items=items+1
+            smk_objects=smkapi.get_smk_objects(offset, rows)
+            print('offset='+str(smk_objects['offset']))
+            offset=smk_objects['offset']
+            print('rows='+str(smk_objects['rows']))
+            rows=smk_objects['rows']
+            print('found='+str(smk_objects['found']))
+            found=smk_objects['found']
+            categories  = """[[Category:SMKOpen Batch Upload]]
+            [[Category:Paintings in Statens Museum for Kunst]]"""
+
+            smk_creator=''
+
+            for item in smk_objects['items']:
+                if item.get('id'):
+                    print(item['id'])
+                if item.get('image_native'):
+                    print(item['image_native'])
+                    image_native=item['image_native']
+                if item.get('object_number'):
+                    print(item['object_number'])
+                    accession_number=item['object_number']
+                    smk_object_number=accession_number
+                if item.get('public_domain'):
+                    print(item['public_domain'])
+                if item.get('has_image'):
+                    print(item['has_image'])
+                if item.get('production'):
+                    print(item['production'])
+                    smk_creator=str(item['production'][0].get('creator'))
+                if item.get('production_date'):
+                    print(item['production_date'])
+                if item.get('titles'):
+                    print(item['titles'])
+                if item.get('dimensions'):
+                    for dimension in item['dimensions']: 
+                        print(dimension['type'])
+                        print(dimension['value'])
+                        print(dimension['unit'])
+                        if 'hojde'==dimension['type']:
+                            height=dimension['value']
+                        if 'bredde'==dimension['type']:
+                            width=dimension['value']
+                        if 'mm'==dimension['unit']:
+                            unit=dimension['unit']
+                    dimensions='{{Size|unit='+str(unit)+'|width='+str(width)+'|height='+str(height)+'}}'
+
+                # Generate artwork template
+                desc=''
+                production_date=''
+                smk_title=''
+                smk_period=''
+                artwork = commons.ArtworkTemplate(artist = '',
+                    author = smk_creator,
+                    title = smk_title,
+                    desc = desc,
+                    depicted_people = '',
+                    date = smk_period,
+                    medium = '',
+                    dimensions = dimensions,
+                    institution = '{{Institution:Statens Museum for Kunst, Copenhagen}}',
+                    department = '',
+                    place_of_discovery = '',
+                    object_history = '', 
+                    exhibition_history = '',
+                    credit_line = '',
+                    inscriptions = '',
+                    notes = '',
+                    accession_number = accession_number,
+                    place_of_creation = '',
+                    source = 'https://collection.smk.dk/#/en/detail/'+accession_number,
+                    permission = '',
+                    other_versions = '',
+                    references = '',
+                    depicted_place = '',
+                    wikidata = '',
+                    categories = categories)
+
+                #artwork.GenerateWikiText()
+                #print(artwork.GenerateCSVLine())
+
+            for keys, item in recursive_iter(smk_objects['items']):
+                if 'image_native'==keys[1]:
+                    smk_image_native=item
+                    print('smk_image_native='+smk_image_native)
+                if 'id'==keys[1]:
+                    smk_id=item
+                    print('smk_id='+smk_id)
+                if 'object_number'==keys[1]:
+                    smk_object_number=item
+                    print('smk_object_number='+smk_object_number)
+                if 'public_domain'==keys[1]:
+                    smk_public_domain=item
+                    print('smk_public_domain='+str(smk_public_domain))
+                if 'image_width'==keys[1]:
+                    smk_image_width=item
+                    print('smk_image_width='+str(smk_image_width))
+                if 'image_height'==keys[1]:
+                    smk_image_height=item
+                    print('smk_image_height='+str(smk_image_height))
+                if 'has_image'==keys[1]:
+                    smk_has_image=item
+                    print('smk_has_image='+str(smk_has_image))
+                if 'production'==keys[1]:
+                    if 'creator'==keys[3]:
+                        # last name, first name
+                        creator = item.split(",")
+                        smk_creator=creator[1]+' '+creator[0]
+                        print('smk_creator='+str(smk_creator))
+                if 'production_date'==keys[1]:
+                    if 'period'==keys[3]:
+                        smk_period=item
+                        print('smk_period='+str(smk_period))
+                if 'titles'==keys[1]:
+                    if 'title'==keys[3]:
+                        smk_title=item
+                        print('smk_title='+str(smk_title))
+                    if 'language'==keys[3]:
+                        smk_language=item
+                        print('smk_language='+str(smk_language))
+                    if 'type'==keys[3]:
+                        smk_type=item
+                        print('smk_type='+str(smk_type))
+                if 'dimensions'==keys[1]:
+                    if 'notes'==keys[3]:
+                        smk_notes=item
+                        print('smk_notes='+str(smk_notes))
+                    if 'part'==keys[3]:
+                        smk_part=item
+                        print('smk_part='+str(smk_part))
+                    if 'type'==keys[3]:
+                        smk_type=item
+                        print('smk_type='+str(smk_type))
+                    if 'unit'==keys[3]:
+                        smk_unit=item
+                        print('smk_unit='+str(smk_unit))
+
+            # Generate artwork template
+            desc=''
+            production_date=''
+            artwork = commons.ArtworkTemplate(artist = '',
+                author = smk_creator,
+                title = smk_title,
+                desc = desc,
+                depicted_people = '',
+                date = smk_period,
+                medium = '',
+                dimensions = '',
+                institution = '{{Institution:Statens Museum for Kunst, Copenhagen}}',
+                department = '',
+                place_of_discovery = '',
+                object_history = '', 
+                exhibition_history = '',
+                credit_line = '',
+                inscriptions = '',
+                notes = '',
+                accession_number = str(smk_object_number),
+                place_of_creation = '',
+                source = 'https://collection.smk.dk/#/en/detail/'+str(smk_object_number),
+                permission = '',
+                other_versions = '',
+                references = '',
+                depicted_place = '',
+                wikidata = '',
+                categories = categories)
+
+                #artwork.GenerateWikiText()
+
+        except Exception as e:
+            typeerror=TypeError(e)
+            logging.exception(e)
+        finally:
+            print('items='+str(items))
+            offset=offset+1
+
+        if 0==rows:
+            break
+    
+except Exception as e:
+    logging.exception(e)
+finally:
+    print('Export finished')
+    print('items='+str(items))
+    offset=offset+1
+
+
 #TestSMKAPI()
 #get_smk_object('KMS1')

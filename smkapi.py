@@ -62,3 +62,8 @@ def get_smk_object(object_number):
 #wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
 #TestSMKAPI()
 #get_smk_object('KMS1')
+
+def get_smk_objects(offset, rows):
+    url='https://api.smk.dk/api/v1/art/search/?keys=*&offset='+str(offset)+'&rows='+str(rows)
+    data=json.loads(requests.get(url).text)
+    return(data)
