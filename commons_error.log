@@ -1,145 +1,67 @@
-2020-01-12 16:47:55 can only concatenate str (not "tuple") to str
-2020-01-12 16:49:04 can only concatenate str (not "tuple") to str
-2020-01-12 16:58:31 can only concatenate str (not "tuple") to str
+2020-06-18 13:10:08 ('Connection aborted.', TimeoutError(60, 'Operation timed out'))
 Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 240, in <module>
-    categories = categories)
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 108, in __init__
-    self.GenerateWikiText()
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 142, in GenerateWikiText
-    """ + self.categories + """
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-12 17:00:19 can only concatenate str (not "tuple") to str
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 839, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connection.py", line 344, in connect
+    ssl_context=context)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py", line 344, in ssl_wrap_socket
+    return context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py", line 412, in wrap_socket
+    session=session
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py", line 853, in _create
+    self.do_handshake()
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py", line 1117, in do_handshake
+    self._sslobj.do_handshake()
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 240, in <module>
-    categories = categories)
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 108, in __init__
-    self.GenerateWikiText()
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 142, in GenerateWikiText
-    """ + str(self.categories) + """
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-13 20:28:16 can only concatenate str (not "tuple") to str
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.7/site-packages/urllib3/util/retry.py", line 367, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/packages/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 839, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.7/site-packages/urllib3/connection.py", line 344, in connect
+    ssl_context=context)
+  File "/usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py", line 344, in ssl_wrap_socket
+    return context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py", line 412, in wrap_socket
+    session=session
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py", line 853, in _create
+    self.do_handshake()
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py", line 1117, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 240, in <module>
-    categories = categories)
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 108, in __init__
-    self.GenerateWikiText()
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 142, in GenerateWikiText
-    """ + str(self.categories) + """
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-13 20:30:30 can only concatenate str (not "tuple") to str
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 240, in <module>
-    categories = categories)
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 108, in __init__
-    self.GenerateWikiText()
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/commons.py", line 142, in GenerateWikiText
-    """ + str(self.categories) + """
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-13 20:40:55 can only concatenate str (not "tuple") to str
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 234, in <module>
-    source = 'https://collection.smk.dk/#/en/detail/'+accession_number,
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-13 20:46:51 can only concatenate str (not "tuple") to str
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 234, in <module>
-    source = 'https://collection.smk.dk/#/en/detail/'+accession_number,
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-13 21:58:27 can only concatenate str (not "tuple") to str
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 234, in <module>
-    source = 'https://collection.smk.dk/#/en/detail/'+accession_number,
-TypeError: can only concatenate str (not "tuple") to str
-2020-01-13 22:15:51 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 271, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:17:45 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 271, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:25:26 'list' object has no attribute 'get'
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 194, in <module>
-    smk_creator=str(item['production'].get['creator'])
-AttributeError: 'list' object has no attribute 'get'
-2020-01-13 22:26:42 list indices must be integers or slices, not str
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 194, in <module>
-    smk_creator=str(item['production']['creator'])
-TypeError: list indices must be integers or slices, not str
-2020-01-13 22:27:57 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:27:57 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:01 'creator'
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 194, in <module>
-    smk_creator=str(item['production'][0]['creator'])
-KeyError: 'creator'
-2020-01-13 22:28:02 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:05 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:05 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:09 'unit'
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 203, in <module>
-    print(dimension['unit'])
-KeyError: 'unit'
-2020-01-13 22:28:09 'type'
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 201, in <module>
-    print(dimension['type'])
-KeyError: 'type'
-2020-01-13 22:28:09 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:14 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:14 'creator'
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 194, in <module>
-    smk_creator=str(item['production'][0]['creator'])
-KeyError: 'creator'
-2020-01-13 22:28:16 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:16 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:17 list index out of range
-Traceback (most recent call last):
-  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 272, in <module>
-    smk_creator=creator[1]+' '+creator[0]
-IndexError: list index out of range
-2020-01-13 22:28:18 Closing network session.
-2020-01-13 22:28:18 Network session closed.
+  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 184, in <module>
+    smk_objects=smkapi.get_smk_objects(offset, rows)
+  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkapi.py", line 70, in get_smk_objects
+    data=json.loads(requests.get(url).text)
+  File "/usr/local/lib/python3.7/site-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))

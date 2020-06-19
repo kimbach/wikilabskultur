@@ -1,0 +1,13 @@
+SMK API
+key: public_domain: True eller False
+key: image_width: Billedets bredde i pixels
+key: image_height: Billedets højde i pixels
+key: image_size: Billedets størrelse i bytes
+key: has_image: True eller False
+
+SPARQL
+claims.get(u'P18')[0].target.latest_file_info.image_height
+claims.get(u'P18')[0].target.latest_file_info.image_width
+claims.get(u'P18')[0].target.latest_file_info.mime
+
+

@@ -195,3 +195,92 @@ ORDER BY (?item)"""
 
 # Get all items from Statens Museum for Kunst, Wikidata Object Q671384
 #GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+
+def GetSMKWikidataItem(smk_id):
+    # Returns a wikidata item smk_id (P217)
+    #
+    # The Wikidata Item for the Statens Museum for Kunst colelction is Q671384
+
+    wd_institution = 'Q671384'
+    
+    # Set up logging
+    wikidata_error_log = "wikidata_error.log"
+    logging.basicConfig(filename=wikidata_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+    # SPARQL query to execute 
+    query = u"""SELECT DISTINCT ?item ?inventarnummer WHERE {
+?item wdt:P195 wd:""" + wd_institution + """;
+wdt:P217 \"""" + smk_id + """\".
+SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+OPTIONAL { ?item wdt:P217 ?inventarnummer. }
+}
+ORDER BY (?inventarnummer)"""
+
+
+    items = 0
+    number = ''
+    wikidata_id=''
+    try:
+        #f_csv=open(output_filename+'.csv', 'w+')
+        #f_html=open(output_filename+'.html', 'w+')
+        wikidata_site = pywikibot.Site("wikidata", "wikidata")
+        generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
+
+        # CSV header item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image
+        #f_csv.write('item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image\r\n')
+
+        # HTML header
+        #f_html.write('<html>\r\n')
+        #f_html.write('<head><title>'+output_filename+'</title></head>\r\n')
+        #f_html.write('<body>\r\n')
+        #f_html.write('<table>\r\n')
+        #f_html.write('<tr><th>Wikidata Id</th><th>Accension number</th><th>Title</th><th>SMK Id</th><th>SMK Object Number</th><th>SMK URL</th><th>Commons Image</th><th>SMK Image</th><tr>\r\n')
+
+        for wikidata_item in generator:
+            try:
+                wikidata_id=wikidata_item.id
+
+                print(wikidata_item.id)
+
+                data = wikidata_item.get()
+                claims = data.get('claims')
+                # Claim 217 is the item number
+                number=str(claims.get(u'P217')[0].target)
+                print(number)
+
+                # Add line to CSV
+                #f_csv.write(wikidata_item.id+';'+str(number)+';'+title+';'+image+';'+url+';'+str(wikidata_height)+';'+str(wikidata_width)+';'+wikidata_mime+';'+smk_id+';'+smk_object_number+';'+smk_image_native+';'+str(smk_image_height)+';'+str(smk_image_width)+';'+str(smk_public_domain)+';'+str(smk_has_image)+'\r\n')
+
+                # Add line to HTML
+                #f_html.write('<tr>'+
+                #    '<td><a href="https://wikidata.org/wiki/'+wikidata_item.id+'">'+wikidata_item.id+'</a></td>'
+                #    '<td>'+number+'</td>'+
+                #    '<td>'+title+'</td>'+
+                #    '<td>'+smk_id+'</td>'+
+                #    '<td><a href="'+image+'"><img src="'+image+'" width="100"/></a></td>'+
+                #    '<td>'+smk_object_number+'</td>'+
+                #    '<td><a href="'+url+'">'+url+'</a></td>'+
+                #    '<td><a href="'+smk_image_native+'"><img src="'+smk_image_native+'" width="100"/></a></td>'+
+                #    '</tr>\r\n')
+
+                items=items+1
+            except Exception as e:
+                logging.error(str(e))
+        
+        # HTML footer
+        #f_html.write('</body>\r\n')
+        #f_html.write('</html>\r\n')
+        
+        #f_csv.close() 
+        #f_html.close() 
+
+    except Exception as e:
+        logging.error(str(e))
+    finally:
+        print('items:'+str(items))
+        
+        # return the wikidatanumber
+        return wikidata_id
+
+# Get all items from Statens Museum for Kunst, Wikidata Object Q671384
+#GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')

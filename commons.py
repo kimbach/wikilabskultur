@@ -24,6 +24,7 @@ class BaseTemplate(metaclass=ABCMeta):
 @dataclass
 class ArtworkTemplate(BaseTemplate):
     artist: str
+    nationality: str
     author: str
     title: str
     desc: str
@@ -52,9 +53,13 @@ class ArtworkTemplate(BaseTemplate):
     wikitext: str
     csvline: str
     csvheader: str
+    imageurl: str
+    image_height: str
+    image_width: str
 
     def __init__(self, 
         artist = '',
+        nationality = '',
         author = '',
         title = '',
         desc = '',
@@ -78,9 +83,13 @@ class ArtworkTemplate(BaseTemplate):
         references = '',
         depicted_place = '',
         wikidata = '',
-        categories = ''):
+        categories = '',
+        imageurl = '',
+        image_height = '',
+        image_width = ''):
 
         self.artist = artist
+        self.nationality = nationality
         self.author = author
         self.title = title
         self.depicted_people = depicted_people
@@ -105,70 +114,80 @@ class ArtworkTemplate(BaseTemplate):
         self.depicted_place = depicted_place
         self.wikidata = wikidata
         self.categories = categories
+        self.image_height = image_height
+        self.image_width = image_width
+        self.imageurl = imageurl
         self.GenerateWikiText()
 
     def GenerateWikiText(self):
         #complete this once if applies to all files
 
         self.wikitext = u"""{{Artwork
-    |artist             = """ + self.artist + """
-    |author             = """ + self.author + """
-    |title              = """ + self.title + """
-    |description        = {{en|1=""" + self.desc + """}}
-    |depicted people    = """ + self.depicted_people + """
-    |date               = """ + self.date + """
-    |medium             = """ + self.medium + """
-    |dimensions         = """ + self.dimensions + """
-    |institution        = """ + self.institution + """
-    |department         = """ + self.department + """
-    |place of discovery = """ + self.place_of_discovery + """
-    |object history     = """ + self.object_history + """ 
-    |exhibition history = """ + self.exhibition_history + """
-    |credit line        = """ + self.credit_line + """
-    |inscriptions       = """ + self.inscriptions + """
-    |notes              = """ + self.notes + """
-    |accession number   = """ + self.accession_number + """
-    |place of creation  = """ + self.place_of_creation + """
-    |source             = """ + self.source + """
-    |permission         = """ + self.permission + """
-    |other_versions     = """ + self.other_versions + """
-    |references         = """ + self.references + """
-    |depicted place     = """ + self.depicted_place + """
+    |artist             = """ + '{{Creator|}}' + self.artist + '}}' + """
+    |author             = """ + str(self.author) + """
+    |title              = """ + str(self.title) + """
+    |description        = """ + str(self.desc) + """
+    |depicted people    = """ + str(self.depicted_people) + """
+    |date               = """ + str(self.date) + """
+    |medium             = """ + str(self.medium) + """
+    |dimensions         = """ + str(self.dimensions) + """
+    |institution        = """ + str(self.institution) + """
+    |department         = """ + str(self.department) + """
+    |place of discovery = """ + str(self.place_of_discovery) + """
+    |object history     = """ + str(self.object_history) + """ 
+    |exhibition history = """ + str(self.exhibition_history) + """
+    |credit line        = """ + str(self.credit_line) + """
+    |inscriptions       = """ + str(self.inscriptions) + """
+    |notes              = """ + str(self.notes) + """
+    |accession number   = """ + str(self.accession_number) + """
+    |place of creation  = """ + str(self.place_of_creation) + """
+    |source             = """ + str(self.source) + """
+    |permission         = """ + str(self.permission) + """
+    |other_versions     = """ + str(self.other_versions) + """
+    |references         = """ + str(self.references) + """
+    |depicted place     = """ + str(self.depicted_place) + """
+    """
+        if self.wikidata != '':
+            self.wikitext = self.wikitext + """
     |wikidata           = """ + self.wikidata + """
-    }}
-    =={{int:license-header}}==
-    <!-- your license --->
+    """
 
-    """ + str(self.categories) + """
+        self.wikitext = self.wikitext + """
+}}
     """
 
     def GenerateCSVLine(self, csvdelim=';'):
         #complete this once if applies to all files
-
-        self.csvline = self.artist + csvdelim + \
-          self.author + csvdelim + \
-          self.title + csvdelim + \
-          """{{en|1=""" + self.desc + """}}""" + csvdelim + \
-          self.depicted_people + csvdelim + \
-          self.date + csvdelim + \
-          self.medium + csvdelim + \
-          self.dimensions + csvdelim + \
-          self.institution + csvdelim + \
-          self.department + csvdelim + \
-          self.place_of_discovery + csvdelim + \
-          self.object_history + csvdelim + \
-          self.exhibition_history + csvdelim + \
-          self.credit_line + csvdelim + \
-          self.inscriptions + csvdelim + \
-          self.notes + csvdelim + \
-          self.accession_number + csvdelim + \
-          self.place_of_creation + csvdelim + \
-          self.source + csvdelim + \
-          self.permission + csvdelim + \
-          self.other_versions + csvdelim + \
-          self.references + csvdelim + \
-          self.depicted_place + csvdelim + \
-          self.wikidata 
+        self.csvline = ''
+        self.csvline = self.csvline + self.artist.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.nationality.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.author.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.title.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.desc.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.depicted_people.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.date.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.medium.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.dimensions.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.institution.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.department.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.place_of_discovery.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.object_history.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.exhibition_history.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.credit_line.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.inscriptions.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.notes.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.accession_number.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.place_of_creation.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.source.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.permission.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.other_versions.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.references.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.depicted_place.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.categories.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.wikidata.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.image_height.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.image_width.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.imageurl 
     
         return self.csvline
 
@@ -176,6 +195,7 @@ class ArtworkTemplate(BaseTemplate):
         #complete this once if applies to all files
 
         self.csvheader = 'artist' + csvdelim + \
+          'nationality' + csvdelim + \
           'author' + csvdelim + \
           'title' + csvdelim + \
           'description' + csvdelim + \
@@ -198,6 +218,10 @@ class ArtworkTemplate(BaseTemplate):
           'other_versions' + csvdelim + \
           'references' + csvdelim + \
           'depicted_place' + csvdelim + \
-          'wikidata'
+          'categories' + csvdelim + \
+          'wikidata' + csvdelim + \
+          'image_height' + csvdelim + \
+          'image_width' + csvdelim + \
+          'imageurl'
     
         return self.csvheader
