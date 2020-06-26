@@ -1,0 +1,36 @@
+{{Artwork
+    |artist             = {{Creator|Jacob Binck}}
+    |author             = 
+    |title              = Kong Christian II af Danmark
+    |description        = 
+    |depicted people    = 
+    |date               = 1525-1529
+    |medium             = Kobberstik
+    |dimensions         = {{Size|unit=mm|width=220|height=271}}
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = Samling og Forskning (KKS)
+    |place of discovery = 
+    |object history     =  
+    |exhibition history = 
+    |credit line        = 
+    |inscriptions       = , eng, 
+    |notes              = kobberstik
+    |accession number   = KKSgb12250
+    |place of creation  = 
+    |source             = {{SMK online|KKSgb12250}}
+    |permission         = {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1569}}
+    |other_versions     = 
+    |references         = Samlinger til en beskrivende Catalog over Portraiter af Danske, Norske og Holstenere, A. Strunk, Binck, nr. 66, 2303
+Le peinture graveur, Adam Bartsch, Bd. 9, p. 230, C 35512:1-21
+Øjenlyst II: 76 grafiske blade fra Den Kongelige Kobberstiksamling, unknown, fig. 2, p. 11, k1998-406
+Hollstein's German engravings, etchings and woodcuts 1450-1700 (vol. IV), Beischlag - Brosamer, F.W.H. Hollstein, 245, 24786
+The Illustrated Bartsch 18, German Masters of the Sixteenth Century, Ladenspelder, Huys, Massys,m.fl., Jane S. Peters, p. 428, C 36192
+Magt og afmagt: Christian II's billedpolitik, Hanne Kolind Poulsen, kat. 29, afb. p. 59, C 64443
+    |depicted place     = 
+    
+}}
+    
+=={{int:license-header}}==
+{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1569}}
+
+[[Cateogry:Engravings in Statens Museum for Kunst]]

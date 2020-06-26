@@ -1,0 +1,41 @@
+{{Artwork
+    |artist             = {{Creator|Hieronymus Hopfer}}
+    |author             = 
+    |title              = Karl V
+    |description        = 
+    |depicted people    = 
+    |date               = 1519-1520
+    |medium             = Kobberstik
+Jernætsning
+    |dimensions         = {{Size|unit=mm|width=158|height=231}}
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = Samling og Forskning (KKS)
+    |place of discovery = 
+    |object history     = Friedrich August II (1797-1854); kunsthandler Meyer, Dresden; købt til KKS herfra 1901 
+    |exhibition history = {'exhibition': "Magt og Afmagt: Christian II's billedpolitik", 'venue': 'Sølvgade'}
+    |credit line        = 
+    |inscriptions       = Betegnet f.n.: "CAROLVS . VON. GOTS. GNAD. REMISCH. / KING. ERWELTER. KAISER. KING. ZVO. / HISSPANIA. VND. BAIDER. SICILEN. ECZ./ ERSZHERZOG. ZVO. OSTERREICH. HERCZ / OG. VON. BVRGVND. BRABANT. ECZ. GRA / F. ZVO. FLANDER. TIROL. ECZ. I. H.M.D.XX (I)", eng, 
+Under midten t.h.: "1076"; f.n.t.v.: "B.58"; herunder: "4749"; og herunder t.v.: "4749". Alt med blyant, eng, 
+Friedrich August II (1797-1854),  Lugt 972, eng, m.f.
+    |notes              = stregætsning
+    |accession number   = KKS4055
+    |place of creation  = 
+    |source             = {{SMK online|KKS4055}}
+    |permission         = {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1529}}
+    |other_versions     = 
+    |references         = Hollstein's German engravings, etchings and woodcuts 1450-1700 (vol. XV), Elias Holl to Hieronymus Hopfer, Robert Zijlma, 63, 52266
+Daniel Hopfer: ein Augsburger Meister der Renaissance. Eisenradierungen  Holzschnitte  Zeichnungen  Waffenätzungen, Christof Metzger, nr. 95, p. 421, C 44442
+Le peinture graveur, Adam Bartsch, VIII, p. 520, nr. 58, C 35512:1-21
+The Illustrated Bartsch 17, Early German Masters, Hans Brosamer, The Hopfers: Hans Brosamer, The Hopfers, Robert A. Koch, (The Illustrated Bartsch vol. 17) 249, nr. 58, C 36191
+Neues allgemeines Künstler-Lexicon, G. K. Nagler, p. 320, nr. 55, C 35579
+Inkunabeln der deutschen und niederländschen Radierung, Gustav Pauli, 4, III. IV., 7016
+Les marques de collections de dessins & d'estampes: marques estampillées et écrites de collections particulières et publiques, Frits Lugt, nr. 972, 7027
+Magt og afmagt: Christian II's billedpolitik, Hanne Kolind Poulsen, kat. 13, afb. p. 46, C 64443
+    |depicted place     = 
+    
+}}
+    
+=={{int:license-header}}==
+{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1529}}
+
+[[Cateogry:Engravings in Statens Museum for Kunst]]

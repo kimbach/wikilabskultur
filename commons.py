@@ -88,42 +88,42 @@ class ArtworkTemplate(BaseTemplate):
         image_height = '',
         image_width = ''):
 
-        self.artist = artist
-        self.nationality = nationality
-        self.author = author
-        self.title = title
-        self.depicted_people = depicted_people
-        self.desc = desc
-        self.date = date
-        self.medium = medium
-        self.dimensions = dimensions
-        self.institution = institution
-        self.department = department
-        self.place_of_discovery = place_of_discovery
-        self.object_history = object_history
-        self.exhibition_history = exhibition_history
-        self.credit_line = credit_line
-        self.inscriptions = inscriptions
-        self.notes = notes
-        self.accession_number = accession_number
-        self.place_of_creation = place_of_creation
-        self.source = source
-        self.permission = permission
-        self.other_versions = other_versions
-        self.references = references
-        self.depicted_place = depicted_place
-        self.wikidata = wikidata
-        self.categories = categories
-        self.image_height = image_height
-        self.image_width = image_width
-        self.imageurl = imageurl
+        self.artist = artist.rstrip('\n')
+        self.nationality = nationality.rstrip('\n')
+        self.author = author.rstrip('\n')
+        self.title = title.rstrip('\n')
+        self.depicted_people = depicted_people.rstrip('\n')
+        self.desc = desc.rstrip('\n')
+        self.date = date.rstrip('\n')
+        self.medium = medium.rstrip('\n')
+        self.dimensions = dimensions.rstrip('\n')
+        self.institution = institution.rstrip('\n')
+        self.department = department.rstrip('\n')
+        self.place_of_discovery = place_of_discovery.rstrip('\n')
+        self.object_history = object_history.rstrip('\n')
+        self.exhibition_history = exhibition_history.rstrip('\n')
+        self.credit_line = credit_line.rstrip('\n')
+        self.inscriptions = inscriptions.rstrip('\n')
+        self.notes = notes.rstrip('\n')
+        self.accession_number = accession_number.rstrip('\n')
+        self.place_of_creation = place_of_creation.rstrip('\n')
+        self.source = source.rstrip('\n')
+        self.permission = permission.rstrip('\n')
+        self.other_versions = other_versions.rstrip('\n')
+        self.references = references.rstrip('\n')
+        self.depicted_place = depicted_place.rstrip('\n')
+        self.wikidata = wikidata.rstrip('\n')
+        self.categories = categories.rstrip('\n')
+        self.image_height = image_height.rstrip('\n')
+        self.image_width = image_width.rstrip('\n')
+        self.imageurl = imageurl.rstrip('\n')
         self.GenerateWikiText()
 
     def GenerateWikiText(self):
         #complete this once if applies to all files
 
         self.wikitext = u"""{{Artwork
-    |artist             = """ + '{{Creator|}}' + self.artist + '}}' + """
+    |artist             = """ + '{{Creator:' + self.artist + '}}' + """
     |author             = """ + str(self.author) + """
     |title              = """ + str(self.title) + """
     |description        = """ + str(self.desc) + """

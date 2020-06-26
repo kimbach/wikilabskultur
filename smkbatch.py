@@ -160,13 +160,14 @@ try:
     commons_error_log = "commons_error.log"
     logging.basicConfig(filename=commons_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-    offset=27670+31231+17920+10750
+    offset=0
     rows=1
     items=0
 
     output_filename='commons_smk'
 
     f_csv=open(output_filename+'.csv', 'w+')
+    f_html=open(output_filename+'.html', 'w+')
 
     artwork = commons.ArtworkTemplate()
 
@@ -174,6 +175,24 @@ try:
     #csv_header=artwork.GenerateCSVHeader()
     csv_header=artwork.GenerateCSVHeader() + ';public_domain;has_image'
     f_csv.write(csv_header + '\n')
+    f_html.writelines('<html>')
+    f_html.writelines('<head>')
+    f_html.writelines('<title>smkbatch - preview</title>')
+    f_html.writelines(u"""'<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+
+          <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="js/includeHTML.js"></script>""")
+    f_html.writelines('</head><body>')
+    f_html.writelines('<table class="table"')
+    f_html.writelines('<tr>')
+    f_html.writelines('<th>billede</th><th>wikitext</th>')
+    f_html.writelines('</tr>')
 
     while True:
         try:
@@ -559,7 +578,7 @@ try:
             f_csv.write(csvline + '\n')
 
             # download smk_image_native
-            if smk_has_image == True:
+            if smk_has_image == 'True':
                 filetype = pathlib.Path(smk_image_native).suffix
                 filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
                 filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
@@ -572,20 +591,26 @@ try:
                 filename = filename.replace(")", "")
                 short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
                 folder = './downloads/'
-                path = folder + filename + filetype
-                #if not os.path.exists(path):
+                imagepath = folder + filename + filetype
+                if not os.path.exists(imagepath):
                     # only download file if it doens't already exist
-                    #r = requests.get(smk_image_native, allow_redirects=True)
-                    #open(path, 'wb').write(r.content)
+                    r = requests.get(smk_image_native, allow_redirects=True)
+                    open(imagepath, 'wb').write(r.content)
+
                 path = folder + filename + '.txt'
-                #artwork.GenerateWikiText()
+                artwork.GenerateWikiText()
                 license = """=={{int:license-header}}==
 {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=""" + smk_creator_date_of_death_year+ """}}
 """
     
                 wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
-                # open(path, 'w').write(wikitext)
+                open(path, 'w').write(wikitext)
+                f_html.writelines('<tr>')
+                f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                f_html.writelines('</tr>')
 
+            if items == 10:
+                break
         except Exception as e:
             print('EXCEPTION!')
             typeerror=TypeError(e)
@@ -596,6 +621,10 @@ try:
 
         if 0==rows:
             break
+
+    f_html.writelines('</table>')
+    f_html.writelines('</body></html>')
+    f_html.close()
     f_csv.close() 
     
 except Exception as e:
@@ -606,5 +635,5 @@ finally:
     offset=offset+1
 
 
-#TestSMKAPI()
+TestSMKAPI()
 #get_smk_object('KMS1')

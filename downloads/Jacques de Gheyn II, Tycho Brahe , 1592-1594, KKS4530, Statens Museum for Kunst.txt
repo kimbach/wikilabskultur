@@ -1,0 +1,34 @@
+{{Artwork
+    |artist             = {{Creator|Jacques de Gheyn II}}
+    |author             = 
+    |title              = Tycho Brahe 
+    |description        = 
+    |depicted people    = 
+    |date               = 1592-1594
+    |medium             = Kobberstik
+    |dimensions         = {{Size|unit=mm|width=134|height=186}}
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = Samling og Forskning (KKS)
+    |place of discovery = 
+    |object history     =  
+    |exhibition history = 
+    |credit line        = 
+    |inscriptions       = "Effigies Tychonis Brahe ottonidis dani/dni de knudstrup et arcis uranienburg in/insula hellisponti danici hvenna fundatoris/instrumentorumos astronomicorum in eadem/dispositarim inventoris et structoris/aetatis suÃ¦ anno 40.anno dni 1586.compl/", latin, f.n.m.f.
+Passavant 2 Bl. 114. Strunk 356. J. 4530, , f.n.m.f.
+"J.d. Gheyn.Fe", , f.n.m.f.
+    |notes              = kobberstik
+    |accession number   = KKS4530
+    |place of creation  = 
+    |source             = {{SMK online|KKS4530}}
+    |permission         = {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1629}}
+    |other_versions     = 
+    |references         = Tycho Brahes verden: Danmark i Europa 1550-1600, Poul Grinder-Hansen, omt. og afb. p. 30, fig. 6, C 35560
+The New Hollstein Dutch and Flemish etchings, engravings and woodcuts 1450-1700, The de Gheyn family, part I-II, Jan Piet Filedt Kok, 238 I, k2000-158
+    |depicted place     = 
+    
+}}
+    
+=={{int:license-header}}==
+{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1629}}
+
+[[Cateogry:Engravings in Statens Museum for Kunst]]

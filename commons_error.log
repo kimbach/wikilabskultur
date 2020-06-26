@@ -65,3 +65,31 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 498, in send
     raise ConnectionError(err, request=request)
 requests.exceptions.ConnectionError: ('Connection aborted.', TimeoutError(60, 'Operation timed out'))
+2020-06-25 22:56:39 [Errno 2] No such file or directory: './downloads/Albrecht Altdorfer, Jomfru Maria med barnet og Sankt Anne ved vuggen, 1479-1537, KKS1615, Statens Museum for Kunst.jpg'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 579, in <module>
+    open(path, 'wb').write(r.content)
+FileNotFoundError: [Errno 2] No such file or directory: './downloads/Albrecht Altdorfer, Jomfru Maria med barnet og Sankt Anne ved vuggen, 1479-1537, KKS1615, Statens Museum for Kunst.jpg'
+2020-06-25 22:59:13 [Errno 2] No such file or directory: './downloads/Albrecht Altdorfer - Jomfru Maria med barnet og Sankt Anne ved vuggen - 1479-1537 - KKS1615 - Statens Museum for Kunst.jpg'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/wikilabskultur/smkbatch.py", line 579, in <module>
+    open(path, 'wb').write(r.content)
+FileNotFoundError: [Errno 2] No such file or directory: './downloads/Albrecht Altdorfer - Jomfru Maria med barnet og Sankt Anne ved vuggen - 1479-1537 - KKS1615 - Statens Museum for Kunst.jpg'
+2020-06-25 23:51:51 Closing network session.
+2020-06-25 23:51:51 Network session closed.
+2020-06-26 06:33:35 Closing network session.
+2020-06-26 06:33:35 Network session closed.
+2020-06-26 06:34:51 Closing network session.
+2020-06-26 06:34:51 Network session closed.
+2020-06-26 06:36:13 Closing network session.
+2020-06-26 06:36:13 Network session closed.
+2020-06-26 06:39:01 Closing network session.
+2020-06-26 06:39:01 Network session closed.
+2020-06-26 06:42:38 Closing network session.
+2020-06-26 06:42:38 Network session closed.
+2020-06-26 06:44:29 Closing network session.
+2020-06-26 06:44:29 Network session closed.
+2020-06-26 06:46:18 Closing network session.
+2020-06-26 06:46:18 Network session closed.
+2020-06-26 06:48:37 Closing network session.
+2020-06-26 06:48:37 Network session closed.

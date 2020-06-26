@@ -60,17 +60,17 @@ OPTIONAL { ?item wdt:P217 ?inventarnummer. }
 OPTIONAL { ?item wdt:P1476 ?titel. }
 OPTIONAL { ?item wdt:P973 ?beskrevet_ved_URL. }
 }
-ORDER BY (?item)"""
+ORDER BY (?inventarnummer)"""
 
     items = 0
     try:
-        f_csv=open(output_filename+'.csv', 'w+')
+        f_csv=open(output_filename, 'w+')
         #f_html=open(output_filename+'.html', 'w+')
         wikidata_site = pywikibot.Site("wikidata", "wikidata")
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
         # CSV header item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image
-        f_csv.write('item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image\r\n')
+        f_csv.write('inventorynumber;wikidataitem;title;image;url;height;width;mime\n')
 
         # HTML header
         #f_html.write('<html>\r\n')
@@ -81,49 +81,46 @@ ORDER BY (?item)"""
 
         for wikidata_item in generator:
             try:
-                smk_image_native=''
-                smk_id=''
-                smk_object_number=''
-                smk_public_domain=''
-                smk_image_width=''
-                smk_image_height=''
-                smk_has_image=''
                 wikidata_width=''
                 wikidata_height=''
                 wikidata_mime=''
+                image=''
+                number=''
 
                 print(wikidata_item.id)
 
                 data = wikidata_item.get()
                 claims = data.get('claims')
-                # Claim 217 is the item number
-                number=str(claims.get(u'P217')[0].target)
+
+                # Claim 217 is the accension number
+                if claims.get(u'P217'):
+                    number=str(claims.get(u'P217')[0].target)
                 print(number)
 
-                smk_object = smkapi.get_smk_object(number)
+                # smk_object = smkapi.get_smk_object(number)
 
-                for keys, item in recursive_iter(smk_object['items']):
-                    if 'image_native'==keys[1]:
-                        smk_image_native=item
-                        print('smk_image_native='+smk_image_native)
-                    if 'id'==keys[1]:
-                        smk_id=item
-                        print('smk_id='+smk_id)
-                    if 'object_number'==keys[1]:
-                        smk_object_number=item
-                        print('smk_object_number='+smk_object_number)
-                    if 'public_domain'==keys[1]:
-                        smk_public_domain=item
-                        print('smk_public_domain='+str(smk_public_domain))
-                    if 'image_width'==keys[1]:
-                        smk_image_width=item
-                        print('smk_image_width='+str(smk_image_width))
-                    if 'image_height'==keys[1]:
-                        smk_image_height=item
-                        print('smk_image_height='+str(smk_image_height))
-                    if 'has_image'==keys[1]:
-                        smk_has_image=item
-                        print('smk_has_image='+str(smk_has_image))
+                # for keys, item in recursive_iter(smk_object['items']):
+                #     if 'image_native'==keys[1]:
+                #         smk_image_native=item
+                #         print('smk_image_native='+smk_image_native)
+                #     if 'id'==keys[1]:
+                #         smk_id=item
+                #         print('smk_id='+smk_id)
+                #     if 'object_number'==keys[1]:
+                #         smk_object_number=item
+                #         print('smk_object_number='+smk_object_number)
+                #     if 'public_domain'==keys[1]:
+                #         smk_public_domain=item
+                #         print('smk_public_domain='+str(smk_public_domain))
+                #     if 'image_width'==keys[1]:
+                #         smk_image_width=item
+                #         print('smk_image_width='+str(smk_image_width))
+                #     if 'image_height'==keys[1]:
+                #         smk_image_height=item
+                #         print('smk_image_height='+str(smk_image_height))
+                #     if 'has_image'==keys[1]:
+                #         smk_has_image=item
+                #         print('smk_has_image='+str(smk_has_image))
 
                 #for item in smk_items:
                 #    smk_id = item.id
@@ -137,33 +134,36 @@ ORDER BY (?item)"""
                 try:
                     # [[commons:File:No_image_available.svg]]->
                     # https://commons.wikimedia.org/wiki/Special:FilePath/No_image_available.svg
-                    image=str(claims.get(u'P18')[0].target)
-                    # strip [[
-                    image=image.replace("[[", "")
-                    # strip ]]
-                    image=image.replace("]]", "")
-                    # replace commons:File with https://commons.wikimedia.org/wiki/Special:FilePath/
-                    image=image.replace("commons:File:", "https://commons.wikimedia.org/wiki/Special:FilePath/")
-                    
-                    wikidata_height=claims.get(u'P18')[0].target.latest_file_info.height
-                    wikidata_width=claims.get(u'P18')[0].target.latest_file_info.width
-                    wikidata_mime=claims.get(u'P18')[0].target.latest_file_info.mime
+                    if claims.get(u'P18'):
+                        image=str(claims.get(u'P18')[0].target)
+                        # strip [[
+                        image=image.replace("[[", "")
+                        # strip ]]
+                        image=image.replace("]]", "")
+                        # replace commons:File with https://commons.wikimedia.org/wiki/Special:FilePath/
+                        image=image.replace("commons:File:", "https://commons.wikimedia.org/wiki/Special:FilePath/")
+                        
+                        wikidata_height=claims.get(u'P18')[0].target.latest_file_info.height
+                        wikidata_width=claims.get(u'P18')[0].target.latest_file_info.width
+                        wikidata_mime=claims.get(u'P18')[0].target.latest_file_info.mime
 
-                except:
-                    image='https://commons.wikimedia.org/wiki/Special:FilePath/No_image_available.svg'
+                except Exception as e:
+                    logging.exception(e)
                 print(image)
 
                 # Claim 1476 is the title
-                title=str(claims.get(u'P1476')[0].target.text)
-                print(title)
+                if claims.get(u'P1476'):
+                    title=str(claims.get(u'P1476')[0].target.text)
+                    print(title)
 
                 # Claim 973 is the documentation url                
 
-                url=str(claims.get(u'P973')[0].target)
-                print(url)
+                if claims.get(u'P973'):
+                    url=str(claims.get(u'P973')[0].target)
+                    print(url)
 
                 # Add line to CSV
-                f_csv.write(wikidata_item.id+';'+str(number)+';'+title+';'+image+';'+url+';'+str(wikidata_height)+';'+str(wikidata_width)+';'+wikidata_mime+';'+smk_id+';'+smk_object_number+';'+smk_image_native+';'+str(smk_image_height)+';'+str(smk_image_width)+';'+str(smk_public_domain)+';'+str(smk_has_image)+'\r\n')
+                f_csv.write(str(number)+ ';' + wikidata_item.id+';'+title+';'+image+';'+url+';'+str(wikidata_height)+';'+str(wikidata_width)+';'+wikidata_mime + '\n')
 
                 # Add line to HTML
                 #f_html.write('<tr>'+
@@ -179,7 +179,7 @@ ORDER BY (?item)"""
 
                 items=items+1
             except Exception as e:
-                logging.error(str(e))
+                logging.exception(e)
         
         # HTML footer
         #f_html.write('</body>\r\n')
@@ -227,7 +227,7 @@ ORDER BY (?inventarnummer)"""
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
         # CSV header item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image
-        #f_csv.write('item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image\r\n')
+        #f_csv.write('number;item;title;image;url;height;width;mime\n')
 
         # HTML header
         #f_html.write('<html>\r\n')
@@ -265,7 +265,7 @@ ORDER BY (?inventarnummer)"""
 
                 items=items+1
             except Exception as e:
-                logging.error(str(e))
+                logging.exception(e)
         
         # HTML footer
         #f_html.write('</body>\r\n')
@@ -283,4 +283,4 @@ ORDER BY (?inventarnummer)"""
         return wikidata_id
 
 # Get all items from Statens Museum for Kunst, Wikidata Object Q671384
-#GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+# GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
