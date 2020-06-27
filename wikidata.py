@@ -52,13 +52,14 @@ def GetInstitutionWikidataItems(wd_institution, output_filename):
 
     # SPARQL query to execute 
     query = u"""# SPARQL forespørgsel der returnerer wikidata emner for SMK
-SELECT DISTINCT ?item ?billeder ?inventarnummer ?titel ?beskrevet_ved_URL WHERE {
+SELECT DISTINCT ?item ?skaberLabel ?billeder ?inventarnummer ?titel ?beskrevet_ved_URL ?creator WHERE {
 ?item wdt:P195 wd:""" + wd_institution + """.
 SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
 OPTIONAL { ?item wdt:P18 ?billeder. }
 OPTIONAL { ?item wdt:P217 ?inventarnummer. }
 OPTIONAL { ?item wdt:P1476 ?titel. }
 OPTIONAL { ?item wdt:P973 ?beskrevet_ved_URL. }
+OPTIONAL { ?item wdt:P170 ?skaber. }
 }
 ORDER BY (?inventarnummer)"""
 
@@ -70,7 +71,7 @@ ORDER BY (?inventarnummer)"""
         generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
 
         # CSV header item;number;title;image;url;height;width;mime;smk_id;smk_object_number;smk_image_native;smk_image_height;smk_image_width;smk_public_domain;smk_has_image
-        f_csv.write('inventorynumber;wikidataitem;title;image;url;height;width;mime\n')
+        f_csv.write('inventorynumber;wikidataitem;creator;title;image;url;height;width;mime\n')
 
         # HTML header
         #f_html.write('<html>\r\n')
@@ -81,6 +82,7 @@ ORDER BY (?inventarnummer)"""
 
         for wikidata_item in generator:
             try:
+                creator=wikidata_item.skaberLabel
                 wikidata_width=''
                 wikidata_height=''
                 wikidata_mime=''
@@ -162,8 +164,12 @@ ORDER BY (?inventarnummer)"""
                     url=str(claims.get(u'P973')[0].target)
                     print(url)
 
+                if claims.get(u'P170'):
+                    creator=str(claims.get(u'P170')[0].target)
+                    print(creator)
+
                 # Add line to CSV
-                f_csv.write(str(number)+ ';' + wikidata_item.id+';'+title+';'+image+';'+url+';'+str(wikidata_height)+';'+str(wikidata_width)+';'+wikidata_mime + '\n')
+                f_csv.write(str(number)+ ';' + wikidata_item.id+';'+creator+';'+title+';'+image+';'+url+';'+str(wikidata_height)+';'+str(wikidata_width)+';'+wikidata_mime + '\n')
 
                 # Add line to HTML
                 #f_html.write('<tr>'+
@@ -283,4 +289,4 @@ ORDER BY (?inventarnummer)"""
         return wikidata_id
 
 # Get all items from Statens Museum for Kunst, Wikidata Object Q671384
-# GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
