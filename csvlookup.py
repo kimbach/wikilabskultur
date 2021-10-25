@@ -19,9 +19,11 @@ def find_wikidata_item(object_id):
     return(wikidata_item)
 
 # Generate lists of unique artwork types, nationalities and creators from SMK import csv
+# and filter on specific artists
 notes=[]
 nationalities=[]
 creators=[]
+artists=[]
 with open('commons_smk_total.csv', 'r') as file:
     reader = csv.reader(file, quoting=csv.QUOTE_NONE, delimiter = ';')
     for commons_row in reader:
@@ -51,7 +53,24 @@ with open('commons_smk_total.csv', 'r') as file:
                 break
         if creator_found == False:
             creators.append(commons_row[0] + ';' + commons_row[1]) 
-        
+
+        # Joakim Skovgaard
+        # Viggo Pedersen
+        # Theodor Philipsen
+        # Edvard Petersen
+        # Kristian Zahrtmann
+
+        if commons_row[0]=='Joakim Skovgaard':
+            artists.append(commons_row) 
+        elif commons_row[0]=='Viggo Pedersen':
+            artists.append(commons_row) 
+        elif commons_row[0]=='Theodor Philipsen':
+            artists.append(commons_row)
+        elif commons_row[0]=='Edvard Petersen':
+            artists.append(commons_row)
+        elif commons_row[0]=='Kristian Zahrtmann':
+            artists.append(commons_row)
+
 f_type=open('type_smk.csv', 'w+')
 print("type:")
 for note in notes:
@@ -72,4 +91,13 @@ for creator in creators:
     f_creators.write(creator + '\n')
     print(creator)
 f_creators.close()
+
+f_artists=open('f_artists.csv', 'w+')
+print("artists:")
+f_artists.write('artist;title;accession_number;imageurl;public_domain;has_image\n')
+
+for artist in artists:
+    f_artists.write(artist[0] + ';' + artist[3] + ';' + artist[17] + ';' + artist[28] + ';' + artist[29] + ';' + artist[30] + '\n')
+    print(artist)
+f_artists.close()
 

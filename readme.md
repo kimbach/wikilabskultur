@@ -7,6 +7,7 @@ This is the repository for Wiki Labs Kultur, a collaboration between
 - AU Library Campus Emdrup
 - Statens Værksteder for Kunst (SVfK)
 - Statens Museum for Kunst (SMK)
+- Thorvaldsens Museum
 
 See https://www.facebook.com/groups/133970093625705
 

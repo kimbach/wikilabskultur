@@ -65,7 +65,7 @@ def string_convert(obj, keys=(object)):
     else:
         yield keys, obj
 
-def TestSMKAPI():
+def TestSMKAPI(smk_number_list):
     #url = [ filename ]
     #keepFilename = False        #set to True to skip double-checking/editing destination filename
     keepFilename = True        #set to True to skip double-checking/editing destination filename
@@ -90,8 +90,7 @@ def TestSMKAPI():
     #smk_items = smkitem.empty_from_dict(json_string)
 
     # Add categories
-    smk_categories  = """[[Category:Wiki Labs Kultur]]
-    [[Category:Paintings in Statens Museum for Kunst]]"""
+    smk_categories  = """[[Category:Paintings in Statens Museum for Kunst]]"""
 
     # Iterate over Items
     # for item in smk_items.items:
@@ -152,488 +151,528 @@ def TestSMKAPI():
     #         print ('image_native =' + item.image_native)
     #         print (artwork.wikitext)
 
-# Get all wikidata items for SMK Wikidata object Q671384
-#wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk')
-try:
-    accession_number:str
-    # Set up logging
-    commons_error_log = "commons_error.log"
-    logging.basicConfig(filename=commons_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+    # Get all wikidata items for SMK Wikidata object Q671384
+    #wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk')
+    try:
+        accession_number:str
 
-    offset=0
-    rows=1
-    items=0
+        # list of items/assencion number to get
+        SMKItemList = smk_number_list
 
-    output_filename='commons_smk'
+        # first item, stops search
+        # SMKItemList = ["KKS13358d"]
 
-    f_csv=open(output_filename+'.csv', 'w+')
-    f_html=open(output_filename+'.html', 'w+')
+        # Set up logging
+        commons_error_log = "commons_error.log"
+        logging.basicConfig(filename=commons_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-    artwork = commons.ArtworkTemplate()
+        offset=0
+        rows=1
+        items=0
 
-    # Print CSV Header
-    #csv_header=artwork.GenerateCSVHeader()
-    csv_header=artwork.GenerateCSVHeader() + ';public_domain;has_image'
-    f_csv.write(csv_header + '\n')
-    f_html.writelines('<html>')
-    f_html.writelines('<head>')
-    f_html.writelines('<title>smkbatch - preview</title>')
-    f_html.writelines(u"""'<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+        output_filename='commons_smk'
 
-          <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        f_csv=open(output_filename+'.csv', 'w+')
+        f_html=open(output_filename+'.html', 'w+')
 
-    <script src="js/includeHTML.js"></script>""")
-    f_html.writelines('</head><body>')
-    f_html.writelines('<table class="table"')
-    f_html.writelines('<tr>')
-    f_html.writelines('<th>billede</th><th>wikitext</th>')
-    f_html.writelines('</tr>')
+        artwork = commons.ArtworkTemplate()
 
-    while True:
-        try:
-            #smkapi.get_smk_object('KMS1')
+        # Print CSV Header
+        #csv_header=artwork.GenerateCSVHeader()
+        csv_header=artwork.GenerateCSVHeader() + ';public_domain;has_image'
+        f_csv.write(csv_header + '\n')
+        f_html.writelines('<html>')
+        f_html.writelines('<head>')
+        f_html.writelines('<title>smkbatch - preview</title>')
+        f_html.writelines(u"""'<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type">
 
-            items=items+1
-            # smk_objects=smkapi.get_smk_objects(offset, rows)
-            smk_objects=smkapi.get_smk_objects(offset, rows)
-            print('offset='+str(smk_objects['offset']))
-            offset=smk_objects['offset']
-            print('rows='+str(smk_objects['rows']))
-            rows=smk_objects['rows']
-            print('found='+str(smk_objects['found']))
-            found=smk_objects['found']
+            <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-            accession_number=''
-            smk_creator=''
-            smk_title=''
-            smk_period=''
-            production_date=''
-            desc=''
-            smk_dimensions = ''
-            smk_object_names = ''
-            smk_inscriptions = ''
-            smk_production_date = ''
-            smk_categories  = '[[Category:SMKOpen Batch Upload]]\n'
-            smk_image_native  = ''
-            smk_image_height = ''
-            smk_image_width = ''
-            smk_has_image = ''
-            smk_public_domain = ''
-            smk_creator_nationality = ''
-            smk_techniques = ''
-            smk_object_history_note = ''
-            smk_exhibitions = ''
-            smk_collection = ''
-            smk_responsible_department = ''
-            smk_documentation = ''
-            smk_description = ''
+        <script src="js/includeHTML.js"></script>""")
+        f_html.writelines('</head><body>')
+        f_html.writelines('<table class="table"')
+        f_html.writelines('<tr>')
+        f_html.writelines('<th>billede</th><th>wikitext</th>')
+        f_html.writelines('</tr>')
 
-            for item in smk_objects['items']:
-                smk_id = ''
-                if item.get('id'):
-                    try:
-                        smk_id = str(item.get('id'))
-                    except:
-                        smk_id = ''
-                print('smk_id=' + smk_id)
 
-                if item.get('image_native'):
-                    smk_image_native=''
-                    try:
-                        if item.get('image_native'):
-                            smk_image_native=str(item['image_native'])
-                    except:
-                        smk_image_native=''
-                    print('smk_image_native =' + smk_image_native)
-                if item.get('image_width'):
-                    smk_image_width=''
-                    try:
-                        if item.get('smk_image_width'):
-                            smk_image_width=str(item['image_width'])
-                    except:
-                        smk_image_width=''
-                    print('smk_image_width =' + smk_image_width)
+        while True:
+            try:
+                if SMKItemList==None:
+                    smk_objects=smkapi.get_smk_objects(offset, rows)
+                else:
+                    if len(SMKItemList)==0:
+                        break
+                    else:
+                        current_number=SMKItemList[0]
+                        SMKItemList.remove(current_number)
+                        smk_objects=smkapi.get_smk_object(current_number)
+                
+                items=items+1
 
-                if item.get('image_height'):
-                    smk_image_height=''
-                    try:
-                        if item.get('smk_image_height'):
-                            smk_image_height=str(item['image_height'])
-                    except:
-                        smk_image_height=''
-                    print('smk_image_height =' + smk_image_height)
-                if item.get('object_number'):
-                    accession_number=''
-                    smk_object_number=''
-                    try:
-                        if item.get('object_number'):
-                            accession_number=str(item['object_number'])
-                    except:
+                try:
+                    print('offset='+str(smk_objects['offset']))
+                    offset=smk_objects['offset']
+                    print('rows='+str(smk_objects['rows']))
+                    rows=smk_objects['rows']
+                    print('found='+str(smk_objects['found']))
+                    found=smk_objects['found']
+                except:
+                    rows=1
+
+                accession_number=''
+                smk_creator=''
+                smk_title=''
+                smk_period=''
+                production_date=''
+                desc=''
+                smk_dimensions = ''
+                smk_object_names = ''
+                smk_inscriptions = ''
+                smk_production_date = ''
+                smk_categories  = '[[Category:SMKOpen Batch Upload]]\n'
+                smk_image_native  = ''
+                smk_image_height = ''
+                smk_image_width = ''
+                smk_has_image = ''
+                smk_public_domain = ''
+                smk_creator_nationality = ''
+                smk_techniques = ''
+                smk_object_history_note = ''
+                smk_exhibitions = ''
+                smk_collection = ''
+                smk_responsible_department = ''
+                smk_documentation = ''
+                smk_description = ''
+
+                for item in smk_objects['items']:
+                    if item.get('object_number'):
                         accession_number=''
-                    smk_object_number=accession_number
-                    print('smk_object_number =' + smk_object_number)
-                if item.get('public_domain'):
-                    smk_public_domain = ''
-                    try:
-                        if item.get('public_domain'):
-                            smk_public_domain = str(item['public_domain'])
-                    except:
+                        smk_object_number=''
+                        try:
+                            if item.get('object_number'):
+                                accession_number=str(item['object_number'])
+                        except:
+                            accession_number=''
+                        smk_object_number=accession_number
+                        print('smk_object_number =' + smk_object_number)
+
+                        #if smk_object_number not in SMKItemList:
+                        #    continue
+
+                    smk_id = ''
+                    if item.get('id'):
+                        try:
+                            smk_id = str(item.get('id'))
+                        except:
+                            smk_id = ''
+                    print('smk_id=' + smk_id)
+
+                    if item.get('image_native'):
+                        smk_image_native=''
+                        try:
+                            if item.get('image_native'):
+                                smk_image_native=str(item['image_native'])
+                        except:
+                            smk_image_native=''
+                        print('smk_image_native =' + smk_image_native)
+                    if item.get('image_width'):
+                        smk_image_width=''
+                        try:
+                            if item.get('smk_image_width'):
+                                smk_image_width=str(item['image_width'])
+                        except:
+                            smk_image_width=''
+                        print('smk_image_width =' + smk_image_width)
+
+                    if item.get('image_height'):
+                        smk_image_height=''
+                        try:
+                            if item.get('smk_image_height'):
+                                smk_image_height=str(item['image_height'])
+                        except:
+                            smk_image_height=''
+                        print('smk_image_height =' + smk_image_height)
+                    if item.get('public_domain'):
                         smk_public_domain = ''
-                    print(smk_public_domain)
-                if item.get('has_image'):
-                    smk_has_image = '' 
-                    try:
-                        if item.get('has_image'):
-                            smk_has_image = str(item['has_image'])
-                    except:
+                        try:
+                            if item.get('public_domain'):
+                                smk_public_domain = str(item['public_domain'])
+                        except:
+                            smk_public_domain = ''
+                        print(smk_public_domain)
+                    if item.get('has_image'):
                         smk_has_image = '' 
-                    print(smk_has_image)
-                if item.get('production'):
-                    smk_creator=''
-                    smk_creator_date_of_death = ''
-                    smk_creator_date_of_death_year = ''
-                    smk_creator_nationality = ''
-                    try:
-                        if item.get('production'):
-                            print(item['production'])
-                            try:
-                                smk_creator_forename = str(item['production'][0].get('creator_forename'))
-                            except:
-                                smk_creator_forename = ''
-
-                            try:
-                                smk_creator_surname = str(item['production'][0].get('creator_surname'))
-                            except:
-                                smk_creator_surname = ''
-
-                            # last name, first name
-                            try:
-                                smk_creator=smk_creator_forename+' '+ smk_creator_surname
-                                smk_creator = smk_creator.lstrip()
-                            except:
-                                smk_creator = ''
-                            try:
-                                smk_creator_date_of_death = str(item['production'][0].get('creator_date_of_death'))
-                            except:
-                                smk_creator_date_of_death = ''
-                            try:
-                                smk_creator_date_of_death_year = str(smk_creator_date_of_death[:4])
-                            except:
-                                smk_creator_date_of_death_year = ''
-                            try:
-                                smk_creator_nationality = str(item['production'][0].get('creator_nationality'))
-                            except:
-                                smk_creator_nationality = ''
-                    except:
+                        try:
+                            if item.get('has_image'):
+                                smk_has_image = str(item['has_image'])
+                        except:
+                            smk_has_image = '' 
+                        print(smk_has_image)
+                    if item.get('production'):
                         smk_creator=''
                         smk_creator_date_of_death = ''
                         smk_creator_date_of_death_year = ''
                         smk_creator_nationality = ''
-
-                    print('smk_creator='+smk_creator)
-                    print('smk_creator_date_of_death_year='+smk_creator_date_of_death_year)
-                    print('smk_creator_nationality='+smk_creator_nationality)
-                if item.get('production_date'):
-                    smk_period = ''
-                    try:
-                        for production_date in item['production_date']:
-                            try:
-                                smk_period = smk_period + str(production_date.get('period'))
-                            except:
-                                smk_period = smk_period + ''
-                    except:
-                        smk_period = smk_period + ''
-
-                    print('smk_period=' + smk_period)
-                if item.get('titles'):
-                    for title in item['titles']: 
-                        smk_language=''
-                        smk_type=''
                         try:
-                            if title['title']:
-                                    smk_title=str(title['title'])
-                        except:
-                            smk_title=''
-                        print('smk_title='+smk_title)
+                            if item.get('production'):
+                                print(item['production'])
+                                try:
+                                    smk_creator_forename = str(item['production'][0].get('creator_forename'))
+                                except:
+                                    smk_creator_forename = ''
 
-                        try:
-                            if title['language']:
-                                smk_language=str(title['language'])
+                                try:
+                                    smk_creator_surname = str(item['production'][0].get('creator_surname'))
+                                except:
+                                    smk_creator_surname = ''
+
+                                # last name, first name
+                                try:
+                                    smk_creator=smk_creator_forename+' '+ smk_creator_surname
+                                    smk_creator = smk_creator.lstrip()
+                                except:
+                                    smk_creator = ''
+                                try:
+                                    smk_creator_date_of_death = str(item['production'][0].get('creator_date_of_death'))
+                                except:
+                                    smk_creator_date_of_death = ''
+                                try:
+                                    smk_creator_date_of_death_year = str(smk_creator_date_of_death[:4])
+                                except:
+                                    smk_creator_date_of_death_year = ''
+                                try:
+                                    smk_creator_nationality = str(item['production'][0].get('creator_nationality'))
+                                except:
+                                    smk_creator_nationality = ''
                         except:
+                            smk_creator=''
+                            smk_creator_date_of_death = ''
+                            smk_creator_date_of_death_year = ''
+                            smk_creator_nationality = ''
+
+                        print('smk_creator='+smk_creator)
+                        print('smk_creator_date_of_death_year='+smk_creator_date_of_death_year)
+                        print('smk_creator_nationality='+smk_creator_nationality)
+                    if item.get('production_date'):
+                        smk_period = ''
+                        try:
+                            for production_date in item['production_date']:
+                                try:
+                                    smk_period = smk_period + str(production_date.get('period'))
+                                except:
+                                    smk_period = smk_period + ''
+                        except:
+                            smk_period = smk_period + ''
+
+                        print('smk_period=' + smk_period)
+                    if item.get('titles'):
+                        for title in item['titles']: 
                             smk_language=''
+                            smk_type=''
+                            try:
+                                if title['title']:
+                                        smk_title=str(title['title'])
+                            except:
+                                smk_title=''
+                            print('smk_title='+smk_title)
 
-                        try:
-                            if title['type']:
-                                smk_type=str(title['type'])
-                        except:
-                            smk_type = ''
-                        
-                        print('smk_type='+smk_type)
+                            try:
+                                if title['language']:
+                                    smk_language=str(title['language'])
+                            except:
+                                smk_language=''
 
-                if item.get('content_description'):
-                    smk_description=''
-                    for description in item['content_description']: 
-                        try:
-                            smk_description = smk_description + str(description) + '\n'
-                        except:
-                            smk_description = smk_description + ''
-                    print('smk_description='+smk_description)
-
-                if item.get('object_names'):
-                    smk_object_names = ''
-                    smk_categories = ''
-                    for object_name in item['object_names']: 
-                        try:
-                            smk_object_names = smk_object_names + str(object_name.get('name'))
-                            if object_name.get('name') == 'kobberstik':
-                                # kobberstik
-                                smk_category = '[[Cateogry:Engravings in Statens Museum for Kunst]]'
-                            elif object_name.get('name') == 'maleri':
-                                # maleri
-                                smk_category = '[[Cateogry:Paintings in Statens Museum for Kunst]]'
-                            elif object_name.get('name') == 'tegning':
-                                # maleri
-                                smk_category = '[[Cateogry:Drawings in Statens Museum for Kunst]]'
-                            elif object_name.get('name') == 'skulptur':
-                                # skulptur
-                                smk_category = '[[Category:Sculptures in Statens Museum for Kunst]]'
+                            try:
+                                if title['type']:
+                                    smk_type=str(title['type'])
+                            except:
+                                smk_type = ''
                             
-                            smk_categories = smk_categories + smk_category + '\n'
-                        except:
-                            smk_object_names = smk_object_names + ''
-                    print('smk_object_names='+smk_object_names)
-                    print('smk_categories='+smk_categories)
+                            print('smk_type='+smk_type)
 
-                if item.get('inscriptions'):
-                    for inscription in item['inscriptions']: 
+                    if item.get('content_description'):
+                        smk_description=''
+                        for description in item['content_description']: 
+                            try:
+                                smk_description = smk_description + str(description) + '\n'
+                            except:
+                                smk_description = smk_description + ''
+                        print('smk_description='+smk_description)
+
+                    if item.get('object_names'):
+                        smk_object_names = ''
+                        smk_categories = ''
+                        for object_name in item['object_names']: 
+                            try:
+                                smk_object_names = smk_object_names + str(object_name.get('name'))
+                                if object_name.get('name') == 'kobberstik':
+                                    # kobberstik
+                                    smk_category = '[[Cateogry:Engravings in Statens Museum for Kunst]]'
+                                elif object_name.get('name') == 'maleri':
+                                    # maleri
+                                    smk_category = '[[Cateogry:Paintings in Statens Museum for Kunst]]'
+                                elif object_name.get('name') == 'tegning':
+                                    # maleri
+                                    smk_category = '[[Cateogry:Drawings in Statens Museum for Kunst]]'
+                                elif object_name.get('name') == 'skulptur':
+                                    # skulptur
+                                    smk_category = '[[Category:Sculptures in Statens Museum for Kunst]]'
+                                
+                                smk_categories = smk_categories + smk_category + '\n'
+                            except:
+                                smk_object_names = smk_object_names + ''
+                        print('smk_object_names='+smk_object_names)
+                        print('smk_categories='+smk_categories)
+
+                    if item.get('inscriptions'):
+                        for inscription in item['inscriptions']: 
+                            try:
+                                line = ''
+                                content = ''
+                                language=''
+                                position='' 
+                                if inscription.get('content') is not None:
+                                    content = str(inscription.get('content'))
+
+                                if inscription.get('language') is not None:
+                                    language = str(inscription.get('language')) 
+
+                                if inscription.get('position') is not None:
+                                    position = str(inscription.get('position'))
+                                line = content + ', ' + language + ', ' + position 
+                                smk_inscriptions = smk_inscriptions + line + '\n'
+                            except:
+                                smk_inscriptions = smk_inscriptions + ''
+                        print('smk_inscription='+smk_inscriptions)
+
+                    if item.get('label'):
+                        for label in item['label']: 
+                            try:
+                                text = ''
+                                type=''
+                                source= ''
+                                date='' 
+                                if label.get('text') is not None:
+                                    text = str(label.get('text'))
+                                if label.get('type') is not None:
+                                    type = str(label.get('type')) 
+                                if label.get('source') is not None:
+                                    source = str(label.get('source'))
+                                if label.get('date') is not None:
+                                    date = str(label.get('date'))
+                                line = text + ', ' + type + ', ' + source + ', ' + date 
+                                smk_label = smk_label + line + '\n'
+                            except:
+                                smk_label = smk_label + ''
+                        print('smk_label='+smk_label)
+
+                    if item.get('dimensions'):
                         try:
-                            line = ''
-                            content = ''
-                            language=''
-                            position='' 
-                            if inscription.get('content') is not None:
-                                content = str(inscription.get('content'))
-
-                            if inscription.get('language') is not None:
-                                language = str(inscription.get('language')) 
-
-                            if inscription.get('position') is not None:
-                                position = str(inscription.get('position'))
-                            line = content + ', ' + language + ', ' + position 
-                            smk_inscriptions = smk_inscriptions + line + '\n'
+                            for dimension in item['dimensions']: 
+                                print(dimension['type'])
+                                print(dimension['value'])
+                                print(dimension['unit'])
+                                if 'højde'==dimension['type']:
+                                    height=str(dimension['value'])
+                                if 'bredde'==dimension['type']:
+                                    width=str(dimension['value'])
+                                if 'mm'==dimension['unit']:
+                                    unit=str(dimension['unit'])
+                            smk_dimensions='{{Size|unit='+str(unit)+'|width='+str(width)+'|height='+str(height)+'}}'
                         except:
-                            smk_inscriptions = smk_inscriptions + ''
-                    print('smk_inscription='+smk_inscriptions)
+                            smk_dimensions = ''
+                    if item.get('techniques'):
+                        for technique in item['techniques']: 
+                            try:
+                                smk_techniques = smk_techniques + str(technique) + '\n'
+                            except:
+                                smk_techniques = smk_techniques + ''
+                        print('smk_techniques='+smk_techniques)
 
-                if item.get('label'):
-                    for label in item['label']: 
+                    if item.get('object_history_note'):
+                        smk_object_history_note = ''
+                        for object_history in item['object_history_note']: 
+                            try:
+                                smk_object_history_note = smk_object_history_note + str(object_history) + '\n'
+                            except:
+                                smk_object_history_note = smk_object_history_note + ''
+                        print('smk_object_history_note=' + smk_object_history_note)
+                    if item.get('exhibitions'):
+                        smk_exhibitions = ''
+                        for exhibition in item['exhibitions']: 
+                            try:
+                                smk_exhibition_title=str(exhibition['exhibition'])
+                                smk_exhibition_date_start=str(exhibition['date_start'])
+                                smk_exhibition_date_end=str(exhibition['date_end'])
+                                smk_exhibition_venue=str(exhibition['venue'])
+                                smk_exhibitions = smk_exhibitions + "{{Temporary Exhibition |name=" + smk_exhibition_title + \
+                                  " |institution= |place= " + smk_exhibition_venue + " |begin=" + \
+                                    smk_exhibition_date_start + " |end=" + \
+                                    smk_exhibition_date_end + "}}\n"
+                            except:
+                                smk_exhibitions = smk_exhibitions + ''
+                        print('smk_exhibitions='+smk_exhibitions)
+                    if item.get('collection'):
+                        smk_collection = ''
+                        for collection in item['collection']: 
+                            try:
+                                smk_collection = smk_collection + str(collection) + '\n'
+                            except:
+                                smk_collection = smk_collection + ''
+                        print('smk_collection='+smk_collection)
+                    if item.get('responsible_department'):
                         try:
-                            text = ''
-                            type=''
-                            source= ''
-                            date='' 
-                            if label.get('text') is not None:
-                                text = str(label.get('text'))
-                            if label.get('type') is not None:
-                                type = str(label.get('type')) 
-                            if label.get('source') is not None:
-                                source = str(label.get('source'))
-                            if label.get('date') is not None:
-                                date = str(label.get('date'))
-                            line = text + ', ' + type + ', ' + source + ', ' + date 
-                            smk_label = smk_label + line + '\n'
+                            smk_responsible_department = item.get('responsible_department')
                         except:
-                            smk_label = smk_label + ''
-                    print('smk_label='+smk_label)
+                            smk_responsible_department = ''
+                        print('smk_responsible_department='+str(smk_responsible_department))
+                    if item.get('documentation'):
+                        smk_documentation = ''
+                        for documentation in item['documentation']: 
+                            try:
+                                title = ''
+                                author = ''
+                                notes = ''
+                                shelfmark  = ''
+                                if documentation.get('title') is not None:
+                                    title = str(documentation.get('title'))
+                                if documentation.get('author') is not None:
+                                    author = str(documentation.get('author')) 
+                                if documentation.get('notes') is not None:
+                                    notes = str(documentation.get('notes'))
+                                if documentation.get('shelfmark') is not None:
+                                    shelfmark = str(documentation.get('shelfmark'))
+                                line = title + ', ' + author + ', ' + notes + ', ' + shelfmark 
+                                smk_documentation = smk_documentation + line + '\n'
+                            except:
+                                smk_documentation = smk_documentation + ''
+                        print('smk_documentation='+str(smk_documentation))
 
-                if item.get('dimensions'):
-                    try:
-                        for dimension in item['dimensions']: 
-                            print(dimension['type'])
-                            print(dimension['value'])
-                            print(dimension['unit'])
-                            if 'hojde'==dimension['type']:
-                                height=str(dimension['value'])
-                            if 'bredde'==dimension['type']:
-                                width=str(dimension['value'])
-                            if 'mm'==dimension['unit']:
-                                unit=str(dimension['unit'])
-                        smk_dimensions='{{Size|unit='+str(unit)+'|width='+str(width)+'|height='+str(height)+'}}'
-                    except:
-                        smk_dimensions = ''
-                if item.get('techniques'):
-                    for technique in item['techniques']: 
-                        try:
-                            smk_techniques = smk_techniques + str(technique) + '\n'
-                        except:
-                            smk_techniques = smk_techniques + ''
-                    print('smk_techniques='+smk_techniques)
+                    #artwork.GenerateWikiText()
+                    #print(artwork.GenerateCSVLine())
 
-                if item.get('object_history_note'):
-                    smk_object_history_note = ''
-                    for object_history in item['object_history_note']: 
-                        try:
-                            smk_object_history_note = smk_object_history_note + str(object_history) + '\n'
-                        except:
-                            smk_object_history_note = smk_object_history_note + ''
-                    print('smk_object_history_note=' + smk_object_history_note)
-                if item.get('exhibitions'):
-                    smk_exhibitions = ''
-                    for exhibition in item['exhibitions']: 
-                        try:
-                            smk_exhibitions = smk_exhibitions + str(exhibition) + '\n'
-                        except:
-                            smk_exhibitions = smk_exhibitions + ''
-                    print('smk_exhibitions='+smk_exhibitions)
-                if item.get('collection'):
-                    smk_collection = ''
-                    for collection in item['collection']: 
-                        try:
-                            smk_collection = smk_collection + str(collection) + '\n'
-                        except:
-                            smk_collection = smk_collection + ''
-                    print('smk_collection='+smk_collection)
-                if item.get('responsible_department'):
-                    try:
-                        smk_responsible_department = item.get('responsible_department')
-                    except:
-                        smk_responsible_department = ''
-                    print('smk_responsible_department='+str(smk_responsible_department))
-                if item.get('documentation'):
-                    smk_documentation = ''
-                    for documentation in item['documentation']: 
-                        try:
-                            title = ''
-                            author = ''
-                            notes = ''
-                            shelfmark  = ''
-                            if documentation.get('title') is not None:
-                                title = str(documentation.get('title'))
-                            if documentation.get('author') is not None:
-                                author = str(documentation.get('author')) 
-                            if documentation.get('notes') is not None:
-                                notes = str(documentation.get('notes'))
-                            if documentation.get('shelfmark') is not None:
-                                shelfmark = str(documentation.get('shelfmark'))
-                            line = title + ', ' + author + ', ' + notes + ', ' + shelfmark 
-                            smk_documentation = smk_documentation + line + '\n'
-                        except:
-                            smk_documentation = smk_documentation + ''
-                    print('smk_documentation='+str(smk_documentation))
+                wd_number = ''
+                # try to get wikidatanumber
+                # wd_number = wikidata.GetSMKWikidataItem(smk_object_number)
 
-                #artwork.GenerateWikiText()
-                #print(artwork.GenerateCSVLine())
+                # Generate artwork template
+    #            if smk_description != '': 
+    #                smk_description = str('{{da|1=' + smk_description + '}}'),
 
-            wd_number = ''
-            # try to get wikidatanumber
-            # wd_number = wikidata.GetSMKWikidataItem(smk_object_number)
+                artwork = commons.ArtworkTemplate(artist = smk_creator,
+                    nationality =  smk_creator_nationality,
+                    author = '',
+                    title = smk_title,
+                    desc = smk_description,
+                    depicted_people = '',
+                    date = smk_period,
+                    medium = smk_techniques,
+                    dimensions = smk_dimensions,
+                    institution = '{{Institution:Statens Museum for Kunst, Copenhagen}}',
+                    department = smk_responsible_department,
+                    place_of_discovery = '',
+                    object_history = smk_object_history_note, 
+                    exhibition_history = smk_exhibitions,
+                    credit_line = '',
+                    inscriptions = smk_inscriptions,
+                    notes = smk_object_names,
+                    accession_number = smk_object_number,
+                    place_of_creation = '',
+                    #'https://collection.smk.dk/#/en/detail/'+accession_number
+                    source = '{{SMK online|'+accession_number+'}}',
+                    permission = '{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=' + smk_creator_date_of_death_year+ '}}' + '\n' + \
+                        '{{Statens Museum for Kunst cooperation project}}',
+                    other_versions = '',
+                    references = smk_documentation,
+                    depicted_place = '',
+                    wikidata = wd_number,
+                    categories = smk_categories,
+                    imageurl = smk_image_native,
+                    image_height = smk_image_height,
+                    image_width = smk_image_width)
 
-            # Generate artwork template
-#            if smk_description != '': 
-#                smk_description = str('{{da|1=' + smk_description + '}}'),
-
-            artwork = commons.ArtworkTemplate(artist = smk_creator,
-                nationality =  smk_creator_nationality,
-                author = '',
-                title = smk_title,
-                desc = smk_description,
-                depicted_people = '',
-                date = smk_period,
-                medium = smk_techniques,
-                dimensions = smk_dimensions,
-                institution = '{{Institution:Statens Museum for Kunst, Copenhagen}}',
-                department = smk_responsible_department,
-                place_of_discovery = '',
-                object_history = smk_object_history_note, 
-                exhibition_history = smk_exhibitions,
-                credit_line = '',
-                inscriptions = smk_inscriptions,
-                notes = smk_object_names,
-                accession_number = smk_object_number,
-                place_of_creation = '',
-                #'https://collection.smk.dk/#/en/detail/'+accession_number
-                source = '{{SMK online|'+accession_number+'}}',
-                permission = '{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=' + smk_creator_date_of_death_year+ '}}',
-                other_versions = '',
-                references = smk_documentation,
-                depicted_place = '',
-                wikidata = wd_number,
-                categories = smk_categories,
-                imageurl = smk_image_native,
-                image_height = smk_image_height,
-                image_width = smk_image_width)
-
-            artwork.GenerateWikiText()
-            
-#            csvline = artwork.GenerateCSVLine()
-            csvline = artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) 
-            csvline = csvline.replace('\n', '<br/>')
-
-            # Print CSV line
-            f_csv.write(csvline + '\n')
-
-            # download smk_image_native
-            if smk_has_image == 'True':
-                filetype = pathlib.Path(smk_image_native).suffix
-                filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
-                filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
-                # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
-                filename = smk_creator + ', ' + smk_title + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
-                filename = filename.replace("\"", "")
-                filename = filename.replace("?", "")
-                filename = filename.replace("/", "-")
-                filename = filename.replace("(", "")
-                filename = filename.replace(")", "")
-                short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
-                folder = './downloads/'
-                imagepath = folder + filename + filetype
-                if not os.path.exists(imagepath):
-                    # only download file if it doens't already exist
-                    r = requests.get(smk_image_native, allow_redirects=True)
-                    open(imagepath, 'wb').write(r.content)
-
-                path = folder + filename + '.txt'
                 artwork.GenerateWikiText()
-                license = """=={{int:license-header}}==
-{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=""" + smk_creator_date_of_death_year+ """}}
-"""
-    
-                wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
-                open(path, 'w').write(wikitext)
-                f_html.writelines('<tr>')
-                f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
-                f_html.writelines('</tr>')
+                
+    #            csvline = artwork.GenerateCSVLine()
+                csvline = artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) 
+                csvline = csvline.replace('\n', '<br/>')
 
-            if items == 10:
+                # Print CSV line
+                f_csv.write(csvline + '\n')
+
+                # download smk_image_native
+                if smk_has_image == 'True':
+                    filetype = pathlib.Path(smk_image_native).suffix
+                    filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
+                    filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
+                    # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
+                    filename = smk_creator + ', ' + smk_title + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
+                    filename = filename.replace("\"", "")
+                    filename = filename.replace("?", "")
+                    filename = filename.replace("/", "-")
+                    filename = filename.replace("(", "")
+                    filename = filename.replace(")", "")
+                    short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
+                    folder = './downloads/'
+                    imagepath = folder + short_filename + filetype
+                    if not os.path.exists(imagepath):
+                        # only download file if it doens't already exist
+                        r = requests.get(smk_image_native, allow_redirects=True)
+                        open(imagepath, 'wb').write(r.content)
+
+                    path = folder + filename + '.txt'
+                    artwork.GenerateWikiText()
+                    license = """=={{int:license-header}}==
+    {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=""" + smk_creator_date_of_death_year+ """}}
+    """
+        
+                    wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
+                    open(path, 'w').write(wikitext)
+                    f_html.writelines('<tr>')
+                    f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                    f_html.writelines('</tr>')
+
+                # if items == 10:
+                #    break
+            except Exception as e:
+                print('EXCEPTION!')
+                typeerror=TypeError(e)
+                logging.exception(e)
+            finally:
+                print('items='+str(items))
+                offset=offset+1
+
+            if 0==rows:
                 break
-        except Exception as e:
-            print('EXCEPTION!')
-            typeerror=TypeError(e)
-            logging.exception(e)
-        finally:
-            print('items='+str(items))
-            offset=offset+1
 
-        if 0==rows:
-            break
+        f_html.writelines('</table>')
+        f_html.writelines('</body></html>')
+        f_html.close()
+        f_csv.close() 
+        
+    except Exception as e:
+        logging.exception(e)
+    finally:
+        print('Export finished')
+        print('items='+str(items))
+        offset=offset+1
 
-    f_html.writelines('</table>')
-    f_html.writelines('</body></html>')
-    f_html.close()
-    f_csv.close() 
-    
-except Exception as e:
-    logging.exception(e)
-finally:
-    print('Export finished')
-    print('items='+str(items))
-    offset=offset+1
+smk_number_list = ["KMS3625", 
+    "KMSsp211", 
+    "DEP289", 
+    "KKSgb7087", 
+    "KKS13568", 
+    "KMS7020", 
+    "KMS4231", 
+    "KMS8847", 
+    "KKSgb5548", 
+    "KKS2621"]
 
-
-TestSMKAPI()
-#get_smk_object('KMS1')
+smk_number_list=None
+TestSMKAPI(smk_number_list)

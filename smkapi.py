@@ -25,8 +25,9 @@ import pathlib
 import smkitem
 
 def get_smk_object(object_number):
-    url = 'https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3D'+object_number+'%5D'
-    data = json.loads(requests.get('https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3A'+object_number+'%5D').text)
+    # url = 'https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3D'+object_number+'%5D'
+    url = 'https://api.smk.dk/api/v1/art/?object_number='+object_number
+    data = json.loads(requests.get(url).text)
     return(data)
     #items=data['items'].get()
     #print(items[0].image_native)

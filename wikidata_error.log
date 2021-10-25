@@ -1,38 +1,40 @@
-2020-06-27 11:56:38 Found 4 wikidata:wikidata processes running, including this one.
-2020-06-27 11:56:39 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 11:56:39 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 11:56:39 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 11:56:39 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 11:56:39 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 11:56:39 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 11:56:40 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 11:56:40 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 11:57:00 Found 4 commons:commons processes running, including this one.
-2020-06-27 11:58:28 Found 5 wikidata:wikidata processes running, including this one.
-2020-06-27 12:01:35 Found 5 wikidata:wikidata processes running, including this one.
-2020-06-27 12:01:35 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:01:35 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 12:01:36 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:01:36 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 12:01:38 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:01:38 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 12:01:39 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:01:39 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 12:01:39 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:01:39 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 12:02:32 Pausing due to database lag: Waiting for all: 5.1333333333333 seconds lagged.
-2020-06-27 12:02:32 Sleeping for 5.0 seconds, 2020-06-27 12:02:32
-2020-06-27 12:02:37 Pausing due to database lag: Waiting for all: 5.1333333333333 seconds lagged.
-2020-06-27 12:02:37 Sleeping for 5.0 seconds, 2020-06-27 12:02:37
-2020-06-27 12:02:42 Pausing due to database lag: Waiting for all: 5.1333333333333 seconds lagged.
-2020-06-27 12:02:42 Sleeping for 5.0 seconds, 2020-06-27 12:02:42
-2020-06-27 12:02:47 Pausing due to database lag: Waiting for all: 5.1333333333333 seconds lagged.
-2020-06-27 12:02:47 Sleeping for 5.0 seconds, 2020-06-27 12:02:47
-2020-06-27 12:02:52 Pausing due to database lag: Waiting for all: 5.1333333333333 seconds lagged.
-2020-06-27 12:02:52 Sleeping for 5.0 seconds, 2020-06-27 12:02:52
-2020-06-27 12:02:58 Pausing due to database lag: Waiting for all: 5.1333333333333 seconds lagged.
-2020-06-27 12:02:58 Sleeping for 5.0 seconds, 2020-06-27 12:02:58
-2020-06-27 12:03:04 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:03:04 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
-2020-06-27 12:03:04 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
-2020-06-27 12:03:04 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
+2021-10-12 20:11:04 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 20:11:29 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
+2021-10-12 20:11:29 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
+2021-10-12 20:11:29 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
+2021-10-12 20:11:29 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
+2021-10-12 20:11:30 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
+2021-10-12 20:11:30 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
+2021-10-12 20:13:32 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
+2021-10-12 20:13:32 API warning (revisions): Because "rvslots" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.
+2021-10-12 20:17:03 Found 2 wikidata:wikidata processes running, including this one.
+2021-10-12 20:17:03 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:13:54 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:13:54 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:18:54 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:18:55 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:21:42 Pausing due to database lag: Waiting for 10.64.0.128: 5.154561 seconds lagged.
+2021-10-12 21:21:42 Sleeping for 5.0 seconds, 2021-10-12 21:21:42
+2021-10-12 21:21:47 Pausing due to database lag: Waiting for 10.64.48.173: 10.329941 seconds lagged.
+2021-10-12 21:21:47 Sleeping for 5.0 seconds, 2021-10-12 21:21:47
+2021-10-12 21:23:54 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:23:55 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:28:55 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:28:55 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:33:55 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:33:56 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:38:55 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:38:57 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:43:55 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:43:57 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:44:56 Pausing due to database lag: Waiting for 10.64.0.154: 5.10616 seconds lagged.
+2021-10-12 21:44:56 Sleeping for 5.0 seconds, 2021-10-12 21:44:56
+2021-10-12 21:48:56 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:48:57 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:53:56 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-12 21:53:57 Found 1 commons:commons processes running, including this one.
+2021-10-12 21:57:59 Dropped throttle(s).
+2021-10-12 21:57:59 Closing network session.
+2021-10-12 21:57:59 Network session closed.
+2021-10-15 15:32:43 Found 1 wikidata:wikidata processes running, including this one.
+2021-10-15 15:32:51 Found 1 commons:commons processes running, including this one.

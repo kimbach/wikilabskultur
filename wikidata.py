@@ -82,7 +82,6 @@ ORDER BY (?inventarnummer)"""
 
         for wikidata_item in generator:
             try:
-                creator=wikidata_item.skaberLabel
                 wikidata_width=''
                 wikidata_height=''
                 wikidata_mime=''
@@ -289,4 +288,4 @@ ORDER BY (?inventarnummer)"""
         return wikidata_id
 
 # Get all items from Statens Museum for Kunst, Wikidata Object Q671384
-GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+# GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
