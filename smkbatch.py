@@ -65,7 +65,7 @@ def string_convert(obj, keys=(object)):
     else:
         yield keys, obj
 
-def TestSMKAPI(smk_number_list):
+def TestSMKAPI(batch_title,smk_filter,smk_number_list):
     #url = [ filename ]
     #keepFilename = False        #set to True to skip double-checking/editing destination filename
     keepFilename = True        #set to True to skip double-checking/editing destination filename
@@ -170,7 +170,7 @@ def TestSMKAPI(smk_number_list):
         rows=1
         items=0
 
-        output_filename='commons_smk'
+        output_filename=batch_title
 
         f_csv=open(output_filename+'.csv', 'w+')
         f_html=open(output_filename+'.html', 'w+')
@@ -204,7 +204,7 @@ def TestSMKAPI(smk_number_list):
         while True:
             try:
                 if SMKItemList==None:
-                    smk_objects=smkapi.get_smk_objects(offset, rows)
+                    smk_objects=smkapi.get_smk_objects(smk_filter,offset, rows)
                 else:
                     if len(SMKItemList)==0:
                         break
@@ -222,6 +222,8 @@ def TestSMKAPI(smk_number_list):
                     rows=smk_objects['rows']
                     print('found='+str(smk_objects['found']))
                     found=smk_objects['found']
+                    if offset>found:
+                        break
                 except:
                     rows=1
 
@@ -377,7 +379,7 @@ def TestSMKAPI(smk_number_list):
                             smk_type=''
                             try:
                                 if title['title']:
-                                        smk_title=str(title['title'])
+                                    smk_title=str(title['title'])
                             except:
                                 smk_title=''
                             print('smk_title='+smk_title)
@@ -391,6 +393,9 @@ def TestSMKAPI(smk_number_list):
                             try:
                                 if title['type']:
                                     smk_type=str(title['type'])
+                                    if smk_type=='museumstitel':
+                                        break
+                                    
                             except:
                                 smk_type = ''
                             
@@ -626,7 +631,7 @@ def TestSMKAPI(smk_number_list):
                         r = requests.get(smk_image_native, allow_redirects=True)
                         open(imagepath, 'wb').write(r.content)
 
-                    path = folder + filename + '.txt'
+                    path = folder + short_filename + '.txt'
                     artwork.GenerateWikiText()
                     license = """=={{int:license-header}}==
     {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=""" + smk_creator_date_of_death_year+ """}}
@@ -673,6 +678,17 @@ smk_number_list = ["KMS3625",
     "KMS8847", 
     "KKSgb5548", 
     "KKS2621"]
+smk_filter_list = [["public_domain","true"],
+    ["has_image", "true"],
+    ["creator_gender", "kvinde"],
+    ["creator_nationality", "dansk"]]
+
+# Generate SMK API filters from filter list
+smk_filter=smkapi.generate_smk_filter(smk_filter_list)
+#url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
+offset=0
+rows=1
 
 smk_number_list=None
-TestSMKAPI(smk_number_list)
+batch_title='danish_female_public_domain_images'
+TestSMKAPI(batch_title,smk_filter,smk_number_list)
