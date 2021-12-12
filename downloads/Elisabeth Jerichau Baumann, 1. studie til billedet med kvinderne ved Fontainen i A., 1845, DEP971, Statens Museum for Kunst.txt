@@ -1,5 +1,5 @@
 {{Artwork
-    |artist             = {{Creator|Elisabeth Jerichau Baumann}}
+    |artist             = {{Creator:Elisabeth Jerichau Baumann}}
     |author             = 
     |title              = 1. studie til billedet med kvinderne ved Fontainen i A.
     |description        = 
@@ -8,25 +8,26 @@
     |medium             = Blyant, stedvist forhøjet med hvidt
     |dimensions         = {{Size|unit=mm|width=240|height=334}}
     |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
-    |department         = Samling og Forskning (KKS)
+    |department         = 
     |place of discovery = 
     |object history     = Ny Carlsberg Glyptotek; deponeret i KKS 1943 
     |exhibition history = 
     |credit line        = 
-    |inscriptions       = Sign. og dat. i forlængelse af egenhændig påskrift f.n.t.v. med pen og brunt blæk: "1te. Studie til billedet / Qvinderne ved Fontainen i A[ulæseligt] / tegnet i Rom 1845 af Elisabeth Baumann", dansk, 
-"Elisabeth Baumann", dansk, f.n.t.v.
-    |notes              = tegning
+    |inscriptions       = {{inscription |1=Sign. og dat. i forlængelse af egenhændig påskrift f.n.t.v. med pen og brunt blæk: "1te. Studie til billedet / Qvinderne ved Fontainen i A[ulæseligt] / tegnet i Rom 1845 af Elisabeth Baumann"|language=da}}
+{{inscription |1="Elisabeth Baumann"|language=da}}
+    |notes              = Tegning
     |accession number   = DEP971
     |place of creation  = 
-    |source             = {{SMK online|DEP971}}
-    |permission         = {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1881}}
+    |source             = {{SMK API|DEP971}}
+{{SMK open|DEP971}}
+    |permission         = {{Licensed-PD-Art-two|PD-old-auto-1923|Cc-zero}}
+{{Statens Museum for Kunst collaboration project}}
     |other_versions     = 
     |references         = 
     |depicted place     = 
     
 }}
     
-=={{int:license-header}}==
-{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1881}}
 
-[[Cateogry:Drawings in Statens Museum for Kunst]]
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Drawings in Statens Museum for Kunst]]

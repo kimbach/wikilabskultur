@@ -1,24 +1,25 @@
 {{Artwork
-    |artist             = {{Creator|Peter Cramer}}
+    |artist             = {{Creator:Peter Cramer}}
     |author             = 
     |title              = Scenebillede
     |description        = 
     |depicted people    = 
     |date               = 1725-1781
     |medium             = Blyant, pen og vandfarve
-    |dimensions         = {{Size|unit=mm|width=217|height=165}}
+    |dimensions         = {{Size|unit=mm|width=50|height=165}}
     |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
     |department         = Samling og Forskning (KKS)
     |place of discovery = 
     |object history     =  
     |exhibition history = 
     |credit line        = 
-    |inscriptions       = Med blyant f.n.t.h.: "P. Cramer", eng, f.n.t.h.
-    |notes              = akvarel
+    |inscriptions       = {{inscription |1=Med blyant f.n.t.h.: "P. Cramer"|language=en}}
+    |notes              = Akvarel
     |accession number   = KKSgb21766
     |place of creation  = 
     |source             = {{SMK online|KKSgb21766}}
     |permission         = {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1782}}
+{{Statens Museum for Kunst cooperation project}}
     |other_versions     = 
     |references         = Danske Teaterbilleder fra det 18de Aarhundrede: en Teaterhistorisk Undersøgelse, Torben Krogh, p. 118, 11067
 Den danske tilskuer: 2, Klaus Neiiendam, afb. s. 89, 55565
@@ -27,6 +28,5 @@ Den danske tilskuer: 2, Klaus Neiiendam, afb. s. 89, 55565
 }}
     
 =={{int:license-header}}==
-{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1782}}
-
-[[Cateogry:Engravings in Statens Museum for Kunst]]
+    {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=1782}}
+    

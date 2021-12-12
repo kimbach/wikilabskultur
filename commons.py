@@ -56,6 +56,8 @@ class ArtworkTemplate(BaseTemplate):
     imageurl: str
     image_height: str
     image_width: str
+    object_type: str
+    location: str
 
     def __init__(self, 
         artist = '',
@@ -86,7 +88,9 @@ class ArtworkTemplate(BaseTemplate):
         categories = '',
         imageurl = '',
         image_height = '',
-        image_width = ''):
+        image_width = '',
+        object_type = '',
+        location = ''):
 
         self.artist = artist.rstrip('\n')
         self.nationality = nationality.rstrip('\n')
@@ -117,6 +121,8 @@ class ArtworkTemplate(BaseTemplate):
         self.image_height = image_height.rstrip('\n')
         self.image_width = image_width.rstrip('\n')
         self.imageurl = imageurl.rstrip('\n')
+        self.object_type = object_type.rstrip('\n')
+        self.location = location.rstrip('\n')
         self.GenerateWikiText()
 
     def GenerateWikiText(self):
@@ -146,6 +152,8 @@ class ArtworkTemplate(BaseTemplate):
     |other_versions     = """ + str(self.other_versions) + """
     |references         = """ + str(self.references) + """
     |depicted place     = """ + str(self.depicted_place) + """
+    |object type        = """ + str(self.object_type) + """
+    |location           = """ + str(self.location) + """
     """
         if self.wikidata != '':
             self.wikitext = self.wikitext + """
@@ -188,6 +196,8 @@ class ArtworkTemplate(BaseTemplate):
         self.csvline = self.csvline + self.image_height.replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + self.image_width.replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + self.imageurl 
+        self.csvline = self.csvline + self.object_type 
+        self.csvline = self.csvline + self.location 
     
         return self.csvline
 
@@ -222,6 +232,8 @@ class ArtworkTemplate(BaseTemplate):
           'wikidata' + csvdelim + \
           'image_height' + csvdelim + \
           'image_width' + csvdelim + \
-          'imageurl'
+          'imageurl' + csvdelim + \
+          'object_type' + csvdelim + \
+          'location'
     
         return self.csvheader

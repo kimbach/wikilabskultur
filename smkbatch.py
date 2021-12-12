@@ -34,6 +34,7 @@ import sys
 import textwrap
 import re
 import smkapi
+import csvlookup
 
 def recursive_iter_1(obj):
     if isinstance(obj, dict):
@@ -65,7 +66,7 @@ def string_convert(obj, keys=(object)):
     else:
         yield keys, obj
 
-def TestSMKAPI(batch_title,smk_filter,smk_number_list):
+def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
     #url = [ filename ]
     #keepFilename = False        #set to True to skip double-checking/editing destination filename
     keepFilename = True        #set to True to skip double-checking/editing destination filename
@@ -90,7 +91,6 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
     #smk_items = smkitem.empty_from_dict(json_string)
 
     # Add categories
-    smk_categories  = """[[Category:Paintings in Statens Museum for Kunst]]"""
 
     # Iterate over Items
     # for item in smk_items.items:
@@ -237,7 +237,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                 smk_object_names = ''
                 smk_inscriptions = ''
                 smk_production_date = ''
-                smk_categories  = '[[Category:SMKOpen Batch Upload]]\n'
+                smk_categories  = ''
                 smk_image_native  = ''
                 smk_image_height = ''
                 smk_image_width = ''
@@ -251,6 +251,10 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                 smk_responsible_department = ''
                 smk_documentation = ''
                 smk_description = ''
+                smk_current_location_name = ''
+                smk_acquisition_date = ''
+                smk_acquisition_date_precision = ''
+
 
                 for item in smk_objects['items']:
                     if item.get('object_number'):
@@ -373,13 +377,17 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                             smk_period = smk_period + ''
 
                         print('smk_period=' + smk_period)
+                    smk_titles=''
+
                     if item.get('titles'):
+                        smk_museumstitel=''
+
                         for title in item['titles']: 
                             smk_language=''
                             smk_type=''
                             try:
                                 if title['title']:
-                                    smk_title=str(title['title'])
+                                    smk_titles=smk_titles + str(title['title'])
                             except:
                                 smk_title=''
                             print('smk_title='+smk_title)
@@ -394,43 +402,40 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                                 if title['type']:
                                     smk_type=str(title['type'])
                                     if smk_type=='museumstitel':
-                                        break
+                                        smk_museumstitel=smk_title
                                     
                             except:
                                 smk_type = ''
                             
                             print('smk_type='+smk_type)
 
+                            iso_code = smkapi.smk_language_code_to_iso_code(smk_language)
+                            smk_titles=smk_titles+'{{' + iso_code +'|' + smk_title + '}}'
+
                     if item.get('content_description'):
                         smk_description=''
                         for description in item['content_description']: 
                             try:
-                                smk_description = smk_description + str(description) + '\n'
+                                smk_description = smk_description + '{{da|' + str(description) + '}}\n'
                             except:
                                 smk_description = smk_description + ''
                         print('smk_description='+smk_description)
 
                     if item.get('object_names'):
                         smk_object_names = ''
-                        smk_categories = ''
+                        smk_categories = '[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]\n'
+                        smk_categories = smk_categories + '[[Category:Images from the partnership with Statens Museum for Kunst]]\n'
                         for object_name in item['object_names']: 
                             try:
-                                smk_object_names = smk_object_names + str(object_name.get('name'))
-                                if object_name.get('name') == 'kobberstik':
-                                    # kobberstik
-                                    smk_category = '[[Cateogry:Engravings in Statens Museum for Kunst]]'
-                                elif object_name.get('name') == 'maleri':
-                                    # maleri
-                                    smk_category = '[[Cateogry:Paintings in Statens Museum for Kunst]]'
-                                elif object_name.get('name') == 'tegning':
-                                    # maleri
-                                    smk_category = '[[Cateogry:Drawings in Statens Museum for Kunst]]'
-                                elif object_name.get('name') == 'skulptur':
-                                    # skulptur
-                                    smk_category = '[[Category:Sculptures in Statens Museum for Kunst]]'
-                                
-                                smk_categories = smk_categories + smk_category + '\n'
-                            except:
+                                smk_object_name = object_name.get('name')
+
+                                if smk_object_name != '':
+                                    object_name_en = smkapi.smk_danish_to_english(smk_object_name)
+                                    smk_category = '[[Category:' + object_name_en.capitalize() + 's in Statens Museum for Kunst]]'
+                                    smk_categories = smk_categories + smk_category + '\n'
+                                    smk_object_names = smk_object_names + smk_object_name + '\n'
+                            except Exception as e:
+                                smk_categories = smk_categories + ''
                                 smk_object_names = smk_object_names + ''
                         print('smk_object_names='+smk_object_names)
                         print('smk_categories='+smk_categories)
@@ -450,8 +455,17 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
 
                                 if inscription.get('position') is not None:
                                     position = str(inscription.get('position'))
-                                line = content + ', ' + language + ', ' + position 
-                                smk_inscriptions = smk_inscriptions + line + '\n'
+
+                                if content!="":  
+                                    line = '{{inscription '
+                                    if content != "":
+                                        line = line + '|1=' + content
+                                    if position != "":
+                                        line = line + '|position=' + smkapi.smk_to_commons_position(position)
+                                    if  language != "":
+                                        line = line + '|language='+ smkapi.smk_to_commons_language(language)
+                                    line = line + '}}'
+                                    smk_inscriptions = smk_inscriptions + line + '\n'
                             except:
                                 smk_inscriptions = smk_inscriptions + ''
                         print('smk_inscription='+smk_inscriptions)
@@ -493,18 +507,29 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                         except:
                             smk_dimensions = ''
                     if item.get('techniques'):
+                        smk_techniques = ''
                         for technique in item['techniques']: 
                             try:
-                                smk_techniques = smk_techniques + str(technique) + '\n'
+                                smk_techniques = smk_techniques + '{{Technique|'+str(technique)+'}}\n'
                             except:
                                 smk_techniques = smk_techniques + ''
                         print('smk_techniques='+smk_techniques)
+
+                    if item.get('notes'):
+                        smk_notes = ''
+                        for note in item['notes']: 
+                            try:
+                                smk_notes = smk_notes + '{{da|'+str(technique)+'}}\n'
+                            except:
+                                smk_notes = smk_notes + ''
+                        print('smk_notes='+smk_notes)
+
 
                     if item.get('object_history_note'):
                         smk_object_history_note = ''
                         for object_history in item['object_history_note']: 
                             try:
-                                smk_object_history_note = smk_object_history_note + str(object_history) + '\n'
+                                smk_object_history_note = smk_object_history_note + '{{da|'+str(object_history) + '}}\n'
                             except:
                                 smk_object_history_note = smk_object_history_note + ''
                         print('smk_object_history_note=' + smk_object_history_note)
@@ -516,10 +541,12 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                                 smk_exhibition_date_start=str(exhibition['date_start'])
                                 smk_exhibition_date_end=str(exhibition['date_end'])
                                 smk_exhibition_venue=str(exhibition['venue'])
+                                smk_exhibition_begin = dateutil.parser.parse(smk_exhibition_date_start).strftime("%Y-%m-%d")
+                                smk_exhibition_end = dateutil.parser.parse(smk_exhibition_date_end).strftime("%Y-%m-%d")
                                 smk_exhibitions = smk_exhibitions + "{{Temporary Exhibition |name=" + smk_exhibition_title + \
                                   " |institution= |place= " + smk_exhibition_venue + " |begin=" + \
-                                    smk_exhibition_date_start + " |end=" + \
-                                    smk_exhibition_date_end + "}}\n"
+                                    smk_exhibition_begin + " |end=" + \
+                                    smk_exhibition_end + "}}\n"
                             except:
                                 smk_exhibitions = smk_exhibitions + ''
                         print('smk_exhibitions='+smk_exhibitions)
@@ -531,45 +558,65 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                             except:
                                 smk_collection = smk_collection + ''
                         print('smk_collection='+smk_collection)
-                    if item.get('responsible_department'):
+                    if item.get('artist'):
+                        smk_artist = ''
                         try:
-                            smk_responsible_department = item.get('responsible_department')
+                            smk_artist = str(item.get('artist'))
                         except:
-                            smk_responsible_department = ''
-                        print('smk_responsible_department='+str(smk_responsible_department))
+                            smk_artist = ''
+                        print('smk_collection='+smk_collection)
+                    # Note:department is not used yet 
+                    #if item.get('responsible_department'):
+                    #    try:
+                    #        smk_responsible_department = item.get('responsible_department')
+                    #    except:
+                    #        smk_responsible_department = ''
+                    #    print('smk_responsible_department='+str(smk_responsible_department))
+                    line = ''
                     if item.get('documentation'):
                         smk_documentation = ''
                         for documentation in item['documentation']: 
                             try:
-                                title = ''
-                                author = ''
-                                notes = ''
-                                shelfmark  = ''
-                                if documentation.get('title') is not None:
-                                    title = str(documentation.get('title'))
-                                if documentation.get('author') is not None:
-                                    author = str(documentation.get('author')) 
-                                if documentation.get('notes') is not None:
-                                    notes = str(documentation.get('notes'))
-                                if documentation.get('shelfmark') is not None:
-                                    shelfmark = str(documentation.get('shelfmark'))
-                                line = title + ', ' + author + ', ' + notes + ', ' + shelfmark 
+                                line = smkapi.smk_documentation_to_commons_cite(documentation)
                                 smk_documentation = smk_documentation + line + '\n'
                             except:
                                 smk_documentation = smk_documentation + ''
                         print('smk_documentation='+str(smk_documentation))
 
+                    if item.get('current_location_name'):
+                        smk_current_location_name = ''
+                        try:
+                            smk_current_location_name = item.get('current_location_name')
+                        except:
+                            smk_current_location_name = ''
+                        print('smk_current_location_name='+str(smk_current_location_name))
+                    if item.get('acquisition_date'):
+                        smk_acquisition_date = ''
+                        try:
+                            smk_acquisition_date = item.get('acquisition_date')
+                        except:
+                            smk_acquisition_date = ''
+                        print('smk_acquisition_date='+str(smk_acquisition_date))
+                    if item.get('acquisition_date_precision'):
+                        smk_acquisition_date_precision = ''
+                        try:
+                            smk_acquisition_date_precision = item.get('acquisition_date_precision')
+                        except:
+                            smk_acquisition_date_precision = ''
+                        print('smk_acquisition_date_precision='+str(smk_acquisition_date_precision))
+
                     #artwork.GenerateWikiText()
                     #print(artwork.GenerateCSVLine())
+                    # try to get wikidatanumber
 
-                wd_number = ''
-                # try to get wikidatanumber
+                wd_number = csvlookup.find_wikidata_item(smk_object_number)
                 # wd_number = wikidata.GetSMKWikidataItem(smk_object_number)
 
                 # Generate artwork template
     #            if smk_description != '': 
     #                smk_description = str('{{da|1=' + smk_description + '}}'),
-
+                smk_object_history_note = smk_object_history_note + \
+                    '{{ProvenanceEvent|date='+smk_acquisition_date_precision+'|type=in collection|newowner={{Institution:Statens Museum for Kunst, Copenhagen}}}}'
                 artwork = commons.ArtworkTemplate(artist = smk_creator,
                     nationality =  smk_creator_nationality,
                     author = '',
@@ -586,13 +633,14 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                     exhibition_history = smk_exhibitions,
                     credit_line = '',
                     inscriptions = smk_inscriptions,
-                    notes = smk_object_names,
+                    notes = smk_notes,
                     accession_number = smk_object_number,
                     place_of_creation = '',
                     #'https://collection.smk.dk/#/en/detail/'+accession_number
-                    source = '{{SMK online|'+accession_number+'}}',
-                    permission = '{{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=' + smk_creator_date_of_death_year+ '}}' + '\n' + \
-                        '{{Statens Museum for Kunst cooperation project}}',
+                    source = '{{SMK API|'+accession_number+'}}' + '\n' + \
+                        '{{SMK online|'+accession_number+'}}',
+                    permission = '{{Licensed-PD-Art-two|PD-old-auto-1923|Cc-zero}}' + '\n' + \
+                        '{{Statens Museum for Kunst collaboration project}}',
                     other_versions = '',
                     references = smk_documentation,
                     depicted_place = '',
@@ -600,7 +648,9 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                     categories = smk_categories,
                     imageurl = smk_image_native,
                     image_height = smk_image_height,
-                    image_width = smk_image_width)
+                    image_width = smk_image_width,
+                    object_type = smk_object_names,
+                    location = smk_current_location_name)
 
                 artwork.GenerateWikiText()
                 
@@ -614,10 +664,10 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                 # download smk_image_native
                 if smk_has_image == 'True':
                     filetype = pathlib.Path(smk_image_native).suffix
-                    filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
-                    filename = 'SMK_' + smk_object_number + '_' + smk_creator + '_-_' + smk_title
+                    filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
+                    filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
                     # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
-                    filename = smk_creator + ', ' + smk_title + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
+                    filename = smk_creator + ', ' + smk_museumstitel + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
                     filename = filename.replace("\"", "")
                     filename = filename.replace("?", "")
                     filename = filename.replace("/", "-")
@@ -626,17 +676,18 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list):
                     short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
                     folder = './downloads/'
                     imagepath = folder + short_filename + filetype
-                    if not os.path.exists(imagepath):
-                        # only download file if it doens't already exist
-                        r = requests.get(smk_image_native, allow_redirects=True)
-                        open(imagepath, 'wb').write(r.content)
+                    if download_images:
+                        if not os.path.exists(imagepath):
+                            # only download file if it doens't already exist
+                            r = requests.get(smk_image_native, allow_redirects=True)
+                            open(imagepath, 'wb').write(r.content)
 
                     path = folder + short_filename + '.txt'
                     artwork.GenerateWikiText()
                     license = """=={{int:license-header}}==
     {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=""" + smk_creator_date_of_death_year+ """}}
     """
-        
+                    license = ''
                     wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
                     open(path, 'w').write(wikitext)
                     f_html.writelines('<tr>')
@@ -689,6 +740,12 @@ smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 offset=0
 rows=1
 
-smk_number_list=None
-batch_title='danish_female_public_domain_images'
-TestSMKAPI(batch_title,smk_filter,smk_number_list)
+#smk_number_list=None
+smk_filter=""
+#batch_title='all_public_domain_images'
+#batch_title='all_works'
+batch_title='selected_works'
+download_images=False
+#download_images=True
+
+TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images)
