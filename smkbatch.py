@@ -66,90 +66,36 @@ def string_convert(obj, keys=(object)):
     else:
         yield keys, obj
 
-def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
-    #url = [ filename ]
-    #keepFilename = False        #set to True to skip double-checking/editing destination filename
+def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
+    """
+    Maps SMK API to Wikimedia Commons. Two files is generated for each item (inventory number/assension number)
+    <mediafilename> ::=<filename>"."<fileextension>
+    <textfilename>  ::=<filename>".txt"
+
+    Example:
+        smk_filter=""
+        batch_title='selected_works'
+        download_images=True
+
+        MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images)
+    
+    Keyword arguments:
+        batch_title -- name of the batch, used as prefix for HTML and CSV output files, so that batches can be distingushed  
+        smk_filter -- dictionary containg filters for the SMK API
+        smk_number_list -- dictionary containg specific SMK item numbers to filter on
+        download_images -- True if images should be downloaded 
+
+        <batch_title>       ::= {<char>}  
+        <smk_filter>        ::= {<filter>}
+        <smk_number_list>   ::= {<number>}
+        <download_images>   ::= <boolean>
+    
+    Returns:
+        Nothing
+    """
     keepFilename = True        #set to True to skip double-checking/editing destination filename
-    #verifyDescription = True    #set to False to skip double-checking/editing description => change to bot-mode
     verifyDescription = False    #set to False to skip double-checking/editing description => change to bot-mode
     #targetSite = pywikibot.Site('beta', 'commons')
-
-    #bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite)
-    #bot.run()
-
-    # Get JSON from the SMK API
-    #json_string = json.loads(requests.get("https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D&offset=0&rows=10").text)
-    #json_string = json.loads(requests.get("https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3AKMS1%5D").text)
-
-    #THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-    #my_file = os.path.join(THIS_FOLDER, 'smkitems.json')
-
-    #json_file = open(my_file)
-    #json_string = json.load(json_file)
-
-    # Map to obejct model
-    #smk_items = smkitem.empty_from_dict(json_string)
-
-    # Add categories
-
-    # Iterate over Items
-    # for item in smk_items.items:
-    
-    #     # Check for image
-    #     if item.has_image: 
-    #         filename=item.image_native
-    #         path=pathlib.Path(filename)
-            
-    #         # Generate page title
-    #         pagetitle='SMK-' + item.id + '-' + item.object_number + ':' + item.titles[0].title + path.suffix
-
-    #         # Generate description
-    #         desc = ''
-    #         if item.content_description is not None:
-    #             for line in item.content_description:
-    #                 desc=desc+line
-            
-    #         # Generate date
-    #         production_date = ''
-    #         for date in item.production_date:
-    #             production_date = production_date+date.start.strftime("%Y-%m-%d")+' - '+date.end.strftime("%Y-%m-%d")+'\n'  
-
-
-    #         #complete_artwork_desc_and_upload(filename, pagetitle, desc, production_date, categories)
-
-    #         # Generate artwork template
-    #         artwork = commons.ArtworkTemplate(artist = '',
-    #             author = '',
-    #             title = '',
-    #             desc = desc,
-    #             depicted_people = '',
-    #             date = production_date,
-    #             medium = '',
-    #             dimensions = '',
-    #             institution = '',
-    #             department = '',
-    #             place_of_discovery = '',
-    #             object_history = '', 
-    #             exhibition_history = '',
-    #             credit_line = '',
-    #             inscriptions = '',
-    #             notes = '',
-    #             accession_number = item.object_number,
-    #             place_of_creation = '',
-    #             source = '',
-    #             permission = '',
-    #             other_versions = '',
-    #             references = '',
-    #             depicted_place = '',
-    #             wikidata = '',
-    #             categories = categories)
-
-    #             #artwork.GenerateWikiText()
-
-    #         print ('id           =' + item.id)
-    #         print ('object_number=' + item.object_number)
-    #         print ('image_native =' + item.image_native)
-    #         print (artwork.wikitext)
 
     # Get all wikidata items for SMK Wikidata object Q671384
     #wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk')
@@ -254,7 +200,8 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                 smk_current_location_name = ''
                 smk_acquisition_date = ''
                 smk_acquisition_date_precision = ''
-
+                smk_notes = ''
+                smk_labels = ''
 
                 for item in smk_objects['items']:
                     if item.get('object_number'):
@@ -321,39 +268,52 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                             smk_has_image = '' 
                         print(smk_has_image)
                     if item.get('production'):
-                        smk_creator=''
-                        smk_creator_date_of_death = ''
-                        smk_creator_date_of_death_year = ''
-                        smk_creator_nationality = ''
+                        smk_creators=''
+                        smk_creators_filename=''
                         try:
-                            if item.get('production'):
-                                print(item['production'])
+                            print(item['production'])
+                            for production in item['production']:
+                                smk_creator=''
+                                smk_creator_date_of_death = ''
+                                smk_creator_date_of_death_year = ''
+                                smk_creator_nationality = ''
                                 try:
-                                    smk_creator_forename = str(item['production'][0].get('creator_forename'))
+                                    if smk_creator_forename.tolower() != 'none':
+                                        smk_creator_forename = str(production['creator_forename'])
                                 except:
                                     smk_creator_forename = ''
 
                                 try:
-                                    smk_creator_surname = str(item['production'][0].get('creator_surname'))
+                                    smk_creator_surname = str(production['creator_surname'])
                                 except:
                                     smk_creator_surname = ''
 
+                                try:
+                                    smk_creator_notes = str(production['notes'])
+                                except:
+                                    smk_creator_notes = ''
+
+                                if smk_creator_notes != '':
+                                    smk_notes = smk_notes + '* {{da|'+smk_creator_notes +'}}\n'
+
                                 # last name, first name
                                 try:
-                                    smk_creator=smk_creator_forename+' '+ smk_creator_surname
+                                    smk_creator= smk_creator_forename + ' ' + smk_creator_surname
                                     smk_creator = smk_creator.lstrip()
+                                    smk_creators=smk_creators + '{{Creator:'+smk_creator+'}}'
+
                                 except:
                                     smk_creator = ''
                                 try:
-                                    smk_creator_date_of_death = str(item['production'][0].get('creator_date_of_death'))
+                                    smk_creator_date_of_death = str(production['creator_date_of_death'])
                                 except:
                                     smk_creator_date_of_death = ''
                                 try:
-                                    smk_creator_date_of_death_year = str(smk_creator_date_of_death[:4])
+                                    smk_creator_date_of_death_year = str(production['creator_date_of_death_year'])
                                 except:
                                     smk_creator_date_of_death_year = ''
                                 try:
-                                    smk_creator_nationality = str(item['production'][0].get('creator_nationality'))
+                                    smk_creator_nationality = str(production['smk_creator_nationality'])
                                 except:
                                     smk_creator_nationality = ''
                         except:
@@ -361,6 +321,10 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                             smk_creator_date_of_death = ''
                             smk_creator_date_of_death_year = ''
                             smk_creator_nationality = ''
+                        
+                        smk_creators=smk_creators + '{{Creator:'+smk_creator + '}}\n'
+
+                        print('smk_period=' + smk_period)
 
                         print('smk_creator='+smk_creator)
                         print('smk_creator_date_of_death_year='+smk_creator_date_of_death_year)
@@ -387,7 +351,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                             smk_type=''
                             try:
                                 if title['title']:
-                                    smk_titles=smk_titles + str(title['title'])
+                                    smk_title=str(title['title'])
                             except:
                                 smk_title=''
                             print('smk_title='+smk_title)
@@ -403,6 +367,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                                     smk_type=str(title['type'])
                                     if smk_type=='museumstitel':
                                         smk_museumstitel=smk_title
+                                        smk_museumstitel_language=str(title['language'])
                                     
                             except:
                                 smk_type = ''
@@ -410,7 +375,10 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                             print('smk_type='+smk_type)
 
                             iso_code = smkapi.smk_language_code_to_iso_code(smk_language)
-                            smk_titles=smk_titles+'{{' + iso_code +'|' + smk_title + '}}'
+                            if smk_museumstitel!='':
+                                smk_titles='{{title|'+smk_title + '|lang=' + iso_code +'}}' + smk_titles
+                            else:
+                                smk_titles='{{' + iso_code +'|' + smk_title + '}}' + smk_titles
 
                     if item.get('content_description'):
                         smk_description=''
@@ -433,7 +401,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                                     object_name_en = smkapi.smk_danish_to_english(smk_object_name)
                                     smk_category = '[[Category:' + object_name_en.capitalize() + 's in Statens Museum for Kunst]]'
                                     smk_categories = smk_categories + smk_category + '\n'
-                                    smk_object_names = smk_object_names + smk_object_name + '\n'
+                                    smk_object_names = smk_object_names + object_name_en.capitalize() + '\n'
                             except Exception as e:
                                 smk_categories = smk_categories + ''
                                 smk_object_names = smk_object_names + ''
@@ -470,8 +438,8 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                                 smk_inscriptions = smk_inscriptions + ''
                         print('smk_inscription='+smk_inscriptions)
 
-                    if item.get('label'):
-                        for label in item['label']: 
+                    if item.get('labels'):
+                        for label in item['labels']: 
                             try:
                                 text = ''
                                 type=''
@@ -486,10 +454,11 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                                 if label.get('date') is not None:
                                     date = str(label.get('date'))
                                 line = text + ', ' + type + ', ' + source + ', ' + date 
-                                smk_label = smk_label + line + '\n'
+                                label_date=dateutil.parser.parse(date).strftime("%Y-%m-%d")
+                                smk_labels = smk_labels + '* {{da|' + text + '}}\n'
                             except:
-                                smk_label = smk_label + ''
-                        print('smk_label='+smk_label)
+                                smk_labels = smk_labels + ''
+                        print('smk_labels='+smk_labels)
 
                     if item.get('dimensions'):
                         try:
@@ -510,16 +479,15 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                         smk_techniques = ''
                         for technique in item['techniques']: 
                             try:
-                                smk_techniques = smk_techniques + '{{Technique|'+str(technique)+'}}\n'
+                                smk_techniques = smk_techniques + str(technique)+'\n'
                             except:
                                 smk_techniques = smk_techniques + ''
                         print('smk_techniques='+smk_techniques)
 
                     if item.get('notes'):
-                        smk_notes = ''
                         for note in item['notes']: 
                             try:
-                                smk_notes = smk_notes + '{{da|'+str(technique)+'}}\n'
+                                smk_notes = smk_notes + '* {{da|'+str(note)+'}}\n'
                             except:
                                 smk_notes = smk_notes + ''
                         print('smk_notes='+smk_notes)
@@ -529,7 +497,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                         smk_object_history_note = ''
                         for object_history in item['object_history_note']: 
                             try:
-                                smk_object_history_note = smk_object_history_note + '{{da|'+str(object_history) + '}}\n'
+                                smk_object_history_note = smk_object_history_note + '* {{da|'+str(object_history) + '}}\n'
                             except:
                                 smk_object_history_note = smk_object_history_note + ''
                         print('smk_object_history_note=' + smk_object_history_note)
@@ -543,7 +511,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                                 smk_exhibition_venue=str(exhibition['venue'])
                                 smk_exhibition_begin = dateutil.parser.parse(smk_exhibition_date_start).strftime("%Y-%m-%d")
                                 smk_exhibition_end = dateutil.parser.parse(smk_exhibition_date_end).strftime("%Y-%m-%d")
-                                smk_exhibitions = smk_exhibitions + "{{Temporary Exhibition |name=" + smk_exhibition_title + \
+                                smk_exhibitions = smk_exhibitions + "* {{Temporary Exhibition |name=" + smk_exhibition_title + \
                                   " |institution= |place= " + smk_exhibition_venue + " |begin=" + \
                                     smk_exhibition_begin + " |end=" + \
                                     smk_exhibition_end + "}}\n"
@@ -559,12 +527,28 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                                 smk_collection = smk_collection + ''
                         print('smk_collection='+smk_collection)
                     if item.get('artist'):
-                        smk_artist = ''
-                        try:
-                            smk_artist = str(item.get('artist'))
-                        except:
+                        smk_artists = ''
+                        smk_artists_filename=''
+
+                        for artist in item['artist']:
                             smk_artist = ''
-                        print('smk_collection='+smk_collection)
+                            try:
+                                smk_artist = str(artist)
+                            except:
+                                smk_artist = ''
+                            if smk_artist != '':
+                                smk_artists_filename=smk_artists_filename+smk_artist+' - '
+                                if smk_artist.lower() != 'ubekendt':
+                                    smk_artists=smk_artists+'{{Creator:'+smk_artist+'}}\n'
+                                else:
+                                    smk_artists=smk_artists+smk_artist+'\n'
+                            print('smk_artist='+smk_artist)
+                        # Strip trailing delimiter " - "
+                        artists_filename_delim = str(' - ')
+                        artists_filename_delim_length = len(artists_filename_delim)
+                        if smk_artists_filename[-artists_filename_delim_length:] == ' - ':
+                            smk_artists_filename=smk_artists_filename[0:-artists_filename_delim_length]
+                        print('smk_artists='+smk_artists)
                     # Note:department is not used yet 
                     #if item.get('responsible_department'):
                     #    try:
@@ -577,9 +561,9 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                         smk_documentation = ''
                         for documentation in item['documentation']: 
                             try:
-                                line = smkapi.smk_documentation_to_commons_cite(documentation)
-                                smk_documentation = smk_documentation + line + '\n'
-                            except:
+                                line = smkapi.smk_documentation_to_commons_citation(documentation)
+                                smk_documentation = smk_documentation + '*' + line + '\n'
+                            except Exception as e:
                                 smk_documentation = smk_documentation + ''
                         print('smk_documentation='+str(smk_documentation))
 
@@ -605,9 +589,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                             smk_acquisition_date_precision = ''
                         print('smk_acquisition_date_precision='+str(smk_acquisition_date_precision))
 
-                    #artwork.GenerateWikiText()
-                    #print(artwork.GenerateCSVLine())
-                    # try to get wikidatanumber
+                # try to get wikidatanumber
 
                 wd_number = csvlookup.find_wikidata_item(smk_object_number)
                 # wd_number = wikidata.GetSMKWikidataItem(smk_object_number)
@@ -616,11 +598,11 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
     #            if smk_description != '': 
     #                smk_description = str('{{da|1=' + smk_description + '}}'),
                 smk_object_history_note = smk_object_history_note + \
-                    '{{ProvenanceEvent|date='+smk_acquisition_date_precision+'|type=in collection|newowner={{Institution:Statens Museum for Kunst, Copenhagen}}}}'
-                artwork = commons.ArtworkTemplate(artist = smk_creator,
+                    '* {{ProvenanceEvent|date='+smk_acquisition_date_precision+'|type=acquisition|newowner=[[Statens Museum for Kunst]]}}'
+                artwork = commons.ArtworkTemplate(artist = smk_artists,
                     nationality =  smk_creator_nationality,
                     author = '',
-                    title = smk_title,
+                    title = smk_titles,
                     desc = smk_description,
                     depicted_people = '',
                     date = smk_period,
@@ -633,14 +615,15 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                     exhibition_history = smk_exhibitions,
                     credit_line = '',
                     inscriptions = smk_inscriptions,
-                    notes = smk_notes,
+                    notes = smk_notes+smk_labels,
                     accession_number = smk_object_number,
                     place_of_creation = '',
                     #'https://collection.smk.dk/#/en/detail/'+accession_number
-                    source = '{{SMK API|'+accession_number+'}}' + '\n' + \
-                        '{{SMK online|'+accession_number+'}}',
-                    permission = '{{Licensed-PD-Art-two|PD-old-auto-1923|Cc-zero}}' + '\n' + \
-                        '{{Statens Museum for Kunst collaboration project}}',
+                    source = '* {{SMK API|'+accession_number+'}}\n' +  \
+                        '* {{SMK Open|'+accession_number+'}}\n' + \
+                        '* [' + smk_image_native + ' image]',                    
+                    permission = '{{Licensed-PD-Art|PD-old|Cc-zero}}\n' + \
+                        '\t{{Statens Museum for Kunst collaboration project}}',
                     other_versions = '',
                     references = smk_documentation,
                     depicted_place = '',
@@ -667,7 +650,7 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                     filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
                     filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
                     # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
-                    filename = smk_creator + ', ' + smk_museumstitel + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
+                    filename = smk_artists_filename + ', ' + smk_museumstitel + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
                     filename = filename.replace("\"", "")
                     filename = filename.replace("?", "")
                     filename = filename.replace("/", "-")
@@ -682,6 +665,8 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                             r = requests.get(smk_image_native, allow_redirects=True)
                             open(imagepath, 'wb').write(r.content)
 
+                            image_found = commons.check_image_hash(imagepath)
+
                     path = folder + short_filename + '.txt'
                     artwork.GenerateWikiText()
                     license = """=={{int:license-header}}==
@@ -694,8 +679,6 @@ def TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images):
                     f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
                     f_html.writelines('</tr>')
 
-                # if items == 10:
-                #    break
             except Exception as e:
                 print('EXCEPTION!')
                 typeerror=TypeError(e)
@@ -745,7 +728,7 @@ smk_filter=""
 #batch_title='all_public_domain_images'
 #batch_title='all_works'
 batch_title='selected_works'
-download_images=False
-#download_images=True
+#download_images=False
+download_images=True
 
-TestSMKAPI(batch_title,smk_filter,smk_number_list,download_images)
+MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images)

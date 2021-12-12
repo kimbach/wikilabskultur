@@ -363,3 +363,364 @@ TypeError: bad operand type for unary +: 'str'
 2021-12-12 01:18:21 Network session closed.
 2021-12-12 01:24:20 Closing network session.
 2021-12-12 01:24:20 Network session closed.
+2021-12-12 02:40:21 Closing network session.
+2021-12-12 02:40:21 Network session closed.
+2021-12-12 02:43:54 Closing network session.
+2021-12-12 02:43:54 Network session closed.
+2021-12-12 02:45:08 Closing network session.
+2021-12-12 02:45:08 Network session closed.
+2021-12-12 02:46:45 Closing network session.
+2021-12-12 02:46:45 Network session closed.
+2021-12-12 02:51:44 Closing network session.
+2021-12-12 02:51:44 Network session closed.
+2021-12-12 02:55:57 Closing network session.
+2021-12-12 02:55:57 Network session closed.
+2021-12-12 02:56:36 Closing network session.
+2021-12-12 02:56:36 Network session closed.
+2021-12-12 07:01:33 Closing network session.
+2021-12-12 07:01:33 Network session closed.
+2021-12-12 07:03:15 Closing network session.
+2021-12-12 07:03:15 Network session closed.
+2021-12-12 07:17:00 Closing network session.
+2021-12-12 07:17:00 Network session closed.
+2021-12-12 07:18:38 Closing network session.
+2021-12-12 07:18:38 Network session closed.
+2021-12-12 08:04:33 Closing network session.
+2021-12-12 08:04:33 Network session closed.
+2021-12-12 08:07:32 Closing network session.
+2021-12-12 08:07:32 Network session closed.
+2021-12-12 08:12:12 Closing network session.
+2021-12-12 08:12:12 Network session closed.
+2021-12-12 08:15:30 Closing network session.
+2021-12-12 08:15:30 Network session closed.
+2021-12-12 08:45:50 Closing network session.
+2021-12-12 08:45:50 Network session closed.
+2021-12-12 08:53:06 Closing network session.
+2021-12-12 08:53:06 Network session closed.
+2021-12-12 09:24:03 'str' object has no attribute 'length'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 589, in TestSMKAPI
+    if smk_artists_filename[-' - '.length():] == ' - ':
+AttributeError: 'str' object has no attribute 'length'
+2021-12-12 09:24:17 'str' object has no attribute 'length'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 589, in TestSMKAPI
+    if smk_artists_filename[-' - '.length():] == ' - ':
+AttributeError: 'str' object has no attribute 'length'
+2021-12-12 09:25:04 'str' object has no attribute 'length'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 589, in TestSMKAPI
+    if smk_artists_filename[-' - '.length():] == ' - ':
+AttributeError: 'str' object has no attribute 'length'
+2021-12-12 09:27:50 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:50 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:50 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:50 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:51 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:51 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:51 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:52 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:52 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:52 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = str(' - ').count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:27:52 Closing network session.
+2021-12-12 09:27:52 Network session closed.
+2021-12-12 09:30:08 count() takes at least 1 argument (0 given)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = smk_artists_filename_delim.count()
+TypeError: count() takes at least 1 argument (0 given)
+2021-12-12 09:31:02 'str' object has no attribute 'len'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 590, in TestSMKAPI
+    smk_artists_filename_delim_length = smk_artists_filename_delim.len()
+AttributeError: 'str' object has no attribute 'len'
+2021-12-12 09:32:42 string indices must be integers
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 592, in TestSMKAPI
+    smk_artists_filename=smk_artists_filename[0,-smk_artists_filename_delim_length]
+TypeError: string indices must be integers
+2021-12-12 09:35:26 Closing network session.
+2021-12-12 09:35:26 Network session closed.
+2021-12-12 09:39:20 Closing network session.
+2021-12-12 09:39:20 Network session closed.
+2021-12-12 09:45:44 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:44 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:44 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:45 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:45 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:45 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:45 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:45 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:46 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:46 'str' object has no attribute 'tolower'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 586, in TestSMKAPI
+    if smk_artist.tolower() != 'ubekendt':
+AttributeError: 'str' object has no attribute 'tolower'
+2021-12-12 09:45:46 Closing network session.
+2021-12-12 09:45:46 Network session closed.
+2021-12-12 09:47:24 Closing network session.
+2021-12-12 09:47:24 Network session closed.
+2021-12-12 09:57:44 Closing network session.
+2021-12-12 09:57:44 Network session closed.
+2021-12-12 10:00:55 Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 214, in TestSMKAPI
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 32, in get_smk_object
+    data = json.loads(requests.get(url).text)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2021-12-12 10:00:57 Closing network session.
+2021-12-12 10:00:57 Network session closed.
+2021-12-12 10:02:48 Closing network session.
+2021-12-12 10:02:48 Network session closed.
+2021-12-12 10:26:15 Closing network session.
+2021-12-12 10:26:15 Network session closed.
+2021-12-12 10:28:16 Closing network session.
+2021-12-12 10:28:16 Network session closed.
+2021-12-12 10:43:09 Closing network session.
+2021-12-12 10:43:09 Network session closed.
+2021-12-12 11:17:36 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:36 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:36 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:37 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:37 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:37 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:37 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:38 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:38 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:38 local variable 'smk_labels' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 674, in TestSMKAPI
+    notes = smk_notes+smk_labels,
+UnboundLocalError: local variable 'smk_labels' referenced before assignment
+2021-12-12 11:17:38 Closing network session.
+2021-12-12 11:17:38 Network session closed.
+2021-12-12 11:18:34 Closing network session.
+2021-12-12 11:18:34 Network session closed.
+2021-12-12 11:19:25 Closing network session.
+2021-12-12 11:19:25 Network session closed.
+2021-12-12 11:19:42 Closing network session.
+2021-12-12 11:19:42 Network session closed.
+2021-12-12 11:20:31 Closing network session.
+2021-12-12 11:20:31 Network session closed.
+2021-12-12 11:25:35 Closing network session.
+2021-12-12 11:25:35 Network session closed.
+2021-12-12 11:40:06 Closing network session.
+2021-12-12 11:40:06 Network session closed.
+2021-12-12 11:46:58 Closing network session.
+2021-12-12 11:46:58 Network session closed.
+2021-12-12 11:51:49 Closing network session.
+2021-12-12 11:51:49 Network session closed.
+2021-12-12 11:59:02 Closing network session.
+2021-12-12 11:59:02 Network session closed.
+2021-12-12 11:59:58 Closing network session.
+2021-12-12 11:59:58 Network session closed.
+2021-12-12 12:10:54 Closing network session.
+2021-12-12 12:10:54 Network session closed.
+2021-12-12 14:24:57 Closing network session.
+2021-12-12 14:24:57 Network session closed.
+2021-12-12 14:32:57 Closing network session.
+2021-12-12 14:32:57 Network session closed.
+2021-12-12 14:44:05 Closing network session.
+2021-12-12 14:44:05 Network session closed.
+2021-12-12 14:47:52 Closing network session.
+2021-12-12 14:47:52 Network session closed.
+2021-12-12 16:17:57 Closing network session.
+2021-12-12 16:17:57 Network session closed.
+2021-12-12 16:19:47 name 'check_image_hash' is not defined
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 723, in TestSMKAPI
+    image_found = check_image_hash(imagepath)
+NameError: name 'check_image_hash' is not defined
+2021-12-12 16:19:50 Closing network session.
+2021-12-12 16:19:50 Network session closed.
+2021-12-12 16:22:20 Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 723, in TestSMKAPI
+    image_found = commons.check_image_hash(imagepath)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 259, in check_image_hash
+    data = json.loads(requests.get(url).text)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2021-12-12 16:25:20 Closing network session.
+2021-12-12 16:25:20 Network session closed.
+2021-12-12 16:27:49 Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 723, in TestSMKAPI
+    image_found = commons.check_image_hash(imagepath)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 259, in check_image_hash
+    data = json.loads(requests.get(url).text)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2021-12-12 16:27:52 Closing network session.
+2021-12-12 16:27:52 Network session closed.
+2021-12-12 16:30:51 Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 723, in TestSMKAPI
+    image_found = commons.check_image_hash(imagepath)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 259, in check_image_hash
+    data = json.loads(requests.get(url).text)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2021-12-12 16:30:54 Closing network session.
+2021-12-12 16:30:54 Network session closed.
+2021-12-12 16:53:55 Closing network session.
+2021-12-12 16:53:55 Network session closed.
+2021-12-12 16:57:36 Closing network session.
+2021-12-12 16:57:36 Network session closed.
+2021-12-12 19:04:17 Closing network session.
+2021-12-12 19:04:17 Network session closed.
+2021-12-12 19:06:55 Closing network session.
+2021-12-12 19:06:55 Network session closed.
+2021-12-12 19:10:40 Closing network session.
+2021-12-12 19:10:40 Network session closed.
+2021-12-12 19:17:27 Closing network session.
+2021-12-12 19:17:27 Network session closed.
+2021-12-12 19:19:07 Closing network session.
+2021-12-12 19:19:07 Network session closed.
+2021-12-12 19:23:36 Closing network session.
+2021-12-12 19:23:36 Network session closed.
+2021-12-12 19:29:42 Closing network session.
+2021-12-12 19:29:42 Network session closed.
+2021-12-12 19:31:33 Closing network session.
+2021-12-12 19:31:33 Network session closed.
+2021-12-12 19:37:47 Closing network session.
+2021-12-12 19:37:47 Network session closed.
+2021-12-12 19:38:58 Closing network session.
+2021-12-12 19:38:58 Network session closed.
+2021-12-12 19:43:01 Closing network session.
+2021-12-12 19:43:01 Network session closed.

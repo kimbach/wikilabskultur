@@ -72,4 +72,7 @@ Abstract base class than for templates
 Class than implements the object model for the Artwork template 
 
 ### smkbatch.py
-Functions for SMK Batch Upload
+Functions for SMK Batch Upload, main function is
+
+MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images)
+

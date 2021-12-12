@@ -13,6 +13,9 @@ from enum import Enum
 from datetime import datetime
 import dateutil.parser
 from abc import ABCMeta, abstractmethod
+import hashlib
+import json
+import requests
 
 @dataclass
 class BaseTemplate(metaclass=ABCMeta):
@@ -127,9 +130,11 @@ class ArtworkTemplate(BaseTemplate):
 
     def GenerateWikiText(self):
         #complete this once if applies to all files
+        if self.wikidata != '':
+            self.artist = ''
 
         self.wikitext = u"""{{Artwork
-    |artist             = """ + '{{Creator:' + self.artist + '}}' + """
+    |artist             = """ + str(self.artist) + """
     |author             = """ + str(self.author) + """
     |title              = """ + str(self.title) + """
     |description        = """ + str(self.desc) + """
@@ -237,3 +242,24 @@ class ArtworkTemplate(BaseTemplate):
           'location'
     
         return self.csvheader
+
+def check_image_hash(image_filename):
+    file = image_filename # Location of the file (can be set a different way)
+    BLOCK_SIZE = 65536 # The size of each read from the file
+
+    file_hash = hashlib.sha1() # Create the hash object, can use something other than `.sha256()` if you wish
+    with open(file, 'rb') as f: # Open the file to read it's bytes
+        fb = f.read(BLOCK_SIZE) # Read from the file. Take in the amount declared above
+        while len(fb) > 0: # While there is still data being read from the file
+            file_hash.update(fb) # Update the hash
+            fb = f.read(BLOCK_SIZE) # Read the next block from the file
+
+    print (file_hash.hexdigest()) # Get the hexadecimal digest of the hash    
+    url= "https://commons.wikimedia.org/w/api.php?action=query&format=json&list=allimages&prop=imageinfo&aisha1=" + file_hash.hexdigest()
+    data = json.loads(requests.get(url).text)
+    if len(data['query']['allimages']) != 0:
+        # file hash found
+        retval=True 
+    else:
+        retval=False 
+    return(retval)

@@ -38,7 +38,7 @@ def get_smk_object(object_number):
 #get_smk_object('KMS1')
 
 def last_flagged(seq):
-    # Function that returns true if the list item ius
+    """ Function that returns true if the list item the last item. """
     seq = iter(seq)
     a = next(seq)
     for b in seq:
@@ -173,15 +173,25 @@ def smk_documentation_to_commons_citation(smk_documentation):
     year_of_publication = ''
     if smk_documentation.get('title') is not None:
         title = str(smk_documentation.get('title'))
+        if title == 'None':
+            title = ''
     if smk_documentation.get('author') is not None:
         author = str(smk_documentation.get('author')) 
+        if author == 'None':
+            author = ''
     if smk_documentation.get('notes') is not None:
         notes = str(smk_documentation.get('notes'))
+        if notes == 'None':
+            notes = ''
     if smk_documentation.get('shelfmark') is not None:
         shelfmark = str(smk_documentation.get('shelfmark'))
+        if shelfmark == 'None':
+            shelfmark = ''
     if smk_documentation.get('year_of_publication') is not None:
-        year_of_publication = str(smk_documentation.get('yearofpublication'))
-    if title != '' and author != '' and notes != '' and shelfmark != '' and year_of_publication != '':
+        year_of_publication = str(smk_documentation.get('year_of_publication'))
+        if year_of_publication == 'None':
+            year_of_publication = ''
+    if title != '' or author != '' or notes != '' or shelfmark != '' or year_of_publication != '':
         commons_cite = '{{citation'
         if title != '':
             commons_cite = commons_cite + '|title=' + title
