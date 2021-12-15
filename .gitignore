@@ -2,3 +2,6 @@ __pycache__/
 apicache-py3/
 downloads/
 throttle.ctrl
+passwords.txt
+.gitignore
+*.pyc

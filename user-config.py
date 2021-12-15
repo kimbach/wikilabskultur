@@ -36,6 +36,7 @@ family = 'commons'
 
 # The language code of the site we're working on.
 mylang = 'beta'
+mylang = 'commons'
 
 # The dictionary usernames should contain a username for each site where you
 # have a bot account. If you have a unique username for all languages of a
@@ -45,6 +46,7 @@ usernames = collections.defaultdict(dict)
 usernames['wikipedia']['test'] = u'Kim Bach'
 usernames['commons']['beta'] = u'Kim Bach'
 usernames['wikidata']['wikidata'] = u'Kim Bach'
+usernames['commons']['commons'] = u'Kim Bach'
 
 # The list of BotPasswords is saved in another file. Import it if needed.
 # See https://www.mediawiki.org/wiki/Manual:Pywikibot/BotPasswords to know how

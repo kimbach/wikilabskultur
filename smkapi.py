@@ -26,10 +26,14 @@ import smkitem
 
 def get_smk_object(object_number):
     # Function that returns JSON given a SMK object number
-    # <object_number>::=
+    # <object_number>::=<char>{<char>}
     # url = 'https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3D'+object_number+'%5D'
     url = 'https://api.smk.dk/api/v1/art/?object_number='+object_number
     data = json.loads(requests.get(url).text)
+    
+    #result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+    #print(result)
+    
     return(data)
 
 # Get all wikidata items for SMK Wikidata object Q671384
@@ -64,9 +68,22 @@ def get_smk_objects(smk_filter, offset, rows):
         url=url+'&filters='+smk_filter
     url=url+'&offset='+str(offset)+'&rows='+str(rows)
     data=json.loads(requests.get(url).text)
+    
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+
     return(data)
 
 def smk_to_commons_position(smk_position):
+    """Function that strings defining a position used by SMK API to Wikimedia Commons strings
+    Keyword arguments:
+    smk_position -- the position code used by SMK API
+        <smk_position>::={<char>} |
+        <empty>
+    
+    Returns: 
+    Mapped position code, empty if not mapped
+        <iso_language_code>::={<char>} 
+    """
     switcher = {
         "f.n.t.v.": "bottomleftcorner",
         "f.n.t.h.": "bottomrightcorner",
@@ -203,5 +220,7 @@ def smk_documentation_to_commons_citation(smk_documentation):
             commons_cite = commons_cite + '|id=' + shelfmark
         if year_of_publication != '':
             commons_cite = commons_cite + '|year=' + year_of_publication
+        else:
+            commons_cite = commons_cite + '|date=date unspecfied'
         commons_cite = commons_cite + '}}'
     return commons_cite

@@ -724,3 +724,1075 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2021-12-12 19:38:58 Network session closed.
 2021-12-12 19:43:01 Closing network session.
 2021-12-12 19:43:01 Network session closed.
+2021-12-12 21:51:42 Closing network session.
+2021-12-12 21:51:42 Network session closed.
+2021-12-12 22:05:32 Closing network session.
+2021-12-12 22:05:32 Network session closed.
+2021-12-14 23:28:38 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-14 23:28:46 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:06 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:08 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:09 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:10 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:11 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:12 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:13 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:23 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:36 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:34:37 
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 161, in MapSMKAPIToCommons
+    smk_objects=smkapi.get_smk_object(current_number)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkapi.py", line 34, in get_smk_object
+    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 430, in smkitem_from_dict
+    return SMKItem.from_dict(s)
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 408, in from_dict
+    offset = from_int(obj.get("offset"))
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkitem.py", line 65, in from_int
+    assert isinstance(x, int) and not isinstance(x, bool)
+AssertionError
+2021-12-15 07:43:49 Found 1 commons:commons processes running, including this one.
+2021-12-15 07:43:49 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:43:49 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:43:49            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1357'}
+2021-12-15 07:43:49 Found candidate wikidata:wikidata
+2021-12-15 07:44:19 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:44:19 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:44:19            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1343'}
+2021-12-15 07:44:20 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:44:20 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:44:20            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1396'}
+2021-12-15 07:46:12 Found 2 commons:commons processes running, including this one.
+2021-12-15 07:46:13 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:46:13 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:46:13            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1425'}
+2021-12-15 07:46:13 Found candidate wikidata:wikidata
+2021-12-15 07:46:29 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:46:29 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:46:29            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1359'}
+2021-12-15 07:48:32 Found 3 commons:commons processes running, including this one.
+2021-12-15 07:48:32 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:48:32 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:48:32            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1363'}
+2021-12-15 07:48:32 Found candidate wikidata:wikidata
+2021-12-15 07:48:34 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 07:48:34 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 07:48:34            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1314'}
+2021-12-15 21:47:35 Found 1 commons:commons processes running, including this one.
+2021-12-15 21:47:35 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 21:47:35 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 21:47:35            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1375'}
+2021-12-15 21:47:35 Found candidate wikidata:wikidata
+2021-12-15 21:48:13 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 21:48:13 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 21:48:13            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1317'}
+2021-12-15 21:48:53 Dropped throttle(s).
+2021-12-15 21:48:53 Closing network session.
+2021-12-15 21:48:53 Network session closed.
+2021-12-15 21:50:03 Found 1 commons:commons processes running, including this one.
+2021-12-15 21:50:03 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 21:50:03 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 21:50:03            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1378'}
+2021-12-15 21:50:03 Found candidate wikidata:wikidata
+2021-12-15 21:50:37 Dropped throttle(s).
+2021-12-15 21:50:37 Closing network session.
+2021-12-15 21:50:37 Network session closed.
+2021-12-15 21:51:31 Found 1 commons:commons processes running, including this one.
+2021-12-15 21:51:31 Dropped throttle(s).
+2021-12-15 21:51:31 Closing network session.
+2021-12-15 21:51:31 Network session closed.
+2021-12-15 21:56:26 Found 1 commons:commons processes running, including this one.
+2021-12-15 21:56:26 API error invaliduser: Invalid username "87.50.154.110".
+2021-12-15 21:56:26 API Error: query=
+("{'action': ['query'], 'meta': ['globaluserinfo', 'userinfo'], 'guiprop': "
+ "['groups', 'rights', 'editcount'], 'uiprop': ['blockinfo', 'hasmsg'], "
+ "'rawcontinue': [''], 'maxlag': ['5'], 'format': ['json']}")
+2021-12-15 21:56:26            response=
+{'error': {'code': 'invaliduser', 'info': 'Invalid username "87.50.154.110".', 'help': 'See https://commons.wikimedia.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.'}, 'servedby': 'mw1345'}
+2021-12-15 21:56:26 Found candidate wikidata:wikidata
+2021-12-15 21:56:33 Dropped throttle(s).
+2021-12-15 21:56:33 Closing network session.
+2021-12-15 21:56:33 Network session closed.
+2021-12-15 21:57:44 Found 1 commons:commons processes running, including this one.
+2021-12-15 21:57:44 Dropped throttle(s).
+2021-12-15 21:57:44 Closing network session.
+2021-12-15 21:57:44 Network session closed.
+2021-12-15 22:01:55 Found 1 commons:commons processes running, including this one.
+2021-12-15 22:01:56 /usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py:1719: UserWarning: File /Users/kimbach/Documents/wikilabskultur/batchupload/passwords.txt had 744 mode; converted to 700 mode.
+  warn(warn_str.format(filename, st_mode - stat.S_IFREG, mode))
+
+2021-12-15 22:01:56 Logging in to commons:commons as Kim Bach
+2021-12-15 22:01:58 API warning (main): Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application.
+2021-12-15 22:01:58 API warning (login): Main-account login via "action=login" is deprecated and may stop working without warning. To continue login with "action=login", see [[Special:BotPasswords]]. To safely continue using main-account login, see "action=clientlogin".
+2021-12-15 22:01:58 /usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py:1719: UserWarning: File /Users/kimbach/Documents/wikilabskultur/batchupload/pywikibot.lwp had 644 mode; converted to 600 mode.
+  warn(warn_str.format(filename, st_mode - stat.S_IFREG, mode))
+
+2021-12-15 22:01:58 Should be logged in now
+2021-12-15 22:02:17 The suggested description is:
+{{Artwork
+    |artist             = 
+    |author             = 
+    |title              = {{title|Skt. Victor af Siena|lang=da}}
+    |description        = * {{da|Det synes vanskeligt at bestemme helgenens navn, S. Victor, S. Galgano, S. Ansanu oa. er bragt i forslag. Marianne Lonjon foreslår i brev 10 febr. 1984, at helgenen er Sankt Victor af Siena og mener at triptykket har været bestemt til den hellige Victors kapel i Siena.}}
+    |depicted people    = 
+    |date               = 1348-1352
+    |medium             = Tempera på træ. Guldgrund
+    |dimensions         = 
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = 
+    |place of discovery = 
+    |object history     = * {{da|- William Young Ottleys - Bromleys Samling - Lord Ashburtons Samling - Grev Avoglis Samling, - H.Heilbuths Samling (udstillet med denne i Kunstmuseet Efteråret 1920) - Ehrich Galleries, New York. - Købt med pendanten (KMS3624) for 30.000kr af Dansk Kunstmuseumsforening Placeringshistorie: - 1966, maj: Kunstindustrimuseet - 1969, 28. aug.: Retur Sølvgade}}
+* {{ProvenanceEvent|date=1923-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
+    |exhibition history = * {{Temporary Exhibition |name=100 Mesterværker |institution= |place= Sølvgade |begin=1996-06-23 |end=1996-08-04}}
+    |credit line        = 
+    |inscriptions       = 
+    |notes              = * {{da|Tidligere tilskrevet Simone Martini}}
+* {{da|Tidligere tilskrevet Lippo Memmi}}
+* {{da|Katalognumre: - Kat. 1946 nr. 441}}
+* {{da|Santa Corona og Skt. Victor af SienaLegenden fortæller, at den kun 16 år gamle Santa Corona i et syn så en engel stige ned fra himlen med to kroner, en mere beskeden til hende selv og en mere kostbar til Skt. Victor, som hun for sin kristne tros skyld skulle lide martyrdøden sammen med.Skildringen af de to helgenerKunstneren har skildret hende med den lille krone på hovedet og den store elegant støttet med venstre hånds fingerspidser. I sin højre hånd holder hun ligesom Skt. Victor martyriets trofæ, et par palmegrene. Skt. Victor holder desuden en olivengren, symbolet for den sejr, som Siena vandt over Montepulciano og Orvieto i 1229 på det, der senere blev Skt. Victors dag.Eksempler på den sienesiske gotikTavlerne var oprindeligt sidefløje til et hovedstykke med hyrdernes tilbedelse malet af Bartolomeo Bulgarini (1300/1310-1378). De er meget sjældne og fine eksempler på den sienesiske gotiks særlige lineære og farvestrålende dekorative stil, der står i kontrast til den rivaliserende florentinske skole, som mere betoner massen og tyngden.Storstilet udsmykning af domkirkenAltertavlen blev lavet omkring eller umiddelbart efter peståret 1348, som mere end decimerede Sienas befolkning. Skt. Viktor-altertavlen satte punktum for en storstilet udsmykning af byens domkirke, en udsmykning, som også omfattede den altertavle, som Ambrogio Lorenzettis (før 1317 - ca.1384) Johannes Døberen var del af. Highlights 2005, Eva de la Fuente Pedersen.}}
+    |accession number   = KMS3625
+    |place of creation  = 
+    |source             = * {{SMK API|KMS3625}}
+* {{SMK Open|KMS3625}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9LTVMzNjI1LnRpZi5yZWNvbnN0cnVjdGVkLnRpZi5qcDIvZnVsbC9mdWxsLzAvbmF0aXZlLmpwZyIsInB1YmxpY19kb21haW4iOnRydWUsIm9iamVjdF9udW1iZXIiOiJLTVMzNjI1IiwibnVtIjoiIn1d/KMS3625.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
+    |other_versions     = 
+    |references         = *{{citation|title=Italiensk kunst og kunstindustri|author=Erik Zahle|others=6, afb. 4, 78f|id=11782|year=1934}}
+*{{citation|title=Pitture italiane del rinascimento: catalogo dei principali artisti e delle loro opere con un indice dei luoghi|author=Bernhard (Bernard) Berenson|others=309|id=13538|year=1936}}
+*{{citation|title=Fire italienske billeder i dansk eje|author=Erik Moltesen|others=86ff|id=15129|year=1925}}
+*{{citation|title=En samling af ældre malerkunst: udstillet i museet i efteraaret 1920|author=Karl Madsen|others=p. 112 (afb.), 114|id=15158|year=1920}}
+*{{citation|title=Siena and the Virgin: art and politics in a late medieval city state|author=Diana Norman|others=p. 68, 73, 74, 79, 80 og 84, samt note 12, p. 122. Afb. p. 73 (Forsøg på rekonstruktion af panelets oprindelige placering som alterfløj, samt oplysninger om det ikonografiske program.)|id=2000-033|year=1999}}
+*{{citation|title=Simone Martini e l'Annunciazione degli Uffizi|author=Alessandro Cecchi|others=pp. 38ff, ill. fig. 5 p. 43 + fig. 8 p. 45 (rekonstruktion af panelets placering i oprindelig altertavle m.v.).|id=2002-071|year=2001}}
+*{{citation|title=A program completed: the identification of the San Vittorio altarpiece|author=Kavin M. Frederick|others=p.56-63, ill. (vedr. forslag til evt. komposition for et middelfelt mellem de to helgener, de tilsammen udgjorde altertavle i S.Vittorio-kapellet i Katedralen i Siena) (artiklen er en fortsættelse af den i K.M.Friedrick, A Program of Alterpieces for the Siena Cathedral. KMS' maleri nævnes ikke i denne sidste artikel, men altercyklen præsenteret - særtryk i biblioteket.)|id=2002-492|year=1983, 1985}}
+*{{citation|title=Lippo Memmi's Helgen og Helgeninde|author=Erik Zahle|others=p.282f (om billedets tidligere historie og ældre litteratur)|id=2002-514}}
+*{{citation|title=SMK highlights: Statens Museum for Kunst|author=Sven Bjerkhof|others=omt. og afb. p. 18|id=2005-071|year=2005}}
+*{{citation|title=Italian paintings and sculpture in Denmark|author=Harald Olsen|others=p.22, p.75, afb. planche II, a (Tilskrevet Palazo Venezia Madonna-mesteren)|id=28349|year=1961}}
+*{{citation|title=Catalogue of a collection of paintings|author=Karl Madsen|others=nr. 2|id=6834}}
+*{{citation|title=Statens Museum for Kunst: 1827-1952|author=Villads Villadsen|others=afb. (s/h) p.222|id=98-419|year=1998}}
+*{{citation|title=The development of the Italian schools of painting|author=Raimond van Marle|others=vol. II (1924): 292ff, tilskrevet Barna da Siena|id=C 3075:1-19 it|year=1923-1938}}
+*{{citation|title=Maletekniske undersøgelser af to helgenbilleder fra Skt. Victor-altertavlen i Sienas domkirke|author=Troels Filtenborg|others=omt. p. 83ff, ill. p. 84, samt flere detaljefotografier|year=2006}}
+*{{citation|title=Tuscan Primitives in London Sales, 1801-1837|author=Dorothy Lygon|others=p. 113, 114, 115}}
+*{{citation|title=Iconography of the Saints in Tuscan Painting|author=George Kaftal|others=fig. 1137: S. Vittore de Siena|year=1952}}
+*{{citation|title=100 mesterværker|author=Eva Friis|others=p.30, afb. p.31|id=k1996-233|year=1996}}
+    |depicted place     = 
+    |object type        = Altarpiece
+    |location           = Sal 201B
+    
+    |wikidata           = Q48453396
+    
+}}
+    
+
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Images from the partnership with Statens Museum for Kunst]]
+[[Category:Altarpieces in Statens Museum for Kunst]]
+
+
+2021-12-15 22:02:17 Uploading file to commons:commons...
+2021-12-15 22:02:17 Upload error: 
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/specialbots.py", line 430, in upload_file
+    comment=self.summary)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/page.py", line 2669, in upload
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py", line 1446, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 6192, in upload
+    token = self.tokens['edit']
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 1770, in __getitem__
+    key = self.site.validate_tokens([key])[0]
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 3431, in validate_tokens
+    'token')['type']
+TypeError: 'NoneType' object is not subscriptable
+2021-12-15 22:02:17 
+1 pages read
+0 pages written
+2021-12-15 22:02:17 Script terminated 
+2021-12-15 22:02:17 successfully.
+2021-12-15 22:03:20 Dropped throttle(s).
+2021-12-15 22:03:20 Closing network session.
+2021-12-15 22:03:20 Network session closed.
+2021-12-15 22:11:13 Found 1 commons:commons processes running, including this one.
+2021-12-15 22:11:15 APISite("commons", "commons").login(False) called when a previous login was in progress.
+2021-12-15 22:11:15 The suggested description is:
+{{Artwork
+    |artist             = 
+    |author             = 
+    |title              = {{title|Skt. Victor af Siena|lang=da}}
+    |description        = * {{da|Det synes vanskeligt at bestemme helgenens navn, S. Victor, S. Galgano, S. Ansanu oa. er bragt i forslag. Marianne Lonjon foreslår i brev 10 febr. 1984, at helgenen er Sankt Victor af Siena og mener at triptykket har været bestemt til den hellige Victors kapel i Siena.}}
+    |depicted people    = 
+    |date               = 1348-1352
+    |medium             = Tempera på træ. Guldgrund
+    |dimensions         = 
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = 
+    |place of discovery = 
+    |object history     = * {{da|- William Young Ottleys - Bromleys Samling - Lord Ashburtons Samling - Grev Avoglis Samling, - H.Heilbuths Samling (udstillet med denne i Kunstmuseet Efteråret 1920) - Ehrich Galleries, New York. - Købt med pendanten (KMS3624) for 30.000kr af Dansk Kunstmuseumsforening Placeringshistorie: - 1966, maj: Kunstindustrimuseet - 1969, 28. aug.: Retur Sølvgade}}
+* {{ProvenanceEvent|date=1923-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
+    |exhibition history = * {{Temporary Exhibition |name=100 Mesterværker |institution= |place= Sølvgade |begin=1996-06-23 |end=1996-08-04}}
+    |credit line        = 
+    |inscriptions       = 
+    |notes              = * {{da|Tidligere tilskrevet Simone Martini}}
+* {{da|Tidligere tilskrevet Lippo Memmi}}
+* {{da|Katalognumre: - Kat. 1946 nr. 441}}
+* {{da|Santa Corona og Skt. Victor af SienaLegenden fortæller, at den kun 16 år gamle Santa Corona i et syn så en engel stige ned fra himlen med to kroner, en mere beskeden til hende selv og en mere kostbar til Skt. Victor, som hun for sin kristne tros skyld skulle lide martyrdøden sammen med.Skildringen af de to helgenerKunstneren har skildret hende med den lille krone på hovedet og den store elegant støttet med venstre hånds fingerspidser. I sin højre hånd holder hun ligesom Skt. Victor martyriets trofæ, et par palmegrene. Skt. Victor holder desuden en olivengren, symbolet for den sejr, som Siena vandt over Montepulciano og Orvieto i 1229 på det, der senere blev Skt. Victors dag.Eksempler på den sienesiske gotikTavlerne var oprindeligt sidefløje til et hovedstykke med hyrdernes tilbedelse malet af Bartolomeo Bulgarini (1300/1310-1378). De er meget sjældne og fine eksempler på den sienesiske gotiks særlige lineære og farvestrålende dekorative stil, der står i kontrast til den rivaliserende florentinske skole, som mere betoner massen og tyngden.Storstilet udsmykning af domkirkenAltertavlen blev lavet omkring eller umiddelbart efter peståret 1348, som mere end decimerede Sienas befolkning. Skt. Viktor-altertavlen satte punktum for en storstilet udsmykning af byens domkirke, en udsmykning, som også omfattede den altertavle, som Ambrogio Lorenzettis (før 1317 - ca.1384) Johannes Døberen var del af. Highlights 2005, Eva de la Fuente Pedersen.}}
+    |accession number   = KMS3625
+    |place of creation  = 
+    |source             = * {{SMK API|KMS3625}}
+* {{SMK Open|KMS3625}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9LTVMzNjI1LnRpZi5yZWNvbnN0cnVjdGVkLnRpZi5qcDIvZnVsbC9mdWxsLzAvbmF0aXZlLmpwZyIsInB1YmxpY19kb21haW4iOnRydWUsIm9iamVjdF9udW1iZXIiOiJLTVMzNjI1IiwibnVtIjoiIn1d/KMS3625.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
+    |other_versions     = 
+    |references         = *{{citation|title=Italiensk kunst og kunstindustri|author=Erik Zahle|others=6, afb. 4, 78f|id=11782|year=1934}}
+*{{citation|title=Pitture italiane del rinascimento: catalogo dei principali artisti e delle loro opere con un indice dei luoghi|author=Bernhard (Bernard) Berenson|others=309|id=13538|year=1936}}
+*{{citation|title=Fire italienske billeder i dansk eje|author=Erik Moltesen|others=86ff|id=15129|year=1925}}
+*{{citation|title=En samling af ældre malerkunst: udstillet i museet i efteraaret 1920|author=Karl Madsen|others=p. 112 (afb.), 114|id=15158|year=1920}}
+*{{citation|title=Siena and the Virgin: art and politics in a late medieval city state|author=Diana Norman|others=p. 68, 73, 74, 79, 80 og 84, samt note 12, p. 122. Afb. p. 73 (Forsøg på rekonstruktion af panelets oprindelige placering som alterfløj, samt oplysninger om det ikonografiske program.)|id=2000-033|year=1999}}
+*{{citation|title=Simone Martini e l'Annunciazione degli Uffizi|author=Alessandro Cecchi|others=pp. 38ff, ill. fig. 5 p. 43 + fig. 8 p. 45 (rekonstruktion af panelets placering i oprindelig altertavle m.v.).|id=2002-071|year=2001}}
+*{{citation|title=A program completed: the identification of the San Vittorio altarpiece|author=Kavin M. Frederick|others=p.56-63, ill. (vedr. forslag til evt. komposition for et middelfelt mellem de to helgener, de tilsammen udgjorde altertavle i S.Vittorio-kapellet i Katedralen i Siena) (artiklen er en fortsættelse af den i K.M.Friedrick, A Program of Alterpieces for the Siena Cathedral. KMS' maleri nævnes ikke i denne sidste artikel, men altercyklen præsenteret - særtryk i biblioteket.)|id=2002-492|year=1983, 1985}}
+*{{citation|title=Lippo Memmi's Helgen og Helgeninde|author=Erik Zahle|others=p.282f (om billedets tidligere historie og ældre litteratur)|id=2002-514}}
+*{{citation|title=SMK highlights: Statens Museum for Kunst|author=Sven Bjerkhof|others=omt. og afb. p. 18|id=2005-071|year=2005}}
+*{{citation|title=Italian paintings and sculpture in Denmark|author=Harald Olsen|others=p.22, p.75, afb. planche II, a (Tilskrevet Palazo Venezia Madonna-mesteren)|id=28349|year=1961}}
+*{{citation|title=Catalogue of a collection of paintings|author=Karl Madsen|others=nr. 2|id=6834}}
+*{{citation|title=Statens Museum for Kunst: 1827-1952|author=Villads Villadsen|others=afb. (s/h) p.222|id=98-419|year=1998}}
+*{{citation|title=The development of the Italian schools of painting|author=Raimond van Marle|others=vol. II (1924): 292ff, tilskrevet Barna da Siena|id=C 3075:1-19 it|year=1923-1938}}
+*{{citation|title=Maletekniske undersøgelser af to helgenbilleder fra Skt. Victor-altertavlen i Sienas domkirke|author=Troels Filtenborg|others=omt. p. 83ff, ill. p. 84, samt flere detaljefotografier|year=2006}}
+*{{citation|title=Tuscan Primitives in London Sales, 1801-1837|author=Dorothy Lygon|others=p. 113, 114, 115}}
+*{{citation|title=Iconography of the Saints in Tuscan Painting|author=George Kaftal|others=fig. 1137: S. Vittore de Siena|year=1952}}
+*{{citation|title=100 mesterværker|author=Eva Friis|others=p.30, afb. p.31|id=k1996-233|year=1996}}
+    |depicted place     = 
+    |object type        = Altarpiece
+    |location           = Sal 201B
+    
+    |wikidata           = Q48453396
+    
+}}
+    
+
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Images from the partnership with Statens Museum for Kunst]]
+[[Category:Altarpieces in Statens Museum for Kunst]]
+
+
+2021-12-15 22:11:15 Uploading file to commons:commons...
+2021-12-15 22:11:15 Upload error: 
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/specialbots.py", line 430, in upload_file
+    comment=self.summary)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/page.py", line 2669, in upload
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py", line 1446, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 6192, in upload
+    token = self.tokens['edit']
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 1770, in __getitem__
+    key = self.site.validate_tokens([key])[0]
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 3431, in validate_tokens
+    'token')['type']
+TypeError: 'NoneType' object is not subscriptable
+2021-12-15 22:11:15 
+1 pages read
+0 pages written
+2021-12-15 22:11:15 Script terminated 
+2021-12-15 22:11:15 successfully.
+2021-12-15 22:11:16 Dropped throttle(s).
+2021-12-15 22:11:16 Closing network session.
+2021-12-15 22:11:16 Network session closed.
+2021-12-15 22:25:35 Found 1 commons:commons processes running, including this one.
+2021-12-15 22:25:35 Found candidate wikidata:wikidata
+2021-12-15 22:25:59 The suggested description is:
+{{Artwork
+    |artist             = 
+    |author             = 
+    |title              = {{title|Skt. Victor af Siena|lang=da}}
+    |description        = * {{da|Det synes vanskeligt at bestemme helgenens navn, S. Victor, S. Galgano, S. Ansanu oa. er bragt i forslag. Marianne Lonjon foreslår i brev 10 febr. 1984, at helgenen er Sankt Victor af Siena og mener at triptykket har været bestemt til den hellige Victors kapel i Siena.}}
+    |depicted people    = 
+    |date               = 1348-1352
+    |medium             = Tempera på træ. Guldgrund
+    |dimensions         = 
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = 
+    |place of discovery = 
+    |object history     = * {{da|- William Young Ottleys - Bromleys Samling - Lord Ashburtons Samling - Grev Avoglis Samling, - H.Heilbuths Samling (udstillet med denne i Kunstmuseet Efteråret 1920) - Ehrich Galleries, New York. - Købt med pendanten (KMS3624) for 30.000kr af Dansk Kunstmuseumsforening Placeringshistorie: - 1966, maj: Kunstindustrimuseet - 1969, 28. aug.: Retur Sølvgade}}
+* {{ProvenanceEvent|date=1923-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
+    |exhibition history = * {{Temporary Exhibition |name=100 Mesterværker |institution= |place= Sølvgade |begin=1996-06-23 |end=1996-08-04}}
+    |credit line        = 
+    |inscriptions       = 
+    |notes              = * {{da|Tidligere tilskrevet Simone Martini}}
+* {{da|Tidligere tilskrevet Lippo Memmi}}
+* {{da|Katalognumre: - Kat. 1946 nr. 441}}
+* {{da|Santa Corona og Skt. Victor af SienaLegenden fortæller, at den kun 16 år gamle Santa Corona i et syn så en engel stige ned fra himlen med to kroner, en mere beskeden til hende selv og en mere kostbar til Skt. Victor, som hun for sin kristne tros skyld skulle lide martyrdøden sammen med.Skildringen af de to helgenerKunstneren har skildret hende med den lille krone på hovedet og den store elegant støttet med venstre hånds fingerspidser. I sin højre hånd holder hun ligesom Skt. Victor martyriets trofæ, et par palmegrene. Skt. Victor holder desuden en olivengren, symbolet for den sejr, som Siena vandt over Montepulciano og Orvieto i 1229 på det, der senere blev Skt. Victors dag.Eksempler på den sienesiske gotikTavlerne var oprindeligt sidefløje til et hovedstykke med hyrdernes tilbedelse malet af Bartolomeo Bulgarini (1300/1310-1378). De er meget sjældne og fine eksempler på den sienesiske gotiks særlige lineære og farvestrålende dekorative stil, der står i kontrast til den rivaliserende florentinske skole, som mere betoner massen og tyngden.Storstilet udsmykning af domkirkenAltertavlen blev lavet omkring eller umiddelbart efter peståret 1348, som mere end decimerede Sienas befolkning. Skt. Viktor-altertavlen satte punktum for en storstilet udsmykning af byens domkirke, en udsmykning, som også omfattede den altertavle, som Ambrogio Lorenzettis (før 1317 - ca.1384) Johannes Døberen var del af. Highlights 2005, Eva de la Fuente Pedersen.}}
+    |accession number   = KMS3625
+    |place of creation  = 
+    |source             = * {{SMK API|KMS3625}}
+* {{SMK Open|KMS3625}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9LTVMzNjI1LnRpZi5yZWNvbnN0cnVjdGVkLnRpZi5qcDIvZnVsbC9mdWxsLzAvbmF0aXZlLmpwZyIsInB1YmxpY19kb21haW4iOnRydWUsIm9iamVjdF9udW1iZXIiOiJLTVMzNjI1IiwibnVtIjoiIn1d/KMS3625.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
+    |other_versions     = 
+    |references         = *{{citation|title=Italiensk kunst og kunstindustri|author=Erik Zahle|others=6, afb. 4, 78f|id=11782|year=1934}}
+*{{citation|title=Pitture italiane del rinascimento: catalogo dei principali artisti e delle loro opere con un indice dei luoghi|author=Bernhard (Bernard) Berenson|others=309|id=13538|year=1936}}
+*{{citation|title=Fire italienske billeder i dansk eje|author=Erik Moltesen|others=86ff|id=15129|year=1925}}
+*{{citation|title=En samling af ældre malerkunst: udstillet i museet i efteraaret 1920|author=Karl Madsen|others=p. 112 (afb.), 114|id=15158|year=1920}}
+*{{citation|title=Siena and the Virgin: art and politics in a late medieval city state|author=Diana Norman|others=p. 68, 73, 74, 79, 80 og 84, samt note 12, p. 122. Afb. p. 73 (Forsøg på rekonstruktion af panelets oprindelige placering som alterfløj, samt oplysninger om det ikonografiske program.)|id=2000-033|year=1999}}
+*{{citation|title=Simone Martini e l'Annunciazione degli Uffizi|author=Alessandro Cecchi|others=pp. 38ff, ill. fig. 5 p. 43 + fig. 8 p. 45 (rekonstruktion af panelets placering i oprindelig altertavle m.v.).|id=2002-071|year=2001}}
+*{{citation|title=A program completed: the identification of the San Vittorio altarpiece|author=Kavin M. Frederick|others=p.56-63, ill. (vedr. forslag til evt. komposition for et middelfelt mellem de to helgener, de tilsammen udgjorde altertavle i S.Vittorio-kapellet i Katedralen i Siena) (artiklen er en fortsættelse af den i K.M.Friedrick, A Program of Alterpieces for the Siena Cathedral. KMS' maleri nævnes ikke i denne sidste artikel, men altercyklen præsenteret - særtryk i biblioteket.)|id=2002-492|year=1983, 1985}}
+*{{citation|title=Lippo Memmi's Helgen og Helgeninde|author=Erik Zahle|others=p.282f (om billedets tidligere historie og ældre litteratur)|id=2002-514}}
+*{{citation|title=SMK highlights: Statens Museum for Kunst|author=Sven Bjerkhof|others=omt. og afb. p. 18|id=2005-071|year=2005}}
+*{{citation|title=Italian paintings and sculpture in Denmark|author=Harald Olsen|others=p.22, p.75, afb. planche II, a (Tilskrevet Palazo Venezia Madonna-mesteren)|id=28349|year=1961}}
+*{{citation|title=Catalogue of a collection of paintings|author=Karl Madsen|others=nr. 2|id=6834}}
+*{{citation|title=Statens Museum for Kunst: 1827-1952|author=Villads Villadsen|others=afb. (s/h) p.222|id=98-419|year=1998}}
+*{{citation|title=The development of the Italian schools of painting|author=Raimond van Marle|others=vol. II (1924): 292ff, tilskrevet Barna da Siena|id=C 3075:1-19 it|year=1923-1938}}
+*{{citation|title=Maletekniske undersøgelser af to helgenbilleder fra Skt. Victor-altertavlen i Sienas domkirke|author=Troels Filtenborg|others=omt. p. 83ff, ill. p. 84, samt flere detaljefotografier|year=2006}}
+*{{citation|title=Tuscan Primitives in London Sales, 1801-1837|author=Dorothy Lygon|others=p. 113, 114, 115}}
+*{{citation|title=Iconography of the Saints in Tuscan Painting|author=George Kaftal|others=fig. 1137: S. Vittore de Siena|year=1952}}
+*{{citation|title=100 mesterværker|author=Eva Friis|others=p.30, afb. p.31|id=k1996-233|year=1996}}
+    |depicted place     = 
+    |object type        = Altarpiece
+    |location           = Sal 201B
+    
+    |wikidata           = Q48453396
+    
+}}
+    
+
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Images from the partnership with Statens Museum for Kunst]]
+[[Category:Altarpieces in Statens Museum for Kunst]]
+
+
+2021-12-15 22:25:59 Uploading file to commons:commons...
+2021-12-15 22:25:59 Upload error: 
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/specialbots.py", line 430, in upload_file
+    comment=self.summary)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/page.py", line 2669, in upload
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py", line 1446, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 6192, in upload
+    token = self.tokens['edit']
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 1770, in __getitem__
+    key = self.site.validate_tokens([key])[0]
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site.py", line 3431, in validate_tokens
+    'token')['type']
+TypeError: 'NoneType' object is not subscriptable
+2021-12-15 22:25:59 
+1 pages read
+0 pages written
+2021-12-15 22:25:59 Script terminated 
+2021-12-15 22:25:59 successfully.
+2021-12-15 23:03:43 Found 1 commons:commons processes running, including this one.
+2021-12-15 23:03:48 The suggested description is:
+{{Artwork
+    |artist             = 
+    |author             = 
+    |title              = {{title|Skt. Victor af Siena|lang=da}}
+    |description        = * {{da|Det synes vanskeligt at bestemme helgenens navn, S. Victor, S. Galgano, S. Ansanu oa. er bragt i forslag. Marianne Lonjon foreslår i brev 10 febr. 1984, at helgenen er Sankt Victor af Siena og mener at triptykket har været bestemt til den hellige Victors kapel i Siena.}}
+    |depicted people    = 
+    |date               = 1348-1352
+    |medium             = Tempera på træ. Guldgrund
+    |dimensions         = 
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = 
+    |place of discovery = 
+    |object history     = * {{da|- William Young Ottleys - Bromleys Samling - Lord Ashburtons Samling - Grev Avoglis Samling, - H.Heilbuths Samling (udstillet med denne i Kunstmuseet Efteråret 1920) - Ehrich Galleries, New York. - Købt med pendanten (KMS3624) for 30.000kr af Dansk Kunstmuseumsforening Placeringshistorie: - 1966, maj: Kunstindustrimuseet - 1969, 28. aug.: Retur Sølvgade}}
+* {{ProvenanceEvent|date=1923-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
+    |exhibition history = * {{Temporary Exhibition |name=100 Mesterværker |institution= |place= Sølvgade |begin=1996-06-23 |end=1996-08-04}}
+    |credit line        = 
+    |inscriptions       = 
+    |notes              = * {{da|Tidligere tilskrevet Simone Martini}}
+* {{da|Tidligere tilskrevet Lippo Memmi}}
+* {{da|Katalognumre: - Kat. 1946 nr. 441}}
+* {{da|Santa Corona og Skt. Victor af SienaLegenden fortæller, at den kun 16 år gamle Santa Corona i et syn så en engel stige ned fra himlen med to kroner, en mere beskeden til hende selv og en mere kostbar til Skt. Victor, som hun for sin kristne tros skyld skulle lide martyrdøden sammen med.Skildringen af de to helgenerKunstneren har skildret hende med den lille krone på hovedet og den store elegant støttet med venstre hånds fingerspidser. I sin højre hånd holder hun ligesom Skt. Victor martyriets trofæ, et par palmegrene. Skt. Victor holder desuden en olivengren, symbolet for den sejr, som Siena vandt over Montepulciano og Orvieto i 1229 på det, der senere blev Skt. Victors dag.Eksempler på den sienesiske gotikTavlerne var oprindeligt sidefløje til et hovedstykke med hyrdernes tilbedelse malet af Bartolomeo Bulgarini (1300/1310-1378). De er meget sjældne og fine eksempler på den sienesiske gotiks særlige lineære og farvestrålende dekorative stil, der står i kontrast til den rivaliserende florentinske skole, som mere betoner massen og tyngden.Storstilet udsmykning af domkirkenAltertavlen blev lavet omkring eller umiddelbart efter peståret 1348, som mere end decimerede Sienas befolkning. Skt. Viktor-altertavlen satte punktum for en storstilet udsmykning af byens domkirke, en udsmykning, som også omfattede den altertavle, som Ambrogio Lorenzettis (før 1317 - ca.1384) Johannes Døberen var del af. Highlights 2005, Eva de la Fuente Pedersen.}}
+    |accession number   = KMS3625
+    |place of creation  = 
+    |source             = * {{SMK API|KMS3625}}
+* {{SMK Open|KMS3625}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9LTVMzNjI1LnRpZi5yZWNvbnN0cnVjdGVkLnRpZi5qcDIvZnVsbC9mdWxsLzAvbmF0aXZlLmpwZyIsInB1YmxpY19kb21haW4iOnRydWUsIm9iamVjdF9udW1iZXIiOiJLTVMzNjI1IiwibnVtIjoiIn1d/KMS3625.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
+    |other_versions     = 
+    |references         = *{{citation|title=Italiensk kunst og kunstindustri|author=Erik Zahle|others=6, afb. 4, 78f|id=11782|year=1934}}
+*{{citation|title=Pitture italiane del rinascimento: catalogo dei principali artisti e delle loro opere con un indice dei luoghi|author=Bernhard (Bernard) Berenson|others=309|id=13538|year=1936}}
+*{{citation|title=Fire italienske billeder i dansk eje|author=Erik Moltesen|others=86ff|id=15129|year=1925}}
+*{{citation|title=En samling af ældre malerkunst: udstillet i museet i efteraaret 1920|author=Karl Madsen|others=p. 112 (afb.), 114|id=15158|year=1920}}
+*{{citation|title=Siena and the Virgin: art and politics in a late medieval city state|author=Diana Norman|others=p. 68, 73, 74, 79, 80 og 84, samt note 12, p. 122. Afb. p. 73 (Forsøg på rekonstruktion af panelets oprindelige placering som alterfløj, samt oplysninger om det ikonografiske program.)|id=2000-033|year=1999}}
+*{{citation|title=Simone Martini e l'Annunciazione degli Uffizi|author=Alessandro Cecchi|others=pp. 38ff, ill. fig. 5 p. 43 + fig. 8 p. 45 (rekonstruktion af panelets placering i oprindelig altertavle m.v.).|id=2002-071|year=2001}}
+*{{citation|title=A program completed: the identification of the San Vittorio altarpiece|author=Kavin M. Frederick|others=p.56-63, ill. (vedr. forslag til evt. komposition for et middelfelt mellem de to helgener, de tilsammen udgjorde altertavle i S.Vittorio-kapellet i Katedralen i Siena) (artiklen er en fortsættelse af den i K.M.Friedrick, A Program of Alterpieces for the Siena Cathedral. KMS' maleri nævnes ikke i denne sidste artikel, men altercyklen præsenteret - særtryk i biblioteket.)|id=2002-492|year=1983, 1985}}
+*{{citation|title=Lippo Memmi's Helgen og Helgeninde|author=Erik Zahle|others=p.282f (om billedets tidligere historie og ældre litteratur)|id=2002-514}}
+*{{citation|title=SMK highlights: Statens Museum for Kunst|author=Sven Bjerkhof|others=omt. og afb. p. 18|id=2005-071|year=2005}}
+*{{citation|title=Italian paintings and sculpture in Denmark|author=Harald Olsen|others=p.22, p.75, afb. planche II, a (Tilskrevet Palazo Venezia Madonna-mesteren)|id=28349|year=1961}}
+*{{citation|title=Catalogue of a collection of paintings|author=Karl Madsen|others=nr. 2|id=6834}}
+*{{citation|title=Statens Museum for Kunst: 1827-1952|author=Villads Villadsen|others=afb. (s/h) p.222|id=98-419|year=1998}}
+*{{citation|title=The development of the Italian schools of painting|author=Raimond van Marle|others=vol. II (1924): 292ff, tilskrevet Barna da Siena|id=C 3075:1-19 it|year=1923-1938}}
+*{{citation|title=Maletekniske undersøgelser af to helgenbilleder fra Skt. Victor-altertavlen i Sienas domkirke|author=Troels Filtenborg|others=omt. p. 83ff, ill. p. 84, samt flere detaljefotografier|year=2006}}
+*{{citation|title=Tuscan Primitives in London Sales, 1801-1837|author=Dorothy Lygon|others=p. 113, 114, 115}}
+*{{citation|title=Iconography of the Saints in Tuscan Painting|author=George Kaftal|others=fig. 1137: S. Vittore de Siena|year=1952}}
+*{{citation|title=100 mesterværker|author=Eva Friis|others=p.30, afb. p.31|id=k1996-233|year=1996}}
+    |depicted place     = 
+    |object type        = Altarpiece
+    |location           = Sal 201B
+    
+    |wikidata           = Q48453396
+    
+}}
+    
+
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Images from the partnership with Statens Museum for Kunst]]
+[[Category:Altarpieces in Statens Museum for Kunst]]
+
+
+2021-12-15 23:03:48 Uploading file to commons:commons...
+2021-12-15 23:03:48 Upload error: 
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/specialbots/_upload.py", line 426, in upload_file
+    comment=self.summary)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/page/__init__.py", line 2806, in upload
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py", line 1819, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py", line 6472, in upload
+    token = self.tokens['edit']
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py", line 1799, in __getitem__
+    key = self.site.validate_tokens([key])[0]
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py", line 3491, in validate_tokens
+    'token')['type']
+TypeError: 'NoneType' object is not subscriptable
+2021-12-15 23:03:48 Dropped throttle(s).
+2021-12-15 23:03:48 
+1 pages read
+0 pages written
+0 pages skipped
+2021-12-15 23:03:48 Script terminated 
+2021-12-15 23:03:48 successfully.
+2021-12-15 23:05:58 Found 1 commons:commons processes running, including this one.
+2021-12-15 23:06:08 The suggested description is:
+{{Artwork
+    |artist             = 
+    |author             = 
+    |title              = {{title|Skt. Victor af Siena|lang=da}}
+    |description        = * {{da|Det synes vanskeligt at bestemme helgenens navn, S. Victor, S. Galgano, S. Ansanu oa. er bragt i forslag. Marianne Lonjon foreslår i brev 10 febr. 1984, at helgenen er Sankt Victor af Siena og mener at triptykket har været bestemt til den hellige Victors kapel i Siena.}}
+    |depicted people    = 
+    |date               = 1348-1352
+    |medium             = Tempera på træ. Guldgrund
+    |dimensions         = 
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = 
+    |place of discovery = 
+    |object history     = * {{da|- William Young Ottleys - Bromleys Samling - Lord Ashburtons Samling - Grev Avoglis Samling, - H.Heilbuths Samling (udstillet med denne i Kunstmuseet Efteråret 1920) - Ehrich Galleries, New York. - Købt med pendanten (KMS3624) for 30.000kr af Dansk Kunstmuseumsforening Placeringshistorie: - 1966, maj: Kunstindustrimuseet - 1969, 28. aug.: Retur Sølvgade}}
+* {{ProvenanceEvent|date=1923-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
+    |exhibition history = * {{Temporary Exhibition |name=100 Mesterværker |institution= |place= Sølvgade |begin=1996-06-23 |end=1996-08-04}}
+    |credit line        = 
+    |inscriptions       = 
+    |notes              = * {{da|Tidligere tilskrevet Simone Martini}}
+* {{da|Tidligere tilskrevet Lippo Memmi}}
+* {{da|Katalognumre: - Kat. 1946 nr. 441}}
+* {{da|Santa Corona og Skt. Victor af SienaLegenden fortæller, at den kun 16 år gamle Santa Corona i et syn så en engel stige ned fra himlen med to kroner, en mere beskeden til hende selv og en mere kostbar til Skt. Victor, som hun for sin kristne tros skyld skulle lide martyrdøden sammen med.Skildringen af de to helgenerKunstneren har skildret hende med den lille krone på hovedet og den store elegant støttet med venstre hånds fingerspidser. I sin højre hånd holder hun ligesom Skt. Victor martyriets trofæ, et par palmegrene. Skt. Victor holder desuden en olivengren, symbolet for den sejr, som Siena vandt over Montepulciano og Orvieto i 1229 på det, der senere blev Skt. Victors dag.Eksempler på den sienesiske gotikTavlerne var oprindeligt sidefløje til et hovedstykke med hyrdernes tilbedelse malet af Bartolomeo Bulgarini (1300/1310-1378). De er meget sjældne og fine eksempler på den sienesiske gotiks særlige lineære og farvestrålende dekorative stil, der står i kontrast til den rivaliserende florentinske skole, som mere betoner massen og tyngden.Storstilet udsmykning af domkirkenAltertavlen blev lavet omkring eller umiddelbart efter peståret 1348, som mere end decimerede Sienas befolkning. Skt. Viktor-altertavlen satte punktum for en storstilet udsmykning af byens domkirke, en udsmykning, som også omfattede den altertavle, som Ambrogio Lorenzettis (før 1317 - ca.1384) Johannes Døberen var del af. Highlights 2005, Eva de la Fuente Pedersen.}}
+    |accession number   = KMS3625
+    |place of creation  = 
+    |source             = * {{SMK API|KMS3625}}
+* {{SMK Open|KMS3625}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9LTVMzNjI1LnRpZi5yZWNvbnN0cnVjdGVkLnRpZi5qcDIvZnVsbC9mdWxsLzAvbmF0aXZlLmpwZyIsInB1YmxpY19kb21haW4iOnRydWUsIm9iamVjdF9udW1iZXIiOiJLTVMzNjI1IiwibnVtIjoiIn1d/KMS3625.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
+    |other_versions     = 
+    |references         = *{{citation|title=Italiensk kunst og kunstindustri|author=Erik Zahle|others=6, afb. 4, 78f|id=11782|year=1934}}
+*{{citation|title=Pitture italiane del rinascimento: catalogo dei principali artisti e delle loro opere con un indice dei luoghi|author=Bernhard (Bernard) Berenson|others=309|id=13538|year=1936}}
+*{{citation|title=Fire italienske billeder i dansk eje|author=Erik Moltesen|others=86ff|id=15129|year=1925}}
+*{{citation|title=En samling af ældre malerkunst: udstillet i museet i efteraaret 1920|author=Karl Madsen|others=p. 112 (afb.), 114|id=15158|year=1920}}
+*{{citation|title=Siena and the Virgin: art and politics in a late medieval city state|author=Diana Norman|others=p. 68, 73, 74, 79, 80 og 84, samt note 12, p. 122. Afb. p. 73 (Forsøg på rekonstruktion af panelets oprindelige placering som alterfløj, samt oplysninger om det ikonografiske program.)|id=2000-033|year=1999}}
+*{{citation|title=Simone Martini e l'Annunciazione degli Uffizi|author=Alessandro Cecchi|others=pp. 38ff, ill. fig. 5 p. 43 + fig. 8 p. 45 (rekonstruktion af panelets placering i oprindelig altertavle m.v.).|id=2002-071|year=2001}}
+*{{citation|title=A program completed: the identification of the San Vittorio altarpiece|author=Kavin M. Frederick|others=p.56-63, ill. (vedr. forslag til evt. komposition for et middelfelt mellem de to helgener, de tilsammen udgjorde altertavle i S.Vittorio-kapellet i Katedralen i Siena) (artiklen er en fortsættelse af den i K.M.Friedrick, A Program of Alterpieces for the Siena Cathedral. KMS' maleri nævnes ikke i denne sidste artikel, men altercyklen præsenteret - særtryk i biblioteket.)|id=2002-492|year=1983, 1985}}
+*{{citation|title=Lippo Memmi's Helgen og Helgeninde|author=Erik Zahle|others=p.282f (om billedets tidligere historie og ældre litteratur)|id=2002-514}}
+*{{citation|title=SMK highlights: Statens Museum for Kunst|author=Sven Bjerkhof|others=omt. og afb. p. 18|id=2005-071|year=2005}}
+*{{citation|title=Italian paintings and sculpture in Denmark|author=Harald Olsen|others=p.22, p.75, afb. planche II, a (Tilskrevet Palazo Venezia Madonna-mesteren)|id=28349|year=1961}}
+*{{citation|title=Catalogue of a collection of paintings|author=Karl Madsen|others=nr. 2|id=6834}}
+*{{citation|title=Statens Museum for Kunst: 1827-1952|author=Villads Villadsen|others=afb. (s/h) p.222|id=98-419|year=1998}}
+*{{citation|title=The development of the Italian schools of painting|author=Raimond van Marle|others=vol. II (1924): 292ff, tilskrevet Barna da Siena|id=C 3075:1-19 it|year=1923-1938}}
+*{{citation|title=Maletekniske undersøgelser af to helgenbilleder fra Skt. Victor-altertavlen i Sienas domkirke|author=Troels Filtenborg|others=omt. p. 83ff, ill. p. 84, samt flere detaljefotografier|year=2006}}
+*{{citation|title=Tuscan Primitives in London Sales, 1801-1837|author=Dorothy Lygon|others=p. 113, 114, 115}}
+*{{citation|title=Iconography of the Saints in Tuscan Painting|author=George Kaftal|others=fig. 1137: S. Vittore de Siena|year=1952}}
+*{{citation|title=100 mesterværker|author=Eva Friis|others=p.30, afb. p.31|id=k1996-233|year=1996}}
+    |depicted place     = 
+    |object type        = Altarpiece
+    |location           = Sal 201B
+    
+    |wikidata           = Q48453396
+    
+}}
+    
+
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Images from the partnership with Statens Museum for Kunst]]
+[[Category:Altarpieces in Statens Museum for Kunst]]
+
+
+2021-12-15 23:06:08 Uploading file to commons:commons...
+2021-12-15 23:06:08 Upload error: 
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/specialbots/_upload.py", line 426, in upload_file
+    comment=self.summary)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/page/__init__.py", line 2806, in upload
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py", line 1819, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py", line 6472, in upload
+    token = self.tokens['edit']
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py", line 1799, in __getitem__
+    key = self.site.validate_tokens([key])[0]
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py", line 3491, in validate_tokens
+    'token')['type']
+TypeError: 'NoneType' object is not subscriptable
+2021-12-15 23:06:08 Dropped throttle(s).
+2021-12-15 23:06:08 
+1 pages read
+0 pages written
+0 pages skipped
+2021-12-15 23:06:08 Script terminated 
+2021-12-15 23:06:08 successfully.
+2021-12-15 23:06:09 Dropped throttle(s).
+2021-12-15 23:06:09 Closing network session.
+2021-12-15 23:06:09 Network session closed.
+2021-12-15 23:34:24 
+2021-12-15 23:34:24 === Pywikibot framework v6.6.3 -- Logging header ===
+2021-12-15 23:34:24 COMMAND: ['/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py']
+2021-12-15 23:34:24 DATE: 2021-12-15 22:34:24.686947 UTC
+2021-12-15 23:34:24 VERSION: pywikibot/__init__.py (, -1 (unknown), 2021/12/15, 13:01:25, n/a)
+2021-12-15 23:34:24 SYSTEM: posix.uname_result(sysname='Darwin', nodename='Isis.local', release='19.6.0', version='Darwin Kernel Version 19.6.0: Tue Jun 22 19:49:55 PDT 2021; root:xnu-6153.141.35~1/RELEASE_X86_64', machine='x86_64')
+2021-12-15 23:34:24 CONFIG FILE DIR: /Users/kimbach/Documents/wikilabskultur/batchupload
+2021-12-15 23:34:24 PACKAGES:
+2021-12-15 23:34:24 MODULES:
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/__init__.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/extern/__init__.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/__init__.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/py31compat.py
+2021-12-15 23:34:24   2019-02-09 19:09:29 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/appdirs.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__about__.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__init__.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/version.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_structures.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/specifiers.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_compat.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/requirements.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py
+2021-12-15 23:34:24   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/markers.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/__init__.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_version.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/__init__.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/_parser.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/relativedelta.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_common.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/__init__.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/tz.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_common.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_factories.py
+2021-12-15 23:34:24   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/isoparser.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/exceptions.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__version__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/utils.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/certs.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/core.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/_internal_utils.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/compat.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/cookies.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/structures.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/packages.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2021-12-15 23:34:24   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/models.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/hooks.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/auth.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/status_codes.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/api.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/sessions.py
+2021-12-15 23:34:24   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/adapters.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/config.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__metadata__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/backports.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/logging.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_unidata.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/exceptions.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/_wbtypes.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/daemonize.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/i18n.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/plural.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/version.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot_choice.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_logging.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/formatter.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_base.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/transliteration.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/_interface_base.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_unix.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/diff.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/chars.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/family.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_apisite.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/api.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/login.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/textlib.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/__init__.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/compat.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/definitions.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/__init__.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/string_mixin.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/__init__.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/attribute.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/utils.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/smart_list.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/parameter.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/text.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/argument.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/comment.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/external_link.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/heading.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/html_entity.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/tag.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/template.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/wikilink.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/__init__.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/builder.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/tokens.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/wikicode.py
+2021-12-15 23:34:24   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/_tokenizer.cpython-37m-darwin.so
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_basesite.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_namespace.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/throttle.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_decorators.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_extensions.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/echo.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_generators.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_interwikimap.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_siteinfo.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_tokenwallet.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_datasite.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_obsoletesites.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_collections.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_decorators.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_revision.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/specialbots/__init__.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/specialbots/_unlink.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/editor.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/gui.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/specialbots/_upload.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/pagegenerators.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/date.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/xmlreader.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/proofreadpage.py
+2021-12-15 23:34:24   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/families/commons_family.py
+2021-12-15 23:34:24 =========================================================
+2021-12-15 23:34:32 Found 1 commons:commons processes running, including this one.
+2021-12-15 23:34:33 Found candidate wikidata:wikidata
+2021-12-15 23:34:35 /Users/kimbach/Documents/wikilabskultur/batchupload/commons.py:352: FutureWarning: useFilename argument of pywikibot.specialbots._upload.UploadRobot.__init__ is deprecated; use use_filename instead.
+  bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary='Created artwork')
+
+2021-12-15 23:34:35 /Users/kimbach/Documents/wikilabskultur/batchupload/commons.py:352: FutureWarning: keepFilename argument of pywikibot.specialbots._upload.UploadRobot.__init__ is deprecated; use keep_filename instead.
+  bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary='Created artwork')
+
+2021-12-15 23:34:35 /Users/kimbach/Documents/wikilabskultur/batchupload/commons.py:352: FutureWarning: verifyDescription argument of pywikibot.specialbots._upload.UploadRobot.__init__ is deprecated; use verify_description instead.
+  bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary='Created artwork')
+
+2021-12-15 23:34:35 /Users/kimbach/Documents/wikilabskultur/batchupload/commons.py:352: FutureWarning: targetSite argument of pywikibot.specialbots._upload.UploadRobot.__init__ is deprecated; use target_site instead.
+  bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary='Created artwork')
+
+2021-12-15 23:34:38 The suggested description is:
+{{Artwork
+    |artist             = 
+    |author             = 
+    |title              = {{title|Skt. Victor af Siena|lang=da}}
+    |description        = * {{da|Det synes vanskeligt at bestemme helgenens navn, S. Victor, S. Galgano, S. Ansanu oa. er bragt i forslag. Marianne Lonjon foreslår i brev 10 febr. 1984, at helgenen er Sankt Victor af Siena og mener at triptykket har været bestemt til den hellige Victors kapel i Siena.}}
+    |depicted people    = 
+    |date               = 1348-1352
+    |medium             = Tempera på træ. Guldgrund
+    |dimensions         = 
+    |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
+    |department         = 
+    |place of discovery = 
+    |object history     = * {{da|- William Young Ottleys - Bromleys Samling - Lord Ashburtons Samling - Grev Avoglis Samling, - H.Heilbuths Samling (udstillet med denne i Kunstmuseet Efteråret 1920) - Ehrich Galleries, New York. - Købt med pendanten (KMS3624) for 30.000kr af Dansk Kunstmuseumsforening Placeringshistorie: - 1966, maj: Kunstindustrimuseet - 1969, 28. aug.: Retur Sølvgade}}
+* {{ProvenanceEvent|date=1923-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
+    |exhibition history = * {{Temporary Exhibition |name=100 Mesterværker |institution= |place= Sølvgade |begin=1996-06-23 |end=1996-08-04}}
+    |credit line        = 
+    |inscriptions       = 
+    |notes              = * {{da|Tidligere tilskrevet Simone Martini}}
+* {{da|Tidligere tilskrevet Lippo Memmi}}
+* {{da|Katalognumre: - Kat. 1946 nr. 441}}
+* {{da|Santa Corona og Skt. Victor af SienaLegenden fortæller, at den kun 16 år gamle Santa Corona i et syn så en engel stige ned fra himlen med to kroner, en mere beskeden til hende selv og en mere kostbar til Skt. Victor, som hun for sin kristne tros skyld skulle lide martyrdøden sammen med.Skildringen af de to helgenerKunstneren har skildret hende med den lille krone på hovedet og den store elegant støttet med venstre hånds fingerspidser. I sin højre hånd holder hun ligesom Skt. Victor martyriets trofæ, et par palmegrene. Skt. Victor holder desuden en olivengren, symbolet for den sejr, som Siena vandt over Montepulciano og Orvieto i 1229 på det, der senere blev Skt. Victors dag.Eksempler på den sienesiske gotikTavlerne var oprindeligt sidefløje til et hovedstykke med hyrdernes tilbedelse malet af Bartolomeo Bulgarini (1300/1310-1378). De er meget sjældne og fine eksempler på den sienesiske gotiks særlige lineære og farvestrålende dekorative stil, der står i kontrast til den rivaliserende florentinske skole, som mere betoner massen og tyngden.Storstilet udsmykning af domkirkenAltertavlen blev lavet omkring eller umiddelbart efter peståret 1348, som mere end decimerede Sienas befolkning. Skt. Viktor-altertavlen satte punktum for en storstilet udsmykning af byens domkirke, en udsmykning, som også omfattede den altertavle, som Ambrogio Lorenzettis (før 1317 - ca.1384) Johannes Døberen var del af. Highlights 2005, Eva de la Fuente Pedersen.}}
+    |accession number   = KMS3625
+    |place of creation  = 
+    |source             = * {{SMK API|KMS3625}}
+* {{SMK Open|KMS3625}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9LTVMzNjI1LnRpZi5yZWNvbnN0cnVjdGVkLnRpZi5qcDIvZnVsbC9mdWxsLzAvbmF0aXZlLmpwZyIsInB1YmxpY19kb21haW4iOnRydWUsIm9iamVjdF9udW1iZXIiOiJLTVMzNjI1IiwibnVtIjoiIn1d/KMS3625.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
+    |other_versions     = 
+    |references         = *{{citation|title=Italiensk kunst og kunstindustri|author=Erik Zahle|others=6, afb. 4, 78f|id=11782|year=1934}}
+*{{citation|title=Pitture italiane del rinascimento: catalogo dei principali artisti e delle loro opere con un indice dei luoghi|author=Bernhard (Bernard) Berenson|others=309|id=13538|year=1936}}
+*{{citation|title=Fire italienske billeder i dansk eje|author=Erik Moltesen|others=86ff|id=15129|year=1925}}
+*{{citation|title=En samling af ældre malerkunst: udstillet i museet i efteraaret 1920|author=Karl Madsen|others=p. 112 (afb.), 114|id=15158|year=1920}}
+*{{citation|title=Siena and the Virgin: art and politics in a late medieval city state|author=Diana Norman|others=p. 68, 73, 74, 79, 80 og 84, samt note 12, p. 122. Afb. p. 73 (Forsøg på rekonstruktion af panelets oprindelige placering som alterfløj, samt oplysninger om det ikonografiske program.)|id=2000-033|year=1999}}
+*{{citation|title=Simone Martini e l'Annunciazione degli Uffizi|author=Alessandro Cecchi|others=pp. 38ff, ill. fig. 5 p. 43 + fig. 8 p. 45 (rekonstruktion af panelets placering i oprindelig altertavle m.v.).|id=2002-071|year=2001}}
+*{{citation|title=A program completed: the identification of the San Vittorio altarpiece|author=Kavin M. Frederick|others=p.56-63, ill. (vedr. forslag til evt. komposition for et middelfelt mellem de to helgener, de tilsammen udgjorde altertavle i S.Vittorio-kapellet i Katedralen i Siena) (artiklen er en fortsættelse af den i K.M.Friedrick, A Program of Alterpieces for the Siena Cathedral. KMS' maleri nævnes ikke i denne sidste artikel, men altercyklen præsenteret - særtryk i biblioteket.)|id=2002-492|year=1983, 1985}}
+*{{citation|title=Lippo Memmi's Helgen og Helgeninde|author=Erik Zahle|others=p.282f (om billedets tidligere historie og ældre litteratur)|id=2002-514}}
+*{{citation|title=SMK highlights: Statens Museum for Kunst|author=Sven Bjerkhof|others=omt. og afb. p. 18|id=2005-071|year=2005}}
+*{{citation|title=Italian paintings and sculpture in Denmark|author=Harald Olsen|others=p.22, p.75, afb. planche II, a (Tilskrevet Palazo Venezia Madonna-mesteren)|id=28349|year=1961}}
+*{{citation|title=Catalogue of a collection of paintings|author=Karl Madsen|others=nr. 2|id=6834}}
+*{{citation|title=Statens Museum for Kunst: 1827-1952|author=Villads Villadsen|others=afb. (s/h) p.222|id=98-419|year=1998}}
+*{{citation|title=The development of the Italian schools of painting|author=Raimond van Marle|others=vol. II (1924): 292ff, tilskrevet Barna da Siena|id=C 3075:1-19 it|year=1923-1938}}
+*{{citation|title=Maletekniske undersøgelser af to helgenbilleder fra Skt. Victor-altertavlen i Sienas domkirke|author=Troels Filtenborg|others=omt. p. 83ff, ill. p. 84, samt flere detaljefotografier|year=2006}}
+*{{citation|title=Tuscan Primitives in London Sales, 1801-1837|author=Dorothy Lygon|others=p. 113, 114, 115}}
+*{{citation|title=Iconography of the Saints in Tuscan Painting|author=George Kaftal|others=fig. 1137: S. Vittore de Siena|year=1952}}
+*{{citation|title=100 mesterværker|author=Eva Friis|others=p.30, afb. p.31|id=k1996-233|year=1996}}
+    |depicted place     = 
+    |object type        = Altarpiece
+    |location           = Sal 201B
+    
+    |wikidata           = Q48453396
+    
+}}
+    
+
+[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
+[[Category:Images from the partnership with Statens Museum for Kunst]]
+[[Category:Altarpieces in Statens Museum for Kunst]]
+
+
+2021-12-15 23:34:40 Uploading file to commons:commons...
+2021-12-15 23:34:40 Token 'edit' was replaced by 'csrf'
+2021-12-15 23:34:40 Sleeping for 1.9 seconds, 2021-12-15 23:34:40
+2021-12-15 23:34:50 Upload of Mesteren for Palazzo Venezia Madonna, Skt. Victor af Siena, 1348-1352, KMS3625, Statens Museum for Kunst.jpg successful.
+2021-12-15 23:34:50 Dropped throttle(s).
+2021-12-15 23:34:50 
+1 pages read
+1 pages written
+0 pages skipped
+2021-12-15 23:34:50 Script terminated 
+2021-12-15 23:34:50 successfully.
+2021-12-15 23:34:50 Dropped throttle(s).
+2021-12-15 23:34:50 Closing network session.
+2021-12-15 23:34:50 Network session closed.

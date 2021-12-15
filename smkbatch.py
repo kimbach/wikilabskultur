@@ -35,6 +35,7 @@ import textwrap
 import re
 import smkapi
 import csvlookup
+import smkitem
 
 def recursive_iter_1(obj):
     if isinstance(obj, dict):
@@ -384,7 +385,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                         smk_description=''
                         for description in item['content_description']: 
                             try:
-                                smk_description = smk_description + '{{da|' + str(description) + '}}\n'
+                                smk_description = smk_description + '* {{da|' + str(description) + '}}\n'
                             except:
                                 smk_description = smk_description + ''
                         print('smk_description='+smk_description)
@@ -392,7 +393,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                     if item.get('object_names'):
                         smk_object_names = ''
                         smk_categories = '[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]\n'
-                        smk_categories = smk_categories + '[[Category:Images from the partnership with Statens Museum for Kunst]]\n'
                         for object_name in item['object_names']: 
                             try:
                                 smk_object_name = object_name.get('name')
@@ -595,8 +595,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                 # wd_number = wikidata.GetSMKWikidataItem(smk_object_number)
 
                 # Generate artwork template
-    #            if smk_description != '': 
-    #                smk_description = str('{{da|1=' + smk_description + '}}'),
                 smk_object_history_note = smk_object_history_note + \
                     '* {{ProvenanceEvent|date='+smk_acquisition_date_precision+'|type=acquisition|newowner=[[Statens Museum for Kunst]]}}'
                 artwork = commons.ArtworkTemplate(artist = smk_artists,
@@ -702,6 +700,10 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
         print('items='+str(items))
         offset=offset+1
 
+url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D&offset=0&rows=10"
+
+#result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+
 smk_number_list = ["KMS3625", 
     "KMSsp211", 
     "DEP289", 
@@ -732,3 +734,14 @@ batch_title='selected_works'
 download_images=True
 
 MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images)
+filename    = "./downloads/Mesteren for Palazzo Venezia Madonna, Skt. Victor af Siena, 1348-1352, KMS3625, Statens Museum for Kunst.jpg"
+pagetitle   = "Mesteren for Palazzo Venezia Madonna, Skt. Victor af Siena, 1348-1352, KMS3625, Statens Museum for Kunst.jpg"
+#test upload
+#commons.complete_artwork_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
+try:
+#    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
+    commons.complete_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
+except Exception as e:
+    print(str(e))
+
+

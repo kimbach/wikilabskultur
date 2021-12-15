@@ -1,0 +1,14 @@
+#LWP-Cookies-2.0
+Set-Cookie3: centralauth_Token=4d67c62f6c1d3196de39e600d4087677; path="/"; domain=".commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_User="Kim%20Bach"; path="/"; domain=".commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_ss0-Token=4d67c62f6c1d3196de39e600d4087677; path="/"; domain=".commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; version=0
+Set-Cookie3: centralauth_ss0-User="Kim%20Bach"; path="/"; domain=".commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; version=0
+Set-Cookie3: UseCDNCache=false; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2021-12-15 21:02:08Z"; HttpOnly=None; version=0
+Set-Cookie3: UseDC=master; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2021-12-15 21:02:08Z"; HttpOnly=None; version=0
+Set-Cookie3: WMF-Last-Access="15-Dec-2021"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2022-01-16 12:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: commonswikiUserID=21306; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: commonswikiUserName="Kim%20Bach"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: commonswikiss0-UserID=21306; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; version=0
+Set-Cookie3: commonswikiss0-UserName="Kim%20Bach"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2022-12-15 21:01:58Z"; HttpOnly=None; version=0
+Set-Cookie3: cpPosIndex="1%401639602118%238d6992e964748ef1d774091dc9262274"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2021-12-15 21:02:08Z"; HttpOnly=None; version=0
+Set-Cookie3: loginnotify_prevlogins="2021-16ljbp1-3tvijbd48i0bh4shb7i8qgcqtocrq4g"; path="/"; domain="commons.wikimedia.org"; path_spec; secure; expires="2022-06-13 21:01:58Z"; HttpOnly=None; version=0
