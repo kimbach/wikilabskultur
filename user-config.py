@@ -47,6 +47,7 @@ usernames['wikipedia']['test'] = u'Kim Bach'
 usernames['commons']['beta'] = u'Kim Bach'
 usernames['wikidata']['wikidata'] = u'Kim Bach'
 usernames['commons']['commons'] = u'Kim Bach'
+usernames['commons']['commons'] = u'WLKBot'
 
 # The list of BotPasswords is saved in another file. Import it if needed.
 # See https://www.mediawiki.org/wiki/Manual:Pywikibot/BotPasswords to know how
