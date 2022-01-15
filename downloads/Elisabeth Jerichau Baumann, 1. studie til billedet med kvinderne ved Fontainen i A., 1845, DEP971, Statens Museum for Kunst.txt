@@ -1,7 +1,7 @@
 {{Artwork
     |artist             = {{Creator:Elisabeth Jerichau Baumann}}
     |author             = 
-    |title              = 1. studie til billedet med kvinderne ved Fontainen i A.
+    |title              = {{title|1. studie til billedet med kvinderne ved Fontainen i A.|lang=da}}
     |description        = 
     |depicted people    = 
     |date               = 1845
@@ -10,24 +10,27 @@
     |institution        = {{Institution:Statens Museum for Kunst, Copenhagen}}
     |department         = 
     |place of discovery = 
-    |object history     = Ny Carlsberg Glyptotek; deponeret i KKS 1943 
+    |object history     = * {{da|Ny Carlsberg Glyptotek; deponeret i KKS 1943}}
+* {{ProvenanceEvent|date=1943-12-31|type=acquisition|newowner=[[Statens Museum for Kunst]]}} 
     |exhibition history = 
     |credit line        = 
-    |inscriptions       = {{inscription |1=Sign. og dat. i forlængelse af egenhændig påskrift f.n.t.v. med pen og brunt blæk: "1te. Studie til billedet / Qvinderne ved Fontainen i A[ulæseligt] / tegnet i Rom 1845 af Elisabeth Baumann"|language=da}}
-{{inscription |1="Elisabeth Baumann"|language=da}}
-    |notes              = Tegning
+    |inscriptions       = 
+    |notes              = 
     |accession number   = DEP971
     |place of creation  = 
-    |source             = {{SMK API|DEP971}}
-{{SMK open|DEP971}}
-    |permission         = {{Licensed-PD-Art-two|PD-old-auto-1923|Cc-zero}}
-{{Statens Museum for Kunst collaboration project}}
+    |source             = * {{SMK API|DEP971}}
+* {{SMK Open|DEP971}}
+* [https://api.smk.dk/api/v1/download/W3siaW1nX3VybCI6Imh0dHBzOi8vaWlwLnNtay5kay9paWlmL2pwMi9ERVA5NzEudGlmLmpwMi9mdWxsL2Z1bGwvMC9uYXRpdmUuanBnIiwicHVibGljX2RvbWFpbiI6dHJ1ZSwib2JqZWN0X251bWJlciI6IkRFUDk3MSIsIm51bSI6IiJ9XQ==/DEP971.jpg image]
+    |permission         = {{Licensed-PD-Art|PD-old|Cc-zero}}
+	{{Statens Museum for Kunst collaboration project}}
     |other_versions     = 
     |references         = 
     |depicted place     = 
+    |object type        = Drawing
+    |location           = 
     
 }}
     
 
-[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]
 [[Category:Drawings in Statens Museum for Kunst]]
+[[Category:WLKBot Batch 0001 - SMK Test - Danish Female Artists]]

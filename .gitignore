@@ -5,3 +5,8 @@ throttle.ctrl
 passwords.txt
 .gitignore
 *.pyc
+*.log
+user-config.py
+user-config.py
+__pycache__/commons.cpython-37.pyc
+__pycache__/wikidata.cpython-37.pyc

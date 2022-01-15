@@ -1,18 +1,17 @@
-# smkbatch
-#
-# Functions for SMK Batch Upload
-#
-# This code parses date/times, so please
-#
-#     pip install python-dateutil
-#
-# To use this code, make sure you
-#
-#     import json
-#
-# and then, to convert JSON from a string, do
-#
-#     result = empty_from_dict(json.loads(json_string))
+""" 
+smkbatch.py
+
+Module that implements functions for performing upload og media from
+Statens Museum for Kunst (SMK) to Wikimedia Commons 
+using the pwikiibot framework as part of a collaboration between 
+SMK and Wikimedia Denmark
+
+For more details, refer to the project page on Commons:
+https://commons.wikimedia.org/wiki/Commons:SMK_-_Statens_Museum_for_Kunst
+
+Use:
+MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, max_number_of_images)
+"""
 
 from dataclasses import dataclass
 from typing import Any, Optional, List, TypeVar, Type, Callable, cast
@@ -67,29 +66,33 @@ def string_convert(obj, keys=(object)):
     else:
         yield keys, obj
 
-def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
+def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size):
     """
     Maps SMK API to Wikimedia Commons. Two files is generated for each item (inventory number/assension number)
     <mediafilename> ::=<filename>"."<fileextension>
     <textfilename>  ::=<filename>".txt"
 
     Example:
-        smk_filter=""
         batch_title='selected_works'
+        smk_filter=""
         download_images=True
 
-        MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images)
+        MapSMKAPIToCommons('selected_works','','',True,10)
     
     Keyword arguments:
         batch_title -- name of the batch, used as prefix for HTML and CSV output files, so that batches can be distingushed  
         smk_filter -- dictionary containg filters for the SMK API
         smk_number_list -- dictionary containg specific SMK item numbers to filter on
         download_images -- True if images should be downloaded 
+        upload_to_commons -- True if images should be uploaded 
+        batch_size -- The max number of items to upload (batch size), set to -1 to generate full batch
 
         <batch_title>       ::= {<char>}  
         <smk_filter>        ::= {<filter>}
         <smk_number_list>   ::= {<number>}
         <download_images>   ::= <boolean>
+        <upload_to_commons> ::= <boolean>
+        batch_size          ::= [-1] | <number>{<number>}
     
     Returns:
         Nothing
@@ -118,6 +121,9 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
         items=0
 
         output_filename=batch_title
+        batch_log_filename = output_filename
+        f_batch_log=open(batch_log_filename+'.log', 'w+')
+        f_batch_log.writelines("time;pagetitle;accession_number;wikidata;image_exists;bot_status;file_hash\n")
 
         f_csv=open(output_filename+'.csv', 'w+')
         f_html=open(output_filename+'.html', 'w+')
@@ -126,7 +132,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
 
         # Print CSV Header
         #csv_header=artwork.GenerateCSVHeader()
-        csv_header=artwork.GenerateCSVHeader() + ';public_domain;has_image'
+        csv_header=artwork.GenerateCSVHeader() + ';public_domain;has_image;file_hash'
         f_csv.write(csv_header + '\n')
         f_html.writelines('<html>')
         f_html.writelines('<head>')
@@ -147,8 +153,12 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
         f_html.writelines('<th>billede</th><th>wikitext</th>')
         f_html.writelines('</tr>')
 
-
+        files_uploaded=0
         while True:
+            # Check for batch size
+            if batch_size > 0:
+                if files_uploaded>=batch_size:
+                    break
             try:
                 if SMKItemList==None:
                     smk_objects=smkapi.get_smk_objects(smk_filter,offset, rows)
@@ -335,7 +345,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                         try:
                             for production_date in item['production_date']:
                                 try:
-                                    smk_period = smk_period + str(production_date.get('period'))
+                                    smk_period = smk_period + production_date.get('period')
                                 except:
                                     smk_period = smk_period + ''
                         except:
@@ -346,6 +356,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
 
                     if item.get('titles'):
                         smk_museumstitel=''
+                        smk_title=''
 
                         for title in item['titles']: 
                             smk_language=''
@@ -356,7 +367,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                             except:
                                 smk_title=''
                             print('smk_title='+smk_title)
-
+                            if len(item['titles']) == 1:
+                                smk_museumstitel = smk_title 
                             try:
                                 if title['language']:
                                     smk_language=str(title['language'])
@@ -368,7 +380,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                                     smk_type=str(title['type'])
                                     if smk_type=='museumstitel':
                                         smk_museumstitel=smk_title
-                                        smk_museumstitel_language=str(title['language'])
                                     
                             except:
                                 smk_type = ''
@@ -381,6 +392,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                             else:
                                 smk_titles='{{' + iso_code +'|' + smk_title + '}}' + smk_titles
 
+                        smk_title=smk_museumstitel
+                        
                     if item.get('content_description'):
                         smk_description=''
                         for description in item['content_description']: 
@@ -392,7 +405,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
 
                     if item.get('object_names'):
                         smk_object_names = ''
-                        smk_categories = '[[Category:Images released under the CC0 1.0 Universal license by Statens Museum for Kunst]]\n'
+                        smk_categories = ''
                         for object_name in item['object_names']: 
                             try:
                                 smk_object_name = object_name.get('name')
@@ -479,7 +492,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                         smk_techniques = ''
                         for technique in item['techniques']: 
                             try:
-                                smk_techniques = smk_techniques + str(technique)+'\n'
+                                if str(technique) != '':
+                                    smk_techniques = smk_techniques + '{{Technique|' + smkapi.smk_danish_to_english(str(technique))+'}}\n'
                             except:
                                 smk_techniques = smk_techniques + ''
                         print('smk_techniques='+smk_techniques)
@@ -567,13 +581,14 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                                 smk_documentation = smk_documentation + ''
                         print('smk_documentation='+str(smk_documentation))
 
-                    if item.get('current_location_name'):
-                        smk_current_location_name = ''
-                        try:
-                            smk_current_location_name = item.get('current_location_name')
-                        except:
-                            smk_current_location_name = ''
-                        print('smk_current_location_name='+str(smk_current_location_name))
+                    # Current location is not static
+                    # if item.get('current_location_name'):
+                    #    smk_current_location_name = ''
+                    #    try:
+                    #        smk_current_location_name = item.get('current_location_name')
+                    #    except:
+                    #        smk_current_location_name = ''
+                    #    print('smk_current_location_name='+str(smk_current_location_name))
                     if item.get('acquisition_date'):
                         smk_acquisition_date = ''
                         try:
@@ -634,13 +649,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                     location = smk_current_location_name)
 
                 artwork.GenerateWikiText()
-                
-    #            csvline = artwork.GenerateCSVLine()
-                csvline = artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) 
-                csvline = csvline.replace('\n', '<br/>')
-
-                # Print CSV line
-                f_csv.write(csvline + '\n')
 
                 # download smk_image_native
                 if smk_has_image == 'True':
@@ -649,33 +657,70 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
                     filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
                     # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
                     filename = smk_artists_filename + ', ' + smk_museumstitel + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
-                    filename = filename.replace("\"", "")
-                    filename = filename.replace("?", "")
+                    filename = filename.replace("\"", " ")
+                    filename = filename.replace("?", " ")
                     filename = filename.replace("/", "-")
-                    filename = filename.replace("(", "")
-                    filename = filename.replace(")", "")
+                    filename = filename.replace("(", " ")
+                    filename = filename.replace(")", " ")
+                    filename = filename.replace(":", "-")
+                    filename = filename.replace(".", "")
                     short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
                     folder = './downloads/'
                     imagepath = folder + short_filename + filetype
+                    image_exists = False
                     if download_images:
                         if not os.path.exists(imagepath):
                             # only download file if it doens't already exist
                             r = requests.get(smk_image_native, allow_redirects=True)
                             open(imagepath, 'wb').write(r.content)
 
-                            image_found = commons.check_image_hash(imagepath)
+                    pagetitle = os.path.basename(imagepath)
+                    file_hash = commons.get_file_hash(imagepath)
+                    image_exists = commons.check_file_hash(file_hash)
 
                     path = folder + short_filename + '.txt'
                     artwork.GenerateWikiText()
-                    license = """=={{int:license-header}}==
-    {{Licensed-PD-Art|PD-old-auto-1923|Cc-zero|deathyear=""" + smk_creator_date_of_death_year+ """}}
-    """
                     license = ''
+                    smk_category = '[[Category:' + batch_title + ']]'
+                    smk_categories = smk_categories + smk_category + '\n'
                     wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
                     open(path, 'w').write(wikitext)
                     f_html.writelines('<tr>')
                     f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
                     f_html.writelines('</tr>')
+
+                    bot_status = "Not run"
+                    if upload_to_commons:
+                        if not image_exists:
+                            # image not already uploaded attempting upload to commons
+
+                            try:
+                                print('Attempting upload of:' + pagetitle)
+                            #    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
+
+                            #    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='')
+                                files_uploaded=files_uploaded+1
+                                bot_status = "Media uploaded"
+                            except Exception as e:
+                                f_batch_log.writelines('</table>')
+                                print('EXCEPTION!')
+                                typeerror=TypeError(e)
+                                bot_status = "Exception:" + str(e)
+                                logging.exception(e)
+                        else:
+                            bot_status = 'Media already uploaded'
+
+                    now = datetime.now()
+                    current_time = now.strftime('%Y-%m-%d %H:%M:%S')
+                    print("current_time=", current_time)
+                    f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + file_hash + '\n')
+                
+        #            csvline = artwork.GenerateCSVLine()
+                    csvline = artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) + ';'+ str(smk_has_image)
+                    csvline = csvline.replace('\n', '<br/>')
+
+                    # Print CSV line
+                    f_csv.write(csvline + '\n')
 
             except Exception as e:
                 print('EXCEPTION!')
@@ -692,6 +737,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images):
         f_html.writelines('</body></html>')
         f_html.close()
         f_csv.close() 
+        f_batch_log.close()
         
     except Exception as e:
         logging.exception(e)
@@ -714,10 +760,14 @@ smk_number_list = ["KMS3625",
     "KMS8847", 
     "KKSgb5548", 
     "KKS2621"]
+smk_number_list = ["KKS13568"]
+#smk_number_list = ["KMS7270"]
+smk_number_list=None
 smk_filter_list = [["public_domain","true"],
     ["has_image", "true"],
     ["creator_gender", "kvinde"],
     ["creator_nationality", "dansk"]]
+smk_filter_list = "",
 
 # Generate SMK API filters from filter list
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
@@ -725,23 +775,28 @@ smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 offset=0
 rows=1
 
-#smk_number_list=None
-smk_filter=""
+#smk_filter=""
 #batch_title='all_public_domain_images'
 #batch_title='all_works'
-batch_title='selected_works'
-#download_images=False
+batch_title='SMK - All Items'
 download_images=True
+download_images=False
+upload_images=True
+upload_images=False
+batch_size=24
+batch_size=-1
+MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size)
 
-MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images)
-filename    = "./downloads/Mesteren for Palazzo Venezia Madonna, Skt. Victor af Siena, 1348-1352, KMS3625, Statens Museum for Kunst.jpg"
-pagetitle   = "Mesteren for Palazzo Venezia Madonna, Skt. Victor af Siena, 1348-1352, KMS3625, Statens Museum for Kunst.jpg"
 #test upload
+#filename    = "./downloads/Ambrosius Bosschaerts d.Æ., Blomsterbuket i en stenniche, 1618, KMSsp211, Statens Museum for Kunst.jpg"
+#pagetitle = os.path.basename(filename)
+
+#pagetitle   = "Ambrosius Bosschaerts d.Æ., Blomsterbuket i en stenniche, 1618, KMSsp211, Statens Museum for Kunst.jpg"
 #commons.complete_artwork_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
-try:
+#try:
 #    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
-    commons.complete_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
-except Exception as e:
-    print(str(e))
+#    commons.complete_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
+#except Exception as e:
+#    print(str(e))
 
 

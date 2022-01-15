@@ -1,18 +1,14 @@
-# smkapi
-#
-# Function for SMK API
-#
-# This code parses date/times, so please
-#
-#     pip install python-dateutil
-#
-# To use this code, make sure you
-#
-#     import json
-#
-# and then, to convert JSON from a string, do
-#
-#     result = empty_from_dict(json.loads(json_string))
+""" 
+smkapi.py
+
+Module that implements functions for accessing the SMK API developed by
+Statens Museum for Kunst (SMK) to Wikimedia Commons 
+using the pwikiibot framework as part of a collaboration between 
+SMK and Wikimedia Denmark
+
+For more details, refer to the project page on Commons:
+https://commons.wikimedia.org/wiki/Commons:SMK_-_Statens_Museum_for_Kunst
+"""
 
 from dataclasses import dataclass
 from typing import Any, Optional, List, TypeVar, Type, Callable, cast
@@ -25,8 +21,10 @@ import pathlib
 import smkitem
 
 def get_smk_object(object_number):
-    # Function that returns JSON given a SMK object number
-    # <object_number>::=<char>{<char>}
+    """
+    Function that returns JSON given a SMK object number
+    <object_number>::=<char>{<char>}
+    """
     # url = 'https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3D'+object_number+'%5D'
     url = 'https://api.smk.dk/api/v1/art/?object_number='+object_number
     data = json.loads(requests.get(url).text)
@@ -52,10 +50,14 @@ def last_flagged(seq):
 
 def generate_smk_filter(smk_filter_list):
     smk_filter=""
-    for filter,is_last in last_flagged(smk_filter_list):
-        smk_filter=smk_filter+"%5B"+filter[0]+"%3A"+filter[1]+"%5D"
-        if not is_last:
-            smk_filter=smk_filter+","
+    try:
+        for filter,is_last in last_flagged(smk_filter_list):
+            smk_filter=smk_filter+"%5B"+filter[0]+"%3A"+filter[1]+"%5D"
+            if not is_last:
+                smk_filter=smk_filter+","
+    except:
+        smk_filter=""
+
     return smk_filter
 
 def get_smk_objects(smk_filter, offset, rows):
@@ -69,7 +71,7 @@ def get_smk_objects(smk_filter, offset, rows):
     url=url+'&offset='+str(offset)+'&rows='+str(rows)
     data=json.loads(requests.get(url).text)
     
-    result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
+    #result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
 
     return(data)
 
@@ -144,6 +146,7 @@ def smk_danish_to_english(smk_danish):
         "skulptur": "sculpture",
         "tegning": "drawing",
         "træsnit": "woodcut",
+        "blyant": "pencil",
         "video": "video",
     }
     ret_val = switcher.get(smk_danish.lower(), smk_danish) 

@@ -42,6 +42,7 @@ def generate_lists():
             if note_found == False:
                 notes.append(commons_row[16]) 
             
+            nationalities[nationality] = commons_row[1] 
             nationality_found = False 
             for nationality in nationalities:
                 if commons_row[1]==nationality:
