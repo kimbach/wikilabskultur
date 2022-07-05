@@ -136,9 +136,6 @@ class ArtworkTemplate(BaseTemplate):
 
     def GenerateWikiText(self):
         #complete this once if applies to all files
-        if self.wikidata != '':
-            self.artist = ''
-
         self.wikitext = u"""{{Artwork
     |artist             = """ + str(self.artist) + """
     |author             = """ + str(self.author) + """
@@ -219,10 +216,10 @@ class ArtworkTemplate(BaseTemplate):
         self.csvline = self.csvline + self.wikidata.replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + self.image_height.replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + self.image_width.replace(';', '&semi') + csvdelim
-        self.csvline = self.csvline + self.imageurl 
-        self.csvline = self.csvline + self.object_type 
-        self.csvline = self.csvline + self.location 
-        self.csvline = self.csvline + self.medium 
+        self.csvline = self.csvline + self.imageurl.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.object_type.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.location.replace(';', '&semi') + csvdelim 
+        self.csvline = self.csvline + self.medium.replace(';', '&semi') 
     
         return self.csvline
 

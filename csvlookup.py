@@ -30,7 +30,8 @@ def generate_lists():
     nationalities=[]
     creators=[]
     artists=[]
-    with open('commons_smk_total.csv', 'r') as file:
+    #with open('commons_smk_total.csv', 'r') as file:
+    with open('SMK - All Items.csv', 'r') as file:
         reader = csv.reader(file, quoting=csv.QUOTE_NONE, delimiter = ';')
         for commons_row in reader:
             note_found = False 
@@ -42,7 +43,7 @@ def generate_lists():
             if note_found == False:
                 notes.append(commons_row[16]) 
             
-            nationalities[nationality] = commons_row[1] 
+            #nationalities[nationality] = commons_row[1] 
             nationality_found = False 
             for nationality in nationalities:
                 if commons_row[1]==nationality:
@@ -67,16 +68,16 @@ def generate_lists():
             # Edvard Petersen
             # Kristian Zahrtmann
 
-            if commons_row[0]=='Joakim Skovgaard':
-                artists.append(commons_row) 
-            elif commons_row[0]=='Viggo Pedersen':
-                artists.append(commons_row) 
-            elif commons_row[0]=='Theodor Philipsen':
-                artists.append(commons_row)
-            elif commons_row[0]=='Edvard Petersen':
-                artists.append(commons_row)
-            elif commons_row[0]=='Kristian Zahrtmann':
-                artists.append(commons_row)
+            # if commons_row[0]=='Joakim Skovgaard':
+            #     artists.append(commons_row) 
+            # elif commons_row[0]=='Viggo Pedersen':
+            #     artists.append(commons_row) 
+            # elif commons_row[0]=='Theodor Philipsen':
+            #     artists.append(commons_row)
+            # elif commons_row[0]=='Edvard Petersen':
+            #     artists.append(commons_row)
+            # elif commons_row[0]=='Kristian Zahrtmann':
+            #     artists.append(commons_row)
 
     f_type=open('type_smk.csv', 'w+')
     print("type:")
@@ -109,3 +110,4 @@ def generate_lists():
     f_artists.close()
 
 #print(find_wikidata_item("123"))
+#generate_lists()

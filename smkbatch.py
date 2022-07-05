@@ -1,7 +1,7 @@
 """ 
 smkbatch.py
 
-Module that implements functions for performing upload og media from
+Module that implements functions for performing upload of media from
 Statens Museum for Kunst (SMK) to Wikimedia Commons 
 using the pwikiibot framework as part of a collaboration between 
 SMK and Wikimedia Denmark
@@ -132,7 +132,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
         # Print CSV Header
         #csv_header=artwork.GenerateCSVHeader()
-        csv_header=artwork.GenerateCSVHeader() + ';public_domain;has_image;file_hash'
+        csv_header='id;created;modified;'+artwork.GenerateCSVHeader() + ';public_domain;has_image;file_hash'
         f_csv.write(csv_header + '\n')
         f_html.writelines('<html>')
         f_html.writelines('<head>')
@@ -155,21 +155,25 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
         files_uploaded=0
         while True:
+            smk_json=""
             # Check for batch size
             if batch_size > 0:
                 if files_uploaded>=batch_size:
                     break
             try:
                 if SMKItemList==None:
-                    smk_objects=smkapi.get_smk_objects(smk_filter,offset, rows)
+                    smk_json=smkapi.get_smk_objects(smk_filter,offset, rows)
                 else:
                     if len(SMKItemList)==0:
                         break
                     else:
                         current_number=SMKItemList[0]
                         SMKItemList.remove(current_number)
-                        smk_objects=smkapi.get_smk_object(current_number)
+                        smk_json=smkapi.get_smk_object(current_number)
                 
+                # Convert json string to object
+                smk_objects=json.loads(smk_json)
+
                 items=items+1
 
                 try:
@@ -237,6 +241,23 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             smk_id = ''
                     print('smk_id=' + smk_id)
 
+                    smk_created = ''
+                    if item.get('created'):
+                        try:
+                            smk_created = str(item.get('created'))
+                        except:
+                            smk_created = ''
+                    print('smk_created=' + smk_created)
+
+                    smk_modified = ''
+                    if item.get('modified'):
+                        try:
+                            smk_modified = str(item.get('modified'))
+                        except:
+                            smk_modified = ''
+                    print('smk_modified=' + smk_modified)
+
+
                     if item.get('image_native'):
                         smk_image_native=''
                         try:
@@ -262,22 +283,17 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         except:
                             smk_image_height=''
                         print('smk_image_height =' + smk_image_height)
-                    if item.get('public_domain'):
+
+                    try:
+                        smk_public_domain = str(item['public_domain'])
+                    except:
                         smk_public_domain = ''
-                        try:
-                            if item.get('public_domain'):
-                                smk_public_domain = str(item['public_domain'])
-                        except:
-                            smk_public_domain = ''
-                        print(smk_public_domain)
-                    if item.get('has_image'):
+
+                    try:
+                        smk_has_image = str(item['has_image'])
+                    except:
                         smk_has_image = '' 
-                        try:
-                            if item.get('has_image'):
-                                smk_has_image = str(item['has_image'])
-                        except:
-                            smk_has_image = '' 
-                        print(smk_has_image)
+
                     if item.get('production'):
                         smk_creators=''
                         smk_creators_filename=''
@@ -301,7 +317,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                                 try:
                                     smk_creator_notes = str(production['notes'])
-                                except:
+                                except: 
                                     smk_creator_notes = ''
 
                                 if smk_creator_notes != '':
@@ -358,6 +374,13 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         smk_museumstitel=''
                         smk_title=''
 
+                        # assume that the first title is the museumstitle
+                        try:
+                            if len(item['titles'])>0: 
+                                smk_museumstitel = str(item['titles'][0]['title']) 
+                        except:
+                            smk_museumstitel=''
+
                         for title in item['titles']: 
                             smk_language=''
                             smk_type=''
@@ -367,8 +390,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             except:
                                 smk_title=''
                             print('smk_title='+smk_title)
-                            if len(item['titles']) == 1:
-                                smk_museumstitel = smk_title 
                             try:
                                 if title['language']:
                                     smk_language=str(title['language'])
@@ -380,7 +401,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     smk_type=str(title['type'])
                                     if smk_type=='museumstitel':
                                         smk_museumstitel=smk_title
-                                    
                             except:
                                 smk_type = ''
                             
@@ -392,7 +412,10 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             else:
                                 smk_titles='{{' + iso_code +'|' + smk_title + '}}' + smk_titles
 
-                        smk_title=smk_museumstitel
+                        if smk_museumstitel!='':
+                            smk_title=smk_museumstitel
+                        else:
+                            smk_title = 'Untitled' 
                         
                     if item.get('content_description'):
                         smk_description=''
@@ -480,12 +503,32 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 print(dimension['value'])
                                 print(dimension['unit'])
                                 if 'højde'==dimension['type']:
+                                    unit_height=""
                                     height=str(dimension['value'])
+                                    if dimension['unit']:
+                                        unit_height=""
+                                        if dimension['unit']=='milimeter':
+                                            unit_height="mm"
+                                        if dimension['unit']=='centimeter':
+                                            unit_height="cm"
+                                            height=str(float(height)*10)    
                                 if 'bredde'==dimension['type']:
                                     width=str(dimension['value'])
-                                if 'mm'==dimension['unit']:
-                                    unit=str(dimension['unit'])
-                            smk_dimensions='{{Size|unit='+str(unit)+'|width='+str(width)+'|height='+str(height)+'}}'
+                                    if dimension['unit']:
+                                        # Unit of input (must be one of: cm, m, mm, km, in, ft, yd, mi).
+                                        unit_width=""
+                                        if dimension['unit']=='milimeter':
+                                            unit_width="mm"
+                                        if dimension['unit']=='centimeter':
+                                            unit_width="cm"
+                                            width=str(float(width)*10)    
+
+                            # If there is no unit on height and width, skip dimensions
+                            if unit_height!='' and unit_width!='':
+                                smk_dimensions='{{Size|unit='+'mm'+'|width='+str(width)+'|height='+str(height)+'}}'
+                            else:
+                                smk_dimensions=''
+
                         except:
                             smk_dimensions = ''
                     if item.get('techniques'):
@@ -543,6 +586,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     if item.get('artist'):
                         smk_artists = ''
                         smk_artists_filename=''
+                        unknown_artist = False 
 
                         for artist in item['artist']:
                             smk_artist = ''
@@ -552,9 +596,14 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_artist = ''
                             if smk_artist != '':
                                 smk_artists_filename=smk_artists_filename+smk_artist+' - '
-                                if smk_artist.lower() != 'ubekendt':
-                                    smk_artists=smk_artists+'{{Creator:'+smk_artist+'}}\n'
+                                if unknown_artist: 
+                                    if smk_artist.lower() == 'ubekendt':
+                                        unknown_artist = True 
+                                        smk_artist='{{da|smk_artist}}'
+                                        #smk_artists=smk_artists+'{{Creator:'+smk_artist+'}}\n'
                                 else:
+                                    # No longer generates {{Creator}} template
+                                    #smk_artists=smk_artists+'{{Creator:'+smk_artist+'}}\n'
                                     smk_artists=smk_artists+smk_artist+'\n'
                             print('smk_artist='+smk_artist)
                         # Strip trailing delimiter " - "
@@ -563,6 +612,10 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         if smk_artists_filename[-artists_filename_delim_length:] == ' - ':
                             smk_artists_filename=smk_artists_filename[0:-artists_filename_delim_length]
                         print('smk_artists='+smk_artists)
+                        if unknown_artist:
+                            # If we encountered and unknown artist of the painting, add the Category:Artwork Cateogry:Paintings by unknown artists in the Statens Museum for Kunst
+                            smk_categories=smk_categories+'[[Category:Paintings by unknown artists in the Statens Museum for Kunst]]\n'                             
+                             
                     # Note:department is not used yet 
                     #if item.get('responsible_department'):
                     #    try:
@@ -650,78 +703,91 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                 artwork.GenerateWikiText()
 
+                filetype = pathlib.Path(smk_image_native).suffix
+                filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
+                filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
+                # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
+                filename = smk_artists_filename + ', ' + smk_museumstitel + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
+                filename = filename.replace("\"", " ")
+                filename = filename.replace("?", " ")
+                filename = filename.replace("/", "-")
+                filename = filename.replace("(", " ")
+                filename = filename.replace(")", " ")
+                filename = filename.replace(":", "-")
+                filename = filename.replace(".", "")
+
                 # download smk_image_native
                 if smk_has_image == 'True':
-                    filetype = pathlib.Path(smk_image_native).suffix
-                    filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
-                    filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
-                    # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
-                    filename = smk_artists_filename + ', ' + smk_museumstitel + ', ' + smk_period + ', ' + accession_number + ', ' + 'Statens Museum for Kunst' 
-                    filename = filename.replace("\"", " ")
-                    filename = filename.replace("?", " ")
-                    filename = filename.replace("/", "-")
-                    filename = filename.replace("(", " ")
-                    filename = filename.replace(")", " ")
-                    filename = filename.replace(":", "-")
-                    filename = filename.replace(".", "")
                     short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
                     folder = './downloads/'
                     imagepath = folder + short_filename + filetype
-                    image_exists = False
                     if download_images:
                         if not os.path.exists(imagepath):
                             # only download file if it doens't already exist
                             r = requests.get(smk_image_native, allow_redirects=True)
                             open(imagepath, 'wb').write(r.content)
 
+                    # Check if image allready exists
+                    file_hash = '0'
+                    if os.path.exists(imagepath):
+                        file_hash = commons.get_file_hash(imagepath)
+                        image_exists = commons.check_file_hash(file_hash)
+
                     pagetitle = os.path.basename(imagepath)
-                    file_hash = commons.get_file_hash(imagepath)
-                    image_exists = commons.check_file_hash(file_hash)
+                else:
+                    imagepath=''
 
-                    path = folder + short_filename + '.txt'
-                    artwork.GenerateWikiText()
-                    license = ''
-                    smk_category = '[[Category:' + batch_title + ']]'
-                    smk_categories = smk_categories + smk_category + '\n'
-                    wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
-                    open(path, 'w').write(wikitext)
-                    f_html.writelines('<tr>')
-                    f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
-                    f_html.writelines('</tr>')
+                # Save wikitext
+                path = folder + short_filename + '.txt'
+                artwork.GenerateWikiText()
+                license = ''
+                #smk_category = '[[Category:' + batch_title + ']]'
+                #smk_categories = smk_categories + smk_category + '\n'
+                wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
+                open(path, 'w').write(wikitext)
 
-                    bot_status = "Not run"
-                    if upload_to_commons:
-                        if not image_exists:
-                            # image not already uploaded attempting upload to commons
+                # Save RAW json
+                path = folder + short_filename + '.json'
+                open(path, 'w').write(smk_json)
 
-                            try:
-                                print('Attempting upload of:' + pagetitle)
-                            #    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
+                f_html.writelines('<tr>')
+                f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                f_html.writelines('</tr>')
 
-                            #    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='')
-                                files_uploaded=files_uploaded+1
-                                bot_status = "Media uploaded"
-                            except Exception as e:
-                                f_batch_log.writelines('</table>')
-                                print('EXCEPTION!')
-                                typeerror=TypeError(e)
-                                bot_status = "Exception:" + str(e)
-                                logging.exception(e)
-                        else:
-                            bot_status = 'Media already uploaded'
+#                   csvline = artwork.GenerateCSVLine()
+                csvline = str(smk_id) + ';' + str(smk_created) + ';' + str(smk_modified) + ';' + artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) + ';'+ str(smk_has_image)
+                csvline = csvline.replace('\n', '<br/>')
 
-                    now = datetime.now()
-                    current_time = now.strftime('%Y-%m-%d %H:%M:%S')
-                    print("current_time=", current_time)
-                    f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + file_hash + '\n')
-                
-        #            csvline = artwork.GenerateCSVLine()
-                    csvline = artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) + ';'+ str(smk_has_image)
-                    csvline = csvline.replace('\n', '<br/>')
+                # Print CSV line
+                f_csv.write(csvline + '\n')
 
-                    # Print CSV line
-                    f_csv.write(csvline + '\n')
+                bot_status = "Not run"
+                #Attempt upload to commons if there is an imagepath
+                if upload_to_commons and imagepath!='':
+                    if not image_exists:
+                        # image not already uploaded attempting upload to commons
 
+                        try:
+                            print('Attempting upload of:' + pagetitle)
+                        #    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
+
+                        #    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='')
+                            files_uploaded=files_uploaded+1
+                            bot_status = "Media uploaded"
+                        except Exception as e:
+                            f_batch_log.writelines('</table>')
+                            print('EXCEPTION!')
+                            typeerror=TypeError(e)
+                            bot_status = "Exception:" + str(e)
+                            logging.exception(e)
+                    else:
+                        bot_status = 'Media already uploaded'
+
+                now = datetime.now()
+                current_time = now.strftime('%Y-%m-%d %H:%M:%S')
+                print("current_time=", current_time)
+                f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + file_hash + '\n')  
+        
             except Exception as e:
                 print('EXCEPTION!')
                 typeerror=TypeError(e)
@@ -763,6 +829,7 @@ smk_number_list = ["KMS3625",
 smk_number_list = ["KKS13568"]
 #smk_number_list = ["KMS7270"]
 smk_number_list=None
+#smk_number_list = ["KMS1806"]
 smk_filter_list = [["public_domain","true"],
     ["has_image", "true"],
     ["creator_gender", "kvinde"],
@@ -777,13 +844,13 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-#batch_title='all_works'
-batch_title='SMK - All Items'
+batch_title='all_works'
+#batch_title='KMS1806'
 download_images=True
-download_images=False
-upload_images=True
+#download_images=False
+#upload_images=True
 upload_images=False
-batch_size=24
+#batch_size=24
 batch_size=-1
 MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size)
 

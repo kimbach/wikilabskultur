@@ -27,12 +27,12 @@ def get_smk_object(object_number):
     """
     # url = 'https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bobject_number%3D'+object_number+'%5D'
     url = 'https://api.smk.dk/api/v1/art/?object_number='+object_number
-    data = json.loads(requests.get(url).text)
+
+    smk_json=requests.get(url).text
+
+    #data=json.loads(smk_json)
     
-    #result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
-    #print(result)
-    
-    return(data)
+    return(smk_json)
 
 # Get all wikidata items for SMK Wikidata object Q671384
 #wikidata.GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
@@ -69,11 +69,14 @@ def get_smk_objects(smk_filter, offset, rows):
     if smk_filter!='':
         url=url+'&filters='+smk_filter
     url=url+'&offset='+str(offset)+'&rows='+str(rows)
-    data=json.loads(requests.get(url).text)
+
+    smk_json=requests.get(url).text
+    #data=json.loads(requests.get(url).text)
+    #data=json.loads(smk_json)
     
     #result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
 
-    return(data)
+    return(smk_json)
 
 def smk_to_commons_position(smk_position):
     """Function that strings defining a position used by SMK API to Wikimedia Commons strings
