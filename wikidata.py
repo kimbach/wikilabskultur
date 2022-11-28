@@ -13,6 +13,25 @@ import smkapi
 # importing enum for enumerations 
 import enum 
 
+# Wikidata properties and items
+wd_reference_url = 'S854'   # wikidata reference url
+wd_inception = 'S571'       # wikidata inception date
+wd_retrived = 'S813'        # wikidata retrieved date
+wd_last_update = 'S5017'    # wikidata last_update date
+wd_publisher = 'S123'       # wikidata publisher
+wd_inventory_number = 'S217'# wikidata inventory number
+wd_has_works_in_collection = 'P6379'    # wikidata har works in the collection of
+wd_statens_museum_for_kunst = 'Q671384' # item for Statens Museum for Kunst
+wd_gender_or_sex = 'P21'    # property for gender
+wd_country_of_citizenship = 'P27' # property for country of citizenship
+wd_date_of_birth = 'P569'   # property for date of birth
+wd_date_of_death = 'P570'   # property for date of death
+wd_occupation = 'P106'      # property for occupation
+wd_artist = 'Q483501'       # item for artist
+wd_instance_of = 'P31'      # instance of
+wb_human = 'Q5'             # human item
+wb_lastest_date = 'S1326'   # latest date
+
 # creating enumerations using class 
 class outputformat(enum.Enum): 
     csv = 'CSV'
@@ -287,5 +306,80 @@ ORDER BY (?inventarnummer)"""
         # return the wikidatanumber
         return wikidata_id
 
+def GetInstitutionWikidataWorksBy(wd_institution, output_filename):
+    # Generates a CSV file of artists from the institution with the wikidata Q-number given by
+    # institution and saves the results to the file given by csv_filename 
+    #
+    # The format is item;number;title;image;url
+    #
+    # The Wikidata Item for the Statens Museum for Kunst colelction is Q671384
+    
+    # Set up logging
+    wikidata_error_log = "wikidata_error.log"
+    logging.basicConfig(filename=wikidata_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+    # SPARQL query to execute 
+    query = u"""SELECT DISTINCT ?item ?itemLabel WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+  {
+    SELECT DISTINCT ?item WHERE {
+      ?item p:P6379 ?statement0.
+      ?statement0 (ps:P6379/(wdt:P279*)) wd:""" + wd_institution + """.
+    }
+  }
+}"""
+
+    items = 0
+    try:
+        f_csv=open(output_filename, 'w+')
+        #f_html=open(output_filename+'.html', 'w+')
+        wikidata_site = pywikibot.Site("wikidata", "wikidata")
+        generator = pg.WikidataSPARQLPageGenerator(query, site=wikidata_site)
+
+        # CSV header item;itemLabel
+        f_csv.write('item;given_name;family_name\n')
+        repo = wikidata_site.data_repository()
+
+        for wikidata_item in generator:
+            try:
+                item=''
+                itemLabel=''
+
+                item = wikidata_item.id
+                print(item)
+
+                data = wikidata_item.get()
+                claims = data.get('claims')
+
+                # Claim 735 is the given name
+                if claims.get(u'P735'):
+                    given_name=str(claims.get(u'P735')[0].target.id)
+                    item_page = pywikibot.ItemPage(repo, given_name)
+                    data = item_page.get()
+                    given_name=data['labels']._data['en']
+                print(given_name)
+
+                # Claim 735 is the family name
+                if claims.get(u'P734'):
+                    family_name=str(claims.get(u'P734')[0].target.id)
+                    item_page = pywikibot.ItemPage(repo, family_name)
+                    data = item_page.get()
+                    family_name=data['labels']._data['en']
+                print(family_name)
+
+                # Add line to CSV
+                f_csv.write(str(item) + ';' + str(given_name) + ';' + str(family_name) + '\n')
+                items=items+1
+            except Exception as e:
+                logging.exception(e)
+        
+    except Exception as e:
+        logging.error(str(e))
+    finally:
+        print('\r' + str(items), end='', flush=True)
+
 # Get all items from Statens Museum for Kunst, Wikidata Object Q671384
-#GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+
+# Get all works from artist from Statens Museum for Kunst, Wikidata Object Q671384
+#GetInstitutionWikidataWorksBy('Q671384', 'wikidata_worksby_smk.csv')

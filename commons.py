@@ -156,7 +156,6 @@ class ArtworkTemplate(BaseTemplate):
     |accession number   = """ + str(self.accession_number) + """
     |place of creation  = """ + str(self.place_of_creation) + """
     |source             = """ + str(self.source) + """
-    |permission         = """ + str(self.permission) + """
     |other_versions     = """ + str(self.other_versions) + """
     |references         = """ + str(self.references) + """
     |depicted place     = """ + str(self.depicted_place) + """
@@ -168,7 +167,11 @@ class ArtworkTemplate(BaseTemplate):
     |wikidata           = """ + self.wikidata + """
     """
         self.wikitext = self.wikitext + """
-}}
+}} 
+=={{int:license-header}}==
+    """ + str(self.permission) + """
+
+
     """
 
     def GenerateCSVLine(self, csvdelim=';'):
@@ -239,7 +242,10 @@ class ArtworkTemplate(BaseTemplate):
             Nothing
         """
 
-        self.csvheader = 'artist' + csvdelim + \
+        self.csvheader = 'id' + csvdelim + \
+          'created' + csvdelim + \
+          'modified' + csvdelim + \
+          'artist' + csvdelim + \
           'nationality' + csvdelim + \
           'author' + csvdelim + \
           'title' + csvdelim + \
@@ -270,7 +276,17 @@ class ArtworkTemplate(BaseTemplate):
           'imageurl' + csvdelim + \
           'object_type' + csvdelim + \
           'location' + csvdelim + \
-          'medium'
+          'medium' + csvdelim + \
+          'public_domain' + csvdelim + \
+          'has_image' + csvdelim + \
+          'file_hash' + csvdelim + \
+          'creator_forename' + csvdelim + \
+          'creator_surname' + csvdelim + \
+          'creator_date_of_death' + csvdelim + \
+          'creator_date_of_birth' + csvdelim + \
+          'creator_gender' + csvdelim + \
+          'creator_lref' + csvdelim + \
+          'creator_wikidata'
     
         return self.csvheader
 

@@ -66,6 +66,7 @@ def get_smk_objects(smk_filter, offset, rows):
     #https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk%5D&offset=0&rows=10
     url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
     url='https://api.smk.dk/api/v1/art/search/?keys=*'
+    url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bcreator%3APiranesi%2C%20Giovanni%20Battista%5D&offset='+str(offset)+'&rows='+str(rows)
     if smk_filter!='':
         url=url+'&filters='+smk_filter
     url=url+'&offset='+str(offset)+'&rows='+str(rows)
@@ -155,6 +156,176 @@ def smk_danish_to_english(smk_danish):
     ret_val = switcher.get(smk_danish.lower(), smk_danish) 
 
     return ret_val
+
+
+def smk_nationality_to_wikidata_q(smk_nationality):
+    """Translates SMK Nationalities used by SMK API to Wikidata Q-items.
+    
+    Keyword arguments:
+        smk_nationality -- the Dansih name used for nationality by SMK API
+            <smk_nationality>::= {<char>}
+        returns -- Mapped Wikidata Q-number, empty if not mapped
+            <english>   ::= {<char>}
+     """
+    switcher = {
+        "Amerikansk": "Q30",
+        "Argentinsk": "Q414",
+        "Belgisk": "Q31",
+        "Brasiliansk": "Q155",
+        "Britisk": "Q145",
+        "Canadisk": "Q16",
+        "Dansk": "Q756617",
+        "Engelsk": "Q21",
+        "Finsk": "Q33",
+        "Flamsk": "Q234",
+        "Fransk": "Q142",
+        "Færøsk": "Q4628",
+        "Græsk": "Q41",
+        "Grønlandsk": "Q223",
+        "Hollandsk": "Q102911",
+        "Indisk": "Q102911",
+        "Irsk": "Q22890",
+        "Islandsk": "Q189",
+        "Israelsk": "Q801",
+        "Italiensk": "Q38",
+        "Japansk": "Q17",
+        "Kroatisk": "Q224",
+        "litauisk": "Q37",
+        "Mexicansk": "Q96",
+        "Nederlandsk": "Q55",
+        "Norsk": "Q55",
+        "Polsk": "Q36",
+        "Portugisisk": "Q45",
+        "Rumænsk": "Q218",
+        "Russisk": "Q159",
+        "Schweizisk": "Q39",
+        "Serbisk": "Q403",
+        "Skotsk": "Q22",
+        "Slovensk": "Q215",
+        "Spansk": "Q29",
+        "Svensk": "Q29",
+        "Tjekkisk": "Q29",
+        "Tyrkisk": "Q29",
+        "Tysk": "Q183",
+        "Ungarsk": "Q28",
+        "Venezuelansk": "Q717",
+        "Østrigsk": "Q40",
+    }
+    wikidata_q = switcher.get(smk_nationality.lower(), "") 
+
+    return wikidata_q
+
+def smk_nationality_to_english(smk_nationality):
+    """Translates SMK Nationalities used by SMK API to Wikidata Q-items.
+    
+    Keyword arguments:
+        smk_nationality -- the Dansih name used for nationality by SMK API
+            <smk_nationality>::= {<char>}
+        returns -- Mapped Wikidata Q-number, empty if not mapped
+            <english>   ::= {<char>}
+     """
+    switcher = {
+        "amerikansk": "American",
+        "argentinsk": "Argentine",
+        "belgisk": "Belgian",
+        "brasiliansk": "Brazilian",
+        "britisk": "British",
+        "canadisk": "Canadian",
+        "dansk": "Danish",
+        "engelsk": "English",
+        "finsk": "Finish",
+        "flamsk": "Flemish",
+        "fransk": "French",
+        "færøsk": "Faroese",
+        "græsk": "Greek",
+        "grønlandsk": "Greenlandish",
+        "gollandsk": "Dutch",
+        "indisk": "Indian",
+        "irsk": "Irish",
+        "islandsk": "Icelandic",
+        "israelsk": "Israeli",
+        "italiensk": "Italian",
+        "japansk": "Japanase",
+        "kroatisk": "Croatian",
+        "litauisk": "Lithuanian",
+        "mexicansk": "Mexican",
+        "nederlandsk": "Nederlandish",
+        "norsk": "Norwegian",
+        "polsk": "Polish",
+        "portugisisk": "Portugeese",
+        "rumænsk": "Romanian",
+        "russisk": "Rissian",
+        "schweizisk": "Swiss",
+        "serbisk": "Serbian",
+        "skotsk": "Scotish",
+        "slovensk": "Slovenian",
+        "spansk": "Spanish",
+        "svensk": "Swedish",
+        "tjekkisk": "Czeck",
+        "tyrkisk": "Turkish",
+        "tysk": "German",
+        "ungarsk": "Hungarian",
+        "venezuelansk": "Venezuelean",
+        "østrigsk": "Austrian",
+    }
+    english = switcher.get(smk_nationality.lower(), "") 
+
+    return english
+
+def smk_gender_to_wikidata_q(smk_gender):
+    """Function that translates gender identificers used by SMK API to ISO language codes
+        Keyword arguments:
+        smk_gender -- the gender code used by SMK API
+            <smk_gender>::={<char>} |
+            <empty>
+     
+        Returns: 
+        Mapped gender code, empty if not mapped
+            <wikidata_q_code>::="Q"<digit>{<digit>}* |
+            <empty>
+    """
+    switcher = {
+        "MALE": "Q6581097",
+        "FEMALE": "Q6581072",
+        "UNKNOWN": '"somevalue"',
+        }
+    return switcher.get(smk_gender, "")
+
+def smk_danish_to_wikidata_q(smk_danish):
+    """Translates SMK Danish terms used by SMK API to Wikidata Q-items.
+    
+    Keyword arguments:
+        smk_danish -- the Dansih term used by SMK API
+            <smk_danish>::= {<char>}
+        returns -- Mapped Wikidata Q-number, empty if not mapped
+            <q-item>   ::= Q<digit>{<digit>}*
+     """
+    switcher = {
+        "altertavle (maleri)": "Q15711026",
+        "clairobscurtræsnit:": "Q1027974",
+        "akvarel": "Q50030",
+        "boghåndværk": "Q4583685",
+        "collage": "Q22669857",
+        "dybtryk:": "Q12309090",
+        "film/video/lyd/computer": "Q131765",
+        "fotografi": "Q125191",
+        "fotogravure-heliogravure:": "Q23657361",
+        "fotoserigrafi": "Q187791",
+        "gouache:": "Q21281546",
+        "installation:": "Q20437094",
+        "kobberstik": "Q18218093",
+        "maleri": "Q3305213",
+        "mezzotinte": "Q21647744",
+        "objekt": "Q488383",
+        "radering": "Q18218093",
+        "skulptur": "Q860861",
+        "tegning": "Q93184",
+        "træsnit": "Q18219090",
+        "blyant": "Q85621166",
+        "video:": "Q20742776",    }
+    wikidata_q = switcher.get(smk_danish.lower(), "") 
+
+    return wikidata_q
 
 def smk_documentation_to_commons_citation(smk_documentation):
     """Formats a smk_documentation node from the SMK API to a Wikimedia Commons citation template.

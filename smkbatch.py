@@ -35,6 +35,15 @@ import re
 import smkapi
 import csvlookup
 import smkitem
+import testobjectmodel
+
+debug_level=1
+
+folder = './downloads2/'
+
+def debug_msg(msg, debug_level=1):
+    if debug_level>0:
+        print(msg)
 
 def recursive_iter_1(obj):
     if isinstance(obj, dict):
@@ -66,7 +75,7 @@ def string_convert(obj, keys=(object)):
     else:
         yield keys, obj
 
-def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size):
+def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, debug_level=0):
     """
     Maps SMK API to Wikimedia Commons. Two files is generated for each item (inventory number/assension number)
     <mediafilename> ::=<filename>"."<fileextension>
@@ -86,6 +95,9 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         download_images -- True if images should be downloaded 
         upload_to_commons -- True if images should be uploaded 
         batch_size -- The max number of items to upload (batch size), set to -1 to generate full batch
+        save_json -- True if RAW JSON should be saved 
+        save_wikitext -- True if wikitext should be saved 
+        debug_level
 
         <batch_title>       ::= {<char>}  
         <smk_filter>        ::= {<filter>}
@@ -132,7 +144,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
         # Print CSV Header
         #csv_header=artwork.GenerateCSVHeader()
-        csv_header='id;created;modified;'+artwork.GenerateCSVHeader() + ';public_domain;has_image;file_hash'
+        csv_header=artwork.GenerateCSVHeader()
         f_csv.write(csv_header + '\n')
         f_html.writelines('<html>')
         f_html.writelines('<head>')
@@ -173,15 +185,18 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 
                 # Convert json string to object
                 smk_objects=json.loads(smk_json)
+                
+                smk_object_model = testobjectmodel.welcome_from_dict(smk_objects)
+                print(smk_object_model)
 
                 items=items+1
 
                 try:
-                    print('offset='+str(smk_objects['offset']))
+                    debug_msg('offset='+str(smk_objects['offset']),debug_level)
                     offset=smk_objects['offset']
-                    print('rows='+str(smk_objects['rows']))
+                    debug_msg('rows='+str(smk_objects['rows']),debug_level)
                     rows=smk_objects['rows']
-                    print('found='+str(smk_objects['found']))
+                    debug_msg('found='+str(smk_objects['found']),debug_level)
                     found=smk_objects['found']
                     if offset>found:
                         break
@@ -217,6 +232,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 smk_acquisition_date_precision = ''
                 smk_notes = ''
                 smk_labels = ''
+                file_hash=0
 
                 for item in smk_objects['items']:
                     if item.get('object_number'):
@@ -228,7 +244,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         except:
                             accession_number=''
                         smk_object_number=accession_number
-                        print('smk_object_number =' + smk_object_number)
+                        debug_msg('smk_object_number =' + smk_object_number,debug_level)
 
                         #if smk_object_number not in SMKItemList:
                         #    continue
@@ -239,7 +255,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             smk_id = str(item.get('id'))
                         except:
                             smk_id = ''
-                    print('smk_id=' + smk_id)
+                    debug_msg('smk_id=' + smk_id,debug_level)
 
                     smk_created = ''
                     if item.get('created'):
@@ -247,7 +263,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             smk_created = str(item.get('created'))
                         except:
                             smk_created = ''
-                    print('smk_created=' + smk_created)
+                    debug_msg('smk_created=' + smk_created,debug_level)
 
                     smk_modified = ''
                     if item.get('modified'):
@@ -255,7 +271,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             smk_modified = str(item.get('modified'))
                         except:
                             smk_modified = ''
-                    print('smk_modified=' + smk_modified)
+                    debug_msg('smk_modified=' + smk_modified,debug_level)
 
 
                     if item.get('image_native'):
@@ -265,7 +281,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_image_native=str(item['image_native'])
                         except:
                             smk_image_native=''
-                        print('smk_image_native =' + smk_image_native)
+                        debug_msg('smk_image_native =' + smk_image_native,debug_level)
                     if item.get('image_width'):
                         smk_image_width=''
                         try:
@@ -273,7 +289,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_image_width=str(item['image_width'])
                         except:
                             smk_image_width=''
-                        print('smk_image_width =' + smk_image_width)
+                        debug_msg('smk_image_width =' + smk_image_width,debug_level)
 
                     if item.get('image_height'):
                         smk_image_height=''
@@ -282,7 +298,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_image_height=str(item['image_height'])
                         except:
                             smk_image_height=''
-                        print('smk_image_height =' + smk_image_height)
+                        debug_msg('smk_image_height =' + smk_image_height,debug_level)
 
                     try:
                         smk_public_domain = str(item['public_domain'])
@@ -298,15 +314,22 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         smk_creators=''
                         smk_creators_filename=''
                         try:
-                            print(item['production'])
+                            debug_msg(item['production'],debug_level)
                             for production in item['production']:
                                 smk_creator=''
+                                smk_creator_forename=''
+                                smk_creator_surname=''
                                 smk_creator_date_of_death = ''
-                                smk_creator_date_of_death_year = ''
                                 smk_creator_nationality = ''
+                                smk_creator_date_of_birth =''
+                                smk_creator_gender=''
+                                smk_creator_lref=''
+
                                 try:
-                                    if smk_creator_forename.tolower() != 'none':
-                                        smk_creator_forename = str(production['creator_forename'])
+                                    smk_creator_forename = str(production['creator_forename'])
+                                    smk_temp=smk_creator_forename.lower()
+                                    if smk_temp == 'none':
+                                        smk_creator_forename=''
                                 except:
                                     smk_creator_forename = ''
 
@@ -336,26 +359,32 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 except:
                                     smk_creator_date_of_death = ''
                                 try:
-                                    smk_creator_date_of_death_year = str(production['creator_date_of_death_year'])
-                                except:
-                                    smk_creator_date_of_death_year = ''
-                                try:
-                                    smk_creator_nationality = str(production['smk_creator_nationality'])
+                                    smk_creator_nationality = str(production['creator_nationality'])
                                 except:
                                     smk_creator_nationality = ''
+                                try:
+                                    smk_creator_date_of_birth=str(production['creator_date_of_birth'])                       
+                                except:
+                                    smk_creator_date_of_birth =''
+                                try:
+                                    smk_creator_gender=str(production['creator_gender'])                                    
+                                except:
+                                    smk_creator_gender=''
+                                try:
+                                    smk_creator_lref=str(production['creator_lref'])
+                                except:
+                                    smk_creator_lref=''
                         except:
                             smk_creator=''
                             smk_creator_date_of_death = ''
-                            smk_creator_date_of_death_year = ''
                             smk_creator_nationality = ''
                         
                         smk_creators=smk_creators + '{{Creator:'+smk_creator + '}}\n'
 
-                        print('smk_period=' + smk_period)
+                        debug_msg('smk_period=' + smk_period,debug_level)
 
-                        print('smk_creator='+smk_creator)
-                        print('smk_creator_date_of_death_year='+smk_creator_date_of_death_year)
-                        print('smk_creator_nationality='+smk_creator_nationality)
+                        debug_msg('smk_creator='+smk_creator,debug_level)
+                        debug_msg('smk_creator_nationality='+smk_creator_nationality,debug_level)
                     if item.get('production_date'):
                         smk_period = ''
                         try:
@@ -367,7 +396,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         except:
                             smk_period = smk_period + ''
 
-                        print('smk_period=' + smk_period)
+                        debug_msg('smk_period=' + smk_period,debug_level)
                     smk_titles=''
 
                     if item.get('titles'):
@@ -389,7 +418,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     smk_title=str(title['title'])
                             except:
                                 smk_title=''
-                            print('smk_title='+smk_title)
+                            debug_msg('smk_title='+smk_title,debug_level)
                             try:
                                 if title['language']:
                                     smk_language=str(title['language'])
@@ -404,7 +433,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             except:
                                 smk_type = ''
                             
-                            print('smk_type='+smk_type)
+                            debug_msg('smk_type='+smk_type,debug_level)
 
                             iso_code = smkapi.smk_language_code_to_iso_code(smk_language)
                             if smk_museumstitel!='':
@@ -424,7 +453,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_description = smk_description + '* {{da|' + str(description) + '}}\n'
                             except:
                                 smk_description = smk_description + ''
-                        print('smk_description='+smk_description)
+                        debug_msg('smk_description='+smk_description,debug_level)
 
                     if item.get('object_names'):
                         smk_object_names = ''
@@ -435,14 +464,17 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                                 if smk_object_name != '':
                                     object_name_en = smkapi.smk_danish_to_english(smk_object_name)
-                                    smk_category = '[[Category:' + object_name_en.capitalize() + 's in Statens Museum for Kunst]]'
+                                    smk_category = '[[Category:' + object_name_en.capitalize() + 's in the Statens Museum for Kunst]]'
                                     smk_categories = smk_categories + smk_category + '\n'
-                                    smk_object_names = smk_object_names + object_name_en.capitalize() + '\n'
+                                    if object_name_en==object_name:
+                                        smk_object_names = smk_object_names + '{{da|' + object_name_en.capitalize() + '}}\n'
+                                    else:
+                                        smk_object_names = smk_object_names + object_name_en.capitalize() + '\n'
                             except Exception as e:
                                 smk_categories = smk_categories + ''
                                 smk_object_names = smk_object_names + ''
-                        print('smk_object_names='+smk_object_names)
-                        print('smk_categories='+smk_categories)
+                        debug_msg('smk_object_names='+smk_object_names,debug_level)
+                        debug_msg('smk_categories='+smk_categories,debug_level)
 
                     if item.get('inscriptions'):
                         for inscription in item['inscriptions']: 
@@ -472,7 +504,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     smk_inscriptions = smk_inscriptions + line + '\n'
                             except:
                                 smk_inscriptions = smk_inscriptions + ''
-                        print('smk_inscription='+smk_inscriptions)
+                        debug_msg('smk_inscription='+smk_inscriptions,debug_level)
 
                     if item.get('labels'):
                         for label in item['labels']: 
@@ -494,14 +526,14 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_labels = smk_labels + '* {{da|' + text + '}}\n'
                             except:
                                 smk_labels = smk_labels + ''
-                        print('smk_labels='+smk_labels)
+                        debug_msg('smk_labels='+smk_labels,debug_level)
 
                     if item.get('dimensions'):
                         try:
                             for dimension in item['dimensions']: 
-                                print(dimension['type'])
-                                print(dimension['value'])
-                                print(dimension['unit'])
+                                debug_msg(dimension['type'],debug_level)
+                                debug_msg(dimension['value'],debug_level)
+                                debug_msg(dimension['unit'],debug_level)
                                 if 'højde'==dimension['type']:
                                     unit_height=""
                                     height=str(dimension['value'])
@@ -536,10 +568,14 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         for technique in item['techniques']: 
                             try:
                                 if str(technique) != '':
-                                    smk_techniques = smk_techniques + '{{Technique|' + smkapi.smk_danish_to_english(str(technique))+'}}\n'
+                                    technique_en=smkapi.smk_danish_to_english(str(technique))
+                                    if technique_en==str(technique):
+                                        smk_techniques = smk_techniques + '{{da|' + smkapi.smk_danish_to_english(str(technique))+'}}\n'
+                                    else:
+                                        smk_techniques = smk_techniques + '{{Technique|' + smkapi.smk_danish_to_english(str(technique))+'}}\n'
                             except:
                                 smk_techniques = smk_techniques + ''
-                        print('smk_techniques='+smk_techniques)
+                        debug_msg('smk_techniques='+smk_techniques,debug_level)
 
                     if item.get('notes'):
                         for note in item['notes']: 
@@ -547,7 +583,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_notes = smk_notes + '* {{da|'+str(note)+'}}\n'
                             except:
                                 smk_notes = smk_notes + ''
-                        print('smk_notes='+smk_notes)
+                        debug_msg('smk_notes='+smk_notes,debug_level)
 
 
                     if item.get('object_history_note'):
@@ -557,7 +593,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_object_history_note = smk_object_history_note + '* {{da|'+str(object_history) + '}}\n'
                             except:
                                 smk_object_history_note = smk_object_history_note + ''
-                        print('smk_object_history_note=' + smk_object_history_note)
+                        debug_msg('smk_object_history_note=' + smk_object_history_note,debug_level)
                     if item.get('exhibitions'):
                         smk_exhibitions = ''
                         for exhibition in item['exhibitions']: 
@@ -574,7 +610,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     smk_exhibition_end + "}}\n"
                             except:
                                 smk_exhibitions = smk_exhibitions + ''
-                        print('smk_exhibitions='+smk_exhibitions)
+                        debug_msg('smk_exhibitions='+smk_exhibitions,debug_level)
                     if item.get('collection'):
                         smk_collection = ''
                         for collection in item['collection']: 
@@ -582,7 +618,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_collection = smk_collection + str(collection) + '\n'
                             except:
                                 smk_collection = smk_collection + ''
-                        print('smk_collection='+smk_collection)
+                        debug_msg('smk_collection='+smk_collection,debug_level)
                     if item.get('artist'):
                         smk_artists = ''
                         smk_artists_filename=''
@@ -605,13 +641,13 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     # No longer generates {{Creator}} template
                                     #smk_artists=smk_artists+'{{Creator:'+smk_artist+'}}\n'
                                     smk_artists=smk_artists+smk_artist+'\n'
-                            print('smk_artist='+smk_artist)
+                            debug_msg('smk_artist='+smk_artist,debug_level)
                         # Strip trailing delimiter " - "
                         artists_filename_delim = str(' - ')
                         artists_filename_delim_length = len(artists_filename_delim)
                         if smk_artists_filename[-artists_filename_delim_length:] == ' - ':
                             smk_artists_filename=smk_artists_filename[0:-artists_filename_delim_length]
-                        print('smk_artists='+smk_artists)
+                        debug_msg('smk_artists='+smk_artists,debug_level)
                         if unknown_artist:
                             # If we encountered and unknown artist of the painting, add the Category:Artwork Cateogry:Paintings by unknown artists in the Statens Museum for Kunst
                             smk_categories=smk_categories+'[[Category:Paintings by unknown artists in the Statens Museum for Kunst]]\n'                             
@@ -622,7 +658,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     #        smk_responsible_department = item.get('responsible_department')
                     #    except:
                     #        smk_responsible_department = ''
-                    #    print('smk_responsible_department='+str(smk_responsible_department))
+                    #    debug_msg('smk_responsible_department='+str(smk_responsible_department))
                     line = ''
                     if item.get('documentation'):
                         smk_documentation = ''
@@ -632,7 +668,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                 smk_documentation = smk_documentation + '*' + line + '\n'
                             except Exception as e:
                                 smk_documentation = smk_documentation + ''
-                        print('smk_documentation='+str(smk_documentation))
+                        debug_msg('smk_documentation='+str(smk_documentation),debug_level)
 
                     # Current location is not static
                     # if item.get('current_location_name'):
@@ -641,21 +677,21 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     #        smk_current_location_name = item.get('current_location_name')
                     #    except:
                     #        smk_current_location_name = ''
-                    #    print('smk_current_location_name='+str(smk_current_location_name))
+                    #    debug_msg('smk_current_location_name='+str(smk_current_location_name))
                     if item.get('acquisition_date'):
                         smk_acquisition_date = ''
                         try:
                             smk_acquisition_date = item.get('acquisition_date')
                         except:
                             smk_acquisition_date = ''
-                        print('smk_acquisition_date='+str(smk_acquisition_date))
+                        debug_msg('smk_acquisition_date='+str(smk_acquisition_date),debug_level)
                     if item.get('acquisition_date_precision'):
                         smk_acquisition_date_precision = ''
                         try:
                             smk_acquisition_date_precision = item.get('acquisition_date_precision')
                         except:
                             smk_acquisition_date_precision = ''
-                        print('smk_acquisition_date_precision='+str(smk_acquisition_date_precision))
+                        debug_msg('smk_acquisition_date_precision='+str(smk_acquisition_date_precision),debug_level)
 
                 # try to get wikidatanumber
 
@@ -701,7 +737,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     object_type = smk_object_names,
                     location = smk_current_location_name)
 
-                artwork.GenerateWikiText()
+                #artwork.GenerateWikiText()
 
                 filetype = pathlib.Path(smk_image_native).suffix
                 filename = 'SMK_' + smk_object_number + '_' + smk_artist + '_-_' + smk_museumstitel
@@ -717,9 +753,12 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 filename = filename.replace(".", "")
 
                 # download smk_image_native
+                short_filename=""
+                pagetitle=""
+                imagepath=""
+                image_exists=False
                 if smk_has_image == 'True':
                     short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
-                    folder = './downloads/'
                     imagepath = folder + short_filename + filetype
                     if download_images:
                         if not os.path.exists(imagepath):
@@ -737,25 +776,43 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 else:
                     imagepath=''
 
-                # Save wikitext
-                path = folder + short_filename + '.txt'
+                # attempt to find wikidata item of creator
+                creator_wd_number = csvlookup.find_person_wikidata_item(smk_creator_lref)
+
+                if creator_wd_number!='':
+                    smk_artists = creator_wd_number
+
                 artwork.GenerateWikiText()
                 license = ''
                 #smk_category = '[[Category:' + batch_title + ']]'
                 #smk_categories = smk_categories + smk_category + '\n'
                 wikitext = artwork.wikitext + '\n' + license + '\n' + str(smk_categories)
-                open(path, 'w').write(wikitext)
+                # Save wikitext
+                if save_wikitext:
+                    path = folder + short_filename + '.txt'
+                    open(path, 'w').write(wikitext)
 
                 # Save RAW json
-                path = folder + short_filename + '.json'
-                open(path, 'w').write(smk_json)
+                if save_json:
+                    path = folder + short_filename + '.json'
+                    open(path, 'w').write(smk_json)
 
                 f_html.writelines('<tr>')
                 f_html.writelines('</td><td><a href="' + smk_image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
                 f_html.writelines('</tr>')
 
 #                   csvline = artwork.GenerateCSVLine()
-                csvline = str(smk_id) + ';' + str(smk_created) + ';' + str(smk_modified) + ';' + artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) + ';'+ str(smk_has_image)
+
+
+                csvline = str(smk_id) + ';' + str(smk_created) + ';' + str(smk_modified) + ';' + artwork.GenerateCSVLine() + ';' + str(smk_public_domain) + ';'+ str(smk_has_image) + ';'+ str(file_hash) + ';' + \
+                  smk_creator_forename + ';' + \
+                  smk_creator_surname + ';' + \
+                  smk_creator_date_of_death + ';' + \
+                  smk_creator_date_of_birth + ';' + \
+                  smk_creator_gender + ';' + \
+                  smk_creator_lref + ';' + \
+                  creator_wd_number
+
                 csvline = csvline.replace('\n', '<br/>')
 
                 # Print CSV line
@@ -768,7 +825,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         # image not already uploaded attempting upload to commons
 
                         try:
-                            print('Attempting upload of:' + pagetitle)
+                            debug_msg('Attempting upload of:' + pagetitle,debug_level)
                         #    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
 
                         #    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='')
@@ -776,7 +833,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             bot_status = "Media uploaded"
                         except Exception as e:
                             f_batch_log.writelines('</table>')
-                            print('EXCEPTION!')
+                            debug_msg('EXCEPTION! '+ str(e))
                             typeerror=TypeError(e)
                             bot_status = "Exception:" + str(e)
                             logging.exception(e)
@@ -785,15 +842,17 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
-                print("current_time=", current_time)
-                f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + file_hash + '\n')  
+                debug_msg("current_time="+current_time,debug_level)
+                f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + '\n')  
         
             except Exception as e:
-                print('EXCEPTION!')
+                debug_msg('EXCEPTION! '+ str(e))
                 typeerror=TypeError(e)
                 logging.exception(e)
             finally:
-                print('items='+str(items))
+                #debug_msg('items='+str(items))
+                print('\r' + str(items), end='', flush=True)
+
                 offset=offset+1
 
             if 0==rows:
@@ -806,27 +865,19 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         f_batch_log.close()
         
     except Exception as e:
+        debug_msg('EXCEPTION! '+ str(e))
         logging.exception(e)
     finally:
-        print('Export finished')
-        print('items='+str(items))
+        debug_msg('Export finished',debug_level)
+        debug_msg('items='+str(items),debug_level)
         offset=offset+1
 
 url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D&offset=0&rows=10"
 
 #result = smkitem.smkitem_from_dict(json.loads(requests.get(url).text))
 
-smk_number_list = ["KMS3625", 
-    "KMSsp211", 
-    "DEP289", 
-    "KKSgb7087", 
-    "KKS13568", 
-    "KMS7020", 
-    "KMS4231", 
-    "KMS8847", 
-    "KKSgb5548", 
-    "KKS2621"]
-smk_number_list = ["KKS13568"]
+#smk_number_list = ["KKSgb29511"]
+#smk_number_list = ["KKS13568"]
 #smk_number_list = ["KMS7270"]
 smk_number_list=None
 #smk_number_list = ["KMS1806"]
@@ -844,7 +895,7 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='all_works'
+batch_title='2022-11-24_piranesi'
 #batch_title='KMS1806'
 download_images=True
 #download_images=False
@@ -852,7 +903,10 @@ download_images=True
 upload_images=False
 #batch_size=24
 batch_size=-1
-MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size)
+save_json=True
+save_wikitext=True
+debug_level=1
+#MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size, save_json, save_wikitext)
 
 #test upload
 #filename    = "./downloads/Ambrosius Bosschaerts d.Æ., Blomsterbuket i en stenniche, 1618, KMSsp211, Statens Museum for Kunst.jpg"
@@ -864,6 +918,6 @@ MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, uploa
 #    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
 #    commons.complete_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
 #except Exception as e:
-#    print(str(e))
+#    debug_msg(str(e))
 
 

@@ -1,12 +1,12 @@
-__pycache__/
 apicache-py3/
-downloads/
+artists/
+downloads2/
+Ikke Piranesi/
 throttle.ctrl
 passwords.txt
 .gitignore
-*.pyc
+*.*.pyc
 *.log
 user-config.py
 user-config.py
-__pycache__/commons.cpython-37.pyc
-__pycache__/wikidata.cpython-37.pyc
+__pycache__/

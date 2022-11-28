@@ -1,0 +1,17 @@
+wd_reference_url = 'S854'   # wikidata reference url
+wd_inception = 'S571'       # wikidata inception date
+wd_retrived = 'S813'        # wikidata retrieved date
+wd_last_update = 'S5017'    # wikidata last_update date
+wd_publisher = 'S123'       # wikidata publisher
+wd_inventory_number = 'S217'# wikidata inventory number
+wd_has_works_in_collection = 'P6379'    # wikidata har works in the collection of
+wd_statens_museum_for_kunst = 'Q671384' # item for Statens Museum for Kunst
+wd_gender_or_sex = 'P21'    # property for gender
+wd_country_of_citizenship = 'P27' # property for country of citizenship
+wd_date_of_birth = 'P569'   # property for date of birth
+wd_date_of_death = 'P570'   # property for date of death
+wd_occupation = 'P106'      # property for occupation
+wd_artist = 'Q483501'       # item for artist
+wd_instance_of = 'P31'      # instance of
+wb_human = 'Q5'             # human item
+wb_lastest_date = 'S1326'   # latest date
