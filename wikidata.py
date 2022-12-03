@@ -379,7 +379,7 @@ def GetInstitutionWikidataWorksBy(wd_institution, output_filename):
         print('\r' + str(items), end='', flush=True)
 
 # Get all items from Statens Museum for Kunst, Wikidata Object Q671384
-GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
+#GetInstitutionWikidataItems('Q671384', 'wikidata_smk.csv')
 
 # Get all works from artist from Statens Museum for Kunst, Wikidata Object Q671384
 #GetInstitutionWikidataWorksBy('Q671384', 'wikidata_worksby_smk.csv')

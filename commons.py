@@ -67,6 +67,7 @@ class ArtworkTemplate(BaseTemplate):
     image_width: str
     object_type: str
     location: str
+    other_fields: str
 
     def __init__(self, 
         artist = '',
@@ -99,7 +100,8 @@ class ArtworkTemplate(BaseTemplate):
         image_height = '',
         image_width = '',
         object_type = '',
-        location = ''):
+        location = '',
+        other_fields = ''):
 
         self.artist = artist.rstrip('\n')
         self.nationality = nationality.rstrip('\n')
@@ -132,6 +134,8 @@ class ArtworkTemplate(BaseTemplate):
         self.imageurl = imageurl.rstrip('\n')
         self.object_type = object_type.rstrip('\n')
         self.location = location.rstrip('\n')
+        self.other_fields = other_fields.rstrip('\n')
+
         self.GenerateWikiText()
 
     def GenerateWikiText(self):
@@ -161,6 +165,7 @@ class ArtworkTemplate(BaseTemplate):
     |depicted place     = """ + str(self.depicted_place) + """
     |object type        = """ + str(self.object_type) + """
     |location           = """ + str(self.location) + """
+    |other_fields       = """ + str(self.other_fields) + """
     """
         if self.wikidata != '':
             self.wikitext = self.wikitext + """
@@ -222,7 +227,8 @@ class ArtworkTemplate(BaseTemplate):
         self.csvline = self.csvline + self.imageurl.replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + self.object_type.replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + self.location.replace(';', '&semi') + csvdelim 
-        self.csvline = self.csvline + self.medium.replace(';', '&semi') 
+        self.csvline = self.csvline + self.medium.replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + self.other_fields.replace(';', '&semi') 
     
         return self.csvline
 
@@ -286,7 +292,8 @@ class ArtworkTemplate(BaseTemplate):
           'creator_date_of_birth' + csvdelim + \
           'creator_gender' + csvdelim + \
           'creator_lref' + csvdelim + \
-          'creator_wikidata'
+          'creator_wikidata' + csvdelim + \
+          'other_fields'
     
         return self.csvheader
 

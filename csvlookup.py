@@ -19,6 +19,11 @@ all_artists_items={}
 artists_items={}
 wikidata_worksby_items={}
 person_wikidata_items={}
+all_creator_lref_to_wikidata_items={}
+smk_materials_to_wikidata_items={}
+smk_object_names_to_wikidata_items={}
+smk_artwork_types_to_wikidata_items={}
+smk_artwork_types_labels_items={}
 
 def load_wikidata_items():
     with open('wikidata_smk.csv', 'r') as file:
@@ -69,6 +74,68 @@ def load_all_artists_items():
         #all_artists_items[key] = row[0:]
         all_artists_items[key] = row
     print(all_artists_items)
+
+def load_all_creator_lref_to_wikidata_items():
+    reader = csv.reader(open('creator_lref_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
+
+    for row in reader:
+        key = row[2].lower()
+        if key in all_creator_lref_to_wikidata_items:
+            # implement your duplicate row handling here
+            pass
+        #all_artists_items[key] = row[0:]
+        all_creator_lref_to_wikidata_items[key] = row
+    print(all_creator_lref_to_wikidata_items)
+
+def load_smk_materials_to_wikidata_items():
+    reader = csv.reader(open('smk_materials_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
+
+    for row in reader:
+        key = row[0].lower()
+        if key in smk_materials_to_wikidata_items:
+            # implement your duplicate row handling here
+            pass
+        #all_artists_items[key] = row[0:]
+        smk_materials_to_wikidata_items[key] = row
+    print(smk_materials_to_wikidata_items)
+
+smk_object_names_to_wikidata_items={}
+
+def load_smk_object_names_to_wikidata_items():
+    reader = csv.reader(open('smk_object_names_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
+
+    for row in reader:
+        key = row[0].lower()
+        if key in smk_object_names_to_wikidata_items:
+            # implement your duplicate row handling here
+            pass
+        #all_artists_items[key] = row[0:]
+        smk_object_names_to_wikidata_items[key] = row
+    print(smk_object_names_to_wikidata_items)
+
+def load_smk_artwork_types_to_wikidata_items():
+    reader = csv.reader(open('smk_artwork_types_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
+
+    for row in reader:
+        key = row[0].lower()
+        if key in smk_artwork_types_to_wikidata_items:
+            # implement your duplicate row handling here
+            pass
+        #all_artists_items[key] = row[0:]
+        smk_artwork_types_to_wikidata_items[key] = row
+    print(smk_artwork_types_to_wikidata_items)
+
+def load_smk_artwork_types_labels_items():
+    reader = csv.reader(open('artwork_types_labels.csv'), quoting=csv.QUOTE_NONE, delimiter = ';')
+
+    for row in reader:
+        key = row[0].lower()
+        if key in smk_artwork_types_labels_items:
+            # implement your duplicate row handling here
+            pass
+        #all_artists_items[key] = row[0:]
+        smk_artwork_types_labels_items[key] = row
+    print(smk_artwork_types_labels_items)
 
 def save_all_artists_items():
     all_unique_artists=open('all_unique_artists.csv', 'w+')
@@ -276,7 +343,7 @@ def query_all_artists():
     count = 0
     path_csv = folder + "artists_wikidata" + '.csv'
     if not os.path.exists(path_csv):
-        csv_header = "creator_lref;creator;id;title;label;description;wikidata_dob;creator_dob;value_occupation_id;value_occupation_label_en;value_field_of_work\n"
+        csv_header = "creator_lref;creator;id;title;label;description;wikidata_dob;creator_dob;value_occupation_id;value_occupation_label_en;value_field_of_work;value_commons_category\n"
         with open(path_csv, 'w') as artists_wikidata:
             artists_wikidata.write(csv_header)
         artists_wikidata.close()
@@ -390,6 +457,15 @@ def query_all_artists():
                                                 print(value_occupation_label_en)
                                         except:
                                             value_occupation_id = ""
+                                    if property == "P373":
+                                        # commons category                            
+                                        try:
+                                            datavalue = mainsnaks.get("datavalue")
+                                            value_commons_category = datavalue.get("value")
+                                            if value_commons_category=="Anonymous work":
+                                                value_commons_category = ""
+                                        except:
+                                            value_commons_category = ""
                                     if property == "P101":
                                         # field of work                            
                                         try:
@@ -400,7 +476,7 @@ def query_all_artists():
                                             value_field_of_work = ""
                         if instance_of_human:                          
                             with open(path_csv, 'a') as artists_wikidata:
-                                artists_wikidata_line=artists_wikidata_line_prefix + id + ";" + '"' + title + '"' + ";" + '"' + label + '"' +  ";" + '"' + description + '"' + ";" + value_time + ";" + creator_date_of_birth  + ";" + value_occupation_id + ";" + '"' + value_occupation_label_en + '"' + ";" +  value_field_of_work
+                                artists_wikidata_line=artists_wikidata_line_prefix + id + ";" + '"' + title + '"' + ";" + '"' + label + '"' +  ";" + '"' + description + '"' + ";" + value_time + ";" + creator_date_of_birth  + ";" + value_occupation_id + ";" + '"' + value_occupation_label_en + '"' + ";" +  '"' + value_commons_category + '"'
                                 artists_wikidata.write(artists_wikidata_line + '\n')
                                 artists_wikidata.close()
 
@@ -607,15 +683,92 @@ def query_all_artwork_types():
     finally:
         artwork_types_labels.close()
 
+def find_wikidata_from_creator_lref(creator_lref):
+    if len(all_creator_lref_to_wikidata_items) == 0:
+        load_all_creator_lref_to_wikidata_items()
+    if creator_lref.lower() in all_creator_lref_to_wikidata_items: 
+        wikidata_item = all_creator_lref_to_wikidata_items[creator_lref.lower()][1]
+    else:
+        wikidata_item = ''
 
-#print(find_wikidata_item("123"))
-#generate_lists()
-#load_f_artists_items()
-#load_all_artists_items()
-#save_all_artists_items()
-#load_wikidata_worksby_items()
-#FindSMKArtistWikidata()
-#print(find_person_wikidata_item('244_person'))
-#query_all_artists()
-#get_creator_lref_without_q()
-#query_all_artwork_types()
+    return(wikidata_item)
+
+def find_wikidata_from_creator_name(creator_name):
+    if len(all_creator_lref_to_wikidata_items) == 0:
+        load_all_creator_lref_to_wikidata_items()
+    if creator_name.lower() in all_creator_lref_to_wikidata_items: 
+        wikidata_item = all_creator_lref_to_wikidata_items[creator_name.lower()][1]
+    else:
+        wikidata_item = ''
+
+    return(wikidata_item)
+
+def find_wikidata_from_smk_material(smk_material):
+    if len(smk_materials_to_wikidata_items) == 0:
+        load_smk_materials_to_wikidata_items()
+    if smk_material.lower() in smk_materials_to_wikidata_items: 
+        wikidata_item = smk_materials_to_wikidata_items[smk_material.lower()][1]
+    else:
+        wikidata_item = ''
+
+    return(wikidata_item)
+
+def find_wikidata_from_object_name(smk_object_name):
+    if len(smk_object_names_to_wikidata_items) == 0:
+        load_smk_object_names_to_wikidata_items()
+    if smk_object_name.lower() in smk_object_names_to_wikidata_items: 
+        wikidata_item = smk_object_names_to_wikidata_items[smk_object_name.lower()][1]
+    else:
+        wikidata_item = ''
+
+    return(wikidata_item)
+
+def find_wikidata_from_artwork_type(smk_artwork_type):
+    if len(smk_artwork_types_to_wikidata_items) == 0:
+        load_smk_artwork_types_to_wikidata_items()
+    if smk_artwork_type.lower() in smk_object_names_to_wikidata_items: 
+        wikidata_item = smk_object_names_to_wikidata_items[smk_artwork_type.lower()][1]
+    else:
+        wikidata_item = ''
+
+    return(wikidata_item)
+
+def find_english_label_from_artwork_type(smk_artwork_types_label):
+    if len(smk_artwork_types_labels_items) == 0:
+        load_smk_artwork_types_labels_items()
+    if smk_artwork_types_label.lower() in smk_artwork_types_labels_items: 
+        english_label = smk_artwork_types_labels_items[smk_artwork_types_label.lower()][3]
+    else:
+        english_label = ''
+
+    return(english_label)
+
+def Test():
+    #print(find_wikidata_item("123"))
+    #generate_lists()
+    #load_f_artists_items()
+    #load_all_artists_items()
+    #save_all_artists_items()
+    #load_wikidata_worksby_items()
+    #FindSMKArtistWikidata()
+    #print(find_person_wikidata_item('244_person'))
+    query_all_artists()
+    #get_creator_lref_without_q()
+    #query_all_artwork_types()
+    # creator_lref="1039_person"
+    # creator_wikidata=find_wikidata_from_creator_lref(creator_lref)
+    # print(creator_wikidata)
+
+    # smk_material="Æg"
+    # smk_material_wikidata=find_wikidata_from_smk_material(smk_material)
+    # print(smk_material_wikidata)
+
+    # smk_object_name="Collage"
+    # smk_object_name_wikidata=find_wikidata_from_object_name(smk_object_name)
+    # print(smk_object_name_wikidata)
+
+    # smk_artwork_type="kobberstik"
+    # smk_artwork_type_wikidata=find_wikidata_from_artwork_type(smk_artwork_type)
+    # print(smk_artwork_type_wikidata)
+
+#Test()

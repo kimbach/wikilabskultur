@@ -66,7 +66,7 @@ def get_smk_objects(smk_filter, offset, rows):
     #https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk%5D&offset=0&rows=10
     url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
     url='https://api.smk.dk/api/v1/art/search/?keys=*'
-    url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bcreator%3APiranesi%2C%20Giovanni%20Battista%5D&offset='+str(offset)+'&rows='+str(rows)
+    #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bcreator%3APiranesi%2C%20Giovanni%20Battista%5D&offset='+str(offset)+'&rows='+str(rows)
     if smk_filter!='':
         url=url+'&filters='+smk_filter
     url=url+'&offset='+str(offset)+'&rows='+str(rows)
@@ -131,7 +131,7 @@ def smk_danish_to_english(smk_danish):
      """
     switcher = {
         "altertavle (maleri)": "altarpiece",
-        "clairobscurtræsnit": "clair obscur woodcut",
+        "clairobscurtræsnit": "chiaroscuro woodcut",
         "akvarel": "water colour",
         "boghåndværk": "book craft",
         "collage": "collage",
