@@ -703,6 +703,16 @@ def find_wikidata_from_creator_name(creator_name):
 
     return(wikidata_item)
 
+def find_creator_from_creator_name(creator_name):
+    if len(all_creator_lref_to_wikidata_items) == 0:
+        load_all_creator_lref_to_wikidata_items()
+    if creator_name.lower() in all_creator_lref_to_wikidata_items: 
+            creator = all_creator_lref_to_wikidata_items[creator_name.lower()]
+    else:
+        creator = None
+
+    return(creator)
+
 def find_wikidata_from_smk_material(smk_material):
     if len(smk_materials_to_wikidata_items) == 0:
         load_smk_materials_to_wikidata_items()
@@ -742,6 +752,16 @@ def find_english_label_from_artwork_type(smk_artwork_types_label):
         english_label = ''
 
     return(english_label)
+
+def find_artwork_type_object(smk_artwork_type):
+    if len(smk_artwork_types_labels_items) == 0:
+        load_smk_artwork_types_labels_items()
+    if smk_artwork_type.lower() in smk_artwork_types_labels_items: 
+        artwork_type_object = smk_artwork_types_labels_items[smk_artwork_type.lower()]
+    else:
+        artwork_type_object = None
+    return(artwork_type_object)
+
 
 def Test():
     #print(find_wikidata_item("123"))

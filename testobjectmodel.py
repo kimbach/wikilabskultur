@@ -714,17 +714,17 @@ class Item:
         csv_str = csv_str + delimiter + production.csv_line(delimiter)
         return csv_str
 
-class Welcome:
+class SMKItem:
     items: List[Item]
 
     def __init__(self, items: List[Item]) -> None:
         self.items = items
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Welcome':
+    def from_dict(obj: Any) -> 'SMKItem':
         assert isinstance(obj, dict)
         items = from_list(Item.from_dict, obj.get("items"))
-        return Welcome(items)
+        return SMKItem(items)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -732,12 +732,12 @@ class Welcome:
         return result
 
 
-def welcome_from_dict(s: Any) -> Welcome:
-    return Welcome.from_dict(s)
+def smk_item_from_dict(s: Any) -> SMKItem:
+    return SMKItem.from_dict(s)
 
 
-def welcome_to_dict(x: Welcome) -> Any:
-    return to_class(Welcome, x)
+def smk_item_to_dict(x: SMKItem) -> Any:
+    return to_class(SMKItem, x)
 
 # Example Usage
 
@@ -776,7 +776,7 @@ def test():
             try:
                 smk_json=smkapi.get_smk_objects(smk_filter,offset, rows)
                 smk_objects=json.loads(smk_json)
-                smk_object_model = welcome_from_dict(smk_objects)
+                smk_object_model = smk_item_from_dict(smk_objects)
                 for item in smk_object_model.items:
                     #for production in item.production:
                     #    csv_str = item.production_csv(production, ";")
@@ -837,7 +837,7 @@ def test():
                 smk_json=smkapi.get_smk_object(current_number)
                 smk_objects=json.loads(smk_json)
                 
-                smk_object_model = welcome_from_dict(smk_objects)
+                smk_object_model = smk_item_from_dict(smk_objects)
                 
                 for item in smk_object_model.items:
                     for production in item.production:
