@@ -76,11 +76,11 @@ class Dimension:
     @staticmethod
     def from_dict(obj: Any) -> 'Dimension':
         assert isinstance(obj, dict)
-        notes = from_str(obj.get("notes"))
-        part = from_str(obj.get("part"))
-        type = from_str(obj.get("type"))
-        unit = from_str(obj.get("unit"))
-        value = from_str(obj.get("value"))
+        notes = from_str(obj.get("notes", ""))
+        part = from_str(obj.get("part", ""))
+        type = from_str(obj.get("type", ""))
+        unit = from_str(obj.get("unit", ""))
+        value = from_str(obj.get("value", ""))
         return Dimension(notes, part, type, unit, value)
 
     def to_dict(self) -> dict:
@@ -98,9 +98,9 @@ class Documentation:
     author: str
     notes: str
     shelfmark: str
-    year_of_publication: int
+    year_of_publication: str
 
-    def __init__(self, title: str, author: str, notes: str, shelfmark: str, year_of_publication: int) -> None:
+    def __init__(self, title: str, author: str, notes: str, shelfmark: str, year_of_publication: str) -> None:
         self.title = title
         self.author = author
         self.notes = notes
@@ -110,11 +110,11 @@ class Documentation:
     @staticmethod
     def from_dict(obj: Any) -> 'Documentation':
         assert isinstance(obj, dict)
-        title = from_str(obj.get("title"))
-        author = from_str(obj.get("author"))
-        notes = from_str(obj.get("notes"))
-        shelfmark = from_str(obj.get("shelfmark"))
-        year_of_publication = int(from_str(obj.get("year_of_publication")))
+        title = from_str(obj.get("title", ""))
+        author = from_str(obj.get("author", ""))
+        notes = from_str(obj.get("notes", ""))
+        shelfmark = from_str(obj.get("shelfmark", ""))
+        year_of_publication = from_str(obj.get("year_of_publication", ""))
         return Documentation(title, author, notes, shelfmark, year_of_publication)
 
     def to_dict(self) -> dict:
@@ -141,10 +141,10 @@ class Labels:
     @staticmethod
     def from_dict(obj: Any) -> 'Labels':
         assert isinstance(obj, dict)
-        text = from_str(obj.get("text"))
-        type = from_str(obj.get("type"))
-        source = from_str(obj.get("source"))
-        date = from_datetime(obj.get("date"))
+        text = from_str(obj.get("text"), "")
+        type = from_str(obj.get("type"), "")
+        source = from_str(obj.get("source"), "")
+        date = from_datetime(obj.get("date"), None)
         return Labels(text, type, source, date)
 
     def to_dict(self) -> dict:
@@ -170,9 +170,9 @@ class Exhibition:
     @staticmethod
     def from_dict(obj: Any) -> 'Exhibition':
         assert isinstance(obj, dict)
-        exhibition = from_str(obj.get("exhibition"))
-        date_start = from_datetime(obj.get("date_start"))
-        date_end = from_datetime(obj.get("date_end"))
+        exhibition = from_str(obj.get("exhibition", ""))
+        date_start = from_datetime(obj.get("date_start", None))
+        date_end = from_datetime(obj.get("date_end", None))
         venue = from_str(obj.get("venue"))
         return Exhibition(exhibition, date_start, date_end, venue)
 
@@ -188,22 +188,29 @@ class Exhibition:
 class Inscription:
     content: str
     type: str
+    language: str
+    position: str
 
-    def __init__(self, content: str, type: str) -> None:
+    def __init__(self, content: str, type: str, language: str, position: str) -> None:
         self.content = content
         self.type = type
+        self.language = language
+        self.position = position
 
     @staticmethod
     def from_dict(obj: Any) -> 'Inscription':
         assert isinstance(obj, dict)
-        content = from_str(obj.get("content"))
-        type = from_str(obj.get("type"))
-        return Inscription(content, type)
+        content = from_str(obj.get("content", ""))
+        type = from_str(obj.get("type", ""))
+        language = from_str(obj.get("language", ""))
+        position = from_str(obj.get("position", ""))
+        return Inscription(content, type, language, position)
 
     def to_dict(self) -> dict:
         result: dict = {}
         result["content"] = from_str(self.content)
         result["type"] = from_str(self.type)
+        result["language"] = from_str(self.language)
         return result
 
 
@@ -216,7 +223,7 @@ class ObjectName:
     @staticmethod
     def from_dict(obj: Any) -> 'ObjectName':
         assert isinstance(obj, dict)
-        name = from_str(obj.get("name"))
+        name = from_str(obj.get("name", ""))
         return ObjectName(name)
 
     def to_dict(self) -> dict:
@@ -251,39 +258,39 @@ class Production:
     def from_dict(obj: Any) -> 'Production':
         assert isinstance(obj, dict)
         try:
-            creator = from_str(obj.get("creator"))
+            creator = from_str(obj.get("creator", ""))
         except:
             creator = ""
         try:
-            creator_forename = from_str(obj.get("creator_forename"))
+            creator_forename = from_str(obj.get("creator_forename", ""))
         except:
             creator_forename = ""
         try:
-            creator_surname = from_str(obj.get("creator_surname"))
+            creator_surname = from_str(obj.get("creator_surname", ""))
         except:
             creator_surname = ""
         try:
-            creator_date_of_birth = from_datetime(obj.get("creator_date_of_birth"))
+            creator_date_of_birth = from_datetime(obj.get("creator_date_of_birth", None))
         except:
             creator_date_of_birth = ""
         try:
-            creator_date_of_death = from_datetime(obj.get("creator_date_of_death"))
+            creator_date_of_death = from_datetime(obj.get("creator_date_of_death"), None)
         except:
             creator_date_of_death = ""
         try:
-            creator_nationality = from_str(obj.get("creator_nationality"))
+            creator_nationality = from_str(obj.get("creator_nationality", ""))
         except:
             creator_nationality = ""
         try:
-            creator_gender = from_str(obj.get("creator_gender"))
+            creator_gender = from_str(obj.get("creator_gender", ""))
         except:
             creator_gender = ""
         try:
-            creator_history = from_str(obj.get("creator_history"))
+            creator_history = from_str(obj.get("creator_history", ""))
         except:
             creator_history = ""
         try:
-            creator_lref = from_str(obj.get("creator_lref"))
+            creator_lref = from_str(obj.get("creator_lref", ""))
         except:
             creator_lref = ""
         return Production(creator, creator_forename, creator_surname, creator_date_of_birth, creator_date_of_death, creator_nationality, creator_gender, creator_history, creator_lref)
@@ -344,9 +351,9 @@ class ProductionDate:
     @staticmethod
     def from_dict(obj: Any) -> 'ProductionDate':
         assert isinstance(obj, dict)
-        start = from_datetime(obj.get("start"))
-        end = from_datetime(obj.get("end"))
-        period = int(from_str(obj.get("period")))
+        start = from_datetime(obj.get("start", None))
+        end = from_datetime(obj.get("end", None))
+        period = int(from_str(obj.get("period", None)))
         return ProductionDate(start, end, period)
 
     def to_dict(self) -> dict:
@@ -370,9 +377,9 @@ class Title:
     @staticmethod
     def from_dict(obj: Any) -> 'Title':
         assert isinstance(obj, dict)
-        title = from_str(obj.get("title"))
-        type = from_str(obj.get("type"))
-        language = from_str(obj.get("language"))
+        title = from_str(obj.get("title", ""))
+        type = from_str(obj.get("type", ""))
+        language = from_str(obj.get("language", ""))
         return Title(title, type, language)
 
     def to_dict(self) -> dict:
@@ -489,110 +496,113 @@ class Item:
     def from_dict(obj: Any) -> 'Item':
         assert isinstance(obj, dict)
         try:
-            id = from_str(obj.get("id"))
+            id = from_str(obj.get("id"), "")
         except:
             id = ""
         try:
-            created = from_datetime(obj.get("created"))
+            created = from_datetime(obj.get("created", None))
         except:
             created = None
         try:
-            modified = from_datetime(obj.get("modified"))
+            modified = from_datetime(obj.get("modified", None))
         except:
             modified = None
         try:
-            responsible_department = from_str(obj.get("responsible_department"))
+            responsible_department = from_str(obj.get("responsible_department"), "")
         except:
             responsible_department = ""
         try:
-            collection = from_str(obj.get("collection"))
+            collection = from_str(obj.get("collection"), [])
         except:
             collection = []
         try:
-            backside_protection = from_bool(obj.get("backside_protection"))
+            backside_protection = from_bool(obj.get("backside_protection", None))
         except:
-            backside_protection = ""
+            backside_protection = None
 
         try:
-            acquisition_date = from_datetime(obj.get("acquisition_date"))
+            acquisition_date = from_datetime(obj.get("acquisition_date", None))
         except:
             acquisition_date = None
         try:
-            acquisition_date_precision = from_datetime(obj.get("acquisition_date_precision"))
+            acquisition_date_precision = from_datetime(obj.get("acquisition_date_precision", None))
         except:
             acquisition_date_precision = None
         try:
-            dimensions = from_list(Dimension.from_dict, obj.get("dimensions"))
-        except:
+            dimensions = from_list(Dimension.from_dict, obj.get("dimensions", []))
+        except Exception as e:
             dimensions = []
-
+            print('EXCEPTION! '+ str(e))
+            logging.exception(e)
         try:
-            documentation = from_list(Documentation.from_dict, obj.get("documentation"))
-        except:
+            documentation = from_list(Documentation.from_dict, obj.get("documentation", []))
+        except Exception as e:
             documentation = []
+            print('EXCEPTION! '+ str(e))
+            logging.exception(e)
 
         try:
-            labels = from_list(Labels.from_dict, obj.get("labels"))
+            labels = from_list(Labels.from_dict, obj.get("labels", []))
         except:
             labels = []
         
         try:
-            exhibitions = from_list(Exhibition.from_dict, obj.get("exhibitions"))
+            exhibitions = from_list(Exhibition.from_dict, obj.get("exhibitions", []))
         except:
             exhibitions = []
         
         try:
-            inscriptions = from_list(Inscription.from_dict, obj.get("inscriptions"))
+            inscriptions = from_list(Inscription.from_dict, obj.get("inscriptions", []))
         except:
             inscriptions = []
 
         try:
-            materials = from_list(from_str, obj.get("materials"))
+            materials = from_list(from_str, obj.get("materials", []))
         except:
             materials = []
 
         try:
-            object_names = from_list(ObjectName.from_dict, obj.get("object_names"))
+            object_names = from_list(ObjectName.from_dict, obj.get("object_names", []))
         except:
             object_names = []
         
         try:
-            production = from_list(Production.from_dict, obj.get("production"))
+            production = from_list(Production.from_dict, obj.get("production", []))
         except:
             production = []
         
         try:
-            production_date = from_list(ProductionDate.from_dict, obj.get("production_date"))
+            production_date = from_list(ProductionDate.from_dict, obj.get("production_date", []))
         except:
             production_date = []
         
         try:
-            techniques = from_list(from_str, obj.get("techniques"))
+            techniques = from_list(from_str, obj.get("techniques", []))
         except:
             techniques = []
 
         try:
-            titles = from_list(Title.from_dict, obj.get("titles"))
+            titles = from_list(Title.from_dict, obj.get("titles", []))
         except:
             titles = []
         
         try:
-            medium = from_list(from_str, obj.get("medium"))
+            medium = from_list(from_str, obj.get("medium", []))
         except:
             medium = []
         
         try:
-            notes = from_list(from_str, obj.get("notes"))
+            notes = from_list(from_str, obj.get("notes", []))
         except:
             notes = []
 
         try:
-            object_history_note = from_list(from_str, obj.get("object_history_note"))
+            object_history_note = from_list(from_str, obj.get("object_history_note", []))
         except:
             object_history_note = []
 
         try:
-            number_of_parts = from_int(obj.get("number_of_parts"))
+            number_of_parts = from_int(obj.get("number_of_parts", None))
         except:
             number_of_parts = -1
         try:
@@ -601,105 +611,105 @@ class Item:
             object_number = ""
 
         try:
-            object_url = from_str(obj.get("object_url"))
+            object_url = from_str(obj.get("object_url", ""))
         except:
             object_url = ""
         try:
-            frontend_url = from_str(obj.get("frontend_url"))
+            frontend_url = from_str(obj.get("frontend_url", ""))
         except:
             frontend_url = ""
         try:
-            iiif_manifest = from_str(obj.get("iiif_manifest"))
+            iiif_manifest = from_str(obj.get("iiif_manifest", ""))
         except:
             iiif_manifest = ""
         try:
-            enrichment_url = from_str(obj.get("enrichment_url"))
+            enrichment_url = from_str(obj.get("enrichment_url", ""))
         except:
             enrichment_url = ""
         try:
-            similar_images_url = from_str(obj.get("similar_images_url"))
+            similar_images_url = from_str(obj.get("similar_images_url", ""))
         except:
             similar_images_url = ""
         try:    
-            production_dates_notes = from_list(from_str, obj.get("production_dates_notes"))
+            production_dates_notes = from_list(from_str, obj.get("production_dates_notes", []))
         except:
             production_dates_notes = []
         try:
-            public_domain = from_bool(obj.get("public_domain"))
+            public_domain = from_bool(obj.get("public_domain", None))
         except:
             public_domain = False
         try:
-            rights = from_str(obj.get("rights"))
+            rights = from_str(obj.get("rights", ""))
         except:
             rights = ""
         try:
-            on_display = from_bool(obj.get("on_display"))
+            on_display = from_bool(obj.get("on_display", None))
         except:
             on_display = False
         try:
-            has_image = from_bool(obj.get("has_image"))
+            has_image = from_bool(obj.get("has_image", None))
         except:
             has_image = False
         try:
-            image_width = from_int(obj.get("image_width"))
+            image_width = from_int(obj.get("image_width", None))
         except:
             image_width = -1
         try:
-            image_height = from_int(obj.get("image_height"))
+            image_height = from_int(obj.get("image_height", None))
         except:
             image_height = -1
         try:
-            image_thumbnail = from_str(obj.get("image_thumbnail"))
+            image_thumbnail = from_str(obj.get("image_thumbnail, """))
         except:
             image_thumbnail = ""
         try:
-            image_native = from_str(obj.get("image_native"))
+            image_native = from_str(obj.get("image_native", ""))
         except:
             image_native = ""
         try:
-            colors = from_list(from_str, obj.get("colors"))
+            colors = from_list(from_str, obj.get("colors", []))
         except:
             colors = []
 
         try:
-            suggested_bg_color = from_list(from_str, obj.get("suggested_bg_color"))
+            suggested_bg_color = from_list(from_str, obj.get("suggested_bg_color", []))
         except:
             suggested_bg_color = []
 
         try:
-            entropy = from_float(obj.get("entropy"))
+            entropy = from_float(obj.get("entropy", None))
         except:
             entropy = -1
         try:
-            contrast = from_float(obj.get("contrast"))
+            contrast = from_float(obj.get("contrast", None))
         except:
             contrast = -1
         try:
-            saturation = from_float(obj.get("saturation"))
+            saturation = from_float(obj.get("saturation", None))
         except:
             saturation = -1
         try:
-            colortemp = from_float(obj.get("colortemp"))
+            colortemp = from_float(obj.get("colortemp", None))
         except:
             colortemp = -1
         try:
-            brightness = from_float(obj.get("brightness"))
+            brightness = from_float(obj.get("brightness", None))
         except:
             brightness = -1
         try:
-            has_text = from_bool(obj.get("has_text"))
+            has_text = from_bool(obj.get("has_text", None))
         except:
             has_text = -1
         try:
-            has_3_d_file = from_bool(obj.get("has_3d_file"))
+            has_3_d_file = from_bool(obj.get("has_3d_file", None))
         except:
             has_3_d_file = -1
         try:
-            artist = from_list(from_str, obj.get("artist"))
+            artist = from_list(from_str, obj.get("artist", []))
         except:
             artist = []
         try:
-            content_description = from_list(from_str, obj.get("content_description"))
+            content_description = from_list(from_str, obj.get("content_description", []))
         except:
             content_description = []
 
@@ -781,7 +791,7 @@ class SMKItem:
     @staticmethod
     def from_dict(obj: Any) -> 'SMKItem':
         assert isinstance(obj, dict)
-        items = from_list(Item.from_dict, obj.get("items"))
+        items = from_list(Item.from_dict, obj.get("items", []))
         return SMKItem(items)
 
     def to_dict(self) -> dict:

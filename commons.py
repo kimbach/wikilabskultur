@@ -25,7 +25,6 @@ import smkitem
 import pywikibot
 from pywikibot.specialbots import UploadRobot
 
-
 @dataclass
 class BaseTemplate(metaclass=ABCMeta):
     @abstractmethod
@@ -71,6 +70,10 @@ class ArtworkTemplate(BaseTemplate):
     _object_type: str
     _location: str
     _other_fields: str
+    _artists_filename: str
+    _has_artist_wikidata: bool
+    _museumtitle: str
+
 
     @property
     def artist(self):
@@ -216,6 +219,18 @@ class ArtworkTemplate(BaseTemplate):
     def other_fields(self):
         return self._other_fields
 
+    @property
+    def artists_filename(self):
+        return self._artists_filename
+
+    @property
+    def has_artist_wikidata(self):
+        return self._has_artist_wikidata
+
+    @property
+    def museumtitle(self):
+        return self._museumtitle
+
     def __init__(self, *objs):
         # Constructor, supports several object types in the objs argument
     
@@ -234,10 +249,11 @@ class ArtworkTemplate(BaseTemplate):
                     # nationality
                     self.nationality = ''
 
+
                     #     self.author: str
 
-                    #     self.title: str
-                    #     self.desc: str
+                    self.title = ''
+                    self.desc = ''
                         
                     #     self.depicted_people: str
                         
@@ -254,7 +270,7 @@ class ArtworkTemplate(BaseTemplate):
                     #     self.exhibition_history: str
                     #     self.object_history: str 
                     #     self.credit_line: str
-                    #     self.inscriptions: str
+                    self.inscriptions = ''
                     #     self.notes: str
 
                     #     # accession_number
@@ -279,6 +295,9 @@ class ArtworkTemplate(BaseTemplate):
                     #     self.location: str
                     # Other fields
                     self.other_fields = ''
+                    self.artists_filename = ''
+                    self.has_artist_wikidata = ''
+                    self.museumtitle = ''
 
     @property
     def accession_number(self):
@@ -432,37 +451,49 @@ class ArtworkTemplate(BaseTemplate):
     def csvheader(self, new_csvheader):
         self._csvheader = new_csvheader
 
+    @artists_filename.setter
+    def artists_filename(self, new_artists_filename):
+        self._artists_filename = new_artists_filename
+
+    @has_artist_wikidata.setter
+    def has_artist_wikidata(self, new_has_artist_wikidata):
+        self._has_artist_wikidata = new_has_artist_wikidata
+
+    @museumtitle.setter
+    def museumtitle(self, new_museumtitle):
+        self._museumtitle = new_museumtitle
+
     def GenerateWikiText(self):
         #complete this once if applies to all files
         
         self._wikitext = u"""== {{int:filedesc}} ==
 {{Artwork
- | artist             = """ + str(self.artist) + """
- | author             = """ + str(self.author) + """
- | title              = """ + str(self.title) + """
- | description        = """ + str(self.desc) + """
- | depicted people    = """ + str(self.depicted_people) + """
- | date               = """ + str(self.date) + """
- | medium             = """ + str(self.medium) + """
- | dimensions         = """ + str(self.dimensions) + """
- | institution        = """ + str(self.institution) + """
- | department         = """ + str(self.department) + """
- | place of discovery = """ + str(self.place_of_discovery) + """
- | object history     = """ + str(self.object_history) + """ 
- | exhibition history = """ + str(self.exhibition_history) + """
- | credit line        = """ + str(self.credit_line) + """
- | inscriptions       = """ + str(self.inscriptions) + """
- | notes              = """ + str(self.notes) + """
- | accession number   = """ + str(self.accession_number) + """
- | place of creation  = """ + str(self.place_of_creation) + """
- | source             = """ + str(self.source) + """
- | other_versions     = """ + str(self.other_versions) + """
- | references         = """ + str(self.references) + """
- | depicted place     = """ + str(self.depicted_place) + """
- | object type        = """ + str(self.object_type) + """
- | location           = """ + str(self.location) + """
+ | artist             = """ + str(self.artist).rstrip() + """
+ | author             = """ + str(self.author).rstrip() + """
+ | title              = """ + str(self.title).rstrip() + """
+ | description        = """ + str(self.desc).rstrip() + """
+ | depicted people    = """ + str(self.depicted_people).rstrip() + """
+ | date               = """ + str(self.date).rstrip() + """
+ | medium             = """ + str(self.medium).rstrip() + """
+ | dimensions         = """ + str(self.dimensions).rstrip() + """
+ | institution        = """ + str(self.institution).rstrip() + """
+ | department         = """ + str(self.department).rstrip() + """
+ | place of discovery = """ + str(self.place_of_discovery).rstrip() + """
+ | object history     = """ + str(self.object_history).rstrip() + """ 
+ | exhibition history = """ + str(self.exhibition_history).rstrip() + """
+ | credit line        = """ + str(self.credit_line).rstrip() + """
+ | inscriptions       = """ + str(self.inscriptions).rstrip() + """
+ | notes              = """ + str(self.notes).rstrip() + """
+ | accession number   = """ + str(self.accession_number).rstrip() + """
+ | place of creation  = """ + str(self.place_of_creation).rstrip() + """
+ | source             = """ + str(self.source).rstrip() + """
+ | other_versions     = """ + str(self.other_versions).rstrip() + """
+ | references         = """ + str(self.references).rstrip() + """
+ | depicted place     = """ + str(self.depicted_place).rstrip() + """
+ | object type        = """ + str(self.object_type).rstrip() + """
+ | location           = """ + str(self.location).rstrip() + """
  | other_fields       = """ + str(self.other_fields) + """
- | wikidata           = """ + str(self.wikidata) + """
+ | wikidata           = """ + str(self.wikidata).rstrip() + """
 }} 
 
 == {{int:license-header}} ==
@@ -858,6 +889,22 @@ def complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories
 #    print(page.text)
     #page.text = description
     #page.save('Replacing description')  # Saves the page
+
+def CreateCategory(category_pagetitle, category_wikitext, upload_to_commons):
+    # Create category wikitext
+    try:
+        # check if category exists
+        result = requests.get('https://commons.wikimedia.org/wiki/' + category_pagetitle)
+        if result.status_code == 200:  
+            # the category exists
+            pass  # blablabla
+        else:
+            # the category doesn't exists, attempt to create it
+            if upload_to_commons:
+                complete_desc_and_upload(category_pagetitle, desc=category_wikitext, date='', categories='', edit_summary='Created category')
+    except Exception as e:
+        print('EXCEPTION!' + str(e))
+
 
 def UploadTest():
     #list each file here

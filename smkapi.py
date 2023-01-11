@@ -365,26 +365,11 @@ def smk_documentation_to_commons_citation(smk_documentation):
     notes = ''
     shelfmark = ''
     year_of_publication = ''
-    if smk_documentation.get('title') is not None:
-        title = str(smk_documentation.get('title'))
-        if title == 'None':
-            title = ''
-    if smk_documentation.get('author') is not None:
-        author = str(smk_documentation.get('author')) 
-        if author == 'None':
-            author = ''
-    if smk_documentation.get('notes') is not None:
-        notes = str(smk_documentation.get('notes'))
-        if notes == 'None':
-            notes = ''
-    if smk_documentation.get('shelfmark') is not None:
-        shelfmark = str(smk_documentation.get('shelfmark'))
-        if shelfmark == 'None':
-            shelfmark = ''
-    if smk_documentation.get('year_of_publication') is not None:
-        year_of_publication = str(smk_documentation.get('year_of_publication'))
-        if year_of_publication == 'None':
-            year_of_publication = ''
+    title = str(smk_documentation.title)
+    author = str(smk_documentation.author) 
+    notes = str(smk_documentation.notes)
+    shelfmark = str(smk_documentation.shelfmark)
+    year_of_publication = str(smk_documentation.year_of_publication)
     if title != '' or author != '' or notes != '' or shelfmark != '' or year_of_publication != '':
         commons_cite = '{{citation'
         if title != '':
