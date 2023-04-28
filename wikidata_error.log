@@ -3544,3 +3544,1276 @@ requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetErro
 2022-07-02 01:54:10 Dropped throttle(s).
 2022-07-02 01:54:10 Closing network session.
 2022-07-02 01:54:10 Network session closed.
+2023-02-10 16:21:42 
+2023-02-10 16:21:42 === Pywikibot framework v6.6.3 -- Logging header ===
+2023-02-10 16:21:42 COMMAND: ['/Users/kimbach/Documents/wikilabskultur/batchupload/csvlookup.py']
+2023-02-10 16:21:42 DATE: 2023-02-10 15:21:42.206418 UTC
+2023-02-10 16:21:42 VERSION: pywikibot/__init__.py (, -1 (unknown), 2021/12/15, 13:01:25, n/a)
+2023-02-10 16:21:42 SYSTEM: posix.uname_result(sysname='Darwin', nodename='Isis.webspeed.dk', release='22.2.0', version='Darwin Kernel Version 22.2.0: Fri Nov 11 02:08:47 PST 2022; root:xnu-8792.61.2~4/RELEASE_X86_64', machine='x86_64')
+2023-02-10 16:21:42 CONFIG FILE DIR: /Users/kimbach/Documents/wikilabskultur/batchupload
+2023-02-10 16:21:42 PACKAGES:
+2023-02-10 16:21:42 MODULES:
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/exceptions.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__version__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/utils.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/certs.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/core.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/_internal_utils.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/compat.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/cookies.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/structures.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/packages.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2023-02-10 16:21:42   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/models.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/hooks.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/auth.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/status_codes.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/api.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/sessions.py
+2023-02-10 16:21:42   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/adapters.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/__init__.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_version.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/__init__.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/_parser.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/relativedelta.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_common.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/__init__.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/tz.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_common.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_factories.py
+2023-02-10 16:21:42   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/isoparser.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__init__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/config.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__metadata__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/backports.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/logging.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/__init__.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/extern/__init__.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/__init__.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/py31compat.py
+2023-02-10 16:21:42   2019-02-09 19:09:29 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/appdirs.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__about__.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__init__.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/version.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_structures.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/specifiers.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_compat.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/requirements.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py
+2023-02-10 16:21:42   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/markers.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_unidata.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/exceptions.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/_wbtypes.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/daemonize.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/i18n.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/plural.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/version.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/__init__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot_choice.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_logging.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/formatter.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/__init__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_base.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/transliteration.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/_interface_base.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_unix.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/diff.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/chars.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/family.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_apisite.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/__init__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/api.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/login.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/textlib.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/__init__.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/compat.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/definitions.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/__init__.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/string_mixin.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/__init__.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/attribute.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/utils.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/smart_list.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/parameter.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/text.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/argument.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/comment.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/external_link.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/heading.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/html_entity.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/tag.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/template.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/wikilink.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/__init__.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/builder.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/tokens.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/wikicode.py
+2023-02-10 16:21:42   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/_tokenizer.cpython-37m-darwin.so
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_basesite.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_namespace.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/throttle.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_decorators.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_extensions.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/echo.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_generators.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_interwikimap.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_siteinfo.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_tokenwallet.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_datasite.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_obsoletesites.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/__init__.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_collections.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_decorators.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_revision.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/pagegenerators.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/date.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/xmlreader.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/proofreadpage.py
+2023-02-10 16:21:42   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/families/wikidata_family.py
+2023-02-10 16:21:42 =========================================================
+2023-02-10 16:21:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:21:42 Found candidate wikidata:wikidata
+2023-02-10 16:21:49 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:26:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:26:49 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:31:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:31:50 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:36:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:36:51 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:41:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:41:51 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:46:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:46:52 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:51:43 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:51:52 Found 1 commons:commons processes running, including this one.
+2023-02-10 16:56:43 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 16:56:53 Found 1 commons:commons processes running, including this one.
+2023-02-10 18:11:45 
+2023-02-10 18:11:45 === Pywikibot framework v6.6.3 -- Logging header ===
+2023-02-10 18:11:45 COMMAND: ['/Users/kimbach/Documents/wikilabskultur/batchupload/wikidata.py']
+2023-02-10 18:11:45 DATE: 2023-02-10 17:11:45.355781 UTC
+2023-02-10 18:11:45 VERSION: pywikibot/__init__.py (, -1 (unknown), 2021/12/15, 13:01:25, n/a)
+2023-02-10 18:11:45 SYSTEM: posix.uname_result(sysname='Darwin', nodename='Isis.webspeed.dk', release='22.2.0', version='Darwin Kernel Version 22.2.0: Fri Nov 11 02:08:47 PST 2022; root:xnu-8792.61.2~4/RELEASE_X86_64', machine='x86_64')
+2023-02-10 18:11:45 CONFIG FILE DIR: /Users/kimbach/Documents/wikilabskultur/batchupload
+2023-02-10 18:11:45 PACKAGES:
+2023-02-10 18:11:45 MODULES:
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/__init__.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_version.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/__init__.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/_parser.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/relativedelta.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_common.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/__init__.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/tz.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_common.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_factories.py
+2023-02-10 18:11:45   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/isoparser.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__init__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/config.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__metadata__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/backports.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/logging.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/__init__.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/extern/__init__.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/__init__.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/py31compat.py
+2023-02-10 18:11:45   2019-02-09 19:09:29 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/appdirs.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__about__.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__init__.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/version.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_structures.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/specifiers.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_compat.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/requirements.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py
+2023-02-10 18:11:45   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/markers.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_unidata.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/exceptions.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/_wbtypes.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/daemonize.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/i18n.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/plural.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/version.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/__init__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/exceptions.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__version__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/utils.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/certs.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/core.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/_internal_utils.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/compat.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/cookies.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/structures.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/packages.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2023-02-10 18:11:45   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/models.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/hooks.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/auth.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/status_codes.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/api.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/sessions.py
+2023-02-10 18:11:45   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/adapters.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot_choice.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_logging.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/formatter.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/__init__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_base.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/transliteration.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/_interface_base.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_unix.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/diff.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/chars.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/family.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_apisite.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/__init__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/api.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/login.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/textlib.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/__init__.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/compat.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/definitions.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/__init__.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/string_mixin.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/__init__.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/attribute.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/utils.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/smart_list.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/parameter.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/text.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/argument.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/comment.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/external_link.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/heading.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/html_entity.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/tag.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/template.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/wikilink.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/__init__.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/builder.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/tokens.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/wikicode.py
+2023-02-10 18:11:45   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/_tokenizer.cpython-37m-darwin.so
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_basesite.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_namespace.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/throttle.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_decorators.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_extensions.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/echo.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_generators.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_interwikimap.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_siteinfo.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_tokenwallet.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_datasite.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_obsoletesites.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/__init__.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_collections.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_decorators.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_revision.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/pagegenerators.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/date.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/xmlreader.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/proofreadpage.py
+2023-02-10 18:11:45   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/families/wikidata_family.py
+2023-02-10 18:11:45 =========================================================
+2023-02-10 18:11:45 Found candidate wikidata:wikidata
+2023-02-10 18:11:50 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 18:11:51 Found 1 commons:commons processes running, including this one.
+2023-02-10 18:16:51 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 18:16:51 Found 1 commons:commons processes running, including this one.
+2023-02-10 19:10:37 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20536697&action=wbgetentities&maxlag=5&format=json
+2023-02-10 19:10:37 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.wikidata.org', port=443): Read timed out. (read timeout=45)
+
+2023-02-10 19:10:37 /w/api.php?ids=Q20536697&action=wbgetentities&maxlag=5&format=json, ids=Q20536697&action=wbgetentities&maxlag=5&format=json
+2023-02-10 19:10:37 Waiting 5.0 seconds before retrying.
+2023-02-10 19:10:42 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 19:10:43 Found 1 commons:commons processes running, including this one.
+2023-02-10 19:10:43 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-02-10 19:10:43 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+
+2023-02-10 19:10:43 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AThorald+L%C3%A6ss%C3%B8e+-+Vej+gennem+en+dansk+landsby+-+KMS3309+-+Statens+Museum+for+Kunst.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-02-10 19:10:43 Waiting 5.0 seconds before retrying.
+2023-02-10 19:15:43 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 19:15:43 Found 1 commons:commons processes running, including this one.
+2023-02-10 19:20:44 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 19:20:45 Found 1 commons:commons processes running, including this one.
+2023-02-10 19:45:24 Found 1 commons:commons processes running, including this one.
+2023-02-10 19:45:24 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-02-10 19:45:24 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+
+2023-02-10 19:45:24 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AJ.A.+Jerichau+-+The+Road+to+Golgatha+-+KMS6730+-+Statens+Museum+for+Kunst.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-02-10 19:45:24 Waiting 5.0 seconds before retrying.
+2023-02-10 19:45:30 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 21:16:36 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 21:16:36 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20276257&action=wbgetentities&maxlag=5&format=json
+2023-02-10 21:16:36 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+
+2023-02-10 21:16:36 /w/api.php?ids=Q20276257&action=wbgetentities&maxlag=5&format=json, ids=Q20276257&action=wbgetentities&maxlag=5&format=json
+2023-02-10 21:16:36 Waiting 5.0 seconds before retrying.
+2023-02-10 21:16:43 Found 1 commons:commons processes running, including this one.
+2023-02-10 21:16:43 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-02-10 21:16:43 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+
+2023-02-10 21:16:43 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AAnna+Syberg+-+Georginer+i+et+glas+-+KMS3664+-+Statens+Museum+for+Kunst.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-02-10 21:16:43 Waiting 5.0 seconds before retrying.
+2023-02-10 21:21:36 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 21:21:43 Found 1 commons:commons processes running, including this one.
+2023-02-10 21:26:36 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 21:26:44 Found 1 commons:commons processes running, including this one.
+2023-02-10 21:31:37 Found 1 wikidata:wikidata processes running, including this one.
+2023-02-10 21:31:45 Found 1 commons:commons processes running, including this one.
+2023-02-10 21:35:10 Dropped throttle(s).
+2023-02-10 21:35:10 Closing network session.
+2023-02-10 21:35:10 Network session closed.
+2023-04-26 12:32:14 
+2023-04-26 12:32:14 === Pywikibot framework v6.6.3 -- Logging header ===
+2023-04-26 12:32:14 COMMAND: ['/Users/kimbach/Documents/wikilabskultur/batchupload/wikidata.py']
+2023-04-26 12:32:14 DATE: 2023-04-26 10:32:14.369477 UTC
+2023-04-26 12:32:14 VERSION: pywikibot/__init__.py (, -1 (unknown), 2021/12/15, 13:01:25, n/a)
+2023-04-26 12:32:14 SYSTEM: posix.uname_result(sysname='Darwin', nodename='Isis.webspeed.dk', release='22.2.0', version='Darwin Kernel Version 22.2.0: Fri Nov 11 02:08:47 PST 2022; root:xnu-8792.61.2~4/RELEASE_X86_64', machine='x86_64')
+2023-04-26 12:32:14 CONFIG FILE DIR: /Users/kimbach/Documents/wikilabskultur/batchupload
+2023-04-26 12:32:14 PACKAGES:
+2023-04-26 12:32:14 MODULES:
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/__init__.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/extern/__init__.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/__init__.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/six.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/py31compat.py
+2023-04-26 12:32:14   2019-02-09 19:09:29 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/appdirs.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__about__.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/__init__.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/version.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_structures.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/specifiers.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/_compat.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/requirements.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py
+2023-04-26 12:32:14   2018-12-24 04:41:55 /usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/packaging/markers.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/__init__.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_version.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/__init__.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/_parser.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/relativedelta.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/_common.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/__init__.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/tz.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_common.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/tz/_factories.py
+2023-04-26 12:32:14   2019-09-14 05:06:46 /usr/local/lib/python3.7/site-packages/dateutil/parser/isoparser.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/config.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/__metadata__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/backports.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/logging.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_unidata.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/exceptions.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/_wbtypes.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/daemonize.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/i18n.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/plural.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/version.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/exceptions.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/__version__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/utils.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/certs.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/certifi/core.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/_internal_utils.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/compat.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/cookies.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/structures.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/packages.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connectionpool.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/exceptions.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/packages/six.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/connection.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/connection.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/wait.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/request.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/response.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/ssl_.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/timeout.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/retry.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/url.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/_collections.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/request.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/filepost.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/fields.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/response.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/util/queue.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/urllib3/poolmanager.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/package_data.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/core.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/idnadata.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/idna/intranges.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/__init__.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/compat.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/universaldetector.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetgroupprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/enums.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/charsetprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/codingstatemachine.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/escsm.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/latin1prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcsgroupprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/utf8prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcssm.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sjisprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/mbcharsetprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/chardistribution.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwfreq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrfreq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312freq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5freq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jisfreq.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/jpcntx.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/eucjpprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/gb2312prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euckrprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/cp949prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/big5prober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/euctwprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcsgroupprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/sbcharsetprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langcyrillicmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langgreekmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langbulgarianmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langthaimodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langhebrewmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/hebrewprober.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/langturkishmodel.py
+2023-04-26 12:32:14   2019-02-14 18:34:47 /usr/local/lib/python3.7/site-packages/chardet/version.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/models.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/hooks.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/auth.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/status_codes.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/api.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/sessions.py
+2023-04-26 12:32:14   2019-02-14 18:34:46 /usr/local/lib/python3.7/site-packages/requests/adapters.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/bot_choice.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/_logging.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/formatter.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_base.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/transliteration.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/_interface_base.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/userinterfaces/terminal_interface_unix.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/diff.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/tools/chars.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/family.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_apisite.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/data/api.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/login.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/textlib.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/__init__.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/compat.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/definitions.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/__init__.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/string_mixin.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/__init__.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/attribute.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/utils.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/smart_list.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/extras/parameter.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/text.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/argument.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/comment.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/external_link.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/heading.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/html_entity.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/tag.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/template.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/nodes/wikilink.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/__init__.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/builder.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/tokens.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/wikicode.py
+2023-04-26 12:32:14   2019-02-26 22:00:09 /usr/local/lib/python3.7/site-packages/mwparserfromhell/parser/_tokenizer.cpython-37m-darwin.so
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_basesite.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_namespace.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/throttle.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_decorators.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_extensions.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/echo.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_generators.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_interwikimap.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_siteinfo.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_tokenwallet.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_datasite.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/site/_obsoletesites.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/__init__.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_collections.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_decorators.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/page/_revision.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/pagegenerators.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/date.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/xmlreader.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/proofreadpage.py
+2023-04-26 12:32:14   2021-12-15 13:01:25 /usr/local/lib/python3.7/site-packages/pywikibot/families/wikidata_family.py
+2023-04-26 12:32:14 =========================================================
+2023-04-26 12:32:15 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 12:32:15 Found candidate wikidata:wikidata
+2023-04-26 12:33:31 Found 1 commons:commons processes running, including this one.
+2023-04-26 12:37:15 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 12:38:31 Found 1 commons:commons processes running, including this one.
+2023-04-26 12:40:43 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-04-26 12:40:43 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='commons.wikimedia.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 12:40:43 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AOttomar+Elliger+d.%C3%86.+-+Still+Life+-+KMS3017+-+Statens+Museum+for+Kunst.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-04-26 12:40:43 Waiting 5.0 seconds before retrying.
+2023-04-26 12:41:49 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20441212&action=wbgetentities&maxlag=5&format=json
+2023-04-26 12:41:49 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.wikidata.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 12:41:49 /w/api.php?ids=Q20441212&action=wbgetentities&maxlag=5&format=json, ids=Q20441212&action=wbgetentities&maxlag=5&format=json
+2023-04-26 12:41:49 Waiting 5.0 seconds before retrying.
+2023-04-26 12:42:15 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 12:43:32 Found 1 commons:commons processes running, including this one.
+2023-04-26 12:47:56 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20354977&action=wbgetentities&maxlag=5&format=json
+2023-04-26 12:47:56 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.wikidata.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 12:47:56 /w/api.php?ids=Q20354977&action=wbgetentities&maxlag=5&format=json, ids=Q20354977&action=wbgetentities&maxlag=5&format=json
+2023-04-26 12:47:56 Waiting 5.0 seconds before retrying.
+2023-04-26 12:48:01 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 12:48:34 Found 1 commons:commons processes running, including this one.
+2023-04-26 12:49:19 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-04-26 12:49:19 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='commons.wikimedia.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 12:49:19 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AJacob+Jordaens+-+The+Tribute+Money.+Peter+Finding+the+Silver+Coin+in+the+Mouth+of+the+Fish.+Also+called+%22The+Ferry+Bo...+-+Google+Art+Project.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-04-26 12:49:19 Waiting 5.0 seconds before retrying.
+2023-04-26 12:49:30 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-04-26 12:49:30 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='commons.wikimedia.org', port=443): Read timed out. (read timeout=6.05)
+
+2023-04-26 12:49:30 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AJacob+Jordaens+-+The+Tribute+Money.+Peter+Finding+the+Silver+Coin+in+the+Mouth+of+the+Fish.+Also+called+%22The+Ferry+Bo...+-+Google+Art+Project.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-04-26 12:49:30 Waiting 10.0 seconds before retrying.
+2023-04-26 12:49:40 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-04-26 12:49:40 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='commons.wikimedia.org', port=443): Max retries exceeded with url: /w/api.php (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x10f813da0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+
+2023-04-26 12:49:40 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AJacob+Jordaens+-+The+Tribute+Money.+Peter+Finding+the+Silver+Coin+in+the+Mouth+of+the+Fish.+Also+called+%22The+Ferry+Bo...+-+Google+Art+Project.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-04-26 12:49:40 Waiting 20.0 seconds before retrying.
+2023-04-26 12:50:45 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20354189&action=wbgetentities&maxlag=5&format=json
+2023-04-26 12:50:45 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.wikidata.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 12:50:45 /w/api.php?ids=Q20354189&action=wbgetentities&maxlag=5&format=json, ids=Q20354189&action=wbgetentities&maxlag=5&format=json
+2023-04-26 12:50:45 Waiting 5.0 seconds before retrying.
+2023-04-26 12:53:01 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 12:53:34 Found 1 commons:commons processes running, including this one.
+2023-04-26 12:58:01 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 12:58:35 Found 1 commons:commons processes running, including this one.
+2023-04-26 13:03:01 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 13:03:35 Found 1 commons:commons processes running, including this one.
+2023-04-26 13:08:01 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 13:08:35 Found 1 commons:commons processes running, including this one.
+2023-04-26 13:13:02 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 13:13:35 Found 1 commons:commons processes running, including this one.
+2023-04-26 13:17:38 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20355759&action=wbgetentities&maxlag=5&format=json
+2023-04-26 13:17:38 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='www.wikidata.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 13:17:38 /w/api.php?ids=Q20355759&action=wbgetentities&maxlag=5&format=json, ids=Q20355759&action=wbgetentities&maxlag=5&format=json
+2023-04-26 13:17:38 Waiting 5.0 seconds before retrying.
+2023-04-26 13:17:43 An error occurred for uri https://www.wikidata.org/w/api.php?ids=Q20355759&action=wbgetentities&maxlag=5&format=json
+2023-04-26 13:17:43 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.wikidata.org', port=443): Max retries exceeded with url: /w/api.php?ids=Q20355759&action=wbgetentities&maxlag=5&format=json (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x10b527208>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+
+2023-04-26 13:17:43 /w/api.php?ids=Q20355759&action=wbgetentities&maxlag=5&format=json, ids=Q20355759&action=wbgetentities&maxlag=5&format=json
+2023-04-26 13:17:43 Waiting 10.0 seconds before retrying.
+2023-04-26 13:18:12 An error occurred for uri https://commons.wikimedia.org/w/api.php
+2023-04-26 13:18:12 Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/data/api.py", line 1488, in _http_request
+    data=data, headers=headers)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 263, in request
+    r = fetch(baseuri, headers=headers, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/tools/_deprecate.py", line 404, in wrapper
+    return obj(*__args, **__kw)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 425, in fetch
+    callback(response)
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 308, in error_handling_callback
+    raise response from None
+  File "/usr/local/lib/python3.7/site-packages/pywikibot/comms/http.py", line 418, in fetch
+    **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='commons.wikimedia.org', port=443): Read timed out. (read timeout=45)
+
+2023-04-26 13:18:12 /w/api.php, iiprop=timestamp%7Cuser%7Ccomment%7Curl%7Csize%7Csha1%7Cmime%7Cmetadata%7Carchivename&titles=File%3AChristen+K%C3%B8bke+-+Study+of+Clouds+-+KMS7644+-+Statens+Museum+for+Kunst.jpg&prop=imageinfo&action=query&indexpageids=&continue=&iilimit=500&meta=userinfo&uiprop=blockinfo%7Chasmsg&maxlag=5&format=json
+2023-04-26 13:18:12 Waiting 5.0 seconds before retrying.
+2023-04-26 13:18:17 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 13:18:35 Found 1 commons:commons processes running, including this one.
+2023-04-26 13:23:18 Found 1 wikidata:wikidata processes running, including this one.
+2023-04-26 13:23:35 Found 1 commons:commons processes running, including this one.
+2023-04-26 13:28:05 Dropped throttle(s).
+2023-04-26 13:28:05 Closing network session.
+2023-04-26 13:28:05 Network session closed.

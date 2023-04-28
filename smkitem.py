@@ -440,8 +440,9 @@ class Item:
     has_3_d_file: bool
     artist: List[str]
     content_description: List[str]
+    distinguishing_features: List[str]
 
-    def __init__(self, id: str, created: datetime, modified: datetime, responsible_department: str, collection: List[str], backside_protection: bool, acquisition_date: datetime, acquisition_date_precision: datetime, dimensions: List[Dimension], documentation: List[Documentation], labels: List[Labels], exhibitions: List[Exhibition], inscriptions: List[Inscription], materials: List[str], object_names: List[ObjectName], production: List[Production], production_date: List[ProductionDate], techniques: List[str], titles: List[Title], medium: List[str], notes: List[str], object_history_note: List[str], number_of_parts: int, object_number: str, object_url: str, frontend_url: str, iiif_manifest: str, enrichment_url: str, similar_images_url: str, production_dates_notes: List[str], public_domain: bool, rights: str, on_display: bool, has_image: bool, image_width: int, image_height: int, image_thumbnail: str, image_native: str, colors: List[str], suggested_bg_color: List[str], entropy: float, contrast: float, saturation: float, colortemp: float, brightness: float, has_text: bool, has_3_d_file: bool, artist: List[str], content_description: List[str]) -> None:
+    def __init__(self, id: str, created: datetime, modified: datetime, responsible_department: str, collection: List[str], backside_protection: bool, acquisition_date: datetime, acquisition_date_precision: datetime, dimensions: List[Dimension], documentation: List[Documentation], labels: List[Labels], exhibitions: List[Exhibition], inscriptions: List[Inscription], materials: List[str], object_names: List[ObjectName], production: List[Production], production_date: List[ProductionDate], techniques: List[str], titles: List[Title], medium: List[str], notes: List[str], object_history_note: List[str], number_of_parts: int, object_number: str, object_url: str, frontend_url: str, iiif_manifest: str, enrichment_url: str, similar_images_url: str, production_dates_notes: List[str], public_domain: bool, rights: str, on_display: bool, has_image: bool, image_width: int, image_height: int, image_thumbnail: str, image_native: str, colors: List[str], suggested_bg_color: List[str], entropy: float, contrast: float, saturation: float, colortemp: float, brightness: float, has_text: bool, has_3_d_file: bool, artist: List[str], content_description: List[str], distinguishing_features: List[str]) -> None:
         self.id = id
         self.created = created
         self.modified = modified
@@ -491,6 +492,7 @@ class Item:
         self.has_3_d_file = has_3_d_file
         self.artist = artist
         self.content_description = content_description
+        self.distinguishing_features = distinguishing_features
 
     @staticmethod
     def from_dict(obj: Any) -> 'Item':
@@ -712,8 +714,12 @@ class Item:
             content_description = from_list(from_str, obj.get("content_description", []))
         except:
             content_description = []
+        try:
+            distinguishing_features = from_list(from_str, obj.get("distinguishing_features", []))
+        except:
+            distinguishing_features = []
 
-        return Item(id, created, modified, responsible_department, collection, backside_protection, acquisition_date, acquisition_date_precision, dimensions, documentation, labels, exhibitions, inscriptions, materials, object_names, production, production_date, techniques, titles, medium, notes, object_history_note, number_of_parts, object_number, object_url, frontend_url, iiif_manifest, enrichment_url, similar_images_url, production_dates_notes, public_domain, rights, on_display, has_image, image_width, image_height, image_thumbnail, image_native, colors, suggested_bg_color, entropy, contrast, saturation, colortemp, brightness, has_text, has_3_d_file, artist, content_description)
+        return Item(id, created, modified, responsible_department, collection, backside_protection, acquisition_date, acquisition_date_precision, dimensions, documentation, labels, exhibitions, inscriptions, materials, object_names, production, production_date, techniques, titles, medium, notes, object_history_note, number_of_parts, object_number, object_url, frontend_url, iiif_manifest, enrichment_url, similar_images_url, production_dates_notes, public_domain, rights, on_display, has_image, image_width, image_height, image_thumbnail, image_native, colors, suggested_bg_color, entropy, contrast, saturation, colortemp, brightness, has_text, has_3_d_file, artist, content_description, distinguishing_features)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -766,6 +772,7 @@ class Item:
         result["has_3d_file"] = from_bool(self.has_3_d_file)
         result["artist"] = from_list(from_str, self.artist)
         result["content_description"] = from_list(from_str, self.content_description)
+        result["distinguishing_features"] = from_list(from_str, self.distinguishing_features)
         return result
 
     def production_csvheader(self,delimiter=";"):

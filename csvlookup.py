@@ -643,8 +643,8 @@ def query_all_artwork_types():
         
         reader = csv.reader(open(all_artwork_types_csv), quoting=csv.QUOTE_NONE, delimiter = ';')
 
-        artwork_types_labels=open('artwork_types_labels.csv','w')
-        artwork_types_labels.write('SMK;item;LDa;LEn;DDa;DEn\n')
+        artwork_types_labels=open('artwork_types_labels_2023-02-03.csv','w')
+        artwork_types_labels.write('SMK;item;LDa;LEn;DDa;DEn;P31\n')
         
         for row in reader:
             try:
@@ -671,8 +671,26 @@ def query_all_artwork_types():
                         DEn=artwork_type_objects['entities'][artwork_type_item]['descriptions']['en']['value']
                     except:
                         DEn=''
+                    try:
+                        claimsurl="https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=" + artwork_type_item + "&formatversion=2" + "&format=json"
+                        claims_json=requests.get(claimsurl).text
+                        claims_objects=json.loads(claims_json)
+                        if len(claims_objects.get("claims"))>0:
+                            for claims in claims_objects.get("claims").values():
+                                for claim in claims:
+                                    mainsnaks = claim.get("mainsnak")
+                                    property = mainsnaks.get("property")
+                                    if property == "P31":
+                                        datavalue = mainsnaks.get("datavalue")
+                                        value = datavalue.get("value")
+                                        value_id = value.get("id")
+                                        print('value='+value+' value_id='+value_id)
 
-                    line=row[0]+';'+artwork_type_item+';'+LDa+';'+LEn+';'+DDa+';'+DEn
+                        P31=artwork_type_objects['entities'][artwork_type_item]['descriptions']['en']['value']
+                    except:
+                        P31=''
+
+                    line=row[0]+';'+artwork_type_item+';'+LDa+';'+LEn+';'+DDa+';'+DEn+';'+P31
                     artwork_types_labels.write(line+'\n')
                 except Exception as e:
                     logging.exception(e)
@@ -764,6 +782,7 @@ def find_artwork_type_object(smk_artwork_type):
 
 
 def Test():
+    print("In wikidata.Test")
     #print(find_wikidata_item("123"))
     #generate_lists()
     #load_f_artists_items()
@@ -772,9 +791,9 @@ def Test():
     #load_wikidata_worksby_items()
     #FindSMKArtistWikidata()
     #print(find_person_wikidata_item('244_person'))
-    query_all_artists()
+    #query_all_artists()
     #get_creator_lref_without_q()
-    #query_all_artwork_types()
+    # query_all_artwork_types()
     # creator_lref="1039_person"
     # creator_wikidata=find_wikidata_from_creator_lref(creator_lref)
     # print(creator_wikidata)
@@ -791,4 +810,4 @@ def Test():
     # smk_artwork_type_wikidata=find_wikidata_from_artwork_type(smk_artwork_type)
     # print(smk_artwork_type_wikidata)
 
-#Test()
+Test()

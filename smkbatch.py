@@ -44,36 +44,6 @@ def debug_msg(msg, debug_level=1):
     if debug_level>0:
         print(msg)
 
-def recursive_iter_1(obj):
-    if isinstance(obj, dict):
-        for item in obj.values():
-            yield from recursive_iter(item)
-    elif any(isinstance(obj, t) for t in (list, tuple)):
-        for item in obj:
-            yield from recursive_iter(item)
-    else:
-        yield obj
-
-def recursive_iter(obj, keys=()):
-    if isinstance(obj, dict):
-        for k, v in obj.items():
-            yield from recursive_iter(v, keys + (k,))
-    elif any(isinstance(obj, t) for t in (list, tuple)):
-        for idx, item in enumerate(obj):
-            yield from recursive_iter(item, keys + (idx,))
-    else:
-        yield keys, obj
-
-def string_convert(obj, keys=(object)):
-    if isinstance(obj, dict):
-        for k, v in obj.items():
-            yield from recursive_iter(v, keys + (k,))
-    elif any(isinstance(obj, t) for t in (list, tuple)):
-        for idx, item in enumerate(obj):
-            yield from recursive_iter(item, keys + (idx,))
-    else:
-        yield keys, obj
-
 def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bool):
     LEn_id=3
     LEnPlural_id=6
@@ -98,7 +68,13 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                             artist_name = 'unknown artists'
 
                         # Generate <object name> by <category_artist_name> in the Statens Museum for Kunst
-                        category = f'Category:{object_name_name_en_plural.capitalize()} by {artist_name} in the Statens Museum for Kunst'
+                        # First check if object name> by <category_artist_name> in Statens Museum for Kunst exists - without "the"
+                        # if it does use that for the category
+                        category = f'Category:{object_name_name_en_plural.capitalize()} by {artist_name} in Statens Museum for Kunst'
+                        
+                        if not commons.PageExists(category):
+                            # Existing category with the "the" clause not found, use it
+                            category = f'Category:{object_name_name_en_plural.capitalize()} by {artist_name} in the Statens Museum for Kunst'
                         categories = categories + '[[' + category + ']]\n' 
                         
                         # Attempt to create category
@@ -114,14 +90,14 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
 
                             # find wikidata item from artist name
                             smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(artist_name)
+
+                            # Generate category content with reference to the artist wikidata item (p373)
                             
                             artist_category_wikidata = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
-                            category_pagetitle='Category:'+artist_name+'\n'
+                            category_pagetitle='Category:' + artist_name+'\n'
 
                             commons.CreateCategory(category_pagetitle, artist_category_wikidata, upload_to_commons)
 
-                            if upload_to_commons:
-                                commons.complete_desc_and_upload(artist_category_wikidata, desc=artist_category_wikidata, date='', categories='', edit_summary='Created category')
                         except Exception as e:
                             debug_msg('EXCEPTION!' + str(e))
                             logging.exception(e)
@@ -136,9 +112,10 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
 
 def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, debug_level=0):
     """
-    Maps SMK API to Wikimedia Commons. Two files is generated for each item (inventory number/assension number)
+    Maps SMK API to Wikimedia Commons. Three files is generated for each item (inventory number/assension number)
     <mediafilename> ::=<filename>"."<fileextension>
     <textfilename>  ::=<filename>".txt"
+    <jsonfilename>  ::=<filename>".json"
 
     Example:
         batch_title='selected_works'
@@ -181,9 +158,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         # list of items/assencion number to get
         SMKItemList = smk_number_list
 
-        # first item, stops search
-        # SMKItemList = ["KKS13358d"]
-
         # Set up logging
         commons_error_log = "commons_error.log"
         logging.basicConfig(filename=commons_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
@@ -205,6 +179,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         # Print CSV Header
         csv_header=artwork.GenerateCSVHeader()
         f_csv.write(csv_header + '\n')
+
+        # Print HTML Header
         f_html.writelines('<html>')
         f_html.writelines('<head>')
         f_html.writelines('<title>smkbatch - preview</title>')
@@ -248,17 +224,13 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 # Initialize object model smk_item from json object 
                 smk_item: smkitem.SMKItem
                 smk_item = smkitem.smk_item_from_dict(smk_objects)
-                print(smk_item)
 
                 items = items + 1
 
                 try:
                     offset=smk_item.items[0].offset
-                    debug_msg('offset='+str(smk_objects['offset']),debug_level)
                     offset=smk_objects['offset']
-                    debug_msg('rows='+str(smk_objects['rows']),debug_level)
                     rows=smk_objects['rows']
-                    debug_msg('found='+str(smk_objects['found']),debug_level)
                     found=smk_objects['found']
                     if offset>found:
                         break
@@ -305,12 +277,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     pagetitle = os.path.basename(imagepath)
                 else:
                     imagepath=''
-
-                # attempt to find wikidata item of creator
-                #creator_wd_number = csvlookup.find_wikidata_from_creator_lref(smk_creator_lref)
-
-                #if creator_wd_number!='':
-                #    smk_artists = creator_wd_number
 
                 license = ''
                 #smk_category = '[[Category:' + batch_title + ']]'
@@ -361,11 +327,14 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             # image not already uploaded attempting upload to commons
 
                             try:
-                                debug_msg('Attempting upload of:' + pagetitle,debug_level)
+                                if not commons.PageExists(pagetitle):
+                                    debug_msg('Attempting upload of: ' + pagetitle,debug_level)
 
-                                #commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+accession_number+'}})
-                                files_uploaded=files_uploaded+1
-                                bot_status = "Media uploaded"
+                                    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.artwork.accession_number +'}}')
+                                    files_uploaded=files_uploaded+1
+                                    bot_status = "Media uploaded"
+                                else:
+                                    debug_msg('Page already exists: ' + pagetitle,debug_level)
                             except Exception as e:
                                 f_batch_log.writelines('</table>')
                                 debug_msg('EXCEPTION! '+ str(e))
@@ -379,7 +348,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
-                debug_msg("current_time="+current_time,debug_level)
                 f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + '\n')  
         
             except Exception as e:
@@ -387,7 +355,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 typeerror=TypeError(e)
                 logging.exception(e)
             finally:
-                #debug_msg('items='+str(items))
                 print('\r' + str(items), end='', flush=True)
 
                 offset=offset+1
@@ -415,11 +382,12 @@ def SMKHelper(Item: smkitem.Item):
     smk_image_width = Item.image_width
     smk_image_height = Item.image_height
 
-    # Production
     smk_creators=''
     smk_description=''
 
     try:
+
+        # Item.Production
         smk_all_creators_date_of_death=None
         for production in Item.production:
             smk_creator=''
@@ -514,9 +482,11 @@ def SMKHelper(Item: smkitem.Item):
             except Exception as e:
                 debug_msg('EXCEPTION! '+ str(e))
                 smk_period = smk_period + ''
+                logging.exception(e)
     except Exception as e:
         debug_msg('EXCEPTION! '+ str(e))
         smk_period = smk_period + ''
+        logging.exception(e)
     
     # Production date notes
     smk_notes = ''
@@ -526,51 +496,62 @@ def SMKHelper(Item: smkitem.Item):
                 smk_notes = smk_notes + '* {{da|'+str(production_dates_note)+'}}\n'
             except Exception as e:
                 debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
                 smk_notes = smk_notes + ''
     except Exception as e:
         debug_msg('EXCEPTION! '+ str(e))
+        logging.exception(e)
         smk_notes = smk_notes + ''
     
     # Titles
     smk_titles=''
 
     for title in Item.titles: 
-
-        iso_code = smkapi.smk_language_code_to_iso_code(title.language)
-        smk_description = smk_description + '{{' + iso_code +'|' + title.title + '}}\n'
+        try:
+            iso_code = smkapi.smk_language_code_to_iso_code(title.language)
+            smk_description = smk_description + '{{'
+            if iso_code != '':
+                smk_description = smk_description + iso_code +'|'
+            smk_description = smk_description + title.title + '}}\n'
+        except Exception as e:
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
 
     # Check if first title is empty
     artwork.museumtitle = Item.titles[0].title
     if artwork.museumtitle != '':
         iso_code = smkapi.smk_language_code_to_iso_code(Item.titles[0].language)
-        smk_titles='{{title|'+ artwork.museumtitle + '|lang=' + iso_code +'}}'
+        smk_titles='{{title|'+ artwork.museumtitle
+        if iso_code != '':
+            smk_titles = smk_titles + '|lang=' + iso_code
+        smk_titles = smk_titles + '}}'
     else:
         artwork.museumtitle = 'Untitled' 
 
+    # Description
     for description in Item.content_description: 
         try:
             smk_description = smk_description + '* {{da|' + str(description) + '}}\n'
-        except:
+        except Exception as e:
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
             smk_description = smk_description + ''
 
     # Object names
     smk_object_names = ''
     smk_categories = ''
-    generated_categories = ''
-    #generated_categories=generated_categories+generate_artwork_categories(item, smk_item)
     for object_name in Item.object_names: 
         try:
             if object_name.name != '':
-                #object_name_en = smkapi.smk_danish_to_english(smk_object_name)
                 object_name_en = csvlookup.find_english_label_from_artwork_type(object_name.name).lower()
                 
-                smk_object_names = smk_object_names + '{{en|' + object_name_en + '}}\n' 
+                if smk_object_names == '':
+                    smk_object_names = object_name_en 
+
                 # Make English object name plural
                 if object_name_en[-1:]!='s':
-                    object_name_en_plural = object_name_en+'s' 
-
-                smk_category = '[[Category:' + object_name_en_plural
-                smk_category = smk_category+' in the Statens Museum for Kunst]]'
+                    object_name_en_plural = object_name_en+'s'
+ 
 
         except Exception as e:
             smk_categories = smk_categories + ''
@@ -578,6 +559,7 @@ def SMKHelper(Item: smkitem.Item):
             debug_msg('EXCEPTION! '+ str(e))
             logging.exception(e)
 
+    # Item.inscriptions
     smk_inscriptions = ''
     for inscription in Item.inscriptions: 
         try:
@@ -606,6 +588,7 @@ def SMKHelper(Item: smkitem.Item):
             debug_msg('EXCEPTION! '+ str(e))
             logging.exception(e)
 
+    # Item.labels
     smk_labels = ''
     for label in Item.labels: 
         try:
@@ -624,6 +607,7 @@ def SMKHelper(Item: smkitem.Item):
             debug_msg('EXCEPTION! '+ str(e))
             logging.exception(e)
 
+    # Item.dimensions
     try:
         unit_height = ''
         unit_width = ''
@@ -661,6 +645,7 @@ def SMKHelper(Item: smkitem.Item):
         debug_msg('EXCEPTION! '+ str(e))
         logging.exception(e)
 
+    # Item.techniques
     smk_techniques = ''
     for technique in Item.techniques: 
         try:
@@ -675,20 +660,34 @@ def SMKHelper(Item: smkitem.Item):
             debug_msg('EXCEPTION! '+ str(e))
             logging.exception(e)
 
+    # Item.notes
     for note in Item.notes: 
         try:
             smk_notes = smk_notes + '* {{da|'+str(note)+'}}\n'
         except:
             smk_notes = smk_notes + ''
 
+    # Item.distinguishing_features
+    for distinguishing_features in Item.distinguishing_features: 
+        try:
+            smk_notes = smk_notes + '* {{da|'+str(distinguishing_features)+'}}\n'
+        except Exception as e:
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
+            smk_notes = smk_notes + ''
+
+    # Item.object_history_note
     smk_object_history_note = ''
 
     for object_history in Item.object_history_note: 
         try:
             smk_object_history_note = smk_object_history_note + '* {{da|'+str(object_history) + '}}\n'
-        except:
+        except Exception as e:
             smk_object_history_note = smk_object_history_note + ''
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
 
+    # Item.exhibitions
     smk_exhibitions = ''
     for exhibition in Item.exhibitions: 
         try:
@@ -696,14 +695,18 @@ def SMKHelper(Item: smkitem.Item):
                 " |institution= |place= " + exhibition.venue + " |begin=" + \
                 f"{exhibition.date_start:%Y-%m-%d}" + " |end=" + \
                 f"{exhibition.date_end:%Y-%m-%d}" + "}}\n"
-        except:
+        except Exception as e:
             smk_exhibitions = smk_exhibitions + ''
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
     smk_collection = ''
     for collection in Item.collection: 
         try:
             smk_collection = smk_collection + str(collection) + '\n'
-        except:
+        except Exception as e:
             smk_collection = smk_collection + ''
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
 
     # Artist
     smk_artists = ''
@@ -718,13 +721,11 @@ def SMKHelper(Item: smkitem.Item):
             if smk_artist.lower() == 'ubekendt':
                 unknown_artist = True 
                 smk_artist='{{da|' + smk_artist + '}}'
-                #smk_artists=smk_artists+'{{Creator:'+smk_artist+'}}\n'
             else:
                 # find wikidata item from artist name
                 smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(smk_artist)
 
                 if smk_artist_wikidata_q!='':
-                    smk_artist_wikidata_category = '{{Data|item='+smk_artist_wikidata_q+'|property=p373|numval=1}}'
                     smk_artists=smk_artists+smk_artist_wikidata_q+'\n'
                     artwork.has_artist_wikidata = True
                 else:
@@ -786,8 +787,11 @@ def SMKHelper(Item: smkitem.Item):
     artwork.artist = smk_artists
     try:
         artwork.nationality = smk_creator_nationality
-    except:
+    except Exception as e:
         artwork.nationality = ''
+        debug_msg('EXCEPTION! '+ str(e))
+        logging.exception(e)
+
     artwork.author = ''
     try:
         artwork.title = smk_titles
@@ -907,14 +911,23 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #smk_number_list = ["KKSgb29511"]
 #smk_number_list = ["KKS13568"]
 #smk_number_list = ["KMS7270"]
-smk_number_list=None
 #smk_number_list = ["KMS1806"]
 #smk_number_list = ["KKSgb22345"]
 #smk_number_list = ["KKSgb22414"]
-smk_filter_list = [["public_domain","true"],
-    ["has_image", "true"],
-    ["creator_gender", "kvinde"],
-    ["creator_nationality", "dansk"]]
+#smk_number_list = ["KKSgb2950/87",
+#    "KKSgb4762",
+#    "KMS3716",
+#    "KKSgb6423",
+#    "KAS1179",
+#    "KKSgb2950",
+#    "KMS4223",
+#    "KKSgb19863"]
+smk_number_list=None
+
+#smk_filter_list = [["public_domain","true"],
+#    ["has_image", "true"],
+#    ["creator_gender", "kvinde"],
+#    ["creator_nationality", "dansk"]]
 #smk_filter_list = "",
 smk_filter_list = [["public_domain","true"],
     ["has_image", "true"]]
@@ -927,12 +940,12 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-01-04_WLKBot_test'
+batch_title='2023-04-27_WLKBot_test'
 #batch_title='KMS1806'
 download_images=True
 #download_images=False
-#upload_images=True
-upload_images=False
+upload_images=True
+#upload_images=False
 #batch_size=24
 batch_size=-1
 batch_size=20

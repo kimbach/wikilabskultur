@@ -468,32 +468,32 @@ class ArtworkTemplate(BaseTemplate):
         
         self._wikitext = u"""== {{int:filedesc}} ==
 {{Artwork
- | artist             = """ + str(self.artist).rstrip() + """
- | author             = """ + str(self.author).rstrip() + """
- | title              = """ + str(self.title).rstrip() + """
- | description        = """ + str(self.desc).rstrip() + """
- | depicted people    = """ + str(self.depicted_people).rstrip() + """
- | date               = """ + str(self.date).rstrip() + """
- | medium             = """ + str(self.medium).rstrip() + """
- | dimensions         = """ + str(self.dimensions).rstrip() + """
- | institution        = """ + str(self.institution).rstrip() + """
- | department         = """ + str(self.department).rstrip() + """
- | place of discovery = """ + str(self.place_of_discovery).rstrip() + """
- | object history     = """ + str(self.object_history).rstrip() + """ 
- | exhibition history = """ + str(self.exhibition_history).rstrip() + """
- | credit line        = """ + str(self.credit_line).rstrip() + """
- | inscriptions       = """ + str(self.inscriptions).rstrip() + """
- | notes              = """ + str(self.notes).rstrip() + """
- | accession number   = """ + str(self.accession_number).rstrip() + """
- | place of creation  = """ + str(self.place_of_creation).rstrip() + """
- | source             = """ + str(self.source).rstrip() + """
- | other_versions     = """ + str(self.other_versions).rstrip() + """
- | references         = """ + str(self.references).rstrip() + """
- | depicted place     = """ + str(self.depicted_place).rstrip() + """
- | object type        = """ + str(self.object_type).rstrip() + """
- | location           = """ + str(self.location).rstrip() + """
- | other_fields       = """ + str(self.other_fields) + """
- | wikidata           = """ + str(self.wikidata).rstrip() + """
+ |artist             = """ + str(self.artist).rstrip() + """
+ |author             = """ + str(self.author).rstrip() + """
+ |title              = """ + str(self.title).rstrip() + """
+ |description        = """ + str(self.desc).rstrip() + """
+ |depicted people    = """ + str(self.depicted_people).rstrip() + """
+ |date               = """ + str(self.date).rstrip() + """
+ |medium             = """ + str(self.medium).rstrip() + """
+ |dimensions         = """ + str(self.dimensions).rstrip() + """
+ |institution        = """ + str(self.institution).rstrip() + """
+ |department         = """ + str(self.department).rstrip() + """
+ |place of discovery = """ + str(self.place_of_discovery).rstrip() + """
+ |object history     = """ + str(self.object_history).rstrip() + """ 
+ |exhibition history = """ + str(self.exhibition_history).rstrip() + """
+ |credit line        = """ + str(self.credit_line).rstrip() + """
+ |inscriptions       = """ + str(self.inscriptions).rstrip() + """
+ |notes              = """ + str(self.notes).rstrip() + """
+ |accession number   = """ + str(self.accession_number).rstrip() + """
+ |place of creation  = """ + str(self.place_of_creation).rstrip() + """
+ |source             = """ + str(self.source).rstrip() + """
+ |other_versions     = """ + str(self.other_versions).rstrip() + """
+ |references         = """ + str(self.references).rstrip() + """
+ |depicted place     = """ + str(self.depicted_place).rstrip() + """
+ |object type        = """ + str(self.object_type).rstrip() + """
+ |location           = """ + str(self.location).rstrip() + """
+ |other_fields       = """ + str(self.other_fields) + """
+ |wikidata           = """ + str(self.wikidata).rstrip() + """
 }} 
 
 == {{int:license-header}} ==
@@ -723,37 +723,37 @@ def complete_desc_and_upload(filename, pagetitle, desc, date, categories, edit_s
 #    page.text = description
 #    page.save('Replacing description')  # Saves the page
 
-def complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories):
-    #complete this once if applies to all files
+# def complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories):
+#     #complete this once if applies to all files
 
-    description = u"""{{Artwork
-|Description    = {{en|1=""" + desc + """}}
-|Source         = [[Statens Museeum for Kunst]]
-|Author         = 
-|Date           = """ + date + """
-|Permission     = 
-|other_versions = 
-}}
-=={{int:license-header}}==
-{{PD-old-70}}
+#     description = u"""{{Artwork
+# |Description    = {{en|1=""" + desc + """}}
+# |Source         = [[Statens Museeum for Kunst]]
+# |Author         = 
+# |Date           = """ + date + """
+# |Permission     = 
+# |other_versions = 
+# }}
+# =={{int:license-header}}==
+# {{PD-old-70}}
 
-""" + categories + """
-"""
-    url = [ filename ]
-    #keepFilename = False        #set to True to skip double-checking/editing destination filename
-    keepFilename = True        #set to True to skip double-checking/editing destination filename
-    #verifyDescription = True    #set to False to skip double-checking/editing description => change to bot-mode
-    verifyDescription = False    #set to False to skip double-checking/editing description => change to bot-mode
-    targetSite = pywikibot.Site(code='commons', fam='commons', user='Kim Bach')
+# """ + categories + """
+# """
+#     url = [ filename ]
+#     #keepFilename = False        #set to True to skip double-checking/editing destination filename
+#     keepFilename = True        #set to True to skip double-checking/editing destination filename
+#     #verifyDescription = True    #set to False to skip double-checking/editing description => change to bot-mode
+#     verifyDescription = False    #set to False to skip double-checking/editing description => change to bot-mode
+#     targetSite = pywikibot.Site(code='commons', fam='commons', user='Kim Bach')
     
-    #bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite)
-    #bot.run()
+#     #bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite)
+#     #bot.run()
 
-#    page = pywikibot.Page(targetSite, 'File:' + filename)
-    page = pywikibot.Page(targetSite, 'File:' + filename)
-#    print(page.text)
-    #page.text = description
-    #page.save('Replacing description')  # Saves the page
+# #    page = pywikibot.Page(targetSite, 'File:' + filename)
+#     page = pywikibot.Page(targetSite, 'File:' + filename)
+# #    print(page.text)
+#     #page.text = description
+#     #page.save('Replacing description')  # Saves the page
 
 
 def get_file_hash(filename):
@@ -811,7 +811,7 @@ def check_file_hash(file_hash):
 
 # -*- coding: utf-8  -*-
 
-def complete_desc_and_upload(filename, pagetitle, desc, date, categories):
+def complete_desc_and_upload(filename, pagetitle, desc, date, categories,edit_summary):
     """
     Uploads image to commons
 
@@ -824,6 +824,7 @@ def complete_desc_and_upload(filename, pagetitle, desc, date, categories):
         desc -- description to use
         date -- date to use
         categories  -- categories to use
+        edit_summary  -- edit summary to use
         
         <filename>      ::= {<char>}
         <pagetitle>     ::= {<char>}
@@ -844,14 +845,37 @@ def complete_desc_and_upload(filename, pagetitle, desc, date, categories):
     #targetSite = pywikibot.Site(fam='commons',code='commons', user='Kim Bach', sysop='Kim Bach')
     try:
         targetSite = pywikibot.Site()
+        try:
+            print(targetSite)
+            targetSite = pywikibot.Site('commons', 'commons')
+
+            bot = UploadRobot(url, description=desc, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary=edit_summary)
+            bot.run()
+        except Exception as e:
+            print(str(e))
     except Exception as e:
         print(str(e))
 
-    print(targetSite)
-    targetSite = pywikibot.Site('commons', 'commons')
+def create_wiki_page(pagetitle, desc, edit_summary):
+    # Connect to the site you want to edit
+    site = pywikibot.Site('commons', 'commons')
 
-    bot = UploadRobot(url, description=desc, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary='Created artwork')
-    bot.run()
+
+    # Set the title and text for the new page
+    title = pagetitle
+    text = desc
+
+    # Create a new page object
+    new_page = pywikibot.Page(site, title)
+
+    # Check if the page already exists
+    if new_page.exists():
+        raise ValueError("Page already exists")
+
+    # Edit the page with the new text
+    new_page.text = text
+    new_page.save(summary=edit_summary, minor=False)
+
 
 #    page = pywikibot.Page(targetSite, 'File:' + filename)
 #    page = pywikibot.Page(targetSite, 'File:' + filename)
@@ -859,36 +883,54 @@ def complete_desc_and_upload(filename, pagetitle, desc, date, categories):
 #    page.text = description
 #    page.save('Replacing description')  # Saves the page
 
-def complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories):
-    #complete this once if applies to all files
+# def complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories):
+#     #complete this once if applies to all files
 
-    description = u"""{{Artwork
-|Description    = {{en|1=""" + desc + """}}
-|Source         = [[Statens Museeum for Kunst]]
-|Author         = 
-|Date           = """ + date + """
-|Permission     = 
-|other_versions = 
-}}
-=={{int:license-header}}==
-{{PD-old-70}}
-""" + categories + """
-"""
-    url = [ filename ]
-    #keepFilename = False        #set to True to skip double-checking/editing destination filename
-    keepFilename = True        #set to True to skip double-checking/editing destination filename
-    #verifyDescription = True    #set to False to skip double-checking/editing description => change to bot-mode
-    verifyDescription = False    #set to False to skip double-checking/editing description => change to bot-mode
-    targetSite = pywikibot.Site(code='commons', fam='commons', user='Kim Bach')
+#     description = u"""{{Artwork
+# |Description    = {{en|1=""" + desc + """}}
+# |Source         = [[Statens Museeum for Kunst]]
+# |Author         = 
+# |Date           = """ + date + """
+# |Permission     = 
+# |other_versions = 
+# }}
+# =={{int:license-header}}==
+# {{PD-old-70}}
+# """ + categories + """
+# """
+#     url = [ filename ]
+#     #keepFilename = False        #set to True to skip double-checking/editing destination filename
+#     keepFilename = True        #set to True to skip double-checking/editing destination filename
+#     #verifyDescription = True    #set to False to skip double-checking/editing description => change to bot-mode
+#     verifyDescription = False    #set to False to skip double-checking/editing description => change to bot-mode
+#     targetSite = pywikibot.Site(code='commons', fam='commons', user='Kim Bach')
     
-    #bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite)
-    #bot.run()
+#     if (filename != ''):
+#         bot = UploadRobot(url, description=description, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite)
+#         bot.run()
 
-#    page = pywikibot.Page(targetSite, 'File:' + filename)
-    page = pywikibot.Page(targetSite, 'File:' + filename)
-#    print(page.text)
-    #page.text = description
-    #page.save('Replacing description')  # Saves the page
+# #    page = pywikibot.Page(targetSite, 'File:' + filename)
+#     page = pywikibot.Page(targetSite, 'File:' + filename)
+# #    print(page.text)
+#     page.text = description
+#     page.save('Replacing description')  # Saves the page
+
+def PageExists(pagetitle):
+    ret_val: bool = False
+    try:
+        # check if category exists
+        result = requests.get('https://commons.wikimedia.org/wiki/' + pagetitle)
+        if result.status_code == 200:  
+            # the category exists
+            ret_val = True
+            pass  # blablabla
+        else:
+            # the category doesn't exists, attempt to create it
+            ret_val = False
+    except Exception as e:
+        print('EXCEPTION!' + str(e))
+
+    return(ret_val)
 
 def CreateCategory(category_pagetitle, category_wikitext, upload_to_commons):
     # Create category wikitext
@@ -901,7 +943,7 @@ def CreateCategory(category_pagetitle, category_wikitext, upload_to_commons):
         else:
             # the category doesn't exists, attempt to create it
             if upload_to_commons:
-                complete_desc_and_upload(category_pagetitle, desc=category_wikitext, date='', categories='', edit_summary='Created category')
+                create_wiki_page(pagetitle=category_pagetitle, desc=category_wikitext, edit_summary='Created category')
     except Exception as e:
         print('EXCEPTION!' + str(e))
 
@@ -918,7 +960,7 @@ def UploadTest():
     date        = "2019-09-10 19:00"
     categories  = """[[Category:Wiki Labs Test]]"""
     categories  = """[[Category:Wiki Labs Test]]"""
-    complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories)
+    #complete_artwork_desc_and_upload(filename, pagetitle, desc, date, categories)
 
 
     #sample with:  - local file name identical to file name at Commons
