@@ -258,39 +258,39 @@ class Production:
     def from_dict(obj: Any) -> 'Production':
         assert isinstance(obj, dict)
         try:
-            creator = from_str(obj.get("creator", ""))
+            creator = from_str(obj.get("creator"))
         except:
             creator = ""
         try:
-            creator_forename = from_str(obj.get("creator_forename", ""))
+            creator_forename = from_str(obj.get("creator_forename"))
         except:
             creator_forename = ""
         try:
-            creator_surname = from_str(obj.get("creator_surname", ""))
+            creator_surname = from_str(obj.get("creator_surname"))
         except:
             creator_surname = ""
         try:
-            creator_date_of_birth = from_datetime(obj.get("creator_date_of_birth", None))
+            creator_date_of_birth = from_datetime(obj.get("creator_date_of_birth"))
         except:
             creator_date_of_birth = ""
         try:
-            creator_date_of_death = from_datetime(obj.get("creator_date_of_death"), None)
+            creator_date_of_death = from_datetime(obj.get("creator_date_of_death"))
         except:
             creator_date_of_death = ""
         try:
-            creator_nationality = from_str(obj.get("creator_nationality", ""))
+            creator_nationality = from_str(obj.get("creator_nationality"))
         except:
             creator_nationality = ""
         try:
-            creator_gender = from_str(obj.get("creator_gender", ""))
+            creator_gender = from_str(obj.get("creator_gender"))
         except:
             creator_gender = ""
         try:
-            creator_history = from_str(obj.get("creator_history", ""))
+            creator_history = from_str(obj.get("creator_history"))
         except:
             creator_history = ""
         try:
-            creator_lref = from_str(obj.get("creator_lref", ""))
+            creator_lref = from_str(obj.get("creator_lref"))
         except:
             creator_lref = ""
         return Production(creator, creator_forename, creator_surname, creator_date_of_birth, creator_date_of_death, creator_nationality, creator_gender, creator_history, creator_lref)

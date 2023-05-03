@@ -384,17 +384,19 @@ def SMKHelper(Item: smkitem.Item):
 
     smk_creators=''
     smk_description=''
+    smk_notes=''
 
     try:
-
         # Item.Production
         smk_all_creators_date_of_death=None
+
         for production in Item.production:
             smk_creator=''
             smk_creator_forename=''
             smk_creator_surname=''
             smk_creator_date_of_death = ''
             smk_creator_nationality = ''
+            smk_creator_year_of_death = ''
             smk_creator_date_of_birth =''
             smk_creator_gender=''
             smk_creator_lref=''
@@ -411,13 +413,16 @@ def SMKHelper(Item: smkitem.Item):
 
             try:
                 smk_creator_surname = str(production.creator_surname)
-            except:
-                smk_creator_surname = ''
+            except Exception as e:
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
 
             try:
                 smk_creator_history = str(production.creator_history)
-            except: 
+            except Exception as e:
                 smk_creator_history = ''
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
 
             if smk_creator_history != '':
                 smk_notes = smk_notes + '* {{da|'+smk_creator_history +'}}\n'
@@ -428,35 +433,47 @@ def SMKHelper(Item: smkitem.Item):
                 smk_creator = smk_creator.lstrip()
                 smk_creators=smk_creators + '{{Creator:'+smk_creator+'}}'
 
-            except:
-                smk_creator = ''
+            except Exception as e:
+                smk_creator_forename = ''
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
             try:
-                smk_creator_date_of_death = str(production.creator_date_of_death)
-                smk_creator_year_of_death = int(smk_creator_date_of_death[:4])
-                
-                # Find the latest death year of the creators
-                if smk_all_creators_date_of_death == None:
-                    smk_all_creators_date_of_death = smk_creator_year_of_death
-                else:
-                    if smk_creator_year_of_death > smk_all_creators_date_of_death:
-                        smk_all_creators_date_of_death = smk_creator_year_of_death
-            except:
+                if production.creator_date_of_death != None:
+                    if smk_creator_year_of_death != '':
+                        if int(production.creator_date_of_death.strftime("%Y-%m-%d")[:4]) > smk_creator_year_of_death:
+                            smk_creator_year_of_death = smk_creator_date_of_death.strftime("%Y-%m-%d")[:4]
+                            smk_all_creators_date_of_death = smk_creator_year_of_death
+                    else:
+                        smk_creator_year_of_death = production.creator_date_of_death.strftime("%Y-%m-%d")[:4]
+
+            except Exception as e:
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
                 smk_creator_date_of_death = ''
+                smk_creator_year_of_death = ''
             try:
                 smk_creator_nationality = str(production.creator_nationality)
-            except:
+            except Exception as e:
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
                 smk_creator_nationality = ''
             try:
                 smk_creator_date_of_birth=str(production.creator_date_of_birth)                       
-            except:
+            except Exception as e:
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
                 smk_creator_date_of_birth =''
             try:
                 smk_creator_gender=str(production.creator_gender)                                    
-            except:
+            except Exception as e:
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
                 smk_creator_gender=''
             try:
                 smk_creator_lref=str(production.creator_lref)
-            except:
+            except Exception as e:
+                debug_msg('EXCEPTION! '+ str(e))
+                logging.exception(e)
                 smk_creator_lref=''
         
         # Convert smk_all_creators_date_of_death to string
@@ -464,11 +481,15 @@ def SMKHelper(Item: smkitem.Item):
             if smk_all_creators_date_of_death == None:
                 smk_all_creators_date_of_death = ''
 
-            smk_all_creators_date_of_death=str(smk_all_creators_date_of_death)
-        except:
+        except Exception as e:
             smk_all_creators_date_of_death=''
+            smk_creator_forename = ''
+            debug_msg('EXCEPTION! '+ str(e))
+            logging.exception(e)
 
-    except:
+    except Exception as e:
+        debug_msg('EXCEPTION! '+ str(e))
+        logging.exception(e)
         smk_creator=''
         smk_creator_date_of_death = ''
         smk_creator_nationality = ''
@@ -855,10 +876,14 @@ def SMKHelper(Item: smkitem.Item):
     except:
         artwork.source = ''
     try:
-        if smk_all_creators_date_of_death == None:
-            smk_all_creators_date_of_death = ''
-
-        artwork.permission = '{{Licensed-PD-Art|PD-old-auto-expired|deathyear=' + smk_all_creators_date_of_death + '|Cc-zero}}\n' + \
+        if smk_creator_year_of_death == None:
+            smk_creator_year_of_death = ''
+        
+        if smk_creator_year_of_death == '':
+            PD_old_parameter = 'PD-old-100-expired'
+        else:
+            PD_old_parameter = 'PD-old-auto-expired|deathyear=' + str(smk_creator_year_of_death)
+        artwork.permission = '{{Licensed-PD-Art|' + PD_old_parameter + '|Cc-zero}}\n' + \
         '{{Statens Museum for Kunst collaboration project}}'
     except Exception as e:
         artwork.permission = ''
@@ -913,8 +938,8 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #smk_number_list = ["KMS7270"]
 #smk_number_list = ["KMS1806"]
 #smk_number_list = ["KKSgb22345"]
-#smk_number_list = ["KKSgb22414"]
-#smk_number_list = ["KKSgb2950/87",
+smk_number_list = ["KKSgb22216"]
+#smk_number_list = ["KKSgb22216"],
 #    "KKSgb4762",
 #    "KMS3716",
 #    "KKSgb6423",
@@ -922,7 +947,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #    "KKSgb2950",
 #    "KMS4223",
 #    "KKSgb19863"]
-smk_number_list=None
+#smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
 #    ["has_image", "true"],
@@ -940,11 +965,11 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-04-27_WLKBot_test'
+batch_title='2023-04-29_WLKBot_test'
 #batch_title='KMS1806'
-download_images=True
-#download_images=False
-upload_images=True
+#download_images=True
+download_images=False
+upload_images=False
 #upload_images=False
 #batch_size=24
 batch_size=-1
