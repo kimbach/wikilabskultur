@@ -780,7 +780,6 @@ def find_artwork_type_object(smk_artwork_type):
         artwork_type_object = None
     return(artwork_type_object)
 
-
 def Test():
     print("In wikidata.Test")
     #print(find_wikidata_item("123"))

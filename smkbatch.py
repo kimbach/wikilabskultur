@@ -47,19 +47,22 @@ def debug_msg(msg, debug_level=1):
 def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bool):
     LEn_id=3
     LEnPlural_id=6
+    ObjectCategory_id=8
+    ArtistCategory_id=9
     categories=''
 
     # Get object_names
     for item in smk_item.items:
         for object_name in item.object_names:
             try:
-                object_name_name_en_plural = ''
-            
                 # Attempt to lookup the artwork_type by object_name 
                 artwork_type_object=csvlookup.find_artwork_type_object(object_name.name)
                 if artwork_type_object:
                     # Artwork type found
-                    object_name_name_en_plural = artwork_type_object[LEnPlural_id].lower()
+
+                    # Get object and artist categories
+
+                    object_category = artwork_type_object[ObjectCategory_id]
 
                     # get artists
                     for artist in item.artist:
@@ -67,41 +70,86 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                         if artist_name.lower() == 'ubekendt':
                             artist_name = 'unknown artists'
 
+                        # find wikidata item from artist name
+                        smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(artist_name)
+                        smk_artist_wikidata = csvlookup.find_creator_from_creator_name(artist_name)
+                        if smk_artist_wikidata != None:
+                            artist_name_en = smk_artist_wikidata[3]
+                        else:
+                            artist_name_en = artist_name
+
                         # Generate <object name> by <category_artist_name> in the Statens Museum for Kunst
                         # First check if object name> by <category_artist_name> in Statens Museum for Kunst exists - without "the"
                         # if it does use that for the category
-                        category = f'Category:{object_name_name_en_plural.capitalize()} by {artist_name} in Statens Museum for Kunst'
+                        artist_category = artwork_type_object[ArtistCategory_id]
+                        artist_category = artist_category.replace("xxxx (name)", artist_name_en)
                         
-                        if not commons.PageExists(category):
-                            # Existing category with the "the" clause not found, use it
-                            category = f'Category:{object_name_name_en_plural.capitalize()} by {artist_name} in the Statens Museum for Kunst'
-                        categories = categories + '[[' + category + ']]\n' 
-                        
-                        # Attempt to create category
-                        category_wikitext='[[Category:Collections of the Statens Museum for Kunst]]\n' + \
-                            '[[Category:Collections of ' + object_name_name_en_plural + ' by museum|statens]]\n' + \
-                            '[[Category:'+ artist_name +']]\n'
+                        if artist_category != "":
+                            # only add artist category, if it doesn't already exist
+                            if categories.find(artist_category) == -1:
+                                categories = categories + '[[Category:' + artist_category + ']]\n' 
+                        if object_category != "":
+                            # only add object category, if it doesn't already exist
+                            if categories.find(object_category) == -1:
+                                categories = categories + '[[Category:' + object_category + ']]\n' 
 
-                        # Try to create category
-                        try:
-                            commons.CreateCategory(category, category_wikitext, upload_to_commons)
+                        # Try to create object category
+                        if object_category != "":
+                            object_category_wikitext= '{{SMKNavBox}}\n' + \
+                                '[[Category:Collections of the Statens Museum for Kunst]]\n'
 
-                            # Get the category of the artist's commons category (p373) 
+                            try:
+                                commons.CreateCategory('Category:' + object_category, object_category_wikitext, upload_to_commons)
 
-                            # find wikidata item from artist name
-                            smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(artist_name)
+                                # Save wikitext
+                                if save_wikitext:
+                                    path = folder + object_category + '.txt'
+                                    open(path, 'w').write(object_category_wikitext)
 
-                            # Generate category content with reference to the artist wikidata item (p373)
-                            
-                            artist_category_wikidata = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
-                            category_pagetitle='Category:' + artist_name+'\n'
+                            except Exception as e:
+                                debug_msg('EXCEPTION!' + str(e))
+                                logging.exception(e)
 
-                            commons.CreateCategory(category_pagetitle, artist_category_wikidata, upload_to_commons)
+                        # Try to create artist category
+                        # Attempt to create artist category
+                        if artist_category != "":
+                            if smk_artist_wikidata_q != '':
+                                artist_commons_category = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
+                            else:
+                                artist_commons_category = artist_name_en
+                            artist_category_wikitext='[[Category:Collections of the Statens Museum for Kunst]]\n' + \
+                                '[[Category:'+ object_category + ']]\n' + \
+                                '[[Category:' + artist_commons_category +']]\n'
+                                #'[[Category:' + artist_name +']]\n' \
+                            try:
+                                # Save wikitext
+                                if save_wikitext:
+                                    path = folder + artist_category + '.txt'
+                                    open(path, 'w').write(artist_category_wikitext)
 
-                        except Exception as e:
-                            debug_msg('EXCEPTION!' + str(e))
-                            logging.exception(e)
+                                commons.CreateCategory("Category:" + artist_category, artist_category_wikitext, upload_to_commons)
+
+                                # Get the category of the artist's commons category (p373) 
+
+                                if smk_artist_wikidata_q != '':
+                                    # Generate category content with reference to the artist wikidata item (p373)
+                                    # but only if an artist Wikidata Q-number was found
+                                    #artist_category_wikidata = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
+                                    artist_category_wikidata = '{{Wikidata Infobox|qid=' + smk_artist_wikidata_q + '}}'
+                                    category_pagetitle=artist_name_en
+
+                                    if save_wikitext:
+                                        path = folder + category_pagetitle + '.txt'
+                                        open(path, 'w').write(artist_category_wikidata)
+
+                                        commons.CreateCategory('Category:' +category_pagetitle, artist_category_wikidata, upload_to_commons)
+
+                            except Exception as e:
+                                debug_msg('EXCEPTION!' + str(e))
+                                logging.exception(e)
     
+                # use only one object type for the artwork, so break out of loop
+                break
             except Exception as e:
                 categories = categories + ''
                 debug_msg('EXCEPTION!' + str(e))
@@ -281,26 +329,11 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 license = ''
                 #smk_category = '[[Category:' + batch_title + ']]'
                 #smk_categories = smk_categories + smk_category + '\n'
-                
-                # generqte categories
-                smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
-
-                # Concatenate wikitext and categories
-                wikitext = artwork.wikitext + '\n' + str(smk_categories)
-                
-                # Save wikitext
-                if save_wikitext:
-                    path = folder + short_filename + '.txt'
-                    open(path, 'w').write(wikitext)
 
                 # Save RAW json
                 if save_json:
                     path = folder + short_filename + '.json'
                     open(path, 'w').write(smk_json)
-
-                f_html.writelines('<tr>')
-                f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
-                f_html.writelines('</tr>')
 
 #                   csvline = artwork.GenerateCSVLine()
 
@@ -320,17 +353,32 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 f_csv.write(csvline + '\n')
 
                 bot_status = "Not run"
-                #Attempt upload to commons if there is an imagepath
+                #Attempt upload to commons if there is an imagepath and categories
                 if upload_to_commons and imagepath!='':
                     if artwork.has_artist_wikidata:
                         if not image_exists:
                             # image not already uploaded attempting upload to commons
 
                             try:
-                                if not commons.PageExists(pagetitle):
+                                if not commons.PageExists(pagetitle):                
+                                    # generqte categories
+                                    smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+
+                                    # Concatenate wikitext and categories
+                                    wikitext = artwork.wikitext + '\n' + str(smk_categories)
+                                    
+                                    # Save wikitext
+                                    if save_wikitext:
+                                        path = folder + short_filename + '.txt'
+                                        open(path, 'w').write(wikitext)
+
+                                    f_html.writelines('<tr>')
+                                    f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                                    f_html.writelines('</tr>')
+
                                     debug_msg('Attempting upload of: ' + pagetitle,debug_level)
 
-                                    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.artwork.accession_number +'}}')
+                                    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
                                     files_uploaded=files_uploaded+1
                                     bot_status = "Media uploaded"
                                 else:
@@ -601,7 +649,7 @@ def SMKHelper(Item: smkitem.Item):
                 if position != "":
                     line = line + '|position=' + smkapi.smk_to_commons_position(position)
                 if  language != "":
-                    line = line + '|language='+ smkapi.smk_language_code_to_iso_code(language)
+                    line = line + '|language='+ smkapi.smk_language_code_to_iso_code(language.lower())
                 line = line + '}}'
                 smk_inscriptions = smk_inscriptions + line + '\n'
         except Exception as e:
@@ -735,8 +783,17 @@ def SMKHelper(Item: smkitem.Item):
     unknown_artist = False 
     artwork.has_artist_wikidata = False 
 
+    has_several_artists=False
+
     for artist in Item.artist:
         smk_artist = str(artist)
+        if len(Item.artist)>1:
+            # More than one artist, add information about artists to smk_notes
+            if not has_several_artists:
+                has_several_artists = True
+                smk_notes=smk_notes+"* {{en|This artwork has several artists:}}\n"
+            smk_notes = smk_notes + "** " + smk_artist + '\n'
+
         if artist != '':
             smk_artists_filename=smk_artists_filename+smk_artist+' - '
             if smk_artist.lower() == 'ubekendt':
@@ -745,7 +802,6 @@ def SMKHelper(Item: smkitem.Item):
             else:
                 # find wikidata item from artist name
                 smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(smk_artist)
-
                 if smk_artist_wikidata_q!='':
                     smk_artists=smk_artists+smk_artist_wikidata_q+'\n'
                     artwork.has_artist_wikidata = True
@@ -938,7 +994,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #smk_number_list = ["KMS7270"]
 #smk_number_list = ["KMS1806"]
 #smk_number_list = ["KKSgb22345"]
-smk_number_list = ["KKSgb22216"]
+#smk_number_list = ["KKSgb22216"]
 #smk_number_list = ["KKSgb22216"],
 #    "KKSgb4762",
 #    "KMS3716",
@@ -947,7 +1003,8 @@ smk_number_list = ["KKSgb22216"]
 #    "KKSgb2950",
 #    "KMS4223",
 #    "KKSgb19863"]
-#smk_number_list=None
+#smk_number_list = ["KKSgb22229"]
+smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
 #    ["has_image", "true"],
@@ -957,6 +1014,9 @@ smk_number_list = ["KKSgb22216"]
 smk_filter_list = [["public_domain","true"],
     ["has_image", "true"]]
 
+#smk_facet_filter =
+#https://api.smk.dk/api/v1/art/search?keys=%2A&facets=object_names&filters=%5Bobject_names%3AClairobscurtr%C3%A6snit%5D&offset=0&rows=10
+
 # Generate SMK API filters from filter list
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
@@ -965,11 +1025,11 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-04-29_WLKBot_test'
+batch_title='2023-06-04_WLKBot_test'
 #batch_title='KMS1806'
 #download_images=True
-download_images=False
-upload_images=False
+download_images=True
+upload_images=True
 #upload_images=False
 #batch_size=24
 batch_size=-1
