@@ -789,6 +789,23 @@ class Item:
         csv_str = csv_str + delimiter + production.csv_line(delimiter)
         return csv_str
 
+    def defaultsort(self,artist=""):
+        defaultsort_str = ""
+        artist_token = artist.split()
+        for production in self.production:
+            forename_found=False
+            surname_found=False
+            for token in artist_token:
+                if token in production.creator_surname:
+                    surname_found=True 
+                if token in production.creator_forename: 
+                    forename_found=True
+                if forename_found and surname_found:
+                    defaultsort_str = production.creator_surname
+                    if production.creator_forename != '':
+                        defaultsort_str = defaultsort_str+", "+production.creator_forename
+        return defaultsort_str
+
 class SMKItem:
     items: List[Item]
 

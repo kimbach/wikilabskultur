@@ -29,6 +29,8 @@ wd_date_of_death = 'P570'   # property for date of death
 wd_occupation = 'P106'      # property for occupation
 wd_artist = 'Q483501'       # item for artist
 wd_instance_of = 'P31'      # instance of
+wd_given_name = 'P735'      # given name
+wd_family_name = 'P734'     # family name
 wb_human = 'Q5'             # human item
 wb_lastest_date = 'S1326'   # latest date
 

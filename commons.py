@@ -35,6 +35,7 @@ class BaseTemplate(metaclass=ABCMeta):
 @dataclass
 class ArtworkTemplate(BaseTemplate):
     _artist: str
+    _artist_name: str
     _nationality: str
     _author: str
     _title: str
@@ -73,11 +74,16 @@ class ArtworkTemplate(BaseTemplate):
     _artists_filename: str
     _has_artist_wikidata: bool
     _museumtitle: str
+    _templates: str
 
 
     @property
     def artist(self):
         return self._artist
+
+    @property
+    def artist_name(self):
+        return self._artist_name
 
     @property
     def nationality(self):
@@ -231,6 +237,10 @@ class ArtworkTemplate(BaseTemplate):
     def museumtitle(self):
         return self._museumtitle
 
+    @property
+    def templates(self):
+        return self._templates
+
     def __init__(self, *objs):
         # Constructor, supports several object types in the objs argument
     
@@ -245,6 +255,9 @@ class ArtworkTemplate(BaseTemplate):
                         
                     # artist
                     self.artist = ''
+                        
+                    # artist_name
+                    self.artist_name = ''
                         
                     # nationality
                     self.nationality = ''
@@ -319,14 +332,14 @@ class ArtworkTemplate(BaseTemplate):
     def artist(self, new_artist):
         self._artist = new_artist
    
+    @artist_name.setter
+    def artist_name(self, new_artist_name):
+        self._artist_name = new_artist_name
+   
     @nationality.setter
     def nationality(self, new_nationality):
         self._nationality = new_nationality
-   
-    @artist.setter
-    def artist(self, new_artist):
-        self._artist = new_artist
-   
+      
     @title.setter
     def title(self, new_title):
         self._title = new_title
@@ -463,6 +476,11 @@ class ArtworkTemplate(BaseTemplate):
     def museumtitle(self, new_museumtitle):
         self._museumtitle = new_museumtitle
 
+    @templates.setter
+    def templates(self, new_templates):
+        self._templates = new_templates
+
+
     def GenerateWikiText(self):
         #complete this once if applies to all files
         
@@ -518,6 +536,7 @@ class ArtworkTemplate(BaseTemplate):
 
         self.csvline = ''
         self.csvline = self.csvline + str(self.artist).replace(';', '&semi') + csvdelim
+        self.csvline = self.csvline + str(self.artist_name).replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + str(self.nationality).replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + str(self.author).replace(';', '&semi') + csvdelim
         self.csvline = self.csvline + str(self.title).replace(';', '&semi') + csvdelim
@@ -573,6 +592,7 @@ class ArtworkTemplate(BaseTemplate):
           'created' + csvdelim + \
           'modified' + csvdelim + \
           'artist' + csvdelim + \
+          'artist_name' + csvdelim + \
           'nationality' + csvdelim + \
           'author' + csvdelim + \
           'title' + csvdelim + \

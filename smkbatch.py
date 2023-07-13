@@ -95,7 +95,9 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
 
                         # Try to create object category
                         if object_category != "":
-                            object_category_wikitext= '{{SMKNavBox}}\n' + \
+                            object_category_wikitext= '{{SMKNavBox}}\n'
+
+                            object_category_wikitext= object_category_wikitext + \
                                 '[[Category:Collections of the Statens Museum for Kunst]]\n'
 
                             try:
@@ -117,7 +119,16 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                                 artist_commons_category = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
                             else:
                                 artist_commons_category = artist_name_en
-                            artist_category_wikitext='[[Category:Collections of the Statens Museum for Kunst]]\n' + \
+
+                            defaultsort=item.defaultsort(artist_name_en)
+
+                            if defaultsort != '':
+                                artist_category_wikitext ='{{DEFAULTSORT:' + defaultsort + '}}\n'
+                            else:
+                                artist_category_wikitext =''
+
+                            artist_category_wikitext= artist_category_wikitext + \
+                                '[[Category:Collections of the Statens Museum for Kunst]]\n' + \
                                 '[[Category:'+ object_category + ']]\n' + \
                                 '[[Category:' + artist_commons_category +']]\n'
                                 #'[[Category:' + artist_name +']]\n' \
@@ -135,7 +146,11 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                                     # Generate category content with reference to the artist wikidata item (p373)
                                     # but only if an artist Wikidata Q-number was found
                                     #artist_category_wikidata = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
-                                    artist_category_wikidata = '{{Wikidata Infobox|qid=' + smk_artist_wikidata_q + '}}'
+                                    artist_category_wikidata = '{{Wikidata Infobox|qid=' + smk_artist_wikidata_q + '}}\n'
+
+                                    if defaultsort != '':
+                                        artist_category_wikidata = artist_category_wikidata + '{{DEFAULTSORT:' + defaultsort + '}}\n'
+
                                     category_pagetitle=artist_name_en
 
                                     if save_wikitext:
@@ -351,27 +366,34 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                 # Print CSV line
                 f_csv.write(csvline + '\n')
+                
+                # DFAULTSORT template
+                defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
+                if defaultsort != '':
+                    smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
+                else:
+                    smk_templates = ''
+
+                # generqte categories
+                smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+
+                # Concatenate wikitext, templates and categories
+                wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+                
+                # Save wikitext
+                if save_wikitext:
+                    path = folder + short_filename + '.txt'
+                    open(path, 'w').write(wikitext)
 
                 bot_status = "Not run"
                 #Attempt upload to commons if there is an imagepath and categories
-                if upload_to_commons and imagepath!='':
+                if upload_to_commons and imagepath!='' and smk_categories!='':
                     if artwork.has_artist_wikidata:
                         if not image_exists:
                             # image not already uploaded attempting upload to commons
 
                             try:
                                 if not commons.PageExists(pagetitle):                
-                                    # generqte categories
-                                    smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
-
-                                    # Concatenate wikitext and categories
-                                    wikitext = artwork.wikitext + '\n' + str(smk_categories)
-                                    
-                                    # Save wikitext
-                                    if save_wikitext:
-                                        path = folder + short_filename + '.txt'
-                                        open(path, 'w').write(wikitext)
-
                                     f_html.writelines('<tr>')
                                     f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
                                     f_html.writelines('</tr>')
@@ -393,6 +415,9 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             bot_status = 'Media already uploaded'
                     else:
                         bot_status = 'Artist has no wikidata item'
+                else:
+                    if smk_categories == '':
+                        bot_status = 'Artist has no categories'
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -782,6 +807,7 @@ def SMKHelper(Item: smkitem.Item):
     smk_artists_filename=''
     unknown_artist = False 
     artwork.has_artist_wikidata = False 
+    artwork.artist_name = ''
 
     has_several_artists=False
 
@@ -795,6 +821,8 @@ def SMKHelper(Item: smkitem.Item):
             smk_notes = smk_notes + "** " + smk_artist + '\n'
 
         if artist != '':
+            artwork.artist_name = smk_artist
+
             smk_artists_filename=smk_artists_filename+smk_artist+' - '
             if smk_artist.lower() == 'ubekendt':
                 unknown_artist = True 
@@ -805,6 +833,7 @@ def SMKHelper(Item: smkitem.Item):
                 if smk_artist_wikidata_q!='':
                     smk_artists=smk_artists+smk_artist_wikidata_q+'\n'
                     artwork.has_artist_wikidata = True
+                    artwork.artist_name = smk_artist
                 else:
                     smk_artists=smk_artists+smk_artist+'\n'
          
@@ -995,16 +1024,16 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #smk_number_list = ["KMS1806"]
 #smk_number_list = ["KKSgb22345"]
 #smk_number_list = ["KKSgb22216"]
-#smk_number_list = ["KKSgb22216"],
-#    "KKSgb4762",
-#    "KMS3716",
-#    "KKSgb6423",
-#    "KAS1179",
-#    "KKSgb2950",
-#    "KMS4223",
-#    "KKSgb19863"]
+smk_number_list = ["KKSgb22216",
+   "KKSgb4762",
+   "KMS3716",
+   "KKSgb6423",
+   "KAS1179",
+   "KKSgb2950",
+   "KMS4223",
+   "KKSgb19863"]
 #smk_number_list = ["KKSgb22229"]
-smk_number_list=None
+#smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
 #    ["has_image", "true"],
@@ -1025,11 +1054,11 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-06-04_WLKBot_test'
+batch_title='2023-07-09_WLKBot_test'
 #batch_title='KMS1806'
 #download_images=True
-download_images=True
-upload_images=True
+download_images=False
+upload_images=False
 #upload_images=False
 #batch_size=24
 batch_size=-1

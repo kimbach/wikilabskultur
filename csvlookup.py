@@ -339,11 +339,11 @@ def query_all_artists():
         linenumber = 1
 
 
-    max_searches = 1000
+    max_searches = 500
     count = 0
     path_csv = folder + "artists_wikidata" + '.csv'
     if not os.path.exists(path_csv):
-        csv_header = "creator_lref;creator;id;title;label;description;wikidata_dob;creator_dob;value_occupation_id;value_occupation_label_en;value_field_of_work;value_commons_category\n"
+        csv_header = "creator_lref;creator;creator_forename;creator_surname;id;title;label;description;wikidata_dob;creator_dob;value_occupation_id;value_occupation_label_en;value_field_of_work;value_commons_category\n"
         with open(path_csv, 'w') as artists_wikidata:
             artists_wikidata.write(csv_header)
         artists_wikidata.close()
@@ -358,6 +358,8 @@ def query_all_artists():
         count = count + 1
         
         creator = ((row[4] + " " + row[5]).replace('"', '')).strip()
+        creator_forename = (row[4]).replace('"', '').strip()
+        creator_surname = (row[5]).replace('"', '').strip()
         creator_lref = row[11]
         creator_date_of_birth = row[6]
         # attempt a search in wikidata
@@ -369,11 +371,10 @@ def query_all_artists():
         path_json = folder + creator_lref + '.json'
 
         # Only create new file if it doesn't exist
-        artists_wikidata_line_prefix = creator_lref+";"+creator+";"
+        artists_wikidata_line_prefix = creator_lref+";"+creator+";"+creator_forename+";"+creator_surname+";"
         if not os.path.exists(path_json):
             creator_json=requests.get(url).text
             creator_objects=json.loads(creator_json)
-
 
             # open(path_json, 'w').write(creator_json)
 
@@ -466,6 +467,9 @@ def query_all_artists():
                                                 value_commons_category = ""
                                         except:
                                             value_commons_category = ""
+                                    else:
+                                        value_commons_category = ""
+
                                     if property == "P101":
                                         # field of work                            
                                         try:
@@ -617,6 +621,12 @@ def get_creator_lref_without_q():
                             smk_occupation=open(folder + 'smk_occupation.csv', 'a')
                             smk_occupation.write(item.name_type[0]+'\n')
                             smk_occupation.close()
+
+                        # given_name
+                        qsitem = qsitem + qs.given_name(item.forename)+ qs.comment('given name') + '\n'
+
+                        # family_name
+                        qsitem = qsitem + qs.family_name(item.surname)+ qs.comment('family name') + '\n'
 
                         print(qsitem)
                         personfile=open(folder+item.id+'.txt','w')
@@ -790,7 +800,7 @@ def Test():
     #load_wikidata_worksby_items()
     #FindSMKArtistWikidata()
     #print(find_person_wikidata_item('244_person'))
-    #query_all_artists()
+    query_all_artists()
     #get_creator_lref_without_q()
     # query_all_artwork_types()
     # creator_lref="1039_person"
@@ -809,4 +819,4 @@ def Test():
     # smk_artwork_type_wikidata=find_wikidata_from_artwork_type(smk_artwork_type)
     # print(smk_artwork_type_wikidata)
 
-Test()
+#Test()

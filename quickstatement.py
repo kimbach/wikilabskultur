@@ -97,6 +97,18 @@ class quickstatement:
             '\t'+self.reference_url()
         return qs
 
+    def given_name(self,given_name_txt):
+        qs=self.prefix()+'\t'+wikidata.wd_given_name + \
+            '\t' + '"' + given_name_txt + '"' + \
+            '\t'+self.reference_url()
+        return qs
+
+    def family_name(self,family_name_txt):
+        qs=self.prefix()+'\t'+wikidata.wd_family_name + \
+            '\t' + '"' + family_name_txt + '"' + \
+            '\t'+self.reference_url()
+        return qs
+    
     def date_of_birth(self,dob,dob_end,precision):
         qs=self.prefix()+'\t'+wikidata.wd_date_of_birth + \
             '\t' + self.date(dob,precision)
@@ -132,5 +144,6 @@ class quickstatement:
         return qs
 
 def test():
+    qs = quickstatement()
     print('')
 
