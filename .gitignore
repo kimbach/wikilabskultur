@@ -75,3 +75,4 @@ throttle.ctrl
 commons_error.log
 __pycache__/smkitem.cpython-37.pyc
 throttle.ctrl
+__pycache__/wikidata.cpython-37.pyc

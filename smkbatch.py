@@ -73,10 +73,21 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                         # find wikidata item from artist name
                         smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(artist_name)
                         smk_artist_wikidata = csvlookup.find_creator_from_creator_name(artist_name)
-                        if smk_artist_wikidata != None:
-                            artist_name_en = smk_artist_wikidata[3]
+                        
+                        # Find commons category name, and try to use it as artist name
+                        if smk_artist_wikidata_q != '':
+                            commons_category_name = wikidata.get_property_value("P373", smk_artist_wikidata_q)
                         else:
-                            artist_name_en = artist_name
+                            commons_category_name = None
+
+                        if commons_category_name != None:
+                            artist_name_en = commons_category_name
+                        else:
+                            # Commons category not found
+                            if smk_artist_wikidata != None:
+                                artist_name_en = smk_artist_wikidata[3]
+                            else:
+                                artist_name_en = artist_name
 
                         # Generate <object name> by <category_artist_name> in the Statens Museum for Kunst
                         # First check if object name> by <category_artist_name> in Statens Museum for Kunst exists - without "the"
@@ -366,37 +377,38 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                 # Print CSV line
                 f_csv.write(csvline + '\n')
-                
-                # DFAULTSORT template
-                defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
-                if defaultsort != '':
-                    smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
-                else:
-                    smk_templates = ''
-
-                # generqte categories
-                smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
-
-                # Concatenate wikitext, templates and categories
-                wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
-                
-                # Save wikitext
-                if save_wikitext:
-                    path = folder + short_filename + '.txt'
-                    open(path, 'w').write(wikitext)
 
                 bot_status = "Not run"
                 #Attempt upload to commons if there is an imagepath and categories
-                if upload_to_commons and imagepath!='' and smk_categories!='':
+                if upload_to_commons and imagepath!='':
                     if artwork.has_artist_wikidata:
                         if not image_exists:
                             # image not already uploaded attempting upload to commons
 
                             try:
                                 if not commons.PageExists(pagetitle):                
+                                    # DFAULTSORT template
+                                    defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
+                                    if defaultsort != '':
+                                        smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
+                                    else:
+                                        smk_templates = ''
+
+                                    # generate categories
+                                    smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+
+                                    # Concatenate wikitext, templates and categories
+                                    wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+
                                     f_html.writelines('<tr>')
                                     f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
                                     f_html.writelines('</tr>')
+                
+                                    # Save wikitext
+                                    if save_wikitext:
+                                        path = folder + short_filename + '.txt'
+                                        open(path, 'w').write(wikitext)
+
 
                                     debug_msg('Attempting upload of: ' + pagetitle,debug_level)
 
@@ -517,7 +529,8 @@ def SMKHelper(Item: smkitem.Item):
                             smk_creator_year_of_death = smk_creator_date_of_death.strftime("%Y-%m-%d")[:4]
                             smk_all_creators_date_of_death = smk_creator_year_of_death
                     else:
-                        smk_creator_year_of_death = production.creator_date_of_death.strftime("%Y-%m-%d")[:4]
+                        if production.creator_date_of_death != '':
+                            smk_creator_year_of_death = production.creator_date_of_death.strftime("%Y-%m-%d")[:4]
 
             except Exception as e:
                 debug_msg('EXCEPTION! '+ str(e))
@@ -1024,16 +1037,16 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #smk_number_list = ["KMS1806"]
 #smk_number_list = ["KKSgb22345"]
 #smk_number_list = ["KKSgb22216"]
-smk_number_list = ["KKSgb22216",
-   "KKSgb4762",
-   "KMS3716",
-   "KKSgb6423",
-   "KAS1179",
-   "KKSgb2950",
-   "KMS4223",
-   "KKSgb19863"]
+# smk_number_list = ["KKSgb22216",
+#    "KKSgb4762",
+#    "KMS3716",
+#    "KKSgb6423",
+#    "KAS1179",
+#    "KKSgb2950",
+#    "KMS4223",
+#    "KKSgb19863"]
 #smk_number_list = ["KKSgb22229"]
-#smk_number_list=None
+smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
 #    ["has_image", "true"],
@@ -1054,15 +1067,15 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-07-09_WLKBot_test'
+batch_title='2023-08-14_WLKBot_test'
 #batch_title='KMS1806'
 #download_images=True
-download_images=False
-upload_images=False
+download_images=True
+upload_images=True
 #upload_images=False
 #batch_size=24
 batch_size=-1
-batch_size=20
+batch_size=19
 save_json=True
 save_wikitext=True
 debug_level=1

@@ -385,3 +385,30 @@ def GetInstitutionWikidataWorksBy(wd_institution, output_filename):
 
 # Get all works from artist from Statens Museum for Kunst, Wikidata Object Q671384
 #GetInstitutionWikidataWorksBy('Q671384', 'wikidata_worksby_smk.csv')
+
+def get_property_value(wikidata_property_id, wikidata_entity_id):
+    # Connect to Wikidata
+    site = pywikibot.Site("wikidata", "wikidata")
+
+    # Get the Wikidata entity
+    entity = pywikibot.ItemPage(site, wikidata_entity_id)
+
+    try:
+        # Fetch the P373 value
+        property_claim = entity.claims[wikidata_property_id][0]
+        property_value = property_claim.getTarget()
+
+        return property_value
+    except KeyError:
+        # If the P373 property is not found, return None
+        return None
+
+# Replace 'Q42' with the Wikidata entity ID you want to query
+# wikidata_entity_id = 'Q42'
+# wikidata_property_id = 'P373'
+# property_value = get_property_value(wikidata_property_id, wikidata_entity_id)
+
+# if property_value:
+#     print(f"{wikidata_property_id} value for {wikidata_entity_id}: {property_value}")
+# else:
+#     print(f"No {wikidata_property_id} value found for {wikidata_entity_id}.")
