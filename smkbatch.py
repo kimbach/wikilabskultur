@@ -243,7 +243,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         output_filename=batch_title
         batch_log_filename = output_filename
         f_batch_log=open(batch_log_filename+'.log', 'w+')
-        f_batch_log.writelines("time;pagetitle;accession_number;wikidata;image_exists;bot_status;file_hash\n")
+        f_batch_log.writelines("time;pagetitle;accession_number;wikidata;image_exists;bot_status;file_hash;artist_name;artist_wikidata\n")
+        f_batch_log.close()
 
         f_csv=open(output_filename+'.csv', 'w+')
         f_html=open(output_filename+'.html', 'w+')
@@ -386,7 +387,10 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             # image not already uploaded attempting upload to commons
 
                             try:
-                                if not commons.PageExists(pagetitle):                
+                                # check if page already exists
+                                if not commons.PageExists(pagetitle):
+                                    # page does not exist, continue with upload
+
                                     # DFAULTSORT template
                                     defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
                                     if defaultsort != '':
@@ -397,28 +401,35 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     # generate categories
                                     smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
 
-                                    # Concatenate wikitext, templates and categories
-                                    wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+                                    if smk_categories != '':
+                                        # Item has categories'
 
-                                    f_html.writelines('<tr>')
-                                    f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
-                                    f_html.writelines('</tr>')
-                
-                                    # Save wikitext
-                                    if save_wikitext:
-                                        path = folder + short_filename + '.txt'
-                                        open(path, 'w').write(wikitext)
+                                        # Concatenate wikitext, templates and categories
+                                        wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+
+                                        f_html.writelines('<tr>')
+                                        f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                                        f_html.writelines('</tr>')
+                    
+                                        # Save wikitext
+                                        if save_wikitext:
+                                            path = folder + short_filename + '.txt'
+                                            open(path, 'w').write(wikitext)
 
 
-                                    debug_msg('Attempting upload of: ' + pagetitle,debug_level)
+                                        debug_msg('Attempting upload of: ' + pagetitle,debug_level)
 
-                                    commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
-                                    files_uploaded=files_uploaded+1
-                                    bot_status = "Media uploaded"
+                                        commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
+                                        files_uploaded=files_uploaded+1
+                                        bot_status = "Media uploaded"
+                                    else:
+                                        # Item has no categories, skip upload
+                                        debug_msg('Page has no categories: ' + pagetitle,debug_level)
+                                        bot_status = "Page has no categories"    
                                 else:
                                     debug_msg('Page already exists: ' + pagetitle,debug_level)
+                                    bot_status = 'Page already uploaded'
                             except Exception as e:
-                                f_batch_log.writelines('</table>')
                                 debug_msg('EXCEPTION! '+ str(e))
                                 typeerror=TypeError(e)
                                 bot_status = "Exception:" + str(e)
@@ -428,19 +439,20 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     else:
                         bot_status = 'Artist has no wikidata item'
                 else:
-                    if smk_categories == '':
-                        bot_status = 'Artist has no categories'
+                    bot_status = 'upload_to_commons set to False'
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
-                f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + '\n')  
+                f_batch_log=open(batch_log_filename+'.log', 'a')
+                f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + ";" + artwork.artist_name  + ";" +  artwork.artist_wikidata + '\n')  
+                f_batch_log.close()
         
             except Exception as e:
                 debug_msg('EXCEPTION! '+ str(e))
                 typeerror=TypeError(e)
                 logging.exception(e)
             finally:
-                print('\r' + str(items), end='', flush=True)
+                print('\r' + "Uploaded " + str(files_uploaded) + "/" + str(items) + " files - " + bot_status, end='', flush=True)
 
                 offset=offset+1
 
@@ -451,7 +463,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         f_html.writelines('</body></html>')
         f_html.close()
         f_csv.close() 
-        f_batch_log.close()
         
     except Exception as e:
         debug_msg('EXCEPTION! '+ str(e))
@@ -821,6 +832,7 @@ def SMKHelper(Item: smkitem.Item):
     unknown_artist = False 
     artwork.has_artist_wikidata = False 
     artwork.artist_name = ''
+    artwork.artist_wikidata = ''
 
     has_several_artists=False
 
@@ -847,6 +859,7 @@ def SMKHelper(Item: smkitem.Item):
                     smk_artists=smk_artists+smk_artist_wikidata_q+'\n'
                     artwork.has_artist_wikidata = True
                     artwork.artist_name = smk_artist
+                    artwork.artist_wikidata = smk_artist_wikidata_q 
                 else:
                     smk_artists=smk_artists+smk_artist+'\n'
          
@@ -1067,12 +1080,12 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-08-14_WLKBot_test'
+batch_title='2023-08-20_WLKBot_test'
 #batch_title='KMS1806'
 #download_images=True
 download_images=True
-upload_images=True
-#upload_images=False
+upload_images=False
+upload_images=False
 #batch_size=24
 batch_size=-1
 batch_size=19

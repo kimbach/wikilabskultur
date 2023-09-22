@@ -12416,3 +12416,111 @@ Knuth nr. 15
 2023-08-14 19:07:42 Dropped throttle(s).
 2023-08-14 19:07:42 Closing network session.
 2023-08-14 19:07:42 Network session closed.
+2023-08-20 14:27:32 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:32 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:33 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:33 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:34 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:35 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:35 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:27:36 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:24 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:24 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:25 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:25 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:26 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:26 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:27 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 14:50:27 local variable 'smk_categories' referenced before assignment
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 435, in MapSMKAPIToCommons
+    if smk_categories == '':
+UnboundLocalError: local variable 'smk_categories' referenced before assignment
+2023-08-20 15:02:27 'ArtworkTemplate' object has no attribute '_templates'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 440, in MapSMKAPIToCommons
+    f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + ";" + artwork.artist_name  + ";" +  artwork.artist_wikidata + '\n')
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 243, in templates
+    return self._templates
+AttributeError: 'ArtworkTemplate' object has no attribute '_templates'
+2023-08-20 15:02:40 'ArtworkTemplate' object has no attribute '_templates'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 440, in MapSMKAPIToCommons
+    f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + ";" + artwork.artist_name  + ";" +  artwork.artist_wikidata + '\n')
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 243, in templates
+    return self._templates
+AttributeError: 'ArtworkTemplate' object has no attribute '_templates'
+2023-08-20 15:09:24 'ArtworkTemplate' object has no attribute '_artist_wikidata'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 440, in MapSMKAPIToCommons
+    f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + ";" + artwork.artist_name  + ";" +  artwork.artist_wikidata + '\n')
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 247, in artist_wikidata
+    return self._artist_wikidata
+AttributeError: 'ArtworkTemplate' object has no attribute '_artist_wikidata'
+2023-08-20 15:09:27 'ArtworkTemplate' object has no attribute '_artist_wikidata'
+Traceback (most recent call last):
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/smkbatch.py", line 440, in MapSMKAPIToCommons
+    f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + ";" + artwork.artist_name  + ";" +  artwork.artist_wikidata + '\n')
+  File "/Users/kimbach/Documents/wikilabskultur/batchupload/commons.py", line 247, in artist_wikidata
+    return self._artist_wikidata
+AttributeError: 'ArtworkTemplate' object has no attribute '_artist_wikidata'
