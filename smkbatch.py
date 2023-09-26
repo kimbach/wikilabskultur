@@ -382,7 +382,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 bot_status = "Not run"
                 #Attempt upload to commons if there is an imagepath and categories
                 if upload_to_commons and imagepath!='':
-                    if artwork.has_artist_wikidata:
+                    # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
+                    if artwork.has_artist_wikidata or artwork.unknown_artist:
                         if not image_exists:
                             # image not already uploaded attempting upload to commons
 
@@ -392,7 +393,11 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     # page does not exist, continue with upload
 
                                     # DFAULTSORT template
-                                    defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
+                                    if not artwork.unknown_artist:
+                                        defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
+                                    else:
+                                        defaultsort = 'Unknown'
+
                                     if defaultsort != '':
                                         smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
                                     else:
@@ -833,6 +838,7 @@ def SMKHelper(Item: smkitem.Item):
     artwork.has_artist_wikidata = False 
     artwork.artist_name = ''
     artwork.artist_wikidata = ''
+    artwork.unknown_artist = False 
 
     has_several_artists=False
 
@@ -849,9 +855,14 @@ def SMKHelper(Item: smkitem.Item):
             artwork.artist_name = smk_artist
 
             smk_artists_filename=smk_artists_filename+smk_artist+' - '
+            
+            # Is one of the artists unknown?
             if smk_artist.lower() == 'ubekendt':
                 unknown_artist = True 
-                smk_artist='{{da|' + smk_artist + '}}'
+                artwork.unknown_artist = True 
+                smk_artist='Unknown'
+                artwork.artist_name = 'Unknown'
+                smk_artists=smk_artists+smk_artist+'\n'
             else:
                 # find wikidata item from artist name
                 smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(smk_artist)
@@ -1080,15 +1091,15 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-08-20_WLKBot_test'
+batch_title='2023-09-26_WLKBot_Batch'
 #batch_title='KMS1806'
 #download_images=True
 download_images=True
 upload_images=False
-upload_images=False
+upload_images=True
 #batch_size=24
 batch_size=-1
-batch_size=19
+batch_size=500
 save_json=True
 save_wikitext=True
 debug_level=1

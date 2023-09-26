@@ -804,6 +804,7 @@ class Item:
                     defaultsort_str = production.creator_surname
                     if production.creator_forename != '':
                         defaultsort_str = defaultsort_str+", "+production.creator_forename
+
         return defaultsort_str
 
 class SMKItem:

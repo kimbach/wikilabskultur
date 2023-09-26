@@ -76,6 +76,7 @@ class ArtworkTemplate(BaseTemplate):
     _museumtitle: str
     _templates: str
     _artist_wikidata: str
+    _unknown_artist = bool 
 
 
     @property
@@ -245,6 +246,10 @@ class ArtworkTemplate(BaseTemplate):
     @property
     def artist_wikidata(self):
         return self._artist_wikidata
+
+    @property
+    def unknown_artist(self):
+        return self._unknown_artist
 
     def __init__(self, *objs):
         # Constructor, supports several object types in the objs argument
@@ -488,6 +493,11 @@ class ArtworkTemplate(BaseTemplate):
     @artist_wikidata.setter
     def artist_wikidata(self, new_artist_wikidata):
         self._artist_wikidata = new_artist_wikidata
+
+
+    @unknown_artist.setter
+    def unknown_artist(self, new_unknown_artist):
+        self._unknown_artist = new_unknown_artist
 
 
     def GenerateWikiText(self):
