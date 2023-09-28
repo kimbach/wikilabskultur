@@ -1091,7 +1091,7 @@ rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-09-26_WLKBot_Batch'
+batch_title='2023-09-27_WLKBot_Batch'
 #batch_title='KMS1806'
 #download_images=True
 download_images=True
