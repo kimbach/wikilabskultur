@@ -27,7 +27,6 @@ creators_smk.csv
 2022-11-24_piranesi.python.png
 2022-11-24_piranesi.wikitext.png
 artwork_types_labels
-commons_error.log
 creators_smk.csv
 f_artists.csv
 index.html
@@ -77,3 +76,6 @@ __pycache__/smkitem.cpython-37.pyc
 throttle.ctrl
 __pycache__/wikidata.cpython-37.pyc
 __pycache__/commons.cpython-37.pyc
+__pycache__/commons.cpython-37.pyc
+commons_error.log
+.gitignore

@@ -184,7 +184,7 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
     return(categories)
 
 
-def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, debug_level=0):
+def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, offset, debug_level=0):
     """
     Maps SMK API to Wikimedia Commons. Three files is generated for each item (inventory number/assension number)
     <mediafilename> ::=<filename>"."<fileextension>
@@ -207,6 +207,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         batch_size -- The max number of items to upload (batch size), set to -1 to generate full batch
         save_json -- True if RAW JSON should be saved 
         save_wikitext -- True if wikitext should be saved 
+        offset -- the record to start looking for items in the API 
         debug_level
 
         <batch_title>       ::= {<char>}  
@@ -236,7 +237,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         commons_error_log = "commons_error.log"
         logging.basicConfig(filename=commons_error_log,level=logging.ERROR,format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-        offset=0
+        # offset=0
         rows=1
         items=0
 
@@ -1086,12 +1087,15 @@ smk_filter_list = [["public_domain","true"],
 # Generate SMK API filters from filter list
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
+# offset indicates at what row the SMK API should start generation, 0 indicates the first record
 offset=0
+# offset indicates at what row the SMK API should start generation
+offset=3010
 rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-09-27_WLKBot_Batch'
+batch_title='2023-10-03_WLKBot_Batch'
 #batch_title='KMS1806'
 #download_images=True
 download_images=True
@@ -1103,7 +1107,7 @@ batch_size=500
 save_json=True
 save_wikitext=True
 debug_level=1
-MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size, save_json, save_wikitext)
+MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size, save_json, save_wikitext, offset)
 
 #test upload
 #filename    = "./downloads/Ambrosius Bosschaerts d.Æ., Blomsterbuket i en stenniche, 1618, KMSsp211, Statens Museum for Kunst.jpg"
