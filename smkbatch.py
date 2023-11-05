@@ -97,12 +97,12 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                         
                         if artist_category != "":
                             # only add artist category, if it doesn't already exist
-                            if categories.find(artist_category) == -1:
+                           if categories.find(artist_category) == -1:
                                 categories = categories + '[[Category:' + artist_category + ']]\n' 
-                        if object_category != "":
+#                        if object_category != "":
                             # only add object category, if it doesn't already exist
-                            if categories.find(object_category) == -1:
-                                categories = categories + '[[Category:' + object_category + ']]\n' 
+#                        if categories.find(object_category) == -1:
+#                            categories = categories + '[[Category:' + object_category + ']]\n' 
 
                         # Try to create object category
                         if object_category != "":
@@ -139,7 +139,6 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                                 artist_category_wikitext =''
 
                             artist_category_wikitext= artist_category_wikitext + \
-                                '[[Category:Collections of the Statens Museum for Kunst]]\n' + \
                                 '[[Category:'+ object_category + ']]\n' + \
                                 '[[Category:' + artist_commons_category +']]\n'
                                 #'[[Category:' + artist_name +']]\n' \
@@ -383,9 +382,11 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 bot_status = "Not run"
                 #Attempt upload to commons if there is an imagepath and categories
                 if upload_to_commons and imagepath!='':
+                #if imagepath!='':
                     # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
                     if artwork.has_artist_wikidata or artwork.unknown_artist:
                         if not image_exists:
+#                        if True:
                             # image not already uploaded attempting upload to commons
 
                             try:
@@ -633,10 +634,10 @@ def SMKHelper(Item: smkitem.Item):
     for title in Item.titles: 
         try:
             iso_code = smkapi.smk_language_code_to_iso_code(title.language)
-            smk_description = smk_description + '{{'
             if iso_code != '':
-                smk_description = smk_description + iso_code +'|'
-            smk_description = smk_description + title.title + '}}\n'
+                smk_description = smk_description + '{{' + iso_code +'|'  + title.title + '}}\n'
+            else:
+                smk_description = smk_description + title.title + '\n'
         except Exception as e:
             debug_msg('EXCEPTION! '+ str(e))
             logging.exception(e)
@@ -1070,7 +1071,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #    "KKSgb2950",
 #    "KMS4223",
 #    "KKSgb19863"]
-#smk_number_list = ["KKSgb22229"]
+#smk_number_list = ["KKSgb5100/66"]
 smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
@@ -1088,21 +1089,21 @@ smk_filter_list = [["public_domain","true"],
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
-offset=0
+#offset=0
 # offset indicates at what row the SMK API should start generation
-offset=3010
+offset=3974
 rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
-batch_title='2023-10-03_WLKBot_Batch'
-#batch_title='KMS1806'
-#download_images=True
+batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
+#batch_title='KKSgb20143'
 download_images=True
-upload_images=False
+#download_images=False
+#upload_images=False
 upload_images=True
 #batch_size=24
-batch_size=-1
+#batch_size=-1
 batch_size=500
 save_json=True
 save_wikitext=True

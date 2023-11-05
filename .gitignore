@@ -8,7 +8,7 @@ passwords.txt
 *.*.pyc
 *.log
 *.csv
-*.hmtl
+*.html
 *.odb
 *.xlsx
 user-config.py
@@ -79,3 +79,9 @@ __pycache__/commons.cpython-37.pyc
 __pycache__/commons.cpython-37.pyc
 commons_error.log
 .gitignore
+commons_error.log
+pywikibot.lwp
+throttle.ctrl
+__pycache__/smkapi.cpython-37.pyc
+pywikibot.lwp
+commons_error.log

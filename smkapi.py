@@ -117,6 +117,9 @@ def smk_language_code_to_iso_code(smk_language_code):
         "eng": "en",
         "engelsk": "en",
         "italiensk": "it",
+        "fransk": "fr",
+        "spansk": "es",
+        "tysk": "de",
     }
     return switcher.get(smk_language_code.lower(), "")
 
