@@ -50,7 +50,7 @@ def load_wikidata_worksby_items():
         except:
             print("Error:")
     
-    print(wikidata_worksby_items)
+    #print(wikidata_worksby_items)
 
 def load_f_artists_items():
     reader = csv.reader(open('f_artists.csv'), quoting=csv.QUOTE_NONE, delimiter = ';')
@@ -61,7 +61,7 @@ def load_f_artists_items():
             # implement your duplicate row handling here
             pass
         f_artists_items[key] = row[1:]
-    print(f_artists_items)
+    #print(f_artists_items)
 
 def load_all_artists_items():
     reader = csv.reader(open('all_artists.csv'), quoting=csv.QUOTE_NONE, delimiter = ';')
@@ -73,7 +73,7 @@ def load_all_artists_items():
             pass
         #all_artists_items[key] = row[0:]
         all_artists_items[key] = row
-    print(all_artists_items)
+    #print(all_artists_items)
 
 def load_all_creator_lref_to_wikidata_items():
     reader = csv.reader(open('creator_lref_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
@@ -85,7 +85,7 @@ def load_all_creator_lref_to_wikidata_items():
             pass
         #all_artists_items[key] = row[0:]
         all_creator_lref_to_wikidata_items[key] = row
-    print(all_creator_lref_to_wikidata_items)
+    #print(all_creator_lref_to_wikidata_items)
 
 def load_smk_materials_to_wikidata_items():
     reader = csv.reader(open('smk_materials_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
@@ -97,7 +97,7 @@ def load_smk_materials_to_wikidata_items():
             pass
         #all_artists_items[key] = row[0:]
         smk_materials_to_wikidata_items[key] = row
-    print(smk_materials_to_wikidata_items)
+    #print(smk_materials_to_wikidata_items)
 
 smk_object_names_to_wikidata_items={}
 
@@ -111,7 +111,7 @@ def load_smk_object_names_to_wikidata_items():
             pass
         #all_artists_items[key] = row[0:]
         smk_object_names_to_wikidata_items[key] = row
-    print(smk_object_names_to_wikidata_items)
+    #print(smk_object_names_to_wikidata_items)
 
 def load_smk_artwork_types_to_wikidata_items():
     reader = csv.reader(open('smk_artwork_types_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
@@ -123,7 +123,7 @@ def load_smk_artwork_types_to_wikidata_items():
             pass
         #all_artists_items[key] = row[0:]
         smk_artwork_types_to_wikidata_items[key] = row
-    print(smk_artwork_types_to_wikidata_items)
+    #print(smk_artwork_types_to_wikidata_items)
 
 def load_smk_artwork_types_labels_items():
     reader = csv.reader(open('artwork_types_labels.csv'), quoting=csv.QUOTE_NONE, delimiter = ';')
@@ -135,7 +135,7 @@ def load_smk_artwork_types_labels_items():
             pass
         #all_artists_items[key] = row[0:]
         smk_artwork_types_labels_items[key] = row
-    print(smk_artwork_types_labels_items)
+    #print(smk_artwork_types_labels_items)
 
 def save_all_artists_items():
     all_unique_artists=open('all_unique_artists.csv', 'w+')

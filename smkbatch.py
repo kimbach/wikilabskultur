@@ -341,8 +341,15 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     if download_images:
                         if not os.path.exists(imagepath):
                             # only download file if it doens't already exist
+
+                            print(f'Downloading {short_filename}\n')
                             r = requests.get(smk_item.items[0].image_native, allow_redirects=True)
                             open(imagepath, 'wb').write(r.content)
+                    
+                    # check size of downloaded file, commons has a max size of 100MB
+                    file_stats = os.stat(imagepath)
+                    file_size = file_stats.st_size / (1024 * 1024)
+                    print(f'File Size in MegaBytes is {file_size}\n')
 
                     # Check if image allready exists
                     if os.path.exists(imagepath):
@@ -380,73 +387,79 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 f_csv.write(csvline + '\n')
 
                 bot_status = "Not run"
-                #Attempt upload to commons if there is an imagepath and categories
-                if upload_to_commons and imagepath!='':
-                #if imagepath!='':
-                    # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
-                    if artwork.has_artist_wikidata or artwork.unknown_artist:
-                        if not image_exists:
-#                        if True:
-                            # image not already uploaded attempting upload to commons
-
-                            try:
-                                # check if page already exists
-                                if not commons.PageExists(pagetitle):
-                                    # page does not exist, continue with upload
-
-                                    # DFAULTSORT template
-                                    if not artwork.unknown_artist:
-                                        defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
-                                    else:
-                                        defaultsort = 'Unknown'
-
-                                    if defaultsort != '':
-                                        smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
-                                    else:
-                                        smk_templates = ''
-
-                                    # generate categories
-                                    smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
-
-                                    if smk_categories != '':
-                                        # Item has categories'
-
-                                        # Concatenate wikitext, templates and categories
-                                        wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
-
-                                        f_html.writelines('<tr>')
-                                        f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
-                                        f_html.writelines('</tr>')
+                if file_size < 100:
+                    # The file size is smaller than 100MB, continue upload
                     
-                                        # Save wikitext
-                                        if save_wikitext:
-                                            path = folder + short_filename + '.txt'
-                                            open(path, 'w').write(wikitext)
+                    #Attempt upload to commons if there is an imagepath and categories
+                    if upload_to_commons and imagepath!='':
+                    #if imagepath!='':
+                        # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
+                        if artwork.has_artist_wikidata or artwork.unknown_artist:
+                            if not image_exists:
+    #                        if True:
+                                # image not already uploaded attempting upload to commons
+
+                                try:
+                                    # check if page already exists
+                                    if not commons.PageExists(pagetitle):
+                                        # page does not exist, continue with upload
+
+                                        # DFAULTSORT template
+                                        if not artwork.unknown_artist:
+                                            defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
+                                        else:
+                                            defaultsort = 'Unknown'
+
+                                        if defaultsort != '':
+                                            smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
+                                        else:
+                                            smk_templates = ''
+
+                                        # generate categories
+                                        smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+
+                                        if smk_categories != '':
+                                            # Item has categories'
+
+                                            # Concatenate wikitext, templates and categories
+                                            wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+
+                                            f_html.writelines('<tr>')
+                                            f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                                            f_html.writelines('</tr>')
+                        
+                                            # Save wikitext
+                                            if save_wikitext:
+                                                path = folder + short_filename + '.txt'
+                                                open(path, 'w').write(wikitext)
 
 
-                                        debug_msg('Attempting upload of: ' + pagetitle,debug_level)
+                                            debug_msg('Attempting upload of: ' + pagetitle,debug_level)
 
-                                        commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
-                                        files_uploaded=files_uploaded+1
-                                        bot_status = "Media uploaded"
+                                            commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
+                                            files_uploaded=files_uploaded+1
+                                            bot_status = "Media uploaded"
+                                        else:
+                                            # Item has no categories, skip upload
+                                            debug_msg('Page has no categories: ' + pagetitle,debug_level)
+                                            bot_status = "Page has no categories"    
                                     else:
-                                        # Item has no categories, skip upload
-                                        debug_msg('Page has no categories: ' + pagetitle,debug_level)
-                                        bot_status = "Page has no categories"    
-                                else:
-                                    debug_msg('Page already exists: ' + pagetitle,debug_level)
-                                    bot_status = 'Page already uploaded'
-                            except Exception as e:
-                                debug_msg('EXCEPTION! '+ str(e))
-                                typeerror=TypeError(e)
-                                bot_status = "Exception:" + str(e)
-                                logging.exception(e)
+                                        debug_msg('Page already exists: ' + pagetitle,debug_level)
+                                        bot_status = 'Page already uploaded'
+                                except Exception as e:
+                                    debug_msg('EXCEPTION! '+ str(e))
+                                    typeerror=TypeError(e)
+                                    bot_status = "Exception:" + str(e)
+                                    logging.exception(e)
+                            else:
+                                bot_status = 'Media already uploaded'
                         else:
-                            bot_status = 'Media already uploaded'
+                            bot_status = 'Artist has no wikidata item'
                     else:
-                        bot_status = 'Artist has no wikidata item'
+                        bot_status = 'upload_to_commons set to False'
                 else:
-                    bot_status = 'upload_to_commons set to False'
+                    bot_status = 'file size exeeds 100MB'
+
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -1091,7 +1104,7 @@ smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
 #offset=0
 # offset indicates at what row the SMK API should start generation
-offset=3974
+offset=5572
 rows=1
 
 #smk_filter=""

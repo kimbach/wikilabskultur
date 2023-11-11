@@ -82,6 +82,11 @@ commons_error.log
 commons_error.log
 pywikibot.lwp
 throttle.ctrl
-__pycache__/smkapi.cpython-37.pyc
 pywikibot.lwp
 commons_error.log
+_apicache-py3/*.*
+_throttle.ctrl
+pywikibot-WLKBot.lwp
+pywikibot.lwp
+throttle.ctrl
+user-config.py

@@ -49,6 +49,9 @@ usernames['wikidata']['wikidata'] = u'Kim Bach'
 usernames['commons']['commons'] = u'Kim Bach'
 usernames['commons']['commons'] = u'WLKBot'
 
+# reset cookies
+#usernames['*']['cookies'] = None
+
 # The list of BotPasswords is saved in another file. Import it if needed.
 # See https://www.mediawiki.org/wiki/Manual:Pywikibot/BotPasswords to know how
 # use them.
@@ -153,7 +156,7 @@ without_interwiki = False
 # Experimental feature:
 # Store the page contents on disk (/cache/ directory) instead of loading
 # them in RAM.
-interwiki_contents_on_disk = False
+#interwiki_contents_on_disk = False
 
 # ############# SOLVE_DISAMBIGUATION SETTINGS ############
 #
@@ -219,10 +222,10 @@ retry_max = 120
 
 # Will split long paragraphs for better reading the source.
 # Only table2wiki.py use it by now.
-splitLongParagraphs = False
+#splitLongParagraphs = False
 # sometimes HTML-tables are indented for better reading.
 # That can do very ugly results.
-deIndentTables = True
+#deIndentTables = True
 
 # ############# WEBLINK CHECKER SETTINGS ##############
 
@@ -244,7 +247,7 @@ weblink_dead_days = 7
 # db_hostname = 'enwiki.analytics.db.svc.eqiad.wmflabs'
 # db_name_format = '{0}_p'
 # db_connect_file = user_home_path('replica.my.cnf')
-db_hostname = 'localhost'
+#db_hostname = 'localhost'
 db_username = ''
 db_password = ''
 db_name_format = '{0}'
@@ -259,50 +262,50 @@ db_port = 3306
 #
 # Yahoo! Search Web Services are not operational.
 # See https://phabricator.wikimedia.org/T106085
-yahoo_appid = ''
+#yahoo_appid = ''
 
 # To use Windows Live Search web service you must get an AppID from
 # http://www.bing.com/dev/en-us/dev-center
-msn_appid = ''
+#msn_appid = ''
 
 # ############# FLICKR RIPPER SETTINGS ##############
 
 # Using the Flickr api
-flickr = {
-    'api_key': '',  # Provide your key!
-    'api_secret': '',  # Api secret of your key (optional)
-    'review': False,  # Do we use automatically make our uploads reviewed?
-    'reviewer': '',  # If so, under what reviewer name?
-}
+#flickr = {
+#    'api_key': '',  # Provide your key!
+#    'api_secret': '',  # Api secret of your key (optional)
+#    'review': False,  # Do we use automatically make our uploads reviewed?
+#    'reviewer': '',  # If so, under what reviewer name?
+#}
 
 # ############# COPYRIGHT SETTINGS ##############
 
 # Enable/disable search engine in copyright.py script
-copyright_google = True
-copyright_yahoo = True
-copyright_msn = False
+#copyright_google = True
+#copyright_yahoo = True
+#copyright_msn = False
 
 # Perform a deep check, loading URLs to search if 'Wikipedia' is present.
 # This may be useful to increase the number of correct results. If you haven't
 # a fast connection, you might want to keep them disabled.
-copyright_check_in_source_google = False
-copyright_check_in_source_yahoo = False
-copyright_check_in_source_msn = False
+#copyright_check_in_source_google = False
+#copyright_check_in_source_yahoo = False
+#copyright_check_in_source_msn = False
 
 # Web pages may contain a Wikipedia text without the word 'Wikipedia' but with
 # the typical '[edit]' tag as a result of a copy & paste procedure. You want
 # no report for this kind of URLs, even if they are copyright violations.
 # However, when enabled, these URLs are logged in a file.
-copyright_check_in_source_section_names = False
+#copyright_check_in_source_section_names = False
 
 # Limit number of queries for page.
-copyright_max_query_for_page = 25
+#copyright_max_query_for_page = 25
 
 # Skip a specified number of queries
-copyright_skip_query = 0
+#copyright_skip_query = 0
 
 # Number of attempts on connection error.
-copyright_connection_tries = 10
+#copyright_connection_tries = 10
 
 # Behavior if an exceeded error occur.
 #
@@ -312,21 +315,21 @@ copyright_connection_tries = 10
 #    1 = Disable search engine
 #    2 = Sleep (default)
 #    3 = Stop
-copyright_exceeded_in_queries = 2
-copyright_exceeded_in_queries_sleep_hours = 6
+#copyright_exceeded_in_queries = 2
+#copyright_exceeded_in_queries_sleep_hours = 6
 
 # Append last modified date of URL to script result
-copyright_show_date = True
+#copyright_show_date = True
 
 # Append length of URL to script result
-copyright_show_length = True
+#copyright_show_length = True
 
 # By default the script tries to identify and skip text that contains a large
 # comma separated list or only numbers. But sometimes that might be the
 # only part unmodified of a slightly edited and not otherwise reported
 # copyright violation. You can disable this feature to try to increase the
 # number of results.
-copyright_economize_query = True
+#copyright_economize_query = True
 
 # ############# HTTP SETTINGS ##############
 # Use a persistent http connection. An http connection has to be established
@@ -334,7 +337,7 @@ copyright_economize_query = True
 # use this if you share Site objects across threads without proper locking.
 #
 # DISABLED FUNCTION. Setting this variable will not have any effect.
-persistent_http = False
+#persistent_http = False
 
 # Default socket timeout in seconds.
 # DO NOT set to None to disable timeouts. Otherwise this may freeze your
@@ -402,7 +405,7 @@ replicate_replace = {}
 # Proxy configuration
 
 # TODO: proxy support
-proxy = None
+#proxy = None
 
 # Simulate settings
 
@@ -426,14 +429,14 @@ max_queue_size = 64
 # pages fetched from screen (mostly) have "\r\n". Interwiki and category
 # separator settings in family files should use multiplied of this.
 # LS is a shortcut alias.
-line_separator = LS = '\n'
+#line_separator = LS = '\n'
 
 # Settings to enable mwparserfromhell
 # <https://mwparserfromhell.readthedocs.org/en/latest/>
 # Currently used in textlib.extract_templates_and_params
 # This is more accurate than our current regex, but only works
 # if the user has already installed the library.
-use_mwparserfromhell = True
+#use_mwparserfromhell = True
 
 # Pickle protocol version to use for storing dumps.
 # This config variable is not used for loading dumps.

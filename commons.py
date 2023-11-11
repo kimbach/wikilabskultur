@@ -880,15 +880,12 @@ def complete_desc_and_upload(filename, pagetitle, desc, date, categories,edit_su
     keepFilename = True        #set to True to skip double-checking/editing destination filename
     #verifyDescription = True    #set to False to skip double-checking/editing description => change to bot-mode
     verifyDescription = False    #set to False to skip double-checking/editing description => change to bot-mode
-    #targetSite = pywikibot.Site('commons', 'commons')
-    #targetSite = pywikibot.Site(fam='commons',code='commons', user='Kim Bach', sysop='Kim Bach')
     try:
         targetSite = pywikibot.Site()
         try:
             print(targetSite)
             targetSite = pywikibot.Site('commons', 'commons')
 
-#            bot = UploadRobot(url, description=desc, useFilename=pagetitle, keepFilename=keepFilename, verifyDescription=verifyDescription, targetSite=targetSite, summary=edit_summary)
             bot = UploadRobot(url, description=desc, use_filename=pagetitle, keep_filename=keepFilename, verify_description=verifyDescription, target_site=targetSite, summary=edit_summary)
             bot.run()
         except Exception as e:
