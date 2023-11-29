@@ -1013,13 +1013,21 @@ def SMKHelper(Item: smkitem.Item):
     except:
         artwork.source = ''
     try:
-        if smk_creator_year_of_death == None:
+        try:
+            if smk_creator_year_of_death == None:
+                smk_creator_year_of_death = ''
+        except:
             smk_creator_year_of_death = ''
         
-        if smk_creator_year_of_death == '':
+        try:
+            if smk_creator_year_of_death == '':
+                PD_old_parameter = 'PD-old-100-expired'
+            else:
+                PD_old_parameter = 'PD-old-auto-expired|deathyear=' + str(smk_creator_year_of_death)
+        except:
+            smk_creator_year_of_death = ''
             PD_old_parameter = 'PD-old-100-expired'
-        else:
-            PD_old_parameter = 'PD-old-auto-expired|deathyear=' + str(smk_creator_year_of_death)
+
         artwork.permission = '{{Licensed-PD-Art|' + PD_old_parameter + '|Cc-zero}}\n' + \
         '{{Statens Museum for Kunst collaboration project}}'
     except Exception as e:
@@ -1084,7 +1092,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #    "KKSgb2950",
 #    "KMS4223",
 #    "KKSgb19863"]
-#smk_number_list = ["KKSgb5100/66"]
+#smk_number_list = ["KAS2112"]
 smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
@@ -1102,9 +1110,9 @@ smk_filter_list = [["public_domain","true"],
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
-#offset=0
+offset=0
 # offset indicates at what row the SMK API should start generation
-offset=5572
+offset=6108
 rows=1
 
 #smk_filter=""
@@ -1113,8 +1121,8 @@ batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
 #batch_title='KKSgb20143'
 download_images=True
 #download_images=False
-#upload_images=False
 upload_images=True
+#upload_images=False
 #batch_size=24
 #batch_size=-1
 batch_size=500
