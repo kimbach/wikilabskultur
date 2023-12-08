@@ -747,34 +747,51 @@ def SMKHelper(Item: smkitem.Item):
 
     # Item.dimensions
     try:
-        unit_height = ''
-        unit_width = ''
-        for dimension in Item.dimensions:
- 
-            if 'højde'==dimension.type:
-                unit_height=""
-                height=str(dimension.value)
-                if dimension.unit:
-                    unit_height=""
-                    if dimension.unit=='millimeter':
-                        unit_height="mm"
-                    if dimension.unit=='centimeter':
-                        unit_height="cm"
-                        height=str(float(height)*10)    
-            if 'bredde'==dimension.type:
-                width=str(dimension.value)
-                if dimension.unit:
-                    # Unit of input (must be one of: cm, m, mm, km, in, ft, yd, mi).
-                    unit_width=""
-                    if dimension.unit=='millimeter':
-                        unit_width="mm"
-                    if dimension.unit=='centimeter':
-                        unit_width="cm"
-                        width=str(float(width)*10)    
+        height = 0
+        width = 0
+        depth = 0
 
-        # If there is no unit on height and width, skip dimensions
-        if unit_height!='' and unit_width!='':
-            smk_dimensions='{{Size|unit='+'mm'+'|width='+str(width)+'|height='+str(height)+'}}'
+        # Look at all dimenstions, finding the smallest width, height and depth
+        for dimension in Item.dimensions:
+            unit = ''
+            value=float(dimension.value)
+            # Check dimenstion of the dimension
+            if dimension.unit=='millimeter':
+                unit="mm"
+            if dimension.unit=='centimeter':
+                unit="cm"
+
+                # Unit is centimeter, multiply by 10
+                value=value*10
+            if dimension.type == "højde":
+                # Find the lowest height
+                if height == 0:
+                    height = value
+                else:
+                    if value < height:
+                        height=value
+            elif dimension.type == "bredde":
+                # Find the lowest width
+                if width == 0:
+                    width = value
+                else:
+                    if value < height:
+                        width=value
+            elif dimension.type == "dybde":
+                    # Find the lowest depth
+                    if depth == 0:
+                        depth=value
+                    else:
+                        if value < depth:
+                            depth=value
+
+        if height>0 and width>0:
+            # Artwork has a height and a width, generate Size tempålate
+            smk_dimensions='{{Size|unit='+'mm'+'|width='+str(width)+'|height='+str(height)
+            if depth > 0:
+                # Artwork has a  depth, add depth parameter
+                smk_dimensions=smk_dimensions+'|depth='+str(depth)
+            smk_dimensions=smk_dimensions+'}}'
         else:
             smk_dimensions=''
 
@@ -1092,8 +1109,8 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #    "KKSgb2950",
 #    "KMS4223",
 #    "KKSgb19863"]
-#smk_number_list = ["KAS2112"]
-smk_number_list=None
+smk_number_list = ["KMS1620"]
+#smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
 #    ["has_image", "true"],
@@ -1112,20 +1129,20 @@ smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
 offset=0
 # offset indicates at what row the SMK API should start generation
-offset=6108
+#offset=6108
 rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
 batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
 #batch_title='KKSgb20143'
-download_images=True
-#download_images=False
-upload_images=True
-#upload_images=False
+#download_images=True
+download_images=False
+#upload_images=True
+upload_images=False
 #batch_size=24
-#batch_size=-1
-batch_size=500
+batch_size=-1
+#batch_size=500
 save_json=True
 save_wikitext=True
 debug_level=1
