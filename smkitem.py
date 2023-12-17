@@ -389,6 +389,31 @@ class Title:
         result["language"] = from_str(self.language)
         return result
 
+class Files_3D:
+    url: str
+    mime_type: str
+    file_size: int
+
+    def __init__(self, url: str, mime_type: str, file_size: int) -> None:
+        self.url = url
+        self.mime_type = mime_type
+        self.file_size = file_size
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Files_3D':
+        assert isinstance(obj, dict)
+        url = from_str(obj.get("url", ""))
+        mime_type = from_str(obj.get("mime_type", ""))
+        file_size = from_int(obj.get("file_size", ""))
+        return Files_3D(url, mime_type, file_size)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        result["url"] = from_str(self.url)
+        result["mime_type"] = from_str(self.mime_type)
+        result["file_size"] = from_int(self.file_size)
+        return result
+
 
 class Item:
     id: str
@@ -441,8 +466,10 @@ class Item:
     artist: List[str]
     content_description: List[str]
     distinguishing_features: List[str]
+    files_3D: List[Files_3D]
 
-    def __init__(self, id: str, created: datetime, modified: datetime, responsible_department: str, collection: List[str], backside_protection: bool, acquisition_date: datetime, acquisition_date_precision: datetime, dimensions: List[Dimension], documentation: List[Documentation], labels: List[Labels], exhibitions: List[Exhibition], inscriptions: List[Inscription], materials: List[str], object_names: List[ObjectName], production: List[Production], production_date: List[ProductionDate], techniques: List[str], titles: List[Title], medium: List[str], notes: List[str], object_history_note: List[str], number_of_parts: int, object_number: str, object_url: str, frontend_url: str, iiif_manifest: str, enrichment_url: str, similar_images_url: str, production_dates_notes: List[str], public_domain: bool, rights: str, on_display: bool, has_image: bool, image_width: int, image_height: int, image_thumbnail: str, image_native: str, colors: List[str], suggested_bg_color: List[str], entropy: float, contrast: float, saturation: float, colortemp: float, brightness: float, has_text: bool, has_3_d_file: bool, artist: List[str], content_description: List[str], distinguishing_features: List[str]) -> None:
+
+    def __init__(self, id: str, created: datetime, modified: datetime, responsible_department: str, collection: List[str], backside_protection: bool, acquisition_date: datetime, acquisition_date_precision: datetime, dimensions: List[Dimension], documentation: List[Documentation], labels: List[Labels], exhibitions: List[Exhibition], inscriptions: List[Inscription], materials: List[str], object_names: List[ObjectName], production: List[Production], production_date: List[ProductionDate], techniques: List[str], titles: List[Title], medium: List[str], notes: List[str], object_history_note: List[str], number_of_parts: int, object_number: str, object_url: str, frontend_url: str, iiif_manifest: str, enrichment_url: str, similar_images_url: str, production_dates_notes: List[str], public_domain: bool, rights: str, on_display: bool, has_image: bool, image_width: int, image_height: int, image_thumbnail: str, image_native: str, colors: List[str], suggested_bg_color: List[str], entropy: float, contrast: float, saturation: float, colortemp: float, brightness: float, has_text: bool, has_3_d_file: bool, artist: List[str], content_description: List[str], distinguishing_features: List[str], files_3D: List[Files_3D]) -> None:
         self.id = id
         self.created = created
         self.modified = modified
@@ -493,6 +520,7 @@ class Item:
         self.artist = artist
         self.content_description = content_description
         self.distinguishing_features = distinguishing_features
+        self.files_3D = files_3D
 
     @staticmethod
     def from_dict(obj: Any) -> 'Item':
@@ -718,8 +746,13 @@ class Item:
             distinguishing_features = from_list(from_str, obj.get("distinguishing_features", []))
         except:
             distinguishing_features = []
+       
+        try:
+            files_3D = from_list(Files_3D.from_dict, obj.get("files_3D", []))
+        except:
+            files_3D = []
 
-        return Item(id, created, modified, responsible_department, collection, backside_protection, acquisition_date, acquisition_date_precision, dimensions, documentation, labels, exhibitions, inscriptions, materials, object_names, production, production_date, techniques, titles, medium, notes, object_history_note, number_of_parts, object_number, object_url, frontend_url, iiif_manifest, enrichment_url, similar_images_url, production_dates_notes, public_domain, rights, on_display, has_image, image_width, image_height, image_thumbnail, image_native, colors, suggested_bg_color, entropy, contrast, saturation, colortemp, brightness, has_text, has_3_d_file, artist, content_description, distinguishing_features)
+        return Item(id, created, modified, responsible_department, collection, backside_protection, acquisition_date, acquisition_date_precision, dimensions, documentation, labels, exhibitions, inscriptions, materials, object_names, production, production_date, techniques, titles, medium, notes, object_history_note, number_of_parts, object_number, object_url, frontend_url, iiif_manifest, enrichment_url, similar_images_url, production_dates_notes, public_domain, rights, on_display, has_image, image_width, image_height, image_thumbnail, image_native, colors, suggested_bg_color, entropy, contrast, saturation, colortemp, brightness, has_text, has_3_d_file, artist, content_description, distinguishing_features, files_3D)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -773,6 +806,7 @@ class Item:
         result["artist"] = from_list(from_str, self.artist)
         result["content_description"] = from_list(from_str, self.content_description)
         result["distinguishing_features"] = from_list(from_str, self.distinguishing_features)
+        result["files_3D"] = from_list(lambda x: to_class(Files_3D, x), self.files_3D)
         return result
 
     def production_csvheader(self,delimiter=";"):

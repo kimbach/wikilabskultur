@@ -984,7 +984,6 @@ def CreateCategory(category_pagetitle, category_wikitext, upload_to_commons):
     except Exception as e:
         print('EXCEPTION!' + str(e))
 
-
 def UploadTest():
     #list each file here
     

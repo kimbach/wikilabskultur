@@ -183,6 +183,15 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
     return(categories)
 
 
+def DownloadImage(url: str, imagepath: str):
+    print(f'Downloading {imagepath}\n')
+    r = requests.get(url, allow_redirects=True)
+    open(imagepath, 'wb').write(r.content)
+
+def UploadImage(imagepath: str, pagetitle:str, wikitext:str, date:str, categories:str, edit_summary:str):
+    debug_msg('Attempting upload of: ' + pagetitle,debug_level)
+    commons.complete_desc_and_upload(imagepath, pagetitle, wikitext, date, categories, edit_summary)
+
 def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, offset, debug_level=0):
     """
     Maps SMK API to Wikimedia Commons. Three files is generated for each item (inventory number/assension number)
@@ -292,7 +301,22 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                         current_number=SMKItemList[0]
                         SMKItemList.remove(current_number)
                         smk_json=smkapi.get_smk_object(current_number)
-                
+
+                        # Remove escaped "{
+                        #smk_json=smk_json.replace('"{', '{')
+
+                        # Remove escaped \"
+                        #smk_json=smk_json.replace('\\"', '"')
+
+                        # Remove escaped (}")
+                        #smk_json=smk_json.replace('}"', '}')
+
+                        # # Remove escaped ('}"')
+                        # smk_json=smk_json.replace('}"]', '"')
+
+                        # # Remove escaped ('""')
+                        # smk_json=smk_json.replace('""', '"')
+            
                 # Convert json string to object
                 smk_objects=json.loads(smk_json)
                 
@@ -317,6 +341,17 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                 artwork.GenerateWikiText()
 
+                # DFAULTSORT template
+                if not artwork.unknown_artist:
+                    defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
+                else:
+                    defaultsort = 'Unknown'
+
+                if defaultsort != '':
+                    smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
+                else:
+                    smk_templates = ''
+
                 filetype = pathlib.Path(smk_item.items[0].image_native).suffix
 
                 # <kunstnernavn>, <titel>, <årstal>, <inventarnummer>, <samling>                 
@@ -333,6 +368,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 short_filename=""
                 pagetitle=""
                 imagepath=""
+                imagepath_3d=""
                 image_exists=False
                 file_hash = '0'
                 if smk_item.items[0].has_image == True:
@@ -341,11 +377,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     if download_images:
                         if not os.path.exists(imagepath):
                             # only download file if it doens't already exist
+                            DownloadImage(smk_item.items[0].image_native, imagepath)
 
-                            print(f'Downloading {short_filename}\n')
-                            r = requests.get(smk_item.items[0].image_native, allow_redirects=True)
-                            open(imagepath, 'wb').write(r.content)
-                    
                     # check size of downloaded file, commons has a max size of 100MB
                     file_stats = os.stat(imagepath)
                     file_size = file_stats.st_size / (1024 * 1024)
@@ -360,6 +393,32 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 else:
                     imagepath=''
 
+                artwork.GenerateWikiText()
+
+
+                # generate categories
+                smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+                wikitext = artwork.wikitext
+                
+                if smk_categories != '':
+                    # Item has categories'
+
+                    # Concatenate wikitext, templates and categories
+                    wikitext = wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+
+                else:
+                    # Item has no categories, skip upload
+                    debug_msg('Page has no categories: ' + pagetitle,debug_level)
+
+                # Save wikitext
+                if save_wikitext:
+                    path = folder + short_filename + '.txt'
+                    open(path, 'w').write(wikitext)
+
+                f_html.writelines('<tr>')
+                f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
+                f_html.writelines('</tr>')
+
                 license = ''
                 #smk_category = '[[Category:' + batch_title + ']]'
                 #smk_categories = smk_categories + smk_category + '\n'
@@ -370,7 +429,6 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     open(path, 'w').write(smk_json)
 
 #                   csvline = artwork.GenerateCSVLine()
-
 
                 csvline = str(smk_item.items[0].id) + ';' + str(smk_item.items[0].created) + ';' + str(smk_item.items[0].modified) + ';' + artwork.GenerateCSVLine() + ';' + str(smk_item.items[0].public_domain) + ';'+ str(smk_item.items[0].has_image) + ';'+ str(file_hash) + ';'
                 #   smk_creator_forename + ';' + \
@@ -391,7 +449,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     # The file size is smaller than 100MB, continue upload
                     
                     #Attempt upload to commons if there is an imagepath and categories
-                    if upload_to_commons and imagepath!='':
+                    if upload_to_commons and imagepath!='' and smk_categories != '':
                     #if imagepath!='':
                         # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
                         if artwork.has_artist_wikidata or artwork.unknown_artist:
@@ -403,46 +461,11 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     # check if page already exists
                                     if not commons.PageExists(pagetitle):
                                         # page does not exist, continue with upload
+                                        debug_msg('Attempting upload of: ' + pagetitle,debug_level)
+                                        commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
 
-                                        # DFAULTSORT template
-                                        if not artwork.unknown_artist:
-                                            defaultsort = smk_item.items[0].defaultsort(artwork.artist_name)
-                                        else:
-                                            defaultsort = 'Unknown'
-
-                                        if defaultsort != '':
-                                            smk_templates = '{{DEFAULTSORT:' + defaultsort + '}}'
-                                        else:
-                                            smk_templates = ''
-
-                                        # generate categories
-                                        smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
-
-                                        if smk_categories != '':
-                                            # Item has categories'
-
-                                            # Concatenate wikitext, templates and categories
-                                            wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
-
-                                            f_html.writelines('<tr>')
-                                            f_html.writelines('</td><td><a href="' + smk_item.items[0].image_native + '"><img src="' + imagepath + '" width="300" /> <br/></a><a href="' + smk_image_native + '">' + artwork.title + '</a></td><td>' + wikitext.replace('\n', '<br/>'))
-                                            f_html.writelines('</tr>')
-                        
-                                            # Save wikitext
-                                            if save_wikitext:
-                                                path = folder + short_filename + '.txt'
-                                                open(path, 'w').write(wikitext)
-
-
-                                            debug_msg('Attempting upload of: ' + pagetitle,debug_level)
-
-                                            commons.complete_desc_and_upload(imagepath, pagetitle, desc=wikitext, date='', categories='', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
-                                            files_uploaded=files_uploaded+1
-                                            bot_status = "Media uploaded"
-                                        else:
-                                            # Item has no categories, skip upload
-                                            debug_msg('Page has no categories: ' + pagetitle,debug_level)
-                                            bot_status = "Page has no categories"    
+                                        files_uploaded=files_uploaded+1
+                                        bot_status = "Media uploaded"
                                     else:
                                         debug_msg('Page already exists: ' + pagetitle,debug_level)
                                         bot_status = 'Page already uploaded'
@@ -460,6 +483,42 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 else:
                     bot_status = 'file size exeeds 100MB'
 
+                # Handle possible 3d file
+                if smk_item.items[0].has_3_d_file == True:
+                    filetype_3d = pathlib.Path(smk_item.items[0].files_3D[0].url).suffix
+                    imagepath_3d = folder + short_filename + ", 3D model" + filetype_3d
+
+                    if not os.path.exists(imagepath_3d):
+                        # only download file if it doens't already exist
+                        DownloadImage(smk_item.items[0].files_3D[0].url, imagepath_3d)
+
+                    #Attempt upload to commons if there is an imagepath and categories
+                    if upload_to_commons and imagepath_3d!='' and smk_categories != '':
+                    #if True:
+                        # Check if image allready exists
+                        if os.path.exists(imagepath_3d):
+                        #if True:
+                            file_hash_3d = commons.get_file_hash(imagepath_3d)
+                            image_exists_3d = commons.check_file_hash(file_hash_3d)
+                            if not image_exists_3d:
+                            #if True:
+                                artwork.other_versions = "[[File:" + pagetitle + "|thumbnail]]"
+                                artwork.GenerateWikiText()
+                                if smk_categories != '':
+                                    # Item has categories'
+
+                                    # Concatenate wikitext, templates and categories
+                                    wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
+                                wikitext = wikitext + "[[Category:3D models]]" + "\n" 
+                                pagetitle_3d = os.path.basename(imagepath_3d)
+
+                                # Save wikitext for 3D file
+                                if save_wikitext:
+                                    path = folder + short_filename + ", 3D model" + '.txt'
+                                    open(path, 'w').write(wikitext)
+
+                                debug_msg('Attempting upload of: ' + pagetitle_3d,debug_level)
+                                commons.complete_desc_and_upload(imagepath_3d, pagetitle_3d, desc=wikitext, date='', categories='Category:3D models', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -1026,7 +1085,11 @@ def SMKHelper(Item: smkitem.Item):
     try:
         artwork.source = '* {{SMK API|'+Item.object_number+'}}\n' +  \
         '* {{SMK Open|'+Item.object_number+'}}\n' + \
-        '* [' + smk_image_native + ' image]'                    
+        '* [' + smk_image_native + ' {{en|image}}]\n'
+        if Item.has_3_d_file:
+            if Item.files_3D != None:
+                artwork.source = artwork.source + \
+                '* [' + Item.files_3D[0].url + ' {{en|3D model}}]\n'  
     except:
         artwork.source = ''
     try:
@@ -1110,6 +1173,8 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 #    "KMS4223",
 #    "KKSgb19863"]
 smk_number_list = ["KMS1620"]
+smk_number_list = ["KAS422"]
+smk_number_list = ["KMS5808"]
 #smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
@@ -1129,20 +1194,20 @@ smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
 offset=0
 # offset indicates at what row the SMK API should start generation
-#offset=6108
+offset=6669
 rows=1
 
 #smk_filter=""
 #batch_title='all_public_domain_images'
 batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
 #batch_title='KKSgb20143'
-#download_images=True
-download_images=False
-#upload_images=True
-upload_images=False
+download_images=True
+#download_images=False
+upload_images=True
+#upload_images=False
 #batch_size=24
 batch_size=-1
-#batch_size=500
+batch_size=100
 save_json=True
 save_wikitext=True
 debug_level=1
