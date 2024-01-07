@@ -184,9 +184,24 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
 
 
 def DownloadImage(url: str, imagepath: str):
-    print(f'Downloading {imagepath}\n')
-    r = requests.get(url, allow_redirects=True)
-    open(imagepath, 'wb').write(r.content)
+    try:
+        print(f'Downloading {imagepath}\n')
+        r = requests.get(url, allow_redirects=True)
+        print("Download http status: " + str(r.status_code) + "\n")
+
+        # Check http status code, throw HTTP exception using raise for ataus, if status isn't ok and skip downloading
+
+        r.raise_for_status()
+
+        # all is ok
+        open(imagepath, 'wb').write(r.content)
+
+    except Exception as e:
+        debug_msg('EXCEPTION! '+ str(e))
+        logging.exception(e)
+
+        # re-raise error
+        raise
 
 def UploadImage(imagepath: str, pagetitle:str, wikitext:str, date:str, categories:str, edit_summary:str):
     debug_msg('Attempting upload of: ' + pagetitle,debug_level)
@@ -376,13 +391,13 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     imagepath = folder + short_filename + filetype
                     if download_images:
                         if not os.path.exists(imagepath):
-                            # only download file if it doens't already exist
+                            # only download file if it doesn't already exist
                             DownloadImage(smk_item.items[0].image_native, imagepath)
 
                     # check size of downloaded file, commons has a max size of 100MB
                     file_stats = os.stat(imagepath)
                     file_size = file_stats.st_size / (1024 * 1024)
-                    print(f'File Size in MegaBytes is {file_size}\n')
+                    print(f'File Size in MB: {round(file_size, 2)}\n')
 
                     # Check if image allready exists
                     if os.path.exists(imagepath):
@@ -509,7 +524,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                                     # Concatenate wikitext, templates and categories
                                     wikitext = artwork.wikitext + '\n' + str(smk_templates) + '\n' + str(smk_categories) + '\n'
-                                wikitext = wikitext + "[[Category:3D models]]" + "\n" 
+                                wikitext = wikitext + "[[Category:3D models from the Statens Museum for Kunst]]" + "\n" 
                                 pagetitle_3d = os.path.basename(imagepath_3d)
 
                                 # Save wikitext for 3D file
@@ -518,17 +533,19 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     open(path, 'w').write(wikitext)
 
                                 debug_msg('Attempting upload of: ' + pagetitle_3d,debug_level)
-                                commons.complete_desc_and_upload(imagepath_3d, pagetitle_3d, desc=wikitext, date='', categories='Category:3D models', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
+                                commons.complete_desc_and_upload(imagepath_3d, pagetitle_3d, desc=wikitext, date='', categories='Category:3D models from the Statens Museum for Kunst', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
                 f_batch_log=open(batch_log_filename+'.log', 'a')
                 f_batch_log.writelines(current_time + ';' + pagetitle + ';' + artwork.accession_number + ';' + artwork.wikidata + ';' + str(image_exists) + ";" + bot_status + ";" + str(file_hash) + ";" + artwork.artist_name  + ";" +  artwork.artist_wikidata + '\n')  
                 f_batch_log.close()
-        
+
+            except requests.HTTPError:
+                # http error occured, quit
+                raise
             except Exception as e:
                 debug_msg('EXCEPTION! '+ str(e))
-                typeerror=TypeError(e)
                 logging.exception(e)
             finally:
                 print('\r' + "Uploaded " + str(files_uploaded) + "/" + str(items) + " files - " + bot_status, end='', flush=True)
@@ -537,11 +554,11 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
             if 0==rows:
                 break
+                f_html.writelines('</table>')
+                f_html.writelines('</body></html>')
+                f_html.close()
+                f_csv.close() 
 
-        f_html.writelines('</table>')
-        f_html.writelines('</body></html>')
-        f_html.close()
-        f_csv.close() 
         
     except Exception as e:
         debug_msg('EXCEPTION! '+ str(e))
@@ -1175,7 +1192,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 smk_number_list = ["KMS1620"]
 smk_number_list = ["KAS422"]
 smk_number_list = ["KMS5808"]
-#smk_number_list=None
+smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
 #    ["has_image", "true"],
@@ -1194,7 +1211,7 @@ smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
 offset=0
 # offset indicates at what row the SMK API should start generation
-offset=6669
+offset=10272
 rows=1
 
 #smk_filter=""
@@ -1203,11 +1220,11 @@ batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
 #batch_title='KKSgb20143'
 download_images=True
 #download_images=False
+#upload_images=True
 upload_images=True
-#upload_images=False
 #batch_size=24
 batch_size=-1
-batch_size=100
+batch_size=500
 save_json=True
 save_wikitext=True
 debug_level=1
