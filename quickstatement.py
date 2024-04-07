@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import List, Any, TypeVar, Callable, Type, cast
 import dateutil.parser
 import wikidata
+from urllib.parse import quote
 
 class quickstatement:
     id: str
@@ -29,6 +30,9 @@ class quickstatement:
         else:
             ref_url=url
 
+        # Replace spaces with %20
+        ref_url = ref_url.replace(" ","%20")
+
         if not as_source:
             # Generate QS statement
             qs=self.prefix()+'\t'
@@ -38,7 +42,6 @@ class quickstatement:
             qs=''
 
         qs=qs+wikidata.wd_reference_url+'\t"' + ref_url + '"' + \
-            '\t'+wikidata.wd_inception+'\t' + self.date(self.inception_date, 11) + \
             '\t'+wikidata.wd_retrived+'\t' + self.date(self.retrieved_date,11) + \
             '\t'+wikidata.wd_last_update+'\t' + self.date(self.modified_date,11) + \
             '\t'+wikidata.wd_publisher+'\t'+self.publisher+ \
@@ -62,7 +65,7 @@ class quickstatement:
         # 9 - year (default)
         # 10 - month
         # 11 - day
-        return date.strftime("+%Y-%m-%dT%H:%M:%SZ/" + str(precision))
+        return date.strftime("+%Y-%m-%dT00:00:00Z/" + str(precision))
     
     def label(self,label_txt,language):
         qs=''

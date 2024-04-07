@@ -289,8 +289,7 @@ def smk_gender_to_wikidata_q(smk_gender):
     """
     switcher = {
         "MALE": "Q6581097",
-        "FEMALE": "Q6581072",
-        "UNKNOWN": '"somevalue"',
+        "FEMALE": "Q6581072"
         }
     return switcher.get(smk_gender, "")
 

@@ -76,7 +76,7 @@ def load_all_artists_items():
     #print(all_artists_items)
 
 def load_all_creator_lref_to_wikidata_items():
-    reader = csv.reader(open('creator_lref_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
+    reader = csv.reader(open('creator_lref_to_wikidata.csv'), quoting=csv.QUOTE_NONE, delimiter = ';')
 
     for row in reader:
         key = row[2].lower()
@@ -363,8 +363,8 @@ def query_all_artists():
         creator_lref = row[11]
         creator_date_of_birth = row[6]
         # attempt a search in wikidata
-        creator_encoded = urllib.parse.quote_plus(creator)
-        url = 'https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&type=item&continue=0&search=' + creator_encoded
+        creator.replace(" ", "%20")
+        url = 'https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&type=item&continue=0&search=' + creator
 
         # Save RAW json
 
@@ -516,7 +516,7 @@ def get_creator_lref_without_q():
         smk_creator_lref_retrieved=open(folder + 'get_creator_lref_without_q_retrieved.csv', 'w')
         smk_creator_lref_retrieved.write('creator_lref;created;modified;artist;nationality;creator_forename;creator_surname;creator_date_of_death;creator_date_of_birth;creator_gender\n')
 
-        reader = csv.reader(open(folder + 'creator_lref_without_q.csv'), quoting=csv.QUOTE_NONE, delimiter = ',')
+        reader = csv.reader(open(folder + 'creator_lref_without_q.csv'), quoting=csv.QUOTE_NONE, delimiter = ';')
 
         for row in reader:
             try:
@@ -573,7 +573,10 @@ def get_creator_lref_without_q():
                         qsitem = qsitem + qs.instance_of()+qs.comment('instance of human')+'\n'
 
                         # Gender
-                        qsitem = qsitem + qs.gender(smkapi.smk_gender_to_wikidata_q(item.gender[0]))+qs.comment('gender')+'\n'
+                        gender=smkapi.smk_gender_to_wikidata_q(item.gender[0])
+
+                        if gender!="":
+                            qsitem = qsitem + qs.gender(smkapi.smk_gender_to_wikidata_q(item.gender[0]))+qs.comment('gender')+'\n'
 
                         # Nationalities
                         if len(item.nationality)>0:
@@ -581,7 +584,7 @@ def get_creator_lref_without_q():
                                 qsitem=qsitem+smkapi.smk_nationality_to_wikidata_q(nationality.lower())+qs.comment('nationality')+'\n'
 
                         # Reference URL
-                        qsitem = qsitem + qs.reference_url(False)+qs.comment('reference url')+'\n'
+                        # qsitem = qsitem + qs.reference_url(False)+qs.comment('reference url')+'\n'
 
                         # Has works in the collection of, generate reference url to artwork
                         ref_url=None
@@ -623,10 +626,10 @@ def get_creator_lref_without_q():
                             smk_occupation.close()
 
                         # given_name
-                        qsitem = qsitem + qs.given_name(item.forename)+ qs.comment('given name') + '\n'
+                        # qsitem = qsitem + qs.given_name(item.forename)+ qs.comment('given name') + '\n'
 
                         # family_name
-                        qsitem = qsitem + qs.family_name(item.surname)+ qs.comment('family name') + '\n'
+                        # qsitem = qsitem + qs.family_name(item.surname)+ qs.comment('family name') + '\n'
 
                         print(qsitem)
                         personfile=open(folder+item.id+'.txt','w')
@@ -637,7 +640,7 @@ def get_creator_lref_without_q():
             except Exception as e:
                 logging.exception(e)
                 
-        personfile.close()
+        #personfile.close()
     except Exception as e:
         logging.exception(e)
     finally:
@@ -800,8 +803,8 @@ def Test():
     #load_wikidata_worksby_items()
     #FindSMKArtistWikidata()
     #print(find_person_wikidata_item('244_person'))
-    query_all_artists()
-    #get_creator_lref_without_q()
+    #query_all_artists()
+    get_creator_lref_without_q()
     # query_all_artwork_types()
     # creator_lref="1039_person"
     # creator_wikidata=find_wikidata_from_creator_lref(creator_lref)
@@ -818,5 +821,6 @@ def Test():
     # smk_artwork_type="kobberstik"
     # smk_artwork_type_wikidata=find_wikidata_from_artwork_type(smk_artwork_type)
     # print(smk_artwork_type_wikidata)
+    # load_all_creator_lref_to_wikidata_items()
 
 #Test()

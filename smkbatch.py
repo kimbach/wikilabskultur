@@ -75,7 +75,8 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                         smk_artist_wikidata = csvlookup.find_creator_from_creator_name(artist_name)
                         
                         # Find commons category name, and try to use it as artist name
-                        if smk_artist_wikidata_q != '':
+                        if smk_artist_wikidata_q.startswith('Q'):
+                            # The artist has a wikidata-Q
                             commons_category_name = wikidata.get_property_value("P373", smk_artist_wikidata_q)
                         else:
                             commons_category_name = None
@@ -93,6 +94,7 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                         # First check if object name> by <category_artist_name> in Statens Museum for Kunst exists - without "the"
                         # if it does use that for the category
                         artist_category = artwork_type_object[ArtistCategory_id]
+
                         artist_category = artist_category.replace("xxxx (name)", artist_name_en)
                         
                         if artist_category != "":
@@ -126,9 +128,14 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
                         # Try to create artist category
                         # Attempt to create artist category
                         if artist_category != "":
-                            if smk_artist_wikidata_q != '':
-                                artist_commons_category = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
-                            else:
+                            # if smk_artist_wikidata_q.startswith('Q'):
+                            #     # The artist has a wikidata Q-number
+                            #     artist_commons_category = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
+                            # else:
+                            #     artist_commons_category = artist_name_en
+                            artist_commons_category = wikidata.get_property_value("P373", smk_artist_wikidata_q)
+                            
+                            if artist_commons_category == None:
                                 artist_commons_category = artist_name_en
 
                             defaultsort=item.defaultsort(artist_name_en)
@@ -152,7 +159,7 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
 
                                 # Get the category of the artist's commons category (p373) 
 
-                                if smk_artist_wikidata_q != '':
+                                if smk_artist_wikidata_q.startswith('Q'):
                                     # Generate category content with reference to the artist wikidata item (p373)
                                     # but only if an artist Wikidata Q-number was found
                                     #artist_category_wikidata = '{{Data|item=' + smk_artist_wikidata_q + '|property=p373|numval=1}}'
@@ -184,6 +191,21 @@ def generate_artwork_categories(smk_item: smkitem.SMKItem, upload_to_commons: bo
 
 
 def DownloadImage(url: str, imagepath: str):
+    """
+    Downloads image from url and saves it. One file is generated for the file downloaded
+
+    Example:
+        url='https://example.com/image.jpg'
+        imagepath='image.jpg'
+    
+    Keyword arguments:
+        url -- the url address to donload image from  
+        imagepath -- path to the file donwloaded  
+
+        <url> ::=<url_address>
+        <imagepath> ::=<path><filename>"."<fileextension>
+    """
+
     try:
         print(f'Downloading {imagepath}\n')
         r = requests.get(url, allow_redirects=True)
@@ -204,7 +226,7 @@ def DownloadImage(url: str, imagepath: str):
         raise
 
 def UploadImage(imagepath: str, pagetitle:str, wikitext:str, date:str, categories:str, edit_summary:str):
-    debug_msg('Attempting upload of: ' + pagetitle,debug_level)
+    debug_msg('Attempting upload of: ' + pagetitle,debug_level + '\n')
     commons.complete_desc_and_upload(imagepath, pagetitle, wikitext, date, categories, edit_summary)
 
 def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, offset, debug_level=0):
@@ -222,6 +244,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
         MapSMKAPIToCommons('selected_works','','',True,10)
     
     Keyword arguments:
+
         batch_title -- name of the batch, used as prefix for HTML and CSV output files, so that batches can be distingushed  
         smk_filter -- dictionary containg filters for the SMK API
         smk_number_list -- dictionary containg specific SMK item numbers to filter on
@@ -378,6 +401,8 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 filename = filename.replace(")", " ")
                 filename = filename.replace(":", "-")
                 filename = filename.replace(".", "")
+                filename = filename.replace("[", "")
+                filename = filename.replace("]", "")
 
                 # download smk_image_native
                 short_filename=""
@@ -394,13 +419,13 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             # only download file if it doesn't already exist
                             DownloadImage(smk_item.items[0].image_native, imagepath)
 
-                    # check size of downloaded file, commons has a max size of 100MB
-                    file_stats = os.stat(imagepath)
-                    file_size = file_stats.st_size / (1024 * 1024)
-                    print(f'File Size in MB: {round(file_size, 2)}\n')
+                    if  os.path.exists(imagepath):
+                        # check size of downloaded file, commons has a max size of 100MB
+                        file_stats = os.stat(imagepath)
+                        file_size = file_stats.st_size / (1024 * 1024)
+                        print(f'File Size in MB: {round(file_size, 2)}\n')
 
-                    # Check if image allready exists
-                    if os.path.exists(imagepath):
+                        # Check if image allready exists
                         file_hash = commons.get_file_hash(imagepath)
                         image_exists = commons.check_file_hash(file_hash)
 
@@ -412,7 +437,12 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
 
                 # generate categories
-                smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+
+                # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
+                if artwork.has_artist_wikidata or artwork.unknown_artist:
+                    smk_categories = generate_artwork_categories(smk_item, upload_to_commons)
+                else:
+                    smk_categories = ''
                 wikitext = artwork.wikitext
                 
                 if smk_categories != '':
@@ -463,11 +493,11 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 if file_size < 100:
                     # The file size is smaller than 100MB, continue upload
                     
-                    #Attempt upload to commons if there is an imagepath and categories
-                    if upload_to_commons and imagepath!='' and smk_categories != '':
-                    #if imagepath!='':
-                        # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
-                        if artwork.has_artist_wikidata or artwork.unknown_artist:
+                    # Does one of the artists have a Wikidata Q-number og is one of the artists unknown?
+                    if artwork.has_artist_wikidata or artwork.unknown_artist:
+                        #Attempt upload to commons if there is an imagepath and categories
+                        if upload_to_commons and imagepath!='' and smk_categories != '':
+                        #if imagepath!='':
                             if not image_exists:
     #                        if True:
                                 # image not already uploaded attempting upload to commons
@@ -492,9 +522,17 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                             else:
                                 bot_status = 'Media already uploaded'
                         else:
-                            bot_status = 'Artist has no wikidata item'
+                            if smk_categories == '':
+                                bot_status = 'no categories'
+                            else:
+                                bot_status = 'upload_to_commons set to False'
                     else:
-                        bot_status = 'upload_to_commons set to False'
+                        bot_status = 'Artist has no wikidata item'
+
+                        # add missiong artist lref_person to "./artists/creator_lref_without_q.csv"
+                        creator_lref=open('./artists/creator_lref_without_q.csv','a')
+                        creator_lref.write(smk_item.items[0].production[0].creator_lref+','+artwork.artist_name+'\n')
+                        creator_lref.close()
                 else:
                     bot_status = 'file size exeeds 100MB'
 
@@ -503,9 +541,10 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     filetype_3d = pathlib.Path(smk_item.items[0].files_3D[0].url).suffix
                     imagepath_3d = folder + short_filename + ", 3D model" + filetype_3d
 
-                    if not os.path.exists(imagepath_3d):
-                        # only download file if it doens't already exist
-                        DownloadImage(smk_item.items[0].files_3D[0].url, imagepath_3d)
+                    if download_images:
+                        if not os.path.exists(imagepath_3d):
+                            # only download file if it doens't already exist
+                            DownloadImage(smk_item.items[0].files_3D[0].url, imagepath_3d)
 
                     #Attempt upload to commons if there is an imagepath and categories
                     if upload_to_commons and imagepath_3d!='' and smk_categories != '':
@@ -532,8 +571,14 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                                     path = folder + short_filename + ", 3D model" + '.txt'
                                     open(path, 'w').write(wikitext)
 
-                                debug_msg('Attempting upload of: ' + pagetitle_3d,debug_level)
-                                commons.complete_desc_and_upload(imagepath_3d, pagetitle_3d, desc=wikitext, date='', categories='Category:3D models from the Statens Museum for Kunst', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
+                                file_stats_3d = os.stat(imagepath_3d)
+                                file_size_3d = file_stats_3d.st_size / (1024 * 1024)
+                                print(f'File Size in MB: {round(file_size_3d, 2)}\n')
+                                if file_size_3d < 100:
+                                    debug_msg('Attempting upload of: ' + pagetitle_3d,debug_level)
+                                    commons.complete_desc_and_upload(imagepath_3d, pagetitle_3d, desc=wikitext, date='', categories='Category:3D models from the Statens Museum for Kunst', edit_summary='{{SMK Open|'+artwork.accession_number +'}}')
+                                else:
+                                    bot_status = 'file size for 3D file exeeds 100MB'
 
                 now = datetime.now()
                 current_time = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -548,7 +593,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 debug_msg('EXCEPTION! '+ str(e))
                 logging.exception(e)
             finally:
-                print('\r' + "Uploaded " + str(files_uploaded) + "/" + str(items) + " files - " + bot_status, end='', flush=True)
+                print('\n' + "Uploaded " + str(files_uploaded) + "/" + str(items) + " files - " + bot_status + "\n", end='', flush=True)
 
                 offset=offset+1
 
@@ -861,9 +906,14 @@ def SMKHelper(Item: smkitem.Item):
                         if value < depth:
                             depth=value
 
+        # Do not set depth for paintings (Maleri), it is 2D
+        if object_name.name == "Maleri":
+            depth = 0
+
         if height>0 and width>0:
             # Artwork has a height and a width, generate Size tempålate
             smk_dimensions='{{Size|unit='+'mm'+'|width='+str(width)+'|height='+str(height)
+
             if depth > 0:
                 # Artwork has a  depth, add depth parameter
                 smk_dimensions=smk_dimensions+'|depth='+str(depth)
@@ -974,7 +1024,8 @@ def SMKHelper(Item: smkitem.Item):
             else:
                 # find wikidata item from artist name
                 smk_artist_wikidata_q = csvlookup.find_wikidata_from_creator_name(smk_artist)
-                if smk_artist_wikidata_q!='':
+                # was a Q-number for the artist found? first letter is a Q
+                if smk_artist_wikidata_q.startswith('Q'):
                     smk_artists=smk_artists+smk_artist_wikidata_q+'\n'
                     artwork.has_artist_wikidata = True
                     artwork.artist_name = smk_artist
@@ -1192,6 +1243,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 smk_number_list = ["KMS1620"]
 smk_number_list = ["KAS422"]
 smk_number_list = ["KMS5808"]
+smk_number_list = ["KMS8568"]
 smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
@@ -1202,44 +1254,23 @@ smk_number_list=None
 smk_filter_list = [["public_domain","true"],
     ["has_image", "true"]]
 
-#smk_facet_filter =
-#https://api.smk.dk/api/v1/art/search?keys=%2A&facets=object_names&filters=%5Bobject_names%3AClairobscurtr%C3%A6snit%5D&offset=0&rows=10
-
 # Generate SMK API filters from filter list
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
-offset=0
-# offset indicates at what row the SMK API should start generation
-offset=10272
+offset=27717
 rows=1
 
 #smk_filter=""
-#batch_title='all_public_domain_images'
 batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
-#batch_title='KKSgb20143'
 download_images=True
 #download_images=False
 #upload_images=True
 upload_images=True
 #batch_size=24
 batch_size=-1
-batch_size=500
+# batch_size=1000
 save_json=True
 save_wikitext=True
 debug_level=1
 MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size, save_json, save_wikitext, offset)
-
-#test upload
-#filename    = "./downloads/Ambrosius Bosschaerts d.Æ., Blomsterbuket i en stenniche, 1618, KMSsp211, Statens Museum for Kunst.jpg"
-#pagetitle = os.path.basename(filename)
-
-#pagetitle   = "Ambrosius Bosschaerts d.Æ., Blomsterbuket i en stenniche, 1618, KMSsp211, Statens Museum for Kunst.jpg"
-#commons.complete_artwork_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
-#try:
-#    commons.complete_desc_and_upload(filename, pagetitle, '', '', '')
-#    commons.complete_desc_and_upload(filename, pagetitle, desc='', date='', categories='')
-#except Exception as e:
-#    debug_msg(str(e))
-
-

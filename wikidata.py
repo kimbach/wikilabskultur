@@ -32,7 +32,7 @@ wd_instance_of = 'P31'      # instance of
 wd_given_name = 'P735'      # given name
 wd_family_name = 'P734'     # family name
 wb_human = 'Q5'             # human item
-wb_lastest_date = 'S1326'   # latest date
+wb_lastest_date = 'P1326'   # latest date
 
 # creating enumerations using class 
 class outputformat(enum.Enum): 
