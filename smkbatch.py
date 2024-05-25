@@ -412,7 +412,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                 image_exists=False
                 file_hash = '0'
                 if smk_item.items[0].has_image == True:
-                    short_filename = textwrap.shorten(filename, width=235-len('.'+filetype), placeholder='...')
+                    short_filename = textwrap.shorten(filename, width=234-len('.'+filetype), placeholder='...')
                     imagepath = folder + short_filename + filetype
                     if download_images:
                         if not os.path.exists(imagepath):
@@ -531,7 +531,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
 
                         # add missiong artist lref_person to "./artists/creator_lref_without_q.csv"
                         creator_lref=open('./artists/creator_lref_without_q.csv','a')
-                        creator_lref.write(smk_item.items[0].production[0].creator_lref+','+artwork.artist_name+'\n')
+                        creator_lref.write(smk_item.items[0].production[0].creator_lref+';'+artwork.artist_name+';'+artwork.accession_number+'\n')
                         creator_lref.close()
                 else:
                     bot_status = 'file size exeeds 100MB'
@@ -906,8 +906,8 @@ def SMKHelper(Item: smkitem.Item):
                         if value < depth:
                             depth=value
 
-        # Do not set depth for paintings (Maleri), it is 2D
-        if object_name.name == "Maleri":
+        # Do not set depth for paintings (Maleri) or Drawings (Tegning), it is 2D
+        if object_name.name == "Maleri" or object_name.name == "Tegning":
             depth = 0
 
         if height>0 and width>0:
@@ -1258,7 +1258,7 @@ smk_filter_list = [["public_domain","true"],
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
-offset=27717
+offset=0
 rows=1
 
 #smk_filter=""
@@ -1266,10 +1266,10 @@ batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
 download_images=True
 #download_images=False
 #upload_images=True
-upload_images=True
+upload_images=False
 #batch_size=24
 batch_size=-1
-# batch_size=1000
+batch_size=1
 save_json=True
 save_wikitext=True
 debug_level=1

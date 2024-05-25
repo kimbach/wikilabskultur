@@ -804,7 +804,7 @@ def Test():
     #FindSMKArtistWikidata()
     #print(find_person_wikidata_item('244_person'))
     #query_all_artists()
-    get_creator_lref_without_q()
+    # get_creator_lref_without_q()
     # query_all_artwork_types()
     # creator_lref="1039_person"
     # creator_wikidata=find_wikidata_from_creator_lref(creator_lref)
@@ -822,5 +822,9 @@ def Test():
     # smk_artwork_type_wikidata=find_wikidata_from_artwork_type(smk_artwork_type)
     # print(smk_artwork_type_wikidata)
     # load_all_creator_lref_to_wikidata_items()
+
+    smk_artist_wikidata_q = find_wikidata_from_creator_name("Niels Truslew")
+    print(smk_artist_wikidata_q)
+
 
 #Test()

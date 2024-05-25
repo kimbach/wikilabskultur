@@ -57,3 +57,5 @@ throttle.ctrl
 user-config.py
 commons_error.log
 backup_*.zip
+creator_lref_to_wikidata.unsorted.numbers
+.gitignore
