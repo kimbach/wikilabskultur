@@ -11,6 +11,10 @@ https://commons.wikimedia.org/wiki/Commons:SMK_-_Statens_Museum_for_Kunst
 
 Use:
 MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, max_number_of_images)
+
+2024-10-04 KB Added use of generate_smk_range function for generation of 
+              SMKAPI range term function
+
 """
 
 from dataclasses import dataclass
@@ -229,7 +233,7 @@ def UploadImage(imagepath: str, pagetitle:str, wikitext:str, date:str, categorie
     debug_msg('Attempting upload of: ' + pagetitle,debug_level + '\n')
     commons.complete_desc_and_upload(imagepath, pagetitle, wikitext, date, categories, edit_summary)
 
-def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, offset, debug_level=0):
+def MapSMKAPIToCommons(batch_title,smk_filter,smk_range,smk_number_list,download_images, upload_to_commons, batch_size, save_json, save_wikitext, offset, debug_level=0):
     """
     Maps SMK API to Wikimedia Commons. Three files is generated for each item (inventory number/assension number)
     <mediafilename> ::=<filename>"."<fileextension>
@@ -331,7 +335,7 @@ def MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, u
                     break
             try:
                 if SMKItemList==None:
-                    smk_json=smkapi.get_smk_objects(smk_filter,offset, rows)
+                    smk_json=smkapi.get_smk_objects(smk_filter,smk_range,offset, rows)
                 else:
                     if len(SMKItemList)==0:
                         break
@@ -1243,7 +1247,7 @@ url="https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atru
 smk_number_list = ["KMS1620"]
 smk_number_list = ["KAS422"]
 smk_number_list = ["KMS5808"]
-smk_number_list = ["KMS8568"]
+#smk_number_list = ["KMS1484"]
 smk_number_list=None
 
 #smk_filter_list = [["public_domain","true"],
@@ -1256,6 +1260,9 @@ smk_filter_list = [["public_domain","true"],
 
 # Generate SMK API filters from filter list
 smk_filter=smkapi.generate_smk_filter(smk_filter_list)
+
+#smk_range=smkapi.generate_smk_range(field, start_date, end_date)
+smk_range=smkapi.generate_smk_range("created", "2024-01-01T00:00:00Z", "*")
 #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk&offset='+str(offset)+'&rows='+str(rows)
 # offset indicates at what row the SMK API should start generation, 0 indicates the first record
 offset=0
@@ -1266,11 +1273,11 @@ batch_title=datetime.now().strftime("%Y%m%d_%H%M%S") + '_Batch'
 download_images=True
 #download_images=False
 #upload_images=True
-upload_images=False
+upload_images=True
 #batch_size=24
 batch_size=-1
 batch_size=1
 save_json=True
 save_wikitext=True
 debug_level=1
-MapSMKAPIToCommons(batch_title,smk_filter,smk_number_list,download_images, upload_images, batch_size, save_json, save_wikitext, offset)
+MapSMKAPIToCommons(batch_title,smk_filter,smk_range,smk_number_list,download_images, upload_images, batch_size, save_json, save_wikitext, offset)

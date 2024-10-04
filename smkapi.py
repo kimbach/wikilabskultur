@@ -8,6 +8,10 @@ SMK and Wikimedia Denmark
 
 For more details, refer to the project page on Commons:
 https://commons.wikimedia.org/wiki/Commons:SMK_-_Statens_Museum_for_Kunst
+
+History:
+2024-10-04 KB Added generate_smk_range function for generation of 
+              SMKAPI range term function
 """
 
 from dataclasses import dataclass
@@ -60,7 +64,23 @@ def generate_smk_filter(smk_filter_list):
 
     return smk_filter
 
-def get_smk_objects(smk_filter, offset, rows):
+def generate_smk_range(field, start_date, end_date):
+    # Generate range term for SMKAPI
+    # <field> ::= searchable SMKAPI filed, ie. created of modified
+    # <startdata> ::= <isodata> - for first date in range
+    # <enddata> ::= <isodata> - for last date in range | "" - for no end date
+    smk_range=""
+    try:
+        smk_range=smk_range+"&range=" + field + ":{" + start_date + ";" + end_date + "}"
+        if end_date == "":
+            end_date= "*"
+        smk_range=smk_range+"&range=" + field + ":{" + start_date + ";" + end_date + "}"
+    except:
+        smk_range=""
+
+    return smk_range
+
+def get_smk_objects(smk_filter, smk_range, offset, rows):
 #    url='https://api.smk.dk/api/v1/art/search/?keys=*&offset='+str(offset)+'&rows='+str(rows)
     url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D&offset='+str(offset)+'&rows='+str(rows)
     #https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bpublic_domain%3Atrue%5D,%5Bhas_image%3Atrue%5D,%5Bcreator_gender%3Akvinde%5D,%5Bcreator_nationality%3Adansk%5D&offset=0&rows=10
@@ -69,6 +89,8 @@ def get_smk_objects(smk_filter, offset, rows):
     #url='https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bcreator%3APiranesi%2C%20Giovanni%20Battista%5D&offset='+str(offset)+'&rows='+str(rows)
     if smk_filter!='':
         url=url+'&filters='+smk_filter
+    if smk_range!='':
+        url=url+smk_range
     url=url+'&offset='+str(offset)+'&rows='+str(rows)
 
     smk_json=requests.get(url).text
